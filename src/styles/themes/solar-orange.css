@@ -1,0 +1,23 @@
+/* ADO Metalik Titanyum & Amber Altın (adodesign.ch #ffd60a & #ff5a1f) */
+[data-theme="solar-orange"],
+[data-theme="ado-amber-gold"] {
+  --theme-bg: #070604;
+  --theme-surface: rgba(18, 16, 10, 0.82);
+  --theme-surface-card: rgba(14, 12, 7, 0.90);
+  --theme-surface-active: rgba(255, 214, 10, 0.12);
+  --theme-border: rgba(255, 214, 10, 0.22);
+  --theme-border-hover: rgba(255, 214, 10, 0.65);
+  --theme-primary: #ffd60a; /* adodesign.ch Amber Sarı */
+  --theme-primary-hover: #ffe44d;
+  --theme-primary-glow: rgba(255, 214, 10, 0.50);
+  --theme-primary-subtle: rgba(255, 214, 10, 0.15);
+  --theme-secondary: #ff5a1f; /* adodesign.ch Turuncu */
+  --theme-secondary-glow: rgba(255, 90, 31, 0.45);
+  --theme-secondary-subtle: rgba(255, 90, 31, 0.15);
+  --theme-accent-green: #00ff88;
+  --theme-text: #ffffff; /* Tamamen beyaz */
+  --theme-text-muted: #cbd5e1; /* Net, temiz beyaz-gümüş */
+  --theme-badge-bg: rgba(255, 214, 10, 0.16);
+  --theme-badge-text: #ffd60a;
+  --theme-badge-border: rgba(255, 214, 10, 0.40);
+}

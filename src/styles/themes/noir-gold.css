@@ -1,0 +1,23 @@
+/* ADO Metalik Siyah & Siber Camgöbeği Mavi (adodesign.ch #00d4ff & #ff5a1f) */
+[data-theme="noir-gold"],
+[data-theme="ado-cyber-cyan"] {
+  --theme-bg: #04070a;
+  --theme-surface: rgba(10, 16, 24, 0.82);
+  --theme-surface-card: rgba(7, 12, 19, 0.90);
+  --theme-surface-active: rgba(0, 212, 255, 0.12);
+  --theme-border: rgba(0, 212, 255, 0.22);
+  --theme-border-hover: rgba(0, 212, 255, 0.65);
+  --theme-primary: #00d4ff; /* adodesign.ch Canlı Camgöbeği Mavi */
+  --theme-primary-hover: #40dfff;
+  --theme-primary-glow: rgba(0, 212, 255, 0.50);
+  --theme-primary-subtle: rgba(0, 212, 255, 0.15);
+  --theme-secondary: #ff5a1f; /* adodesign.ch Ateş Turuncusu */
+  --theme-secondary-glow: rgba(255, 90, 31, 0.45);
+  --theme-secondary-subtle: rgba(255, 90, 31, 0.15);
+  --theme-accent-green: #00ff88;
+  --theme-text: #ffffff; /* Tamamen beyaz */
+  --theme-text-muted: #cbd5e1; /* Net, temiz beyaz-gümüş */
+  --theme-badge-bg: rgba(0, 212, 255, 0.16);
+  --theme-badge-text: #00d4ff;
+  --theme-badge-border: rgba(0, 212, 255, 0.40);
+}

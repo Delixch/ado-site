@@ -1,0 +1,7 @@
+{
+  "name": "CSS Grid Architect & Layout Studio",
+  "description": "Etkileşimli CSS Grid düzen mimarisi, canlı görselleştirici ve modern şablon stüdyosu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

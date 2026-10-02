@@ -1,0 +1,23 @@
+/* ADO Metalik Siyah & Canlı Terminal Yeşili (adodesign.ch #00ff88 & #00d4ff) */
+[data-theme="cyber-emerald"],
+[data-theme="ado-terminal-green"] {
+  --theme-bg: #040806;
+  --theme-surface: rgba(10, 18, 14, 0.82);
+  --theme-surface-card: rgba(7, 14, 11, 0.90);
+  --theme-surface-active: rgba(0, 255, 136, 0.12);
+  --theme-border: rgba(0, 255, 136, 0.22);
+  --theme-border-hover: rgba(0, 255, 136, 0.65);
+  --theme-primary: #00ff88; /* adodesign.ch Canlı Yeşil */
+  --theme-primary-hover: #33ffa3;
+  --theme-primary-glow: rgba(0, 255, 136, 0.50);
+  --theme-primary-subtle: rgba(0, 255, 136, 0.15);
+  --theme-secondary: #00d4ff; /* adodesign.ch Camgöbeği Mavi */
+  --theme-secondary-glow: rgba(0, 212, 255, 0.45);
+  --theme-secondary-subtle: rgba(0, 212, 255, 0.15);
+  --theme-accent-green: #00ff88;
+  --theme-text: #ffffff; /* Tamamen beyaz */
+  --theme-text-muted: #cbd5e1; /* Net, temiz beyaz-gümüş */
+  --theme-badge-bg: rgba(0, 255, 136, 0.16);
+  --theme-badge-text: #00ff88;
+  --theme-badge-border: rgba(0, 255, 136, 0.40);
+}

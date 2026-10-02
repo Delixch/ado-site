@@ -1,0 +1,29 @@
+/* All Theme Definitions imported separately for clean management */
+@import "./themes/obsidian-crimson.css";
+@import "./themes/noir-gold.css";
+@import "./themes/cyber-emerald.css";
+@import "./themes/solar-orange.css";
+@import "./themes/amethyst-violet.css";
+
+/* Base fallback theme values matching www.adodesign.ch (Metallic Dark Metal & Pure White Text) */
+:root {
+  --theme-bg: #050508;
+  --theme-surface: rgba(15, 17, 24, 0.82);
+  --theme-surface-card: rgba(12, 13, 19, 0.90);
+  --theme-surface-active: rgba(255, 90, 31, 0.12);
+  --theme-border: rgba(255, 255, 255, 0.12);
+  --theme-border-hover: rgba(255, 90, 31, 0.60);
+  --theme-primary: #ff5a1f; /* adodesign.ch Neon Orange */
+  --theme-primary-hover: #ff753e;
+  --theme-primary-glow: rgba(255, 90, 31, 0.50);
+  --theme-primary-subtle: rgba(255, 90, 31, 0.15);
+  --theme-secondary: #00d4ff; /* adodesign.ch Electric Cyan Mavi */
+  --theme-secondary-glow: rgba(0, 212, 255, 0.45);
+  --theme-secondary-subtle: rgba(0, 212, 255, 0.15);
+  --theme-accent-green: #00ff88; /* adodesign.ch Terminal Yeşili */
+  --theme-text: #ffffff; /* Tamamen beyaz */
+  --theme-text-muted: #cbd5e1; /* Net, temiz beyaz-gümüş */
+  --theme-badge-bg: rgba(255, 90, 31, 0.16);
+  --theme-badge-text: #ff5a1f;
+  --theme-badge-border: rgba(255, 90, 31, 0.40);
+}
