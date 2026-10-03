@@ -28,7 +28,7 @@
 
   /* Schrift */
   --ink: #211F1C;
-  --ink-soft: #736C62;
+  --ink-soft: #4A4540; /* Nebentext, aber gut lesbar */
 
   /* Dunkle Karten (Kontrastflaechen) */
   --dark: #FBF8F2;

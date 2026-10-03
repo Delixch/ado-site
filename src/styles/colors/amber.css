@@ -29,7 +29,7 @@
 
   /* Schrift */
   --ink: #F4F4F6;
-  --ink-soft: #9C9CA8;
+  --ink-soft: #DCDCE2; /* Nebentext, aber gut lesbar (Adnan: kein Grau) */
 
   /* Akzentflaechen (frueher "dunkle Karten") */
   --dark: #111116;
