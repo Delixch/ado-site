@@ -338,49 +338,31 @@
   }
 }
 
-/* Handy: Station mit glow (Erfahrung) blinkt, gelbes Licht pulsiert dahinter */
+/* Handy: Station mit glow (Erfahrung) - gelbes Licht pulsiert hinter der Karte, die Schrift bleibt ruhig */
+.glow-back {
+  display: none;
+}
+
 @media (max-width: 719.98px) {
-  .glow-blink {
-    position: relative;
-    isolation: isolate;
-    animation: glow-blink 1.6s ease-in-out infinite;
-  }
-
-  .glow-blink::before {
-    content: "";
-    position: absolute;
-    inset: -40% -12%;
-    z-index: -1;
-    border-radius: var(--radius-pill);
-    background: radial-gradient(closest-side, var(--glow-yellow), transparent);
-    filter: blur(var(--sp-2));
-    animation: glow-pulse 1.6s ease-in-out infinite;
+  .step:has(> .glow-back) {
+    animation: glow-back 3s ease-in-out infinite;
   }
 }
 
-@keyframes glow-blink {
-  50% {
-    opacity: 0.45;
-  }
-}
-
-@keyframes glow-pulse {
+@keyframes glow-back {
   0%,
   100% {
-    opacity: 0.25;
-    transform: scale(0.85);
+    box-shadow: 0 0 0 0 transparent;
   }
 
   50% {
-    opacity: 1;
-    transform: scale(1.1);
+    box-shadow: 0 0 var(--sp-6) var(--sp-2) var(--glow-yellow);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .trace,
-  .glow-blink,
-  .glow-blink::before {
+  .step:has(> .glow-back) {
     animation: none;
   }
 }
@@ -408,7 +390,7 @@
       linear-gradient(var(--brand), var(--brand)) bottom right / var(--trace-w) var(--c);
     background-repeat: no-repeat;
     pointer-events: none;
-    animation: corners-breathe 2.4s ease-in-out infinite;
+    animation: corners-breathe 3.6s ease-in-out infinite;
   }
 }
 
@@ -421,7 +403,7 @@
 
 /* Nummer blinkt gelb (alle Geraete) */
 .blink-num {
-  animation: blink-num 1.2s steps(1, end) infinite;
+  animation: blink-num 2s steps(1, end) infinite;
 }
 
 @keyframes blink-num {

@@ -327,8 +327,8 @@
   --tb-m-h: 64px;
   /* Lichtlinie um Bausteine (fx.css .trace) */
   --trace-w: 2px;
-  --trace-loop: 4.5s;
-  --trace-step: 1.8s;
+  --trace-loop: 7s;
+  --trace-step: 2.6s;
   --glow-yellow: #ffd400;
   --robot-size: 156px;
   --robot-size-s: 84px;

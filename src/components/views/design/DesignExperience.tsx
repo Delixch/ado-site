@@ -49,7 +49,8 @@ export function DesignExperience() {
               <span className="micro">
                 <b>{String(i + 1).padStart(2, '0')}</b> · {j.year}
               </span>
-              <span className={`ex-title whisper${j.glow ? ' glow-blink' : ''}`}>{j.title}</span>
+              <span className="ex-title whisper">{j.title}</span>
+              {j.glow && <i className="glow-back" aria-hidden />}
               <span className="micro">{j.organization}</span>
             </>
           ))}
