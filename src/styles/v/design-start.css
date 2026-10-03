@@ -66,6 +66,7 @@
 
 .ds-head .fit-accent {
   color: var(--brand-text);
+  font-size: var(--fs-poster-l);
 }
 
 .blk .knock {
