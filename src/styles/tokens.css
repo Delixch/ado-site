@@ -286,6 +286,8 @@
 :root {
   --sb-blur: 30px;
   --sb-ring-w: 1.5px;
+  --sb-ring-glow: 8px;
+  --sb-ring-glow-on: 14px;
   --sb-tree-x: 6px;
   /* KI-Roboter im Seitenkopf */
   --robot-size: 156px;

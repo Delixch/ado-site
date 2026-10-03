@@ -906,8 +906,8 @@
   display: none;
 }
 
-/* 1 · feiner Ring: Gruppensymbol im Kreis. Zu = leiser Ring, offen = Ring und Symbol
-   in Themenfarbe (nichts gefuellt). */
+/* 1 · feiner Ring: jede Gruppe leuchtet als Ring in Themenfarbe, die offene staerker.
+   Nichts gefuellt. */
 .sb[data-rail="1"] .sb-rail-btn,
 .sb[data-rail="1"] .sb-rail-btn:hover {
   background: none;
@@ -919,15 +919,18 @@
   box-sizing: content-box;
   padding: var(--sp-2);
   border-radius: 50%;
-  border: var(--sb-ring-w) solid var(--line-strong);
-  color: var(--ink);
-  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+  border: var(--sb-ring-w) solid var(--brand);
+  color: var(--brand-text);
+  box-shadow: 0 0 var(--sb-ring-glow) color-mix(in srgb, var(--brand) 45%, transparent),
+    inset 0 0 var(--sb-ring-glow) color-mix(in srgb, var(--brand) 25%, transparent);
+  transition: box-shadow var(--dur-fast) var(--ease);
 }
 
+/* offen oder unter dem Zeiger: Ring leuchtet staerker */
 .sb[data-rail="1"] .sb-rail-btn:hover .sb-icon,
 .sb[data-rail="1"] .sb-rail-btn[data-open="true"] .sb-icon {
-  border-color: var(--brand);
-  color: var(--brand-text);
+  box-shadow: 0 0 var(--sb-ring-glow-on) var(--brand),
+    inset 0 0 var(--sb-ring-glow) color-mix(in srgb, var(--brand) 40%, transparent);
 }
 
 /* 2 · Baumlinie: offene Gruppe haengt an einer feinen Linie */
