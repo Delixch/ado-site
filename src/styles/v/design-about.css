@@ -27,16 +27,24 @@
 }
 
 .ab-bio {
+  /* fuellt die Flaeche: mittig von oben nach unten, Schrift waechst mit der Breite */
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--sp-5);
   height: 100%;
 }
 
 .ab-bio h2 {
-  font-size: var(--fs-whisper);
-  max-width: var(--measure-title);
+  font-size: var(--fs-bio-title);
+  max-width: none;
+  text-wrap: balance;
+}
+
+.ab-bio .lede {
+  max-width: none;
+  font-size: var(--fs-bio-text);
 }
 
 .ab-bio em {
