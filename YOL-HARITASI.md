@@ -35,8 +35,8 @@ Start (yarık pencereli kapak videosu), Über mich (tipografik portre), Projekte
 
 ### Öncelikli
 1. **Vercel**: googleado deposu Vercel'e bağlı mı, canlı adres ve alan adı (adodesign.ch?) — kontrol et.
-2. **instagramoto paneli Almanca** (ayrı proje). Sonra Almanca ekran görüntüleri (`public/media/insta/de-*.webp`) — site kendisi değiştirir.
-3. **InstaOto Almanca tanıtım videosu**: `videoedit/projects/instagramoto-promo` → Almanca ses (Azure) + yazılar, `promo-de.mp4` → .bat ile render.
+2. ~~instagramoto paneli Almanca~~ ✅ (TR/DE + 5 tema, canlıda; Almanca ekran görüntüleri sitede).
+3. **InstaOto Almanca tanıtım videosu**: hazır, render sende → `D:eposideoedit\projects\instagramoto-promo-deender-de.bat` (çift tık). Fiyat yerine «1× eingerichtet».
 4. **Türkçe Firma videosu**: yeni Flow klipleri (başka kadın) + `texts.ts` çevirisi.
 5. **Yeni metinlerin kontrolü**: InstaOto sayfaları, Meldungen açıklamaları, Personal etiketleri, mektup cümleleri bana ait — sen oku.
 
