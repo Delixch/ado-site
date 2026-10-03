@@ -11,9 +11,10 @@
   align-self: end;
   /* ragt nach oben in den Leerraum, der Kopf wird nicht hoeher */
   margin-top: calc(var(--robot-size) * -0.45);
-  margin-bottom: calc(var(--sp-2) * -1);
+  /* Fuesse stehen auf der Linie unter dem Kopf (Kopf-Polster + Leerraum im Bild) */
+  margin-bottom: calc(var(--sp-8) * -1 - var(--sp-1));
   /* naeher an die Layout-Plaene */
-  margin-right: calc(var(--sp-6) * -1 + var(--sp-1));
+  margin-right: calc(var(--sp-10) * -1);
   width: var(--robot-size);
   height: var(--robot-size);
 }
