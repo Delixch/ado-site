@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 
 /**
- * Schlagzeile aus drei Teilen (weiss · Akzent · weiss).
+ * Schlagzeile aus drei Teilen (weiss · Akzent · weiss), alle in derselben Schrift - der Akzent nur in Themenfarbe.
  * Passt sie in eine Zeile, steht sie in einer Zeile; sonst zwei Zeilen, beide gleich
  * linksbuendig, und der Block als Ganzes mittig. CSS allein kann einen umbrechenden
  * Block nicht auf seine Breite schrumpfen - deshalb wird gemessen.
@@ -40,7 +40,7 @@ export function FitHeadline({ className, parts }: { className: string; parts: [R
     <h2 ref={ref} className={className} data-one={one}>
       <span className="fit-line">
         <span className="poster">{parts[0]}</span>
-        <span className="whisper">{parts[1]}</span>
+        <span className="poster fit-accent">{parts[1]}</span>
       </span>
       <span className="poster">{parts[2]}</span>
     </h2>

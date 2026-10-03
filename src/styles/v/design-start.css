@@ -64,8 +64,7 @@
   font-size: var(--fs-poster-xl);
 }
 
-.ds-head .whisper {
-  font-size: var(--fs-poster-l);
+.ds-head .fit-accent {
   color: var(--brand-text);
 }
 
