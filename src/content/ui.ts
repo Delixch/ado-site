@@ -40,7 +40,7 @@ const shell = {
     pause: 'Video anhalten',
     /** Vertrauens-Hinweise auf den Angebotsseiten. Nur sagen, was nachweislich stimmt. */
     trust: {
-      insta: ['Daten in der EU · Frankfurt', 'Zugänge AES-256-verschlüsselt', 'Kein Monatsabo', 'Ansprechpartner in Zürich'],
+      insta: ['Daten in der EU · Frankfurt', 'Zugänge AES-256-verschlüsselt', 'Software ohne Monatsabo', 'Ansprechpartner in Zürich'],
       firma: ['Ansprechpartner in Zürich', 'Deutsch & Türkisch', 'Auf Ihren Betrieb zugeschnitten', 'Persönliche Einweisung'],
     },
     /** Erstgespraech-Knopf: oeffnet den Brief mit fertigem Betreff (kein Kalenderdienst). */
@@ -92,7 +92,7 @@ const shell = {
     play: 'Videoyu oynat',
     pause: 'Videoyu durdur',
     trust: {
-      insta: ['Veriler AB’de · Frankfurt', 'Erişimler AES-256 ile şifreli', 'Aylık abonelik yok', 'Zürih’te muhatap'],
+      insta: ['Veriler AB’de · Frankfurt', 'Erişimler AES-256 ile şifreli', 'Yazılım için aylık ücret yok', 'Zürih’te muhatap'],
       firma: ['Zürih’te muhatap', 'Almanca & Türkçe', 'İşletmenize göre yapılır', 'Kişisel tanıtım'],
     },
     intro: {

@@ -23,19 +23,21 @@ export function LetterDesk({ labels, to = 'ADO' }: { labels: LetterLabels; to?: 
   const L = t.ui.letter;
   const lang = t.lang;
   const I = t.ui.intro;
-  const [intro, setIntro] = useState(takeIntroCall);
-  const [v, setV] = useState(() => ({ name: '', email: '', message: intro ? `${I.topic}
+  const [wish] = useState(takeIntroCall);
+  const [topic, setTopic] = useState<string | null>(wish ? (wish.topic ?? I.topic) : null);
+  const [v, setV] = useState(() => ({ name: '', email: '', message: topic ? `${topic}
 ${I.when}` : '' }));
   const [sealed, setSealed] = useState(false);
   const area = useRef<HTMLTextAreaElement>(null);
 
-  // Erstgespraech-Knopf auf derselben Seite: Brief oeffnen und vorfuellen
+  // Erstgespraech- oder Paket-Knopf auf derselben Seite: Brief oeffnen und vorfuellen
   useEffect(
     () =>
-      onIntroCall(() => {
+      onIntroCall((w) => {
+        const next = w.topic ?? I.topic;
         setSealed(false);
-        setIntro(true);
-        setV((cur) => ({ ...cur, message: `${I.topic}
+        setTopic(next);
+        setV((cur) => ({ ...cur, message: `${next}
 ${I.when}` }));
         window.setTimeout(() => area.current?.focus(), 500);
       }),
@@ -44,7 +46,7 @@ ${I.when}` }));
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = encodeURIComponent(intro ? `${I.topic} · ${v.name}`.trim() : `${labels.mailSubjectPrefix} ${v.name}`.trim());
+    const subject = encodeURIComponent(topic ? `${topic} · ${v.name}`.trim() : `${labels.mailSubjectPrefix} ${v.name}`.trim());
     const body = encodeURIComponent(`${L.greeting}\n\n${v.message}\n\n${L.bye}\n${v.name} · ${v.email}`);
     setSealed(true);
     window.setTimeout(() => {

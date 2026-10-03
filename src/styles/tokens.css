@@ -290,6 +290,12 @@
 /* Buzlu cam menu (sidebar.css "Eis-Glas") */
 :root {
   --sb-blur: 30px;
+  /* InstaOto Preise: Preis im Kreis, Checklisten-Kreise */
+  --pk-ring: 132px;
+  --pk-dot: 64px;
+  --ck-dot: 26px;
+  --ck-ring: 56px;
+  --ring-spin: 36s;
   /* Kachel-Effekt: so weit ragt das Quadrat hinter der Karte hervor */
   --hover-tile-out: 8px;
   /* Innenkante: Licht klingt nach etwa 1 cm aus */
