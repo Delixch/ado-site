@@ -466,3 +466,29 @@
   margin-top: var(--sp-5);
   flex-shrink: 0;
 }
+
+/* Kleines Quadrat in Themenfarbe, mittig auf der linken Haarlinie, faehrt auf und ab */
+.spread-runner {
+  position: absolute;
+  z-index: 7;
+  left: calc((var(--runner-size) - var(--hair)) / -2 - var(--hair));
+  top: 0;
+  width: var(--runner-size);
+  height: var(--runner-size);
+  background: var(--brand);
+  pointer-events: none;
+  animation: spread-run var(--runner-dur) ease-in-out infinite alternate;
+}
+
+@keyframes spread-run {
+  to {
+    top: calc(100% - var(--runner-size));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spread-runner {
+    animation: none;
+    top: calc(50% - var(--runner-size) / 2);
+  }
+}

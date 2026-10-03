@@ -136,6 +136,7 @@ export function Spread({ view, head, blocks, layouts }: { view: string; head: Ma
         <i className="mark mark-tr" aria-hidden />
         <i className="mark mark-bl" aria-hidden />
         <i className="mark mark-br" aria-hidden />
+        <i className="spread-runner" aria-hidden />
         {blocks.map((b, i) => (
           <motion.section
             key={b.id}
