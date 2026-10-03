@@ -881,13 +881,43 @@
   color: var(--ink);
 }
 
-/* Reiter ueber der Liste (So funktioniert's): oben im Baustein, die Liste darunter */
+/* Reiter ueber der Liste (So funktioniert's): untereinander wie Tabellenzeilen,
+   gewaehlte Zeile in Themenfarbe */
 .how-tabs {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-2) var(--sp-4);
-  padding-bottom: var(--sp-3);
+  flex-direction: column;
+  border: var(--hair) solid var(--rule);
+}
+
+.how-tab {
+  display: block;
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
   border-bottom: var(--hair) solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.how-tab:last-child {
+  border-bottom: 0;
+}
+
+.how-tab:hover {
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+}
+
+.how-tab[aria-selected="true"] {
+  background: var(--brand);
+  color: var(--on-brand);
+  font-weight: var(--fw-bold);
 }
 
 .ig-steps-wrap:has(> .how-tabs) {
@@ -903,45 +933,4 @@
 
 .how-detail > .ex-detail {
   flex: 1;
-}
-
-.how-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  padding: var(--sp-1) 0;
-  border-bottom: var(--hair) solid transparent;
-  font-family: var(--font-mono);
-  font-size: var(--fs-caption);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--ink);
-  cursor: pointer;
-  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
-}
-
-.how-tab-n {
-  display: inline-grid;
-  place-items: center;
-  width: var(--sp-6);
-  height: var(--sp-6);
-  border-radius: 50%;
-  border: var(--hair) solid color-mix(in srgb, var(--ink) 35%, transparent);
-  font-size: var(--fs-tiny);
-  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
-}
-
-.how-tab:hover {
-  color: var(--brand-text);
-}
-
-.how-tab[aria-selected="true"] {
-  color: var(--brand-text);
-  border-bottom-color: var(--brand);
-}
-
-.how-tab[aria-selected="true"] .how-tab-n {
-  background: var(--brand);
-  border-color: var(--brand);
-  color: var(--on-brand);
 }

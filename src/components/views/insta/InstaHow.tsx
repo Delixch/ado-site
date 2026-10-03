@@ -10,7 +10,7 @@ const VIEWS = [InstaFlow, InstaFeatures, InstaProcess];
 export function InstaHow() {
   const { t } = useView();
   const f = t.i.flow;
-  const labels = [`„${f.keywords[0]}“ · ${f.stepsTitle}`, t.i.features.tab, t.i.process.tab];
+  const labels = [`${f.keywords[0]} · ${f.stepsTitle}`, t.i.features.tab, t.i.process.tab];
   const [tab, setTab] = useState(0);
   const View = VIEWS[tab];
 
@@ -18,7 +18,6 @@ export function InstaHow() {
     <div className="how-tabs" role="tablist">
       {labels.map((label, i) => (
         <button key={label} type="button" role="tab" aria-selected={i === tab} className="how-tab" onClick={() => setTab(i)}>
-          <span className="how-tab-n">{i + 1}</span>
           {label}
         </button>
       ))}
