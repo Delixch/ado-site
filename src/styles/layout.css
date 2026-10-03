@@ -177,3 +177,17 @@
     flex-direction: column;
   }
 }
+
+/* Fusszeile: eigener Grund bis an den unteren und seitlichen Rand (dunkle Themen schwarz),
+   das Lichtband laeuft dahinter und ist dort nicht mehr zu sehen */
+.foot {
+  position: relative;
+  z-index: 3;
+  margin: 0 calc(var(--gutter) * -1) calc(var(--gutter) * -1);
+  padding: 18px calc(var(--gutter) + 4px) calc(var(--gutter) + var(--sp-4));
+  background: var(--foot-bg);
+  /* fuellt den Rest bis zum Seitenende; die gestrichelte Linie oben bleibt */
+  flex: 1 0 auto;
+  align-content: flex-start;
+  align-items: flex-start;
+}

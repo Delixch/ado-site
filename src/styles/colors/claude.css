@@ -18,6 +18,7 @@
 
   /* Flaechen */
   --canvas: #F4EFE6;
+  --foot-bg: var(--canvas);
   --panel: color-mix(in srgb, var(--brand) 6%, #F4EFE6);
   --surface: #FBF8F2;
   --surface-solid: #FBF8F2;

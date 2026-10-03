@@ -29,9 +29,10 @@ export function Topbar({ t, lang, setLang, color, setColor, title, group, auto, 
           </button>
         )}
         <span className="tb-logo">
-          <span className="tb-logo-dot" />
           {{ design: 'ADO DESIGN', firma: 'ADO FIRMA', insta: 'ADO INSTAOTO' }[group]}
-          <span className="tb-caret" />
+          <span className="tb-caret" aria-hidden>
+            █
+          </span>
         </span>
         <span className="tb-sep" />
         <span className="tb-title">{title}</span>

@@ -40,7 +40,7 @@ export function DesignRepos() {
       node: (
         <div className="rp-chart">
           <span className="micro">
-            <b>GitHub ★</b> · {r.eyebrow}
+            <b>GITHUB ★</b> · {r.eyebrow}
           </span>
           <p className="rp-intro-s">{r.intro}</p>
           <ol>
@@ -93,7 +93,7 @@ export function DesignRepos() {
             <p className="lede rp-details">{text.details}</p>
             <p className="rp-tags micro">{text.tags.join(' · ')}</p>
             <a className="e-link" href={repo.link} target="_blank" rel="noreferrer">
-              {r.githubShort.replace('↗', '').trim()} <ArrowUpRight />
+              {r.githubShort.replace('↗', '').trim().toUpperCase()} <ArrowUpRight />
             </a>
           </motion.div>
         </AnimatePresence>

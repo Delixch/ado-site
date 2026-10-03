@@ -65,9 +65,9 @@ const shell = {
     soundOn: 'Sesi aç',
     soundOff: 'Sesi kapat',
     groups: {
-      design: { title: 'ADO Design · Portfolyo', short: 'Design' },
-      firma: { title: 'ADO Firma · Şirketler', short: 'Firma' },
-      insta: { title: 'ADO InstaOto · Otomasyon', short: 'Insta' },
+      design: { title: 'ADO DESIGN · PORTFOLYO', short: 'Design' },
+      firma: { title: 'ADO FIRMA · ŞİRKETLER', short: 'Firma' },
+      insta: { title: 'ADO INSTAOTO · OTOMASYON', short: 'Insta' },
     } as Record<Group, { title: string; short: string }>,
     start: 'Başlangıç',
     overview: 'Genel Bakış',

@@ -90,8 +90,12 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
       {isExpanded ? (
         <div className="sb-head">
           <div className="sb-brand">
-            <span className="sb-dot" />
-            <span>ADOdesign</span>
+            <span className="sb-wordmark">
+              ADO DESIGN
+              <span className="tb-caret" aria-hidden>
+                █
+              </span>
+            </span>
           </div>
           <button type="button" onClick={() => setIsExpanded(false)} title={t.ui.collapse} className="sb-collapse">
             <span>{t.ui.collapse}</span>

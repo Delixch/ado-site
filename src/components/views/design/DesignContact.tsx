@@ -19,8 +19,8 @@ export function DesignContact() {
   const rows = [
     { icon: Mail, label: c.emailLabelFooter.replace(':', ''), value: CONTACT_MAIL, href: `mailto:${CONTACT_MAIL}` },
     { icon: MapPin, label: c.locationLabelFooter.replace(':', ''), value: c.location },
-    { icon: Instagram, label: 'Instagram', value: '@adnanaydin53', href: SOCIAL.instagram },
-    { icon: Github, label: 'GitHub', value: 'Delixch', href: SOCIAL.github },
+    { icon: Instagram, label: 'INSTAGRAM', value: '@adnanaydin53', href: SOCIAL.instagram },
+    { icon: Github, label: 'GITHUB', value: 'Delixch', href: SOCIAL.github },
   ];
 
   const blocks: Block[] = [

@@ -196,7 +196,7 @@ export default function App() {
 
             <footer className="foot">
               <span>© {new Date().getFullYear()} ADO Design · ADO Firma</span>
-              <span>Zürich · Schweiz</span>
+              <span>{lang === 'tr' ? 'Zürih · İsviçre' : 'Zürich · Schweiz'}</span>
               <span className="foot-legal">
                 <button type="button" onClick={() => setLegal('impressum')}>
                   {legalTexts[lang].impressum}

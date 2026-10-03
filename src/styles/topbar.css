@@ -46,10 +46,11 @@
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
+  gap: 0;
   font-family: var(--font-logo);
   font-size: var(--fs-small);
   font-weight: var(--fw-black);
-  letter-spacing: var(--ls-wide);
+  letter-spacing: var(--ls-logo);
   white-space: nowrap;
   color: var(--ink);
 }
@@ -63,10 +64,20 @@
 }
 
 .tb-caret {
-  width: var(--border);
-  height: var(--icon-sm);
-  background: var(--accent);
-  animation: pulse 1s steps(1) infinite;
+  color: var(--brand-text);
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tb-caret {
+    animation: none;
+  }
 }
 
 .tb-sep {

@@ -1081,3 +1081,12 @@
   transform: none;
   margin-left: 0;
 }
+
+/* Wortmarke oben im Menue: wie auf ADO Design (Orbitron, weit gesperrt, blinkender Block) */
+.sb-wordmark {
+  font-family: var(--font-logo);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--ls-logo);
+  text-transform: uppercase;
+}

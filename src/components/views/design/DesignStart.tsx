@@ -110,7 +110,7 @@ export function DesignStart() {
   return (
     <Spread
       view="d-start"
-      head={{ folio: '00', kicker: 'ADO Design · Portfolio', line1: h.roleLine, line2: h.badgeLocation }}
+      head={{ folio: '00', kicker: t.lang === 'tr' ? 'ADO DESIGN · PORTFOLYO' : 'ADO Design · Portfolio', line1: h.roleLine, line2: h.badgeLocation }}
       blocks={blocks}
       layouts={LAYOUTS}
     />
