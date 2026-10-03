@@ -48,7 +48,7 @@ export function InstaStart() {
       node: (
         <div className="in-reel">
           <div className="in-reel-frame">
-            <Media src={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.mp4`} fallback="/media/insta/promo-tr.mp4" poster="/media/insta/promo-tr.webp" sound />
+            <Media src={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.mp4`} fallback="/media/insta/promo-tr.mp4" poster={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.webp`} sound />
           </div>
         </div>
       ),
