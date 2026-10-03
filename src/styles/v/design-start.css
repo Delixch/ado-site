@@ -35,11 +35,15 @@
 }
 
 .ds-head {
-  /* mittig von oben nach unten, linksbuendig */
+  /* Platz da: eine Zeile, mittig in beiden Richtungen. Eng: bricht von selbst um. */
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: baseline;
   justify-content: center;
+  align-content: center;
+  column-gap: 0.3em;
   height: 100%;
+  text-align: center;
   font-weight: var(--fw-regular);
 }
 
@@ -48,7 +52,6 @@
 }
 
 .ds-head .whisper {
-  padding-left: var(--sp-8);
   font-size: var(--fs-poster-l);
   color: var(--brand-text);
 }
