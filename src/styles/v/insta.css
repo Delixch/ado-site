@@ -720,21 +720,127 @@
   background: var(--on-brand);
 }
 
-/* Inhalt des gewaehlten Pakets: dieselbe Kreis-Reihe wie die Checkliste */
-.op-detail {
+/* Blatt zum gewaehlten Paket: Ziel, was Sie mitbringen, was wir erledigen */
+.op-sheet {
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
-  padding-top: var(--sp-4);
+  padding-top: var(--sp-5);
   border-top: var(--hair) solid var(--rule);
 }
 
-.op-track::before {
-  border-top-color: color-mix(in srgb, var(--brand) 50%, transparent);
+.op-sheet-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-2) var(--sp-4);
 }
 
-.op-dot {
-  border-color: var(--brand);
+.op-sheet-head h4 {
+  font-size: var(--fs-poster-m);
+  color: var(--ink);
+}
+
+.op-sheet-head h4 span {
+  color: var(--brand-text);
+}
+
+.op-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--ink);
+}
+
+.op-meta svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  margin-left: var(--sp-2);
+  color: var(--brand-text);
+}
+
+/* runde Symbol-Marken vor Ziel / Sie / Wir */
+.op-ico {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: var(--sp-8);
+  height: var(--sp-8);
+  border-radius: 50%;
+  border: var(--hair) solid var(--brand);
+  color: var(--brand-text);
+}
+
+.op-ico svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.op-goal {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: var(--fs-whisper-s);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.op-goal b {
+  display: block;
+  margin-bottom: var(--sp-1);
+  font-style: normal;
+  color: var(--brand-text);
+}
+
+.op-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-5);
+}
+
+.op-col h5 {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+  color: var(--ink);
+}
+
+.op-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.op-col li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+/* Sie: leerer Kreis (das bringen Sie) */
+.op-col[data-who="you"] li::before {
+  content: "";
+  flex: none;
+  width: var(--sp-3);
+  height: var(--sp-3);
+  margin-top: 3px;
+  border-radius: 50%;
+  border: var(--hair) solid var(--brand);
+}
+
+/* Wir: Haken in Themenfarbe (das erledigen wir) */
+.op-col[data-who="we"] li svg {
+  flex: none;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  margin-top: 2px;
   color: var(--brand-text);
 }
 
@@ -742,199 +848,16 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: var(--sp-2) var(--sp-4);
 }
 
-.op-for {
-  font-family: var(--font-editorial);
-  font-style: italic;
-  font-size: var(--fs-whisper-s);
-  color: var(--ink);
-}
-
-.op-sum {
-  margin-left: auto;
-  color: var(--brand-text);
-}
-
-.op-choose {
-  color: var(--brand-text);
-}
-
 .op-hourly {
-  align-self: flex-end;
   color: var(--ink);
-}
-
-/* Checkliste: drei Reihen verbundener Kreise */
-.ck2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: safe center;
-  gap: var(--sp-4);
-  height: 100%;
-}
-
-.ck2-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-3);
-}
-
-.ck2-verdict {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-caption);
-  letter-spacing: var(--ls-wide);
-  color: var(--ink);
-}
-
-.ck2-verdict[data-all="true"] {
-  color: var(--brand-text);
-}
-
-.ck-ring {
-  width: var(--ck-ring);
-  height: var(--ck-ring);
-  transform: rotate(-90deg);
-}
-
-.ck-ring-bg,
-.ck-ring-fg {
-  fill: none;
-  stroke-width: 3;
-}
-
-.ck-ring-bg {
-  stroke: var(--rule);
-}
-
-.ck-ring-fg {
-  stroke: var(--brand);
-  stroke-linecap: round;
-  transition: stroke-dashoffset var(--dur) var(--ease);
-}
-
-.ck-ring-txt {
-  fill: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  transform: rotate(90deg);
-  transform-origin: 32px 32px;
-}
-
-.ck2-row {
-  display: grid;
-  grid-template-columns: var(--ck-label) minmax(0, 1fr);
-  align-items: start;
-  gap: var(--sp-3);
-}
-
-.ck2-label {
-  padding-top: calc(var(--ck-dot) / 2 - 0.6em);
-  color: var(--ink);
-}
-
-.ck2-track {
-  position: relative;
-  display: flex;
-  width: fit-content;
-  max-width: 100%;
-  flex-wrap: wrap;
-  gap: var(--sp-2) var(--sp-1);
-}
-
-/* feine Leitung durch die Kreismitten */
-.ck2-track::before {
-  content: "";
-  position: absolute;
-  top: calc(var(--ck-dot) / 2);
-  left: calc(var(--ck-dot) * 1.05);
-  right: calc(var(--ck-dot) * 1.05);
-  border-top: var(--hair) solid var(--rule);
-}
-
-.ck2-row[data-own="true"] .ck2-track::before {
-  border-top-color: color-mix(in srgb, var(--brand) 50%, transparent);
-}
-
-.ck2-track li {
-  position: relative;
-}
-
-.ck2-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-1);
-  width: calc(var(--ck-dot) * 2.1);
-  text-align: center;
-  cursor: default;
-  outline: none;
-}
-
-button.ck2-node {
-  cursor: pointer;
-}
-
-.ck2-dot {
-  display: grid;
-  place-items: center;
-  width: var(--ck-dot);
-  height: var(--ck-dot);
-  border-radius: 50%;
-  border: var(--hair) solid color-mix(in srgb, var(--ink) 30%, transparent);
-  background: var(--paper);
-  color: var(--ink);
-  transition: transform var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), box-shadow var(--dur) var(--ease);
-}
-
-.ck2-dot svg {
-  width: var(--icon-md);
-  height: var(--icon-md);
-}
-
-.ck2-row[data-own="true"] .ck2-dot {
-  border-color: var(--brand);
-  color: var(--brand-text);
-}
-
-.ck2-node:hover .ck2-dot,
-.ck2-node:focus-visible .ck2-dot {
-  transform: scale(1.12);
-  box-shadow: 0 0 var(--sp-4) color-mix(in srgb, var(--brand) 40%, transparent);
-}
-
-.ck2-dot[data-on="true"] {
-  background: var(--brand);
-  border-color: var(--brand);
-  color: var(--on-brand);
-}
-
-.ck2-t {
-  font-family: var(--font-mono);
-  font-size: var(--fs-tiny);
-  line-height: 1.3;
-  color: var(--ink);
-}
-
-.ck2-hint {
-  min-height: 2.6em;
-  padding-top: var(--sp-3);
-  border-top: var(--hair) solid var(--rule);
-  font-family: var(--font-editorial);
-  font-style: italic;
-  font-size: var(--fs-whisper-s);
-  color: var(--brand-text);
 }
 
 @media (max-width: 719.98px) {
-  .ck2-row {
-    grid-template-columns: minmax(0, 1fr);
-  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
