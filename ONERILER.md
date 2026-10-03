@@ -7,8 +7,7 @@
 ## 1. Satış — ziyaretçiyi müşteriye çevirmek
 
 **1.1 Tek net çağrı: ücretsiz ön görüşme** · emek: küçük
-Her ürünün son sayfasında ve Übersicht'te aynı düğme: *"Kostenloses Erstgespräch · 15 Min."* → Calendly'den doğrudan randevu.
-*Neden:* Küçük işletme sahibi form doldurmaz, takvimde bir saate tıklar. Calendly hesabın zaten bağlı.
+Her ürünün son sayfasında ve Übersicht'te aynı düğme: *"Kostenloses Erstgespräch · 15 Min."* → mektup/e-posta ile (Calendly YOK, Adnan istemiyor).
 
 **1.2 Gerçek müşteri sesi** · emek: küçük
 Happy Beck, SAZCAR gibi müşterilerden 1–2 cümlelik alıntı + logo + isim. Firma ve InstaOto Übersicht'te birer blok.
@@ -49,7 +48,7 @@ Vercel Analytics (çerezsiz, DSG uyumlu): hangi sayfa, hangi tema, hangi ışık
 
 ## 4. Güven ve yasal
 
-**4.1 Impressum + Datenschutz** (sitede) · emek: küçük
+**4.1 Impressum + Datenschutz** (sitede) · ✅ 2026-10-03 yapıldı (firma bilgileri boş → işaretli Musterfirma; doldurmak için `src/content/company.ts`)
 İsviçre DSG'ye uygun; InstaOto ve Firma müşteri verisi işlediği için şart. instagramoto panelinde var, sitede yok.
 
 **4.2 Güven işaretleri** · emek: küçük
@@ -80,7 +79,7 @@ Firma ve InstaOto videolarından 15 saniyelik Reels kesimleri (her bölüm bir R
 ---
 
 ## Önerilen sıra (ilk 2 hafta)
-1. Impressum/Datenschutz + ön görüşme düğmesi (1.1, 4.1)
+1. ~~Impressum/Datenschutz~~ ✅ + ön görüşme düğmesi (1.1)
 2. Müşteri alıntıları + SSS (1.2, 2.2)
 3. Ölçüm (3.3)
 4. Bölüm adresleri / SEO (3.1)

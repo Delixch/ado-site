@@ -31,6 +31,8 @@ import { COLORS, isColor } from './colors';
 import { BAND_FX, BAND_SHAPE, CONTACT_MAIL, DEFAULT_COLOR, DEFAULT_LANG } from './config';
 import { BandFx } from './components/fx/BandFx';
 import { BandPicker } from './components/BandPicker';
+import { LegalDialog, type LegalDoc } from './components/LegalDialog';
+import { legalTexts } from './content/legal-texts';
 import { useMode } from './hooks/useMode';
 import { useStored } from './hooks/useStored';
 
@@ -70,6 +72,7 @@ export default function App() {
   const [desktopExpanded, setDesktopExpanded] = useState(true);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [nonce, setNonce] = useState(0);
+  const [legal, setLegal] = useState<LegalDoc | null>(null);
   // Lichtband: Adresse ?band= / ?fx= > gemerkte Wahl > config.ts
   const query = new URLSearchParams(window.location.search);
   const [band, setBand] = useStored<string>('ado_band', query.get('band') ?? BAND_SHAPE, (v) => !!v && /^[1-4]$/.test(v));
@@ -194,10 +197,19 @@ export default function App() {
             <footer className="foot">
               <span>© {new Date().getFullYear()} ADO Design · ADO Firma</span>
               <span>Zürich · Schweiz</span>
+              <span className="foot-legal">
+                <button type="button" onClick={() => setLegal('impressum')}>
+                  {legalTexts[lang].impressum}
+                </button>
+                <button type="button" onClick={() => setLegal('privacy')}>
+                  {legalTexts[lang].privacy}
+                </button>
+              </span>
               <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
             </footer>
           </main>
           {mode !== 'mobile' && <BandPicker band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} />}
+          <LegalDialog doc={legal} lang={lang} onOpen={setLegal} onClose={() => setLegal(null)} />
         </div>
       </ViewContext.Provider>
     </MotionConfig>

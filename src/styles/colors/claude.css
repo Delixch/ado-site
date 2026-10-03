@@ -114,7 +114,7 @@
 
 /* Eis-Glas-Menue */
 [data-color="claude"] {
-  --sb-glass: linear-gradient(165deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.28));
+  --sb-glass: linear-gradient(165deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.2));
   --sb-glass-edge: rgba(255, 255, 255, 0.85);
   --sb-glass-line: rgba(33, 31, 28, 0.08);
   --sb-glass-shadow: 0 30px 60px -28px rgba(33, 31, 28, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(33, 31, 28, 0.04);

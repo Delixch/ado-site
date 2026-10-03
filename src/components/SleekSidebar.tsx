@@ -35,7 +35,8 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
   const [openGroups, setOpenGroups] = useState<string[]>(openByDefault);
   const activeGroup = MENU_SECTIONS.find((sec) => sec.items.some((it) => it.id === activeTab))?.group;
   useEffect(() => {
-    if (activeGroup) setOpenGroups((o) => (o.includes(activeGroup) ? o : [...o, activeGroup]));
+    // Seitenwechsel in eine andere Gruppe: nur deren Gruppe bleibt offen (auch Portfolio schliesst).
+    if (activeGroup) setOpenGroups([activeGroup]);
   }, [activeGroup]);
   const accordion = collapsible && isExpanded;
   const toggleGroup = (g: string) => setOpenGroups((o) => (o.includes(g) ? o.filter((x) => x !== g) : [...o, g]));

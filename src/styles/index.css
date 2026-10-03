@@ -4,6 +4,7 @@
 @import "./layout.css";
 @import "./sidebar.css";
 @import "./topbar.css";
+@import "./legal.css";
 /* Neue Gestaltung (MASTER.md): Doppelseiten + Bildbehandlung + je Seite eine Datei in v/ */
 @import "./editorial.css";
 @import "./spread.css";

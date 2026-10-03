@@ -285,6 +285,10 @@
 /* Buzlu cam menu (sidebar.css "Eis-Glas") */
 :root {
   --sb-blur: 30px;
+  /* Impressum / Datenschutz (Dialog) */
+  --legal-w: 680px;
+  --legal-h: 86vh;
+  --legal-measure: 62ch;
   --sb-blob: 420px;
   --sb-sweep: 1.1s;
 }

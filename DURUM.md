@@ -132,7 +132,8 @@ Test notu: playwright'ta CSS geçişleri donuyor → ekran görüntüsü öncesi
 - Işık sütunu + efekt seçici TÜM temalarda (her temanın kendi colors/*.css dosyasında --band-solid/--band-glow, yarı saydam --paper). Claude: terracotta, krem cam bloklar.
 - AÇILIŞ: Claude teması + yılan (3) + 11 ADO-Regen (yeni: sadece A·D·O harfleri şeridin içinde aşağı akar). config.ts BAND_SHAPE/BAND_FX. Kayıtlı seçimi olan tarayıcı kendi seçimini görür.
 
-## 2026-10-03 (9) — YENİ ANA MENÜ: ADO InstaOto (D:epos\instagramoto tanıtımı)
+## 2026-10-03 (9) — YENİ ANA MENÜ: ADO InstaOto (D:
+epos\instagramoto tanıtımı)
 - Menü: Portföy açık, diğer gruplar (Firma, InstaOto) açılır; aktif sayfanın grubu otomatik açılır.
 - 6 sayfa (components/views/insta, metin content/insta-texts.ts DE/TR yeni yazıldı): Übersicht (dikey video+panel görüntüsü), So funktioniert’s (etkileşimli DM simülasyonu), Funktionen (gerçek panel görüntüleri), Ablauf (adımlar+müşteriden gerekenler+nasıl iletilir), Daten & Sicherheit, Preise & Anfrage (fiyat YOK, auf Anfrage + mektup formu).
 - Panel görüntüleri Türkçe: public/media/insta/tr-*.webp (kişisel veriler bulanık). Almanca panel çevrilince de-*.webp çekilecek (Shot bileşeni otomatik de/tr seçer).
@@ -146,3 +147,10 @@ Test notu: playwright'ta CSS geçişleri donuyor → ekran görüntüsü öncesi
 - instagramoto: TR/DE + 5 tema canlıda (Delixch/instagramoto). Almanca panel görüntüleri sitede.
 - InstaOto Almanca video render edildi (promo-de.mp4) ve sitede.
 - Güncel liste: YOL-HARITASI.md; öneriler: ONERILER.md.
+- Menü: buzlu cam (Eis-Glas) — kullanıcı "işte budur" dedi. sidebar.css sonu + colors/*.css --sb-*.
+
+## 2026-10-03 (akşam, devam)
+- Menü: arkadaki renk lekeleri kısıldı; cam bir tık koyulaştı (tüm temalar).
+- Menü döngüsü: açılışta Portfolio açık; başka gruptan sayfa seçilince yalnız o grup açık kalır (SleekSidebar).
+- Impressum + Datenschutz: altbilgide iki bağlantı → buzlu cam pencere (DE/TR, sekmeli). Metin: `src/content/legal-texts.ts` (bu siteye göre: çerez yok, istatistik yok, Google Fonts, Vercel, localStorage, mailto). Firma bilgileri `src/content/company.ts` — boş = işaretli Musterfirma; UID boşsa satır çıkmaz. Bildnachweis stock.ts'ten otomatik.
+- Calendly kullanılmayacak (Adnan).
