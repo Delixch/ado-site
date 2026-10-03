@@ -291,10 +291,13 @@
 :root {
   --sb-blur: 30px;
   /* InstaOto Preise: Preis im Kreis, Checklisten-Kreise */
-  --pk-ring: 132px;
-  --pk-dot: 64px;
-  --ck-dot: 26px;
-  --ck-ring: 56px;
+  --op-btn: 92px;
+  --op-btn-s: 76px;
+  --op-stage: 400px;
+  --op-node: 44px;
+  --ck-dot: 40px;
+  --ck-label: 120px;
+  --ck-ring: 52px;
   --ring-spin: 36s;
   /* Kachel-Effekt: so weit ragt das Quadrat hinter der Karte hervor */
   --hover-tile-out: 8px;

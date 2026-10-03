@@ -1,15 +1,59 @@
-import { useState } from 'react';
-import { Check } from 'lucide-react';
+import { useEffect, useState, type ComponentType } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import {
+  AppWindow,
+  BadgeCheck,
+  Briefcase,
+  Check,
+  Clock,
+  Database,
+  Facebook,
+  FileText,
+  GitBranch,
+  GraduationCap,
+  Infinity as InfinityIcon,
+  Instagram,
+  KeyRound,
+  Layers,
+  LayoutDashboard,
+  Mail,
+  MessageSquareText,
+  PenLine,
+  RefreshCw,
+  ScanSearch,
+  Smartphone,
+  Users,
+  Webhook,
+  Workflow,
+  Zap,
+} from 'lucide-react';
 import { IntroCall } from '../../common/IntroCall';
 import { LetterDesk } from '../../common/Letter';
 import { TrustBadges } from '../../common/TrustBadges';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
+type Icon = ComponentType<{ className?: string }>;
+
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Packs', cols: '1fr 1fr 1fr', areas: ['packs packs offer', 'check check terms', 'desk desk desk'], rows: 'auto auto auto' },
-  { name: 'Check', cols: '1fr 1fr 1fr', areas: ['offer check check', 'terms packs packs', 'desk desk desk'], rows: 'auto auto auto' },
-  { name: 'Letter', cols: '1fr 1fr 1fr', areas: ['desk desk offer', 'packs packs packs', 'check check terms'], rows: 'auto auto auto' },
+  { name: 'Halo', cols: '1fr 1fr 1fr', areas: ['plans plans offer', 'check check terms', 'desk desk desk'], rows: 'auto auto auto' },
+  { name: 'Check', cols: '1fr 1fr 1fr', areas: ['offer check check', 'terms plans plans', 'desk desk desk'], rows: 'auto auto auto' },
+  { name: 'Letter', cols: '1fr 1fr 1fr', areas: ['desk desk offer', 'plans plans plans', 'check check terms'], rows: 'auto auto auto' },
+];
+
+/** Symbole je Paket, in der Reihenfolge der Knoten in insta-texts.ts */
+const PLAN_ICONS: Record<string, Icon[]> = {
+  start: [AppWindow, Webhook, LayoutDashboard, Database, Workflow, GraduationCap],
+  komplett: [Layers, Briefcase, BadgeCheck, ScanSearch, Smartphone, Mail],
+  basis: [Mail, Clock, PenLine, RefreshCw],
+  plus: [Layers, InfinityIcon, GitBranch, Zap],
+};
+
+/** Symbole der Checkliste, Gruppe fuer Gruppe */
+const CHECK_ICONS: Icon[][] = [
+  [Instagram, Facebook, Smartphone, Briefcase, FileText],
+  [AppWindow, KeyRound, ScanSearch, Webhook, Database, Mail],
+  [MessageSquareText, Users],
 ];
 
 /** Fortschrittsring: wie viel von "Ihre Konten" schon bereit ist. */
@@ -33,8 +77,43 @@ export function InstaPricing() {
   const own = p.checkGroups[0].items.length;
   const [ready, setReady] = useState<boolean[]>(() => Array(own).fill(false));
   const done = ready.filter(Boolean).length;
-  const reco = done === own ? 'Start' : 'Komplett';
+  const allReady = done === own;
+  const reco = allReady ? 'start' : 'komplett';
+  const [sel, setSel] = useState('komplett');
+  const [hint, setHint] = useState<string | null>(null);
+
+  // Checkliste fuehrt die Wahl: alles bereit -> Start, sonst Komplett
+  useEffect(() => {
+    if (allReady) setSel('start');
+    else setSel((s) => (s === 'start' ? 'komplett' : s));
+  }, [allReady]);
+
+  const plan = p.plans.find((x) => x.id === sel) ?? p.plans[0];
+  const icons = PLAN_ICONS[plan.id];
+  const n = plan.nodes.length;
+  const R = 38; // Bahnradius in Prozent
+  const pos = plan.nodes.map((_, i) => {
+    const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+    return { x: 50 + Math.cos(a) * R, y: 50 + Math.sin(a) * R };
+  });
+
+  const pick = (id: string) => setSel(id);
   const toggle = (i: number) => setReady((r) => r.map((x, k) => (k === i ? !x : x)));
+
+  const Selector = ({ care }: { care: boolean }) => (
+    <div className="op-row" data-care={care}>
+      {p.plans
+        .filter((x) => x.care === care)
+        .map((x) => (
+          <button key={x.id} type="button" className="op-btn" aria-pressed={x.id === sel} onClick={() => pick(x.id)}>
+            <span className="op-name">{x.name}</span>
+            <span className="op-price">{x.price}.–</span>
+            <span className="op-unit">{x.care ? `/ ${p.perMonth}` : p.once}</span>
+            {x.id === reco && <span className="op-reco" aria-label={p.recommended} />}
+          </button>
+        ))}
+    </div>
+  );
 
   const blocks: Block[] = [
     { id: 'desk', tone: 'deep', node: <LetterDesk labels={p.form} to="ADO InstaOto" /> },
@@ -44,7 +123,9 @@ export function InstaPricing() {
       node: (
         <div className="ex-detail">
           <span className="micro">{p.eyebrow}</span>
-          <h3 className="poster">{p.line1} {p.line2}</h3>
+          <h3 className="poster">
+            {p.line1} {p.line2}
+          </h3>
           <p className="lede">{p.lede}</p>
           <IntroCall contact="i-pricing" here />
           <TrustBadges product="insta" />
@@ -52,57 +133,80 @@ export function InstaPricing() {
       ),
     },
     {
-      id: 'packs',
+      id: 'plans',
       node: (
-        <div className="pk">
-          <span className="micro">
-            <b>{p.packsTitle}</b>
-          </span>
-          <div className="pk-row">
-            {p.packs.map((x) => (
-              <article key={x.name} className="pk-card" data-reco={x.name === reco}>
-                <div className="pk-ring">
-                  <span className="pk-cur micro">{p.currency}</span>
-                  <span className="pk-price poster">{x.price}.–</span>
-                  <span className="pk-unit micro">{x.unit}</span>
-                </div>
-                <div className="pk-body">
-                  <h4 className="whisper">
-                    {x.name}
-                    {x.name === reco && <span className="pk-tag micro">{p.recommended}</span>}
-                  </h4>
-                  <p className="pk-for">{x.for}</p>
-                  <ul className="pk-incl">
-                    {x.incl.map((y) => (
-                      <li key={y}>{y}</li>
-                    ))}
-                  </ul>
-                  <IntroCall contact="i-pricing" here topic={`InstaOto · ${x.name} (${p.currency} ${x.price}.–)`} className="e-link pk-choose">
-                    {p.choose} →
-                  </IntroCall>
-                </div>
-              </article>
-            ))}
+        <div className="op">
+          <div className="op-pick">
+            <span className="micro">{p.setupLabel}</span>
+            <Selector care={false} />
+            <span className="micro">{p.careLabel}</span>
+            <Selector care />
+            <span className="op-hourly micro">{p.hourly}</span>
           </div>
-          <div className="pk-care">
-            <span className="micro">
-              <b>{p.careTitle}</b>
-            </span>
-            <div className="pk-care-row">
-              {p.care.map((c) => (
-                <div key={c.name} className="pk-care-item">
-                  <span className="pk-dot">
-                    <b>{c.price}</b>
-                    <i className="micro">{c.unit}</i>
+
+          <div className="op-stage">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={plan.id}
+                className="op-orbit"
+                initial={{ opacity: 0, scale: 0.94, rotate: -8 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.94, rotate: 8 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <svg className="op-lines" viewBox="0 0 100 100" aria-hidden>
+                  <circle cx="50" cy="50" r={R} className="op-track" />
+                  {pos.map((q, i) => (
+                    <motion.line
+                      key={i}
+                      x1="50"
+                      y1="50"
+                      x2={q.x}
+                      y2={q.y}
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
+                    />
+                  ))}
+                </svg>
+                <div className="op-core" data-reco={plan.id === reco}>
+                  <span className="op-core-name">{plan.name}</span>
+                  <span className="op-core-price">
+                    <small>{p.currency}</small> {plan.price}.–
                   </span>
-                  <span>
-                    <span className="whisper">{c.name}</span>
-                    <span className="in-sub">{c.d}</span>
-                  </span>
+                  <span className="op-core-unit">{plan.care ? `/ ${p.perMonth}` : p.once}</span>
                 </div>
-              ))}
+                {plan.nodes.map((label, i) => {
+                  const I = icons[i];
+                  return (
+                    <motion.span
+                      key={label}
+                      className="op-node"
+                      style={{ left: `${pos[i].x}%`, top: `${pos[i].y}%` }}
+                      initial={{ opacity: 0, scale: 0.4 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.2 + i * 0.06, type: 'spring', stiffness: 260, damping: 20 }}
+                    >
+                      <span className="op-node-dot">
+                        <I />
+                      </span>
+                      <span className="op-node-label">{label}</span>
+                    </motion.span>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
+            <div className="op-foot">
+              <span className="op-for">{plan.for}</span>
+              <IntroCall
+                contact="i-pricing"
+                here
+                topic={`InstaOto · ${plan.name} (${p.currency} ${plan.price}.–${plan.care ? ` / ${p.perMonth}` : ''})`}
+                className="e-link op-choose"
+              >
+                {p.choose} →
+              </IntroCall>
             </div>
-            <p className="pk-hourly micro">{p.hourly}</p>
           </div>
         </div>
       ),
@@ -111,51 +215,58 @@ export function InstaPricing() {
       id: 'check',
       tone: 'deep',
       node: (
-        <div className="ck">
-          <div className="ck-head">
+        <div className="ck2">
+          <div className="ck2-head">
             <span className="micro">
-              <b>{p.checkTitle}</b> · {p.checkHint}
+              <b>{p.checkTitle}</b>
             </span>
-            <span className="ck-verdict" data-all={done === own}>
+            <span className="ck2-verdict" data-all={allReady}>
               <Ring done={done} total={own} />
-              <span className="whisper">{done === own ? p.readyAll : p.readySome}</span>
+              <span>{allReady ? p.readyAll : p.readySome}</span>
             </span>
           </div>
-          <div className="ck-groups">
-            {p.checkGroups.map((g, gi) => (
-              <section key={g.t} className="ck-group" data-own={g.own}>
-                <h4 className="micro">{g.t}</h4>
-                <ol>
-                  {g.items.map((it, i) => {
-                    const on = g.own && ready[i];
-                    const n = p.checkGroups.slice(0, gi).reduce((a, x) => a + x.items.length, 0) + i + 1;
-                    const inner = (
-                      <>
-                        <span className="ck-dot" data-on={on}>
-                          {on ? <Check /> : n}
+          {p.checkGroups.map((g, gi) => (
+            <div key={g.t} className="ck2-row" data-own={g.own}>
+              <span className="ck2-label micro">{g.t}</span>
+              <ol className="ck2-track">
+                {g.items.map((it, i) => {
+                  const I = CHECK_ICONS[gi][i];
+                  const on = g.own && ready[i];
+                  const props = {
+                    className: 'ck2-node',
+                    onPointerEnter: () => setHint(it.d),
+                    onPointerLeave: () => setHint(null),
+                    onFocus: () => setHint(it.d),
+                    onBlur: () => setHint(null),
+                  };
+                  const inner = (
+                    <>
+                      <span className="ck2-dot" data-on={on}>
+                        {on ? <Check /> : <I />}
+                      </span>
+                      <span className="ck2-t">{it.t}</span>
+                    </>
+                  );
+                  return (
+                    <li key={it.t}>
+                      {g.own ? (
+                        <button type="button" {...props} aria-pressed={on} onClick={() => toggle(i)}>
+                          {inner}
+                        </button>
+                      ) : (
+                        <span {...props} tabIndex={0}>
+                          {inner}
                         </span>
-                        <span>
-                          <span className="ck-t">{it.t}</span>
-                          {it.d && <span className="in-sub">{it.d}</span>}
-                        </span>
-                      </>
-                    );
-                    return (
-                      <li key={it.t}>
-                        {g.own ? (
-                          <button type="button" className="ck-item" aria-pressed={on} onClick={() => toggle(i)}>
-                            {inner}
-                          </button>
-                        ) : (
-                          <span className="ck-item">{inner}</span>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ol>
-              </section>
-            ))}
-          </div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          ))}
+          <p className="ck2-hint" aria-live="polite">
+            {hint ?? p.checkHint}
+          </p>
         </div>
       ),
     },
