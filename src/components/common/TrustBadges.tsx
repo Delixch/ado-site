@@ -1,8 +1,8 @@
-import { BadgeCheck, Globe, Handshake, KeyRound, Languages, MapPin, Ruler, Server } from 'lucide-react';
+import { BadgeCheck, Globe, Handshake, Languages, MapPin, Ruler, Server } from 'lucide-react';
 import { useView } from '../ViewFrame';
 
 const ICONS = {
-  insta: [Server, KeyRound, BadgeCheck, MapPin],
+  insta: [BadgeCheck, MapPin],
   firma: [MapPin, Languages, Ruler, Handshake],
 } as const;
 

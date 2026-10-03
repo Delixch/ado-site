@@ -5,9 +5,9 @@ import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Phone', cols: '1fr 1fr 1fr', areas: ['phone phone steps', 'phone phone hint'] },
-  { name: 'Mirror', cols: '1fr 1fr 1fr', areas: ['steps phone phone', 'hint phone phone'] },
-  { name: 'Center', cols: '1fr 1.2fr 1fr', areas: ['hint phone steps'] },
+  { name: 'Phone', cols: '1fr 1fr 1fr', areas: ['phone phone steps'] },
+  { name: 'Mirror', cols: '1fr 1fr 1fr', areas: ['steps phone phone'] },
+  { name: 'Wide', cols: '1.4fr 1fr', areas: ['phone steps'] },
 ];
 
 type Msg = { id: number; from: 'user' | 'bot' | 'sys'; text: string; buttons?: string[]; link?: boolean };
@@ -200,17 +200,6 @@ export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
             ))}
           </ol>
           <span className="micro ig-steps-hint">{f.stepsHint}</span>
-        </div>
-      ),
-    },
-    {
-      id: 'hint',
-      tone: 'brand',
-      node: (
-        <div className="ex-span">
-          <span className="micro">{f.eyebrow}</span>
-          <span className="poster">„{f.keywords[0]}“</span>
-          <span className="micro">{f.hint}</span>
         </div>
       ),
     },

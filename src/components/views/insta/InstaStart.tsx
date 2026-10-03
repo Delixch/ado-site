@@ -121,5 +121,5 @@ export function InstaStart() {
     },
   ];
 
-  return <Spread view="i-start" head={{ folio: '00', kicker: 'ADO InstaOto', line1: s.line1, line2: s.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-start" head={{ folio: '00', kicker: t.i.nav.start, line1: 'ADO InstaOto', line2: s.eyebrow }} blocks={blocks} layouts={LAYOUTS} />;
 }

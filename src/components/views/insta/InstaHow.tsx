@@ -10,7 +10,7 @@ const VIEWS = [InstaFlow, InstaFeatures, InstaProcess];
 export function InstaHow() {
   const { t } = useView();
   const f = t.i.flow;
-  const labels = [`${f.keywords[0]} · ${f.stepsTitle}`, t.i.features.tab, t.i.process.tab];
+  const labels = [f.stepsTitle, t.i.features.tab, t.i.process.tab];
   const [tab, setTab] = useState(0);
   const View = VIEWS[tab];
 
