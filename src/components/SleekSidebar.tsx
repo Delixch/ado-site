@@ -322,6 +322,7 @@ function RailGroups({
               onClick={() => toggleGroup(sec.group)}
             >
               <GroupIcon className="sb-icon" />
+              <ChevronDown className="sb-rail-chevron" aria-hidden />
             </button>
             <AnimatePresence initial={false}>
               {isOpen && (

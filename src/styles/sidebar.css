@@ -914,3 +914,79 @@
   width: var(--sp-4);
   height: var(--sp-4);
 }
+
+/* Gruppensymbole als Hauptueberschrift erkennbar: Licht in Themenfarbe atmet dahinter,
+   kleiner Pfeil zeigt offen/zu. Versetzt, damit nicht alle gleichzeitig pulsieren. */
+.sb-rail-btn {
+  isolation: isolate;
+}
+
+.sb-rail-btn::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: var(--sb-breath-size);
+  height: var(--sb-breath-size);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--brand) 0%, color-mix(in srgb, var(--brand) 35%, transparent) 40%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 0.15;
+  pointer-events: none;
+  animation: sb-breath var(--sb-breath) ease-in-out infinite;
+}
+
+.sb-rail-group:nth-child(2) .sb-rail-btn::before {
+  animation-delay: calc(var(--sb-breath) / -3);
+}
+
+.sb-rail-group:nth-child(3) .sb-rail-btn::before {
+  animation-delay: calc(var(--sb-breath) / -1.5);
+}
+
+/* offene Gruppe: ruhiges, stehendes Licht statt Atmen */
+.sb-rail-btn[data-open="true"]::before {
+  animation: none;
+  opacity: 0.35;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+@keyframes sb-breath {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: translate(-50%, -50%) scale(0.65);
+  }
+  50% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.sb-rail-btn .sb-icon {
+  color: var(--brand-text);
+}
+
+.sb-rail-chevron {
+  position: absolute;
+  right: var(--sp-1);
+  bottom: var(--sp-1);
+  width: var(--sp-3);
+  height: var(--sp-3);
+  color: var(--brand-text);
+  opacity: 0.8;
+  transform: rotate(-90deg);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.sb-rail-btn[data-open="true"] .sb-rail-chevron {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-rail-btn::before {
+    animation: none;
+    opacity: 0.3;
+  }
+}
