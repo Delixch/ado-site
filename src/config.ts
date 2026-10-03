@@ -9,7 +9,24 @@ export const CONTACT_MAIL = 'xdd@hotmail.com';
  * Mit welchem Layout jede Seite oeffnet (0 = erstes, 1 = zweites, 2 = drittes Mini-Plan im Seitenkopf).
  * Fehlt eine Seite, gilt 0. Die Karten wechseln erst, wenn Play in der Kopfzeile gedrueckt wird.
  */
-export const START_LAYOUT: Record<string, number> = {};
+export const START_LAYOUT: Record<string, number> = {
+  'd-start': 0, // Cover
+  'd-about': 2, // Mirror
+  'd-work': 1, // Pitch
+  'd-skills': 1, // Column
+  'd-repos': 1, // Spread
+  'd-construction': 0, // Blueprint
+  'd-experience': 1, // Route
+  'd-contact': 0, // Letter
+  'f-start': 0, // Control
+  'f-flow': 2, // Mirror
+  'f-contact': 0, // Letter
+  'i-start': 1, // Story
+  'i-flow': 1, // Mirror
+  'i-features': 1, // Mirror
+  'i-process': 1, // Wide
+  'i-pricing': 1, // Open
+};
 
 /** Doppelseiten wechseln ihren Satzspiegel von selbst (ms), sobald Play laeuft. */
 export const LAYOUT_INTERVAL = 9000;
