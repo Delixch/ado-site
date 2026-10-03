@@ -10,10 +10,6 @@
 Happy Beck, SAZCAR gibi müşterilerden 1–2 cümlelik alıntı + logo + isim. Firma ve InstaOto Übersicht'te birer blok.
 *Neden:* "Benim gibi biri kullanıyor mu?" sorusu satın almadan önceki en büyük soru.
 
-**1.3 InstaOto fiyat çerçevesi** · emek: küçük
-Rakam yazmasan da *"einmalig · kein Monatsabo · ab CHF …"* gibi bir çerçeve.
-*Neden:* "Preis auf Anfrage" tek başına bazılarını kaçırır; "abo yok" senin en güçlü farkın.
-
 **1.4 Paketler** · emek: orta
 Firma için 3 net paket (ör. *Start* = Bestellungen + Einsatzplanung, *Betrieb* = + Buchhaltung + Meldungen, *Komplett* = hepsi + Homepage). Fiyatı yazmasan bile içerik karşılaştırması.
 *Neden:* Seçmek, "ne istediğini anlatmak"tan kolaydır.
@@ -73,7 +69,7 @@ Firma ve InstaOto videolarından 15 saniyelik Reels kesimleri (her bölüm bir R
 ---
 
 ## Önerilen sıra (ilk 2 hafta)
-1. InstaOto fiyat çerçevesi + güven rozetleri (1.3, 4.2)
+1. Güven rozetleri (4.2)
 2. SSS (2.2)
 3. Ölçüm (3.3)
 4. Bölüm adresleri / SEO (3.1)
