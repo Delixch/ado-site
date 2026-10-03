@@ -39,8 +39,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  justify-content: center;
-  align-content: center;
+  justify-content: safe center;
+  align-content: safe center;
   column-gap: 0.3em;
   height: 100%;
   text-align: center;
@@ -65,7 +65,7 @@
   .ds-head {
     display: grid;
     grid-template-columns: auto auto;
-    justify-content: center;
+    justify-content: safe center;
     align-items: baseline;
     text-align: left;
   }
@@ -89,7 +89,7 @@
   /* ganzer Block mittig von oben nach unten, Text nutzt die volle Breite, linksbuendig */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   gap: var(--sp-5);
   height: 100%;
 }

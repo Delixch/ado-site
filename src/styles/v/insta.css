@@ -294,7 +294,7 @@
 .ig-steps-wrap {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   gap: var(--sp-6);
   height: 100%;
 }
@@ -581,4 +581,17 @@
 
 .in-reel-frame:hover video {
   filter: none;
+}
+
+/* Feinschliff: Listen mittig von oben nach unten, Nebentexte lesbar */
+.in-need {
+  justify-content: safe center;
+}
+
+.in-send {
+  align-items: center;
+}
+
+.in-sub {
+  color: color-mix(in srgb, var(--ink) 82%, transparent);
 }

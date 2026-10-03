@@ -214,10 +214,10 @@
 /* Feinschliff: Schlagzeile als Gruppe mittig (innen linksbuendig), Schalterliste mittig */
 .fs-head {
   display: grid;
-  place-content: center;
+  place-content: safe center;
   justify-items: start;
 }
 
 .fs-switch {
-  justify-content: center;
+  justify-content: safe center;
 }

@@ -161,7 +161,7 @@
 /* Baustein mit nur einem Absatz: mittig von oben nach unten, volle Breite (alle Seiten) */
 .blk-in:has(> p.lede:only-child) {
   display: flex;
-  align-items: center;
+  align-items: safe center;
 }
 
 .blk-in > p.lede:only-child {

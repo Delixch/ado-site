@@ -161,7 +161,7 @@
   display: grid;
   grid-template-columns: repeat(6, var(--freq-dot));
   gap: calc(var(--freq-dot) / 2);
-  align-content: center;
+  align-content: safe center;
 }
 
 .rp-dots i {
@@ -258,7 +258,7 @@
 /* Feinschliff: Listen und Kalender mittig von oben nach unten, Erklaerung volle Breite */
 .rp-freq,
 .rp-cal {
-  justify-content: center;
+  justify-content: safe center;
 }
 
 .rp-info .lede {

@@ -16,7 +16,7 @@
 
 .or-pipe .steps {
   row-gap: var(--sp-3);
-  align-content: center;
+  align-content: safe center;
 }
 
 .or-pipe .step .micro {

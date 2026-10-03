@@ -3,7 +3,7 @@
 .rc-wrap {
   filter: drop-shadow(0 var(--sp-3) var(--sp-4) var(--veil));
   display: flex;
-  justify-content: center;
+  justify-content: safe center;
   align-items: flex-start;
   height: 100%;
 }
@@ -352,7 +352,7 @@
 /* Feinschliff: Aufteilung und Schritte als Gruppe mittig von oben nach unten, Text volle Breite */
 .ac-split,
 .ac-steps {
-  justify-content: center;
+  justify-content: safe center;
 }
 
 .ac-step .lede {

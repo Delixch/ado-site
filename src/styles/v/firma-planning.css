@@ -198,7 +198,7 @@
 
 /* Grosser Baustein: Liste mittig von oben nach unten */
 .pl-features {
-  justify-content: center;
+  justify-content: safe center;
   height: 100%;
 }
 
@@ -209,7 +209,7 @@
 
 /* Beispiel: Block mittig von oben nach unten, Wert der Zeile ganz rechts */
 .pl-example {
-  justify-content: center;
+  justify-content: safe center;
 }
 
 .pl-example li > span:last-child {

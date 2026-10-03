@@ -190,7 +190,7 @@
 .ct-rows {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   height: 100%;
 }
 
@@ -292,7 +292,7 @@
 /* Feinschliff: Gruppen mittig von oben nach unten, Text volle Breite, Begriff neben der Nummer ganz rechts */
 .fc-benefits,
 .fc-areas {
-  justify-content: center;
+  justify-content: safe center;
 }
 
 .fc-benefits .lede {

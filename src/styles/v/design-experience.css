@@ -33,7 +33,7 @@
 
 /* Feinschliff: Station als Gruppe mittig, Zeitraum mittig, Anzahl ganz rechts */
 .ex-detail {
-  justify-content: center;
+  justify-content: safe center;
 }
 
 .ex-detail .lede {

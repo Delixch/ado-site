@@ -31,7 +31,7 @@
   container-type: inline-size;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   gap: var(--sp-5);
   height: 100%;
 }
@@ -56,7 +56,7 @@
 .ab-tags {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   gap: var(--sp-3);
   height: 100%;
 }
@@ -94,7 +94,7 @@
 .ab-cta {
   /* die Gruppe als Ganzes mittig, darin bleibt alles linksbuendig untereinander */
   display: grid;
-  place-content: center;
+  place-content: safe center;
   justify-items: start;
   gap: var(--sp-3);
   height: 100%;

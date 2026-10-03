@@ -15,7 +15,7 @@
 
 .hp-stage {
   display: flex;
-  justify-content: center;
+  justify-content: safe center;
   flex: 1;
 }
 
@@ -322,7 +322,7 @@
 
 /* Feinschliff: Besucher-Block mittig von oben nach unten, Bewertung ganz rechts */
 .hp-stats {
-  justify-content: center;
+  justify-content: safe center;
 }
 
 .hp-stats > .micro:last-child {

@@ -248,7 +248,7 @@
 
 .bp-stage {
   display: flex;
-  justify-content: center;
+  justify-content: safe center;
   flex: 1;
   min-height: var(--bp-stage-h);
 }
@@ -291,7 +291,7 @@
 }
 
 .cn-lab {
-  justify-content: center;
+  justify-content: safe center;
 }
 
 .cn-lab .lede {
@@ -301,7 +301,7 @@
 
 .blk-in:has(> .cn-para) {
   display: flex;
-  align-items: center;
+  align-items: safe center;
 }
 
 .cn-para {
@@ -310,5 +310,5 @@
 }
 
 .cn-tags {
-  justify-content: center;
+  justify-content: safe center;
 }
