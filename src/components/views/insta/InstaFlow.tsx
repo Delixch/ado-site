@@ -187,6 +187,7 @@ export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
       id: 'steps',
       node: (
         <div className="ig-steps-wrap">
+          {tabs}
           <ol className="ig-steps" data-idle={chat.step < 0}>
             {f.steps.map((x, i) => (
               <li key={x} data-on={chat.step >= i} data-now={chat.step === i} style={{ ['--i' as string]: i }}>
@@ -215,5 +216,5 @@ export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
     },
   ];
 
-  return <Spread view="i-flow" tabs={tabs} head={{ folio: '01', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-flow" head={{ folio: '01', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }

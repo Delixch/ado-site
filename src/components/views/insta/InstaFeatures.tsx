@@ -36,6 +36,7 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
       id: 'list',
       node: (
         <div className="ig-steps-wrap">
+          {tabs}
           <ol className="ig-steps ig-steps-pick" data-idle="false">
             {f.items.map((it, i) => (
               <li key={it.t} data-on={i === sel} data-now={i === sel} style={{ ['--i' as string]: i }}>
@@ -81,5 +82,5 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
     },
   ];
 
-  return <Spread view="i-features" tabs={tabs} head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-features" head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }

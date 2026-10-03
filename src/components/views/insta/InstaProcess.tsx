@@ -52,16 +52,19 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
       id: 'detail',
       tone: 'brand',
       node: (
-        <AnimatePresence mode="wait">
-          <motion.div key={active} className="ex-detail" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-            <span className="micro">{st.time}</span>
-            <h3 className="poster">{st.t}</h3>
-            <p className="lede">{st.d}</p>
-          </motion.div>
-        </AnimatePresence>
+        <div className="how-detail">
+          {tabs}
+          <AnimatePresence mode="wait">
+            <motion.div key={active} className="ex-detail" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
+              <span className="micro">{st.time}</span>
+              <h3 className="poster">{st.t}</h3>
+              <p className="lede">{st.d}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       ),
     },
   ];
 
-  return <Spread view="i-process" tabs={tabs} head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-process" head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }
