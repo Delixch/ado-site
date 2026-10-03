@@ -1,0 +1,321 @@
+/* Firma > Homepage: echte kleine Beispielseite im Geraet, fliesst je Geraet neu. */
+
+.hp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.hp-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hp-stage {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.hp-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: var(--hp-h);
+  overflow: hidden;
+  background: var(--paper);
+  border: var(--hair) solid var(--rule);
+  box-shadow: var(--deck-shadow);
+}
+
+.hp-frame[data-device="tablet"] {
+  width: var(--hp-tablet);
+  border-radius: var(--radius-md);
+  border: var(--sp-2) solid var(--ink-block);
+}
+
+.hp-frame[data-device="mobile"] {
+  width: var(--hp-mobile);
+  border-radius: var(--radius-lg);
+  border: var(--sp-2) solid var(--ink-block);
+}
+
+.hp-chrome {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: var(--hair) solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-soft);
+}
+
+.hp-chrome i {
+  width: var(--sp-2);
+  height: var(--sp-2);
+  border-radius: var(--radius-pill);
+  background: var(--rule);
+}
+
+.hp-chrome span {
+  margin-left: var(--sp-2);
+}
+
+.hp-frame:not([data-device="desktop"]) .hp-chrome {
+  display: none;
+}
+
+/* Die Beispielseite selbst */
+.hp-site {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+  font-size: var(--fs-small);
+}
+
+.hp-site section,
+.hp-nav {
+  padding: var(--sp-3) var(--sp-4);
+  transition: background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.hp-site section[data-focus] {
+  background: var(--brand-block);
+  box-shadow: inset var(--bar-h) 0 0 var(--brand);
+}
+
+.hp-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  border-bottom: var(--hair) solid var(--rule);
+}
+
+.hp-nav b {
+  font-family: var(--font-editorial);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+}
+
+.hp-links {
+  display: flex;
+  gap: var(--sp-3);
+  color: var(--ink-soft);
+}
+
+.hp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--brand);
+  color: var(--paper);
+  font-size: var(--fs-caption);
+  white-space: nowrap;
+}
+
+.hp-btn[data-ghost] {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 var(--hair) var(--ink);
+}
+
+.hp-btn svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.hp-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.hp-hero > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-2);
+}
+
+.hp-hero h4 {
+  margin: 0;
+  font-family: var(--font-editorial);
+  font-size: var(--fs-whisper);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-snug);
+}
+
+.hp-hero img {
+  width: 100%;
+  height: var(--hp-img-h);
+  object-fit: cover;
+}
+
+.hp-services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-2);
+}
+
+.hp-services div {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-2);
+  border: var(--hair) solid var(--rule);
+}
+
+.hp-services b {
+  font-family: var(--font-editorial);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-body);
+}
+
+.hp-services span {
+  color: var(--ink-soft);
+}
+
+.hp-team p {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: var(--fs-body);
+}
+
+.hp-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+  color: var(--brand-text);
+}
+
+.hp-contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  border-top: var(--hair) solid var(--rule);
+}
+
+.hp-contact > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.hp-contact svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.hp-actions {
+  margin-top: var(--sp-2);
+  gap: var(--sp-2);
+}
+
+/* gleicher Inhalt, kleineres Geraet */
+.hp-site[data-device="tablet"] .hp-links {
+  gap: var(--sp-2);
+}
+
+.hp-site[data-device="mobile"] .hp-links,
+.hp-site[data-device="mobile"] .hp-nav .hp-btn {
+  display: none;
+}
+
+.hp-site[data-device="mobile"] .hp-hero,
+.hp-site[data-device="mobile"] .hp-services {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.hp-site[data-device="mobile"] .hp-hero img {
+  order: -1;
+}
+
+.hp-toast {
+  position: absolute;
+  top: var(--sp-8);
+  right: var(--sp-3);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  max-width: calc(100% - var(--sp-6));
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--ink-block);
+  color: var(--on-ink-block);
+  font-size: var(--fs-caption);
+  box-shadow: var(--shadow-md);
+}
+
+.hp-toast svg {
+  flex-shrink: 0;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  color: var(--brand);
+}
+
+.hp-tiles button {
+  grid-template-columns: var(--toc-n-w) minmax(0, 1fr);
+}
+
+.hp-tiles button > span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.hp-tile-text {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.hp-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.hp-stats > .micro:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.hp-stats svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  color: var(--brand);
+}
+
+.hp-bars {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--sp-2);
+  height: var(--hp-bars-h);
+  margin-top: auto;
+}
+
+.hp-bars > span {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--sp-1);
+  text-align: center;
+}
+
+.hp-bars i {
+  flex: 1;
+  background: var(--ink-soft);
+  transform-origin: bottom;
+}
+
+.hp-bars i[data-top="true"] {
+  background: var(--brand);
+}

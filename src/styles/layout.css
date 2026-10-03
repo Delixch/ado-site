@@ -1,0 +1,179 @@
+/* Kırılımlar: mobil < 720px ≤ tablet < 1180px ≤ masaüstü (src/hooks/useMode.ts ile aynı) */
+
+.app {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  min-height: 100dvh;
+  padding: var(--gutter);
+}
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(700px circle at 0% 0%, var(--ambient-1), transparent 60%),
+    radial-gradient(650px circle at 100% 30%, var(--ambient-2), transparent 60%);
+}
+
+.sb-slot {
+  position: sticky;
+  top: var(--gutter);
+  z-index: 40;
+  height: calc(100dvh - var(--gutter) * 2);
+  max-height: 900px;
+  flex-shrink: 0;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.intro {
+  padding: 18px 4px 4px;
+  max-width: 820px;
+}
+
+.intro-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.intro-kicker span {
+  color: var(--muted);
+}
+
+.intro-title {
+  margin-top: 12px;
+  font-family: var(--font-serif);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-display);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.intro-lead {
+  margin-top: 14px;
+  max-width: 62ch;
+  font-size: var(--fs-lead);
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  justify-content: space-between;
+  padding: 18px 4px 4px;
+  border-top: 1px dashed var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.foot a {
+  text-decoration: none;
+}
+
+.foot a:hover {
+  color: var(--accent-strong);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: var(--overlay);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.backdrop[data-show="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- Tablet: menü daima görünür ince ray, açılınca içeriğin üstüne biner ---------- */
+@media (min-width: 720px) and (max-width: 1179.98px) {
+  .app {
+    --gutter: 16px;
+    padding-left: calc(var(--gutter) + 74px + 16px);
+  }
+
+  .sb-slot {
+    position: fixed;
+    top: var(--gutter);
+    left: var(--gutter);
+    bottom: var(--gutter);
+    height: auto;
+    max-height: none;
+  }
+}
+
+/* ---------- Mobil: aynı menü soldan kayan çekmece ---------- */
+@media (max-width: 719.98px) {
+  .app {
+    --gutter: 12px;
+    display: block;
+  }
+
+  .sb-slot {
+    position: fixed;
+    top: var(--gutter);
+    left: var(--gutter);
+    bottom: var(--gutter);
+    height: auto;
+    max-height: none;
+    transform: translateX(calc(-100% - var(--gutter) * 2));
+    transition: transform 0.38s var(--ease);
+  }
+
+  .sb-slot[data-open="true"] {
+    transform: none;
+  }
+
+  .sb-slot .sb {
+    height: 100%;
+  }
+
+  .main {
+    gap: 16px;
+  }
+
+  .intro {
+    padding-top: 10px;
+  }
+
+  .foot {
+    flex-direction: column;
+  }
+}

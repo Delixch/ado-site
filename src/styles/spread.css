@@ -1,0 +1,468 @@
+/*
+ * Doppelseite (Spread): Kopf mit Folio + Layout-Wahl, darunter der Satzspiegel.
+ * Bausteine sind keine Karten: keine Ecken, keine Schatten - nur Haarlinien wie im Magazin.
+ */
+
+.spread-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+  padding-bottom: var(--sp-8);
+}
+
+/* ---------- Kopf ---------- */
+.mast {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--sp-6);
+  padding: var(--sp-6) var(--sp-1) var(--sp-5);
+  border-bottom: var(--hair) solid var(--ink);
+}
+
+.mast-folio {
+  font-family: var(--font-poster);
+  font-size: var(--fs-folio);
+  line-height: var(--lh-poster);
+  color: var(--brand);
+  letter-spacing: var(--ls-poster);
+}
+
+.mast-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+.mast-kicker {
+  display: flex;
+  gap: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-micro);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.mast-kicker b {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+}
+
+.mast-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--sp-4);
+}
+
+.mast-l1 {
+  font-family: var(--font-poster);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-poster-m);
+  line-height: var(--lh-poster);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-poster);
+  color: var(--ink);
+}
+
+.mast-l2 {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-whisper);
+  line-height: var(--lh-whisper);
+  color: var(--brand-text);
+}
+
+/* Layout-Wahl: Mini-Plaene */
+.dial {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--sp-2);
+}
+
+.dial-label {
+  display: flex;
+  gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-micro);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.dial-label b {
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+}
+
+.dial-plans {
+  display: flex;
+  gap: var(--sp-1);
+}
+
+.dial-btn {
+  padding: var(--sp-1);
+  border: var(--hair) solid transparent;
+  transition: border-color var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+  opacity: 0.55;
+}
+
+.dial-btn:hover {
+  border-color: var(--rule);
+  opacity: 1;
+}
+
+.dial-btn:active {
+  transform: scale(var(--press));
+}
+
+.dial-btn[aria-pressed="true"] {
+  border-color: var(--ink);
+  opacity: 1;
+}
+
+.mini {
+  display: grid;
+  width: var(--mini-w);
+  height: var(--mini-h);
+  gap: var(--mini-gap);
+}
+
+.mini i {
+  background: var(--rule);
+}
+
+.mini i[data-tone="ink"] {
+  background: var(--ink);
+}
+
+.mini i[data-tone="brand"] {
+  background: var(--brand);
+}
+
+.mini i[data-tone="media"] {
+  background: var(--ink-block-soft);
+}
+
+/* ---------- Satzspiegel ---------- */
+.spread {
+  position: relative;
+  display: grid;
+  gap: var(--spread-gap);
+  border-top: var(--hair) solid var(--rule);
+  border-left: var(--hair) solid var(--rule);
+}
+
+.spread[data-flow="stack"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.blk {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Haarlinie rechts/unten - wandert mit dem Baustein */
+.blk::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  border-right: var(--hair) solid var(--rule);
+  border-bottom: var(--hair) solid var(--rule);
+}
+
+.blk[data-tone="deep"] {
+  background: var(--paper-2);
+}
+
+.blk[data-tone="ink"] {
+  background: var(--ink-block);
+  color: var(--on-ink-block);
+  --ink: var(--on-ink-block);
+  --ink-soft: var(--ink-block-soft);
+  --rule-local: var(--ink-block-soft);
+}
+
+.blk[data-tone="brand"] {
+  background: var(--brand-block);
+  color: var(--on-brand-block);
+  --ink: var(--on-brand-block);
+  --ink-soft: var(--on-brand-block);
+  --brand-text: var(--on-brand-block);
+  --brand: var(--on-brand-block);
+}
+
+.blk[data-tone="media"] {
+  background: var(--ink-block);
+}
+
+.blk-in {
+  position: relative;
+  height: 100%;
+  padding: var(--spread-pad);
+}
+
+.blk[data-bleed] .blk-in {
+  padding: 0;
+}
+
+.spread[data-flow="stack"] .blk {
+  min-height: var(--block-min-mobile);
+}
+
+/* Schnittmarken an den Ecken */
+.mark {
+  position: absolute;
+  z-index: 6;
+  width: var(--mark);
+  height: var(--mark);
+  pointer-events: none;
+  border: 0 solid var(--mark-color);
+}
+
+.mark-tl {
+  top: calc(var(--mark) * -1 - var(--sp-1));
+  left: calc(var(--mark) * -1 - var(--sp-1));
+  border-right-width: var(--hair);
+  border-bottom-width: var(--hair);
+}
+
+.mark-tr {
+  top: calc(var(--mark) * -1 - var(--sp-1));
+  right: calc(var(--mark) * -1 - var(--sp-1));
+  border-left-width: var(--hair);
+  border-bottom-width: var(--hair);
+}
+
+.mark-bl {
+  bottom: calc(var(--mark) * -1 - var(--sp-1));
+  left: calc(var(--mark) * -1 - var(--sp-1));
+  border-right-width: var(--hair);
+  border-top-width: var(--hair);
+}
+
+.mark-br {
+  bottom: calc(var(--mark) * -1 - var(--sp-1));
+  right: calc(var(--mark) * -1 - var(--sp-1));
+  border-left-width: var(--hair);
+  border-top-width: var(--hair);
+}
+
+/* ---------- Tablet / Mobil ---------- */
+@media (max-width: 1179.98px) {
+  .mast {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .dial {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 719.98px) {
+  .mast {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-3);
+  }
+
+  .mark {
+    display: none;
+  }
+}
+
+/* Einspaltig: randlose Bausteine (Fotos, Buehnen) brauchen eine eigene Hoehe */
+.spread[data-flow="stack"] .blk[data-bleed] .blk-in {
+  min-height: var(--media-min-h);
+}
+
+/*
+ * Themen-Lichtband: ganz hinten, durch die Mitte (nur Themen mit --band-solid).
+ * Form ueber data-band an .main (config.ts BAND_SHAPE, Adresse ?band=N):
+ * 1 gerade · 2 schraeg ("2 numara") · 3 Schlange · 4 Ringe.
+ * Aeusseres Element traegt das Leuchten (drop-shadow), inneres die Form (Maske) - sonst schneidet die Maske das Leuchten ab.
+ */
+.band {
+  position: absolute;
+  top: calc(var(--gutter) * -1);
+  bottom: calc(var(--gutter) * -1);
+  left: 50%;
+  z-index: -1;
+  width: var(--band-box, var(--band-w));
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 var(--band-blur) var(--band-glow, transparent));
+  pointer-events: none;
+}
+
+.band i {
+  position: absolute;
+  inset: 0;
+  background: var(--band-solid, none);
+}
+
+[data-band="2"] .band i {
+  transform: skewX(var(--band-tilt));
+  transform-origin: top center;
+}
+
+[data-band="3"],
+[data-band="4"] {
+  --band-box: var(--snake-w);
+}
+
+[data-band="3"] .band i,
+[data-band="4"] .band i {
+  -webkit-mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
+  mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
+}
+
+[data-band="3"] {
+  --band-mask: var(--snake);
+}
+
+[data-band="4"] {
+  --band-mask: var(--rings);
+}
+
+.blk {
+  -webkit-backdrop-filter: var(--blk-backdrop, none);
+  backdrop-filter: var(--blk-backdrop, none);
+}
+
+/*
+ * NOT / NOTIZ (2026-10-03): HEADER'I BURADA YOK ETTİK — das Lichtband deckt die Kopfzeile absichtlich ab.
+ * Kundenwunsch: das Band liegt nur ueber der Kopfzeile, sonst ganz hinten.
+ * Rueckgaengig: diesen .tb::after-Block loeschen.
+ * Schraeglage wie .main::before; --tb-y (Abstand Kopfzeile <-> .main oben) setzt App.tsx beim Scrollen,
+ * damit das Stueck auf der Kopfzeile genau auf der schraegen Linie liegt.
+ */
+.tb::after {
+  content: "";
+  position: absolute;
+  /* vom Bandanfang (oberhalb der Kopfzeile) bis knapp unter ihren Schatten: Form liegt deckungsgleich */
+  top: calc((var(--tb-y, 0px) + var(--gutter)) * -1);
+  bottom: calc(var(--sp-8) * -1);
+  left: 50%;
+  z-index: 2;
+  width: var(--band-box, var(--band-w));
+  transform: translateX(-50%);
+  background: var(--band-solid, none);
+  pointer-events: none;
+}
+
+[data-band="2"] .tb::after {
+  transform: translateX(-50%) skewX(var(--band-tilt));
+  transform-origin: top center;
+}
+
+[data-band="3"] .tb::after,
+[data-band="4"] .tb::after {
+  -webkit-mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
+  mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
+}
+
+/* Effekte am Schlangenrand (components/fx/BandFx): Canvas fest im Fenster, ueber dem Band, hinter dem Inhalt */
+.band-fx {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Zweites Canvas nur ueber der Kopfzeile (Effekte liegen dort wie das Band oben drauf) */
+.band-fx-top {
+  z-index: 30;
+}
+
+/* Vergleichs-Leiste fuer Lichtband-Form und Effekt (voruebergehend) */
+.bp-pick {
+  position: fixed;
+  right: var(--sp-4);
+  bottom: var(--sp-4);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-sm);
+  border: var(--hair) solid var(--line);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  color: var(--ink-soft);
+}
+
+.bp-pick div {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.bp-pick span {
+  width: var(--sp-12);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.bp-pick button {
+  min-width: var(--icon-lg);
+  padding: var(--sp-1);
+  border-radius: var(--radius-sm);
+  border: var(--hair) solid var(--line);
+  color: var(--ink);
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.bp-pick button:hover:not(:disabled) {
+  border-color: var(--brand);
+}
+
+.bp-pick button[aria-pressed="true"] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--on-brand);
+  font-weight: var(--fw-bold);
+}
+
+.bp-pick button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.bp-pick em {
+  font-style: normal;
+  color: var(--brand-text);
+}
+
+/* Mobil: Auswahl unter dem Menue (im Seitenmenue statt schwebend) */
+.bp-pick[data-inline] {
+  position: static;
+  box-shadow: none;
+  background: transparent;
+  border-color: var(--line);
+}
+
+.bp-pick[data-inline] div {
+  flex-wrap: wrap;
+}
+
+.sb-footer {
+  margin-top: var(--sp-5);
+  flex-shrink: 0;
+}

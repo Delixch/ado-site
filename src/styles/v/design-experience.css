@@ -1,0 +1,32 @@
+/* Portfolio > Erfahrung. */
+
+.ex-title {
+  font-size: var(--fs-whisper-s);
+  color: var(--ink);
+}
+
+.ex-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  height: 100%;
+}
+
+.ex-detail h3 {
+  font-size: var(--fs-poster-m);
+}
+
+.ex-detail .lede {
+  margin-top: auto;
+}
+
+.ex-span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.ex-span .poster {
+  font-size: var(--fs-poster-l);
+}

@@ -1,0 +1,113 @@
+/* @tr Claude */
+/* @de Claude */
+
+[data-color="claude"] {
+  color-scheme: light;
+
+  /* Bu temanin basliklari serif (tokens.css varsayilanini ezer) */
+  --font-display: 'Source Serif 4', Georgia, serif;
+
+  /* Themenfarbe */
+  --brand: #C96442;
+  --brand-hover: #A94F32;
+  --brand-deep: #5A2B1B;
+  --brand-soft: color-mix(in srgb, var(--brand) 30%, #FBF8F2);
+  --brand-mid: color-mix(in srgb, var(--brand) 60%, #FBF8F2);
+  --on-brand: #211F1C;
+  --brand-text: #A94F32;
+
+  /* Flaechen */
+  --canvas: #F4EFE6;
+  --panel: color-mix(in srgb, var(--brand) 6%, #F4EFE6);
+  --surface: #FBF8F2;
+  --surface-solid: #FBF8F2;
+  --sunken: #EFE8DC;
+  --line: #E4DACB;
+  --line-strong: #D3C6B3;
+
+  /* Schrift */
+  --ink: #211F1C;
+  --ink-soft: #736C62;
+
+  /* Dunkle Karten (Kontrastflaechen) */
+  --dark: #FBF8F2;
+  --dark-card: #FBF8F2;
+  --on-dark: #211F1C;
+  --dark-edge: rgba(33, 31, 28, 0.16);
+  --night: #2A2825;
+  --night-ink: #EDE6DA;
+
+  /* Ring um Kreise, Streifen in den Bildflaechen */
+  --ring: #FBF8F2;
+  --pulse: #E4DACB;
+  --strip-out: #F4EFE6;
+
+  /* Werdegang-Stationen */
+  --station-2: #00738C;
+  --station-3: #5E35B1;
+  --station-4: #C2185B;
+
+  /* Material: Papierkarten (kein Glas) */
+  --card-bg: var(--surface);
+  --card-edge: var(--line);
+  --card-backdrop: none;
+  --card-shine: inset 0 0 0 transparent;
+  --spot: transparent;
+  --ambient-1: transparent;
+  --ambient-2: transparent;
+
+  /* Menue (Glas), Schatten, Vorhang */
+  --glass: rgba(251, 248, 242, 0.86);
+  --highlight: rgba(255, 255, 255, 0.7);
+  --pressed-bg: #EBE3D5;
+  --pressed-edge-top: #D3C6B3;
+  --pressed-edge-bottom: #FBF8F2;
+  --pressed-shadow: inset 0 2px 4px rgba(33, 31, 28, 0.12), inset 0 1px 1px rgba(33, 31, 28, 0.08);
+  --shadow-sm: 0 1px 2px rgba(33, 31, 28, 0.05);
+  --shadow-md: 0 14px 30px -12px rgba(33, 31, 28, 0.25);
+  --shadow-lg: 0 30px 60px -24px rgba(33, 31, 28, 0.35);
+  --overlay: rgba(33, 31, 28, 0.3);
+
+  /* Bild-Abdunklung (Text auf Fotos) */
+  --scrim: rgba(33, 31, 28, 0.72);
+  --on-scrim: #FBF8F2;
+}
+
+/* Editorial (MASTER.md): kâğıt, kıl çizgi, ters bloklar, görsel işlemleri */
+[data-color="claude"] {
+  --paper: #F4EFE6;
+  --paper-2: #EDE5D7;
+  --rule: #D6C9B5;
+  --rule-soft: #E4DACB;
+  --ink-block: #2A2825;
+  --on-ink-block: #F4EFE6;
+  --ink-block-soft: #A39A8C;
+  --brand-block: #F0E0D6;
+  --on-brand-block: #5A2B1B;
+  --veil: rgba(33, 31, 28, 0.28);
+  --slit-filter: grayscale(1) contrast(1.05) brightness(0.92);
+  --slit-frame: #FBF8F2;
+  --frost-tint: rgba(244, 239, 230, 0.22);
+  --frost-edge: rgba(255, 255, 255, 0.55);
+  --knock-bg: #211F1C;
+  --knock-blend: darken;
+  --knock-ink: #FFFFFF;
+  --halftone-color: rgba(33, 31, 28, 0.2);
+  --grain-opacity: 0.07;
+  --mark-color: #A39A8C;
+  --beam-core: #C96442;
+  --beam-glow: rgba(201, 100, 66, 0.45);
+  --flute-hi: rgba(255, 255, 255, 0.42);
+  --flute-lo: rgba(33, 31, 28, 0.22);
+  --deck-shadow: 0 40px 80px -30px rgba(33, 31, 28, 0.45);
+}
+
+/* Lichtband in Terracotta (spread.css .band), Papierbloecke halbtransparent */
+[data-color="claude"] {
+  --band: color-mix(in srgb, var(--brand) 90%, transparent);
+  --band-solid: var(--brand);
+  --band-glow: color-mix(in srgb, var(--brand) 55%, transparent);
+  --paper: rgba(244, 239, 230, 0.72);
+  --paper-2: rgba(237, 229, 215, 0.76);
+  --blk-backdrop: blur(26px) saturate(120%);
+}

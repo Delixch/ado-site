@@ -1,0 +1,58 @@
+/* Firma > Bestellungen: Leitung Team -> App -> Lieferanten. */
+
+.or-pipe {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.or-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--sp-10);
+  padding-bottom: var(--sp-2);
+  border-bottom: var(--hair) solid var(--rule);
+}
+
+.or-pipe .steps {
+  row-gap: var(--sp-3);
+  align-content: center;
+}
+
+.or-pipe .step .micro {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.or-pipe .step svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.or-t {
+  font-size: var(--fs-whisper-s);
+  color: var(--ink);
+}
+
+.or-state {
+  align-self: flex-start;
+  padding: 0 var(--sp-2);
+  border: var(--hair) solid var(--rule);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.or-state[data-ok="true"] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--paper);
+}
+
+.ab-tags .micro svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.or-pipe .step-pin {
+  display: none;
+}

@@ -1,0 +1,296 @@
+/* Üst bar: menü başlığıyla aynı hizada, 46px */
+
+.tb {
+  position: sticky;
+  top: var(--gutter);
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 46px;
+  margin-top: 7px;
+  padding: 0 8px 0 16px;
+  border-radius: 16px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md), inset 0 1px 1px var(--highlight);
+}
+
+.tb svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tb-left,
+.tb-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.tb-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.tb-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-logo);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--ls-wide);
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.tb-logo-dot {
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.tb-caret {
+  width: var(--border);
+  height: var(--icon-sm);
+  background: var(--accent);
+  animation: pulse 1s steps(1) infinite;
+}
+
+.tb-sep {
+  width: var(--border);
+  height: var(--icon-md);
+  background: var(--line-strong);
+}
+
+.tb-title {
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tb-group {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  white-space: nowrap;
+}
+
+.tb-group[data-group="firma"] {
+  background: color-mix(in oklab, var(--info) 14%, transparent);
+  color: var(--info);
+  border-color: color-mix(in oklab, var(--info) 35%, transparent);
+}
+
+.tb-icon,
+.tb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--ink) 3%, transparent);
+  color: var(--ink-2);
+  transition: all 0.2s var(--ease);
+}
+
+.tb-icon {
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.tb-btn {
+  padding: 0 10px;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.tb-icon:hover,
+.tb-btn:hover {
+  border-color: var(--line-strong);
+  background: color-mix(in oklab, var(--ink) 7%, transparent);
+  color: var(--ink);
+}
+
+.tb-icon[aria-pressed="true"] {
+  color: var(--accent);
+  border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+  background: var(--accent-soft);
+}
+
+.tb .tb-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Dil seçici */
+.seg {
+  display: flex;
+  padding: 2px;
+  border-radius: 10px;
+  background: var(--pressed-bg);
+  box-shadow: var(--pressed-shadow);
+  border: 1px solid var(--line);
+}
+
+.seg button {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-black);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  transition: all 0.2s var(--ease);
+}
+
+.seg button:hover {
+  color: var(--ink);
+}
+
+.seg button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Renk seçici */
+.cp {
+  position: relative;
+}
+
+.tb .cp-chevron {
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  transition: transform 0.2s var(--ease);
+}
+
+.cp-chevron[data-open="true"] {
+  transform: rotate(180deg);
+}
+
+.cp-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 50;
+  width: 220px;
+  padding: 6px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cp-title {
+  padding: 6px 10px 4px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cp-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-medium);
+  color: var(--ink-2);
+  text-align: left;
+}
+
+.cp-option:hover {
+  background: var(--sunken);
+  color: var(--ink);
+}
+
+.cp-option[aria-selected="true"] {
+  color: var(--ink);
+  font-weight: var(--fw-bold);
+}
+
+.tb .cp-check {
+  margin-left: auto;
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+}
+
+@media (max-width: 719.98px) {
+  .tb {
+    top: var(--gutter);
+    margin-top: 0;
+    padding: 0 6px;
+    gap: 6px;
+  }
+
+  .tb-left,
+  .tb-right {
+    gap: 6px;
+  }
+
+  .tb-group,
+  .tb-dot,
+  .tb-hide-sm {
+    display: none;
+  }
+
+  .tb-btn {
+    width: 32px;
+    padding: 0;
+  }
+
+  .tb-btn .cp-chevron {
+    display: none;
+  }
+
+  .seg button {
+    padding: 4px 7px;
+  }
+
+  /* Mobilde kartlar kendiliğinden kaymaz; sadece "karıştır" düğmesi kalır */
+  .tb-right > .tb-icon:first-child {
+    display: none;
+  }
+}
+
+/* Telefon: logo ve ayırıcı gizli, başlık yeterli */
+@media (max-width: 719.98px) {
+  .tb-logo,
+  .tb-sep {
+    display: none;
+  }
+}

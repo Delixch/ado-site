@@ -1,0 +1,338 @@
+/* Firma > Personal: Dossier mit Reitern, Onboarding als Leiste. */
+
+.pf {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pf-tabs {
+  display: flex;
+  gap: var(--sp-1);
+  padding-left: var(--sp-4);
+}
+
+.pf-tabs button {
+  padding: var(--sp-2) var(--sp-4);
+  border: var(--hair) solid var(--rule);
+  border-bottom: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--paper-2);
+  font-family: var(--font-editorial);
+  font-size: var(--fs-body);
+  color: var(--ink-soft);
+  transform: translateY(var(--hair));
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.pf-tabs button:hover {
+  color: var(--ink);
+}
+
+.pf-tabs button[aria-selected="true"] {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.pf-folder {
+  flex: 1;
+  padding: var(--sp-5);
+  background: var(--paper);
+  border: var(--hair) solid var(--rule);
+  box-shadow: var(--deck-shadow);
+}
+
+.pf-docs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.pf-docs li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--paper-2);
+  border: var(--hair) solid var(--rule-soft);
+}
+
+.pf-docs li > svg {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  color: var(--ink-soft);
+}
+
+.pf-docs li > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-docs .whisper {
+  font-size: var(--fs-whisper-s);
+}
+
+.pf-docs .pf-ok {
+  color: var(--brand);
+}
+
+.ob {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.ob-person {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-3) 0;
+  border-top: var(--hair) solid var(--rule);
+  border-bottom: var(--hair) solid var(--rule);
+}
+
+.ob-person .whisper {
+  font-size: var(--fs-whisper);
+}
+
+.ob-steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.ob-steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-ui);
+  color: var(--ink-soft);
+  transition: color var(--dur) var(--ease);
+}
+
+.ob-dot {
+  display: grid;
+  place-items: center;
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+  border-radius: var(--radius-pill);
+  border: var(--hair) solid var(--rule);
+  background: var(--paper);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.ob-dot svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.ob-steps li[data-done="true"] {
+  color: var(--ink);
+}
+
+.ob-steps li[data-done="true"] .ob-dot {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--paper);
+}
+
+.ob-steps li[data-done="true"] .ob-dot svg {
+  opacity: 1;
+  transform: none;
+}
+
+.ob > .micro:last-child {
+  margin-top: auto;
+}
+
+/* Dreiteiliges Dossier: Ordner | Dokumente | Vorschau */
+.pf3 {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) minmax(0, 1.4fr);
+  gap: var(--sp-4);
+  height: 100%;
+}
+
+.pf3-folders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.pf3-folders button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border: var(--hair) solid transparent;
+  font-family: var(--font-editorial);
+  font-size: var(--fs-body);
+  text-align: left;
+  color: var(--ink-soft);
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.pf3-folders svg {
+  width: var(--icon-md);
+  height: var(--icon-md);
+}
+
+.pf3-folders button:hover {
+  color: var(--ink);
+}
+
+.pf3-folders button[aria-selected="true"] {
+  background: var(--paper);
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+.pf3-folders button[aria-selected="true"] svg {
+  color: var(--brand);
+}
+
+.pf3-docs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.pf3-docs button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--paper);
+  border: var(--hair) solid var(--rule-soft);
+  text-align: left;
+  transition: border-color var(--dur-fast) var(--ease), transform var(--dur) var(--ease);
+}
+
+.pf3-docs button > svg:first-child {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  color: var(--ink-soft);
+}
+
+.pf3-docs button > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pf3-name {
+  font-family: var(--font-editorial);
+  font-size: var(--fs-body);
+}
+
+.pf3-docs button:hover {
+  border-color: var(--ink-soft);
+}
+
+.pf3-docs button[aria-pressed="true"] {
+  border-color: var(--brand);
+  transform: translateX(var(--sp-1));
+}
+
+.pf3-docs .pf-ok {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  color: var(--brand);
+}
+
+.pf3-preview {
+  display: grid;
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  min-height: var(--sheet-min-h);
+  padding: var(--sp-5);
+  background: var(--paper);
+  border: var(--hair) solid var(--rule);
+  box-shadow: var(--deck-shadow);
+}
+
+.sheet header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding-bottom: var(--sp-3);
+  border-bottom: var(--hair) solid var(--ink);
+}
+
+.sheet h3 {
+  font-size: var(--fs-whisper);
+}
+
+.sheet dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3);
+}
+
+.sheet dl div {
+  padding-top: var(--sp-1);
+  border-top: var(--hair) dotted var(--rule);
+}
+
+.sheet dd {
+  font-size: var(--fs-ui);
+}
+
+.sheet footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-top: auto;
+}
+
+.sheet-sign {
+  flex-basis: 100%;
+  padding-bottom: var(--sp-1);
+  border-bottom: var(--hair) solid var(--ink-soft);
+  font-size: var(--fs-whisper);
+  color: var(--brand-text);
+}
+
+.sheet-ok {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  color: var(--brand-text);
+}
+
+.sheet-ok svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+@container (max-width: 760px) {
+  .pf3 {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+
+  .pf3-preview {
+    grid-column: 1 / -1;
+  }
+}
+
+@container (max-width: 460px) {
+  .pf3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

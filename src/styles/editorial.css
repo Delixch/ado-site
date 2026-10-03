@@ -1,0 +1,154 @@
+/* Gemeinsame Typo-Bausteine der Doppelseiten. */
+
+.micro {
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-micro);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.micro b {
+  color: var(--ink);
+  font-weight: var(--fw-medium);
+}
+
+.poster {
+  font-family: var(--font-poster);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-poster);
+  letter-spacing: var(--ls-poster);
+  text-transform: uppercase;
+}
+
+.whisper {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-whisper);
+}
+
+.lede {
+  max-width: var(--measure);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.lede.drop::first-letter {
+  float: left;
+  margin: var(--sp-1) var(--sp-2) 0 0;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: var(--fs-dropcap);
+  line-height: var(--lh-poster);
+  color: var(--brand);
+}
+
+/* Redaktioneller Link: Unterstreichung waechst, Pfeil rueckt */
+.e-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  background: linear-gradient(currentColor, currentColor) left bottom / 100% var(--hair) no-repeat;
+  transition: background-size var(--dur) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.e-link svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  transition: transform var(--dur) var(--ease);
+}
+
+.e-link:hover {
+  color: var(--brand-text);
+  background-size: 30% var(--hair);
+}
+
+.e-link:hover svg {
+  transform: translate(calc(var(--sp-1) / 2), calc(var(--sp-1) / -2));
+}
+
+.e-link:active {
+  transform: scale(var(--press));
+}
+
+.e-link[data-solid] {
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.e-link[data-solid]:hover {
+  background: var(--brand);
+  color: var(--paper);
+}
+
+.e-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+/* Kennzahl im Schweizer Raster */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--metric-min), 1fr));
+  height: 100%;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--spread-pad);
+  border-right: var(--hair) solid var(--rule);
+}
+
+.metric:last-child {
+  border-right: 0;
+}
+
+.metric-v {
+  font-family: var(--font-poster);
+  font-size: var(--fs-metric);
+  line-height: var(--lh-poster);
+  color: var(--ink);
+}
+
+.metric-v sup {
+  font-size: 0.45em;
+  color: var(--brand-text);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.live::before {
+  content: "";
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  animation: pulse 1.6s var(--ease) infinite;
+}
+
+.metric-v + .micro {
+  display: block;
+  margin-top: var(--sp-2);
+}

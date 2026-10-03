@@ -1,0 +1,93 @@
+/* Portfolio > Start: Titelseite (Cover). */
+
+.cover-over {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  color: var(--on-scrim);
+  --ink: var(--on-scrim);
+  --ink-soft: var(--on-scrim);
+}
+
+.cover-ado {
+  position: absolute;
+  top: 50%;
+  left: var(--spread-pad);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-50%);
+  font-size: var(--fs-poster-l);
+  line-height: var(--lh-poster);
+  mix-blend-mode: difference;
+}
+
+.cover-issue {
+  position: absolute;
+  top: var(--spread-pad);
+  right: var(--spread-pad);
+}
+
+.cover-role {
+  position: absolute;
+  right: var(--spread-pad);
+  bottom: var(--spread-pad);
+}
+
+.ds-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  font-weight: var(--fw-regular);
+}
+
+.ds-head .poster {
+  font-size: var(--fs-poster-xl);
+}
+
+.ds-head .whisper {
+  padding-left: var(--sp-8);
+  font-size: var(--fs-poster-l);
+  color: var(--brand-text);
+}
+
+.blk .knock {
+  container-type: inline-size;
+}
+
+.ds-film {
+  font-size: min(var(--fs-poster-xl), var(--fs-fit-word));
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ds-lede {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  height: 100%;
+}
+
+.ds-quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  height: 100%;
+}
+
+.ds-quote-mark {
+  font-size: var(--fs-poster-l);
+  line-height: var(--lh-poster);
+  height: 0.5em;
+}
+
+.ds-quote blockquote {
+  font-size: var(--fs-whisper);
+}
+
+.ds-quote em {
+  display: block;
+}

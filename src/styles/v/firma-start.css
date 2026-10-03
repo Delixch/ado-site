@@ -1,0 +1,212 @@
+/* Firma > Uebersicht: Bereiche einschalten, die Mini-App fuellt sich. */
+
+.fs-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+  height: 100%;
+  font-weight: var(--fw-regular);
+}
+
+.fs-head .poster {
+  font-size: var(--fs-poster-xl);
+}
+
+.fs-head .whisper {
+  font-size: var(--fs-poster-l);
+}
+
+.fs-head em {
+  color: var(--brand-text);
+}
+
+.fs-switch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.fs-switch ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.fs-switch li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  border-top: var(--hair) solid var(--rule);
+  transition: opacity var(--dur) var(--ease);
+}
+
+.fs-switch li[data-on="false"] {
+  opacity: 0.5;
+}
+
+.fs-name {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-width: 0;
+  text-align: left;
+}
+
+.fs-name > svg {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  color: var(--brand);
+}
+
+.fs-name > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.fs-label {
+  font-family: var(--font-editorial);
+  font-size: var(--fs-whisper-s);
+  line-height: var(--lh-snug);
+}
+
+.fs-name:hover .fs-label {
+  color: var(--brand-text);
+}
+
+/* Schalter */
+.toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--toggle-w);
+  height: var(--toggle-h);
+  border-radius: var(--radius-pill);
+  border: var(--hair) solid var(--rule);
+  background: var(--paper-2);
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.toggle i {
+  position: absolute;
+  top: calc(var(--hair) * 2);
+  left: calc(var(--hair) * 2);
+  width: calc(var(--toggle-h) - var(--hair) * 6);
+  height: calc(var(--toggle-h) - var(--hair) * 6);
+  border-radius: var(--radius-pill);
+  background: var(--ink-soft);
+  transition: transform var(--dur) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+
+.toggle[aria-checked="true"] {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.toggle[aria-checked="true"] i {
+  background: var(--paper);
+  transform: translateX(calc(var(--toggle-w) - var(--toggle-h)));
+}
+
+.toggle:active i {
+  transform: scale(var(--press));
+}
+
+/* Mini-App */
+.fs-app {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.fs-phone {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  width: 100%;
+  max-width: var(--phone-max);
+  padding: var(--sp-4);
+  border: var(--hair) solid var(--rule);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  box-shadow: var(--deck-shadow);
+}
+
+.fs-phone-head {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: var(--sp-2);
+  border-bottom: var(--hair) solid var(--rule);
+}
+
+.fs-lines {
+  display: flex;
+  flex-direction: column;
+}
+
+.fs-lines li {
+  overflow: hidden;
+}
+
+.fs-line {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+}
+
+.fs-line > svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  color: var(--brand);
+}
+
+.fs-line > span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fs-line .fs-label {
+  font-size: var(--fs-body);
+}
+
+.fs-line .micro {
+  text-transform: none;
+  letter-spacing: var(--ls-wide);
+}
+
+.fs-dot {
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  animation: pulse 1.8s var(--ease) infinite;
+}
+
+.fs-meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding-top: var(--sp-2);
+  border-top: var(--hair) solid var(--rule);
+}
+
+.fs-meter-bar {
+  height: var(--bar-h);
+  background: var(--paper-2);
+}
+
+.fs-meter-bar i {
+  display: block;
+  height: 100%;
+  background: var(--brand);
+  transform-origin: left;
+}
+
+.spread-wrap[data-view="f-start"] .blk:has(.media video) .blk-in {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}

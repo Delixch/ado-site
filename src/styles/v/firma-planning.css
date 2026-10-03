@@ -1,0 +1,185 @@
+/* Firma > Einsatzplanung: Wochenplan in Satzschrift, Krankmeldung wird live eingeplant. */
+
+.pl-plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  height: 100%;
+}
+
+.pl-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.pl-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-2);
+  background: var(--brand);
+  color: var(--paper);
+  text-transform: none;
+  letter-spacing: var(--ls-wide);
+}
+
+.pl-notice svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.pl-table {
+  width: 100%;
+  border-collapse: collapse;
+  perspective: var(--tilt);
+}
+
+.pl-table th,
+.pl-table td {
+  padding: var(--sp-1);
+  border-bottom: var(--hair) solid var(--rule);
+  text-align: left;
+}
+
+.pl-name {
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-whisper-s);
+}
+
+.pl-cell {
+  display: block;
+  padding: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  transform-origin: center top;
+}
+
+.pl-cell[data-kind="off"] {
+  color: var(--ink-soft);
+}
+
+.pl-cell[data-kind="leave"] {
+  background: var(--brand-block);
+  color: var(--on-brand-block);
+}
+
+.pl-cell[data-kind="sick"] {
+  background: repeating-linear-gradient(-45deg, var(--paper-2) 0 var(--sp-1), var(--paper) var(--sp-1) var(--sp-2));
+  color: var(--brand-text);
+  box-shadow: inset 0 0 0 var(--hair) var(--brand);
+}
+
+.pl-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: auto;
+}
+
+.pl-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.pl-legend i {
+  width: var(--dot);
+  height: var(--dot);
+  border: var(--hair) solid var(--ink-soft);
+}
+
+.pl-legend [data-kind="leave"] i {
+  background: var(--brand-block);
+  border-color: var(--brand);
+}
+
+.pl-legend [data-kind="sick"] i {
+  border-color: var(--brand);
+  background: var(--paper-2);
+}
+
+.pl-legend [data-kind="over"] i {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.pl-over {
+  margin-left: auto;
+}
+
+.pl-over b {
+  color: var(--brand-text);
+}
+
+.pl-features {
+  display: flex;
+  flex-direction: column;
+}
+
+.pl-features button {
+  display: grid;
+  grid-template-columns: var(--toc-n-w) minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-2) 0;
+  border-top: var(--hair) solid var(--rule);
+  text-align: left;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.pl-features .whisper {
+  font-size: var(--fs-whisper-s);
+  color: var(--ink-soft);
+  transition: color var(--dur-fast) var(--ease), transform var(--dur) var(--ease);
+}
+
+.pl-features button:hover .whisper,
+.pl-features button[aria-pressed="true"] .whisper {
+  color: var(--ink);
+}
+
+.pl-features button[aria-pressed="true"] .whisper {
+  transform: translateX(var(--sp-2));
+  color: var(--brand-text);
+}
+
+.pl-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-3);
+}
+
+.pl-metrics div {
+  padding-top: var(--sp-2);
+  border-top: var(--hair) solid var(--rule);
+}
+
+.pl-metrics dd {
+  font-size: var(--fs-body);
+}
+
+.pl-example {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.pl-example ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.pl-example li {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr);
+  gap: var(--sp-3);
+  align-items: baseline;
+  padding: var(--sp-2) 0;
+  border-top: var(--hair) solid var(--rule);
+  font-size: var(--fs-ui);
+}

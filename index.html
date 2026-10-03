@@ -1,114 +1,15 @@
 <!doctype html>
-<html lang="tr">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CSS Grid Architect & Layout Studio</title>
-    <meta name="description" content="Etkileşimli CSS Grid düzen mimarisi, canlı görselleştirici ve modern şablon stüdyosu." />
-    <meta property="og:title" content="CSS Grid Architect & Layout Studio" />
-    <meta property="og:description" content="Etkileşimli CSS Grid düzen mimarisi, canlı görselleştirici ve modern şablon stüdyosu." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <!-- Tarayıcı, İframe ve Harici Sistem Konsol Temizleyici Kalkanı -->
-    <script>
-      (function() {
-        // 1. "Cannot set property fetch of #<Window> which has only a getter"
-        try {
-          var originalFetch = window.fetch;
-          var fetchHolder = originalFetch;
-          Object.defineProperty(window, 'fetch', {
-            get: function() { return fetchHolder; },
-            set: function(newFetch) { fetchHolder = newFetch; },
-            configurable: true,
-            enumerable: true
-          });
-        } catch (err) {}
-
-        // 2. Unload yetki ihlali engelleyici
-        try {
-          var origAddEventListener = EventTarget.prototype.addEventListener;
-          EventTarget.prototype.addEventListener = function(type, listener, options) {
-            if (type === 'unload') {
-              return origAddEventListener.call(this, 'pagehide', listener, options);
-            }
-            return origAddEventListener.call(this, type, listener, options);
-          };
-        } catch (err) {}
-
-        // 3. Sistem / Harici Platform loglarını ve uyarılarını filtreleme
-        var blockedKeywords = [
-          'powerPreference',
-          'requestAdapter',
-          'Origin trial',
-          'No ID or name found in config',
-          'html2canvas',
-          'Tracking Prevention',
-          'Duplicate definition of module',
-          'preloaded using link preload',
-          'writer',
-          'rewriter',
-          'proofreader',
-          'language-model',
-          'fetch',
-          'unload',
-          'Permissions policy'
-        ];
-
-        function shouldSuppress(args) {
-          var str = '';
-          for (var i = 0; i < args.length; i++) {
-            try {
-              str += ' ' + (typeof args[i] === 'object' ? JSON.stringify(args[i]) : String(args[i]));
-            } catch (e) {
-              str += ' ' + String(args[i]);
-            }
-          }
-          for (var j = 0; j < blockedKeywords.length; j++) {
-            if (str.indexOf(blockedKeywords[j]) !== -1) return true;
-          }
-          return false;
-        }
-
-        var origWarn = console.warn;
-        console.warn = function() {
-          if (shouldSuppress(arguments)) return;
-          origWarn.apply(console, arguments);
-        };
-
-        var origError = console.error;
-        console.error = function() {
-          if (shouldSuppress(arguments)) return;
-          origError.apply(console, arguments);
-        };
-
-        var origLog = console.log;
-        console.log = function() {
-          if (shouldSuppress(arguments)) return;
-          origLog.apply(console, arguments);
-        };
-
-        window.addEventListener('error', function(event) {
-          if (event.message && shouldSuppress([event.message, event.filename])) {
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-          }
-        }, true);
-
-        window.addEventListener('unhandledrejection', function(event) {
-          if (event.reason && shouldSuppress([String(event.reason)])) {
-            event.preventDefault();
-          }
-        });
-      })();
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ADO Design · ADO Firma</title>
+    <meta name="description" content="ADO Design – Web-Entwicklung aus Zürich. ADO Firma – die digitale Betriebszentrale für Gastronomie." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Chakra+Petch:wght@500;600;700&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,500;1,600&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-orange-500/20 selection:text-orange-300">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

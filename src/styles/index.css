@@ -1,0 +1,27 @@
+/* Ölçüler: tokens.css. Renkler: colors/<tema>.css (otomatik yüklenir). Diğer dosyalarda sayı/renk kodu yok. */
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./sidebar.css";
+@import "./topbar.css";
+/* Neue Gestaltung (MASTER.md): Doppelseiten + Bildbehandlung + je Seite eine Datei in v/ */
+@import "./editorial.css";
+@import "./spread.css";
+@import "./fx.css";
+@import "./v/design-start.css";
+@import "./v/design-about.css";
+@import "./v/design-work.css";
+@import "./v/design-skills.css";
+@import "./v/design-repos.css";
+@import "./v/design-construction.css";
+@import "./v/flow.css";
+@import "./v/design-experience.css";
+@import "./v/letter.css";
+@import "./v/firma-start.css";
+@import "./v/firma-orders.css";
+@import "./v/firma-planning.css";
+@import "./v/firma-accounting.css";
+@import "./v/firma-reports.css";
+@import "./v/firma-homepage.css";
+@import "./v/firma-personnel.css";
+@import "./v/insta.css";

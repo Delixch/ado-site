@@ -1,0 +1,100 @@
+/* Portfolio > Ueber mich: typografisches Portraet, beschlagenes Glas, geriffeltes Glas. */
+
+.ab-frost-over {
+  container-type: inline-size;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spread-pad);
+  pointer-events: none;
+  color: var(--on-scrim);
+  --ink-soft: var(--on-scrim);
+  text-align: center;
+}
+
+.ab-frost-word {
+  font-size: var(--fs-poster-l);
+  opacity: 0.9;
+  mix-blend-mode: overlay;
+}
+
+.ab-frost-word-2 {
+  font-size: min(var(--fs-poster-xl), var(--fs-fit-word));
+}
+
+.ab-bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  height: 100%;
+}
+
+.ab-bio h2 {
+  font-size: var(--fs-whisper);
+  max-width: var(--measure-title);
+}
+
+.ab-bio em {
+  font-family: var(--font-editorial);
+  font-size: var(--fs-title);
+  color: var(--brand-text);
+}
+
+.ab-tags {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.ab-tags li {
+  display: flex;
+  flex-direction: column;
+  border-top: var(--hair) solid currentColor;
+  padding-top: var(--sp-2);
+}
+
+.ab-tags .poster {
+  font-size: var(--fs-poster-s);
+}
+
+.ab-film-q {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  padding: var(--spread-pad);
+  color: var(--on-scrim);
+}
+
+.ab-film-q blockquote {
+  font-size: var(--fs-whisper-s);
+}
+
+.ab-film-q em {
+  display: block;
+}
+
+.ab-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.ab-mail {
+  font-size: var(--fs-whisper-s);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.ab-mail:hover {
+  color: var(--brand-text);
+}

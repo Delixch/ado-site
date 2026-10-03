@@ -1,0 +1,283 @@
+/*
+ * MERKEZ ÖLÇÜLER — yazı boyu, kalınlık, boşluk, köşe, font, hareket.
+ * Diğer CSS dosyalarında sayı yazılmaz; hepsi buradaki değişkenleri kullanır.
+ * Renkler burada değil: src/styles/colors/<tema>.css (her tema bir dosya).
+ * Bir tema fontu değiştirmek isterse kendi dosyasında --font-* değerini ezer.
+ */
+:root {
+  /* Fontlar */
+  --font-sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Chakra Petch', 'Geist', sans-serif;
+  --font-logo: 'Orbitron', 'Chakra Petch', sans-serif;
+
+  /* Yazı boyları (küçükten büyüğe) */
+  --fs-micro: 9px;
+  --fs-tiny: 10px;
+  --fs-caption: 11px;
+  --fs-small: 12px;
+  --fs-ui: 13px;
+  --fs-body: 15px;
+  --fs-lead: clamp(15px, 1.3vw, 17px);
+  --fs-title: clamp(17px, 1.5vw, 21px);
+  --fs-heading: clamp(22px, 2.2vw, 30px);
+  --fs-display: clamp(32px, 4.6vw, 58px);
+  --fs-hero: clamp(38px, 5.2vw, 76px);
+  --fs-quote-mark: clamp(64px, 7vw, 110px);
+
+  /* Kalınlık */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  /* Satır yüksekliği ve harf aralığı */
+  --lh-tight: 1.02;
+  --lh-snug: 1.2;
+  --lh-body: 1.55;
+  --ls-tight: -0.02em;
+  --ls-label: 0.14em;
+  --ls-wide: 0.06em;
+
+  /* Boşluklar */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --gutter: 20px;
+  --gap-grid: 18px;
+  --card-pad: clamp(18px, 2vw, 28px);
+
+  /* Köşeler ve çizgiler */
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+  --border: 1px;
+
+  /* Simge ve küçük öğe boyları */
+  --icon-sm: 14px;
+  --icon-md: 18px;
+  --icon-lg: 26px;
+  --icon-tile: 56px;
+  --icon-xl: 40px;
+  --glyph: 96px;
+  --dot: 8px;
+  --btn-h: 40px;
+  --round-btn: 44px;
+  --card-min-h: 180px;
+  --media-min-h: 280px;
+  --stroke: 1.2px;
+  --arch-w: clamp(180px, 22vw, 280px);
+  --bar-h: 4px;
+  --glow: 220px;
+  --blur: 8px;
+  --fs-stat: clamp(36px, 3.6vw, 52px);
+  --rail-x: 76px;
+  --rail-line: 2px;
+  --rail-dot: 14px;
+  --field-min-h: 300px;
+  --input-h: 44px;
+  --gh-icon: 40px;
+  --flip-depth: 1200px;
+  --ring-badge: 112px;
+  --ring-core: 44px;
+  --node: 56px;
+  --node-sm: 38px;
+  --avatar: 34px;
+  --stat-circle: clamp(118px, 11vw, 150px);
+  --confirm: 104px;
+  --float-w: 250px;
+  --beam: 2px;
+  --video-round: clamp(180px, 16vw, 240px);
+  --day-dot: 12px;
+  --key-circle: 116px;
+  --ex-w: 400px;
+  --wallet-step: 14px;
+  --teaser-h: 300px;
+  --proj-tile-h: 150px;
+  --teaser-art-h: 180px;
+  --tile: 40px;
+  --orbit: 96px;
+  --fs-big-num: clamp(48px, 5vw, 72px);
+
+  /* Firma sahneleri */
+  --donut: 232px;
+  --leaf-r: 84px;
+  --site-stage-h: 620px;
+  --phone-w: 148px;
+  --capsule-w: 112px;
+  --always: clamp(124px, 11vw, 168px);
+  --bars-h: 64px;
+  --hub-size: 460px;
+  --file-ring: 88px;
+
+  /* Cam ve zemin ışıkları */
+  --glass-blur: 18px;
+  --ambient-size: 900px;
+  --spot-size: 420px;
+  --lift: -3px;
+  --press: 0.98;
+
+  /* Hareket */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.2s;
+  --dur: 0.3s;
+  --dur-enter: 0.45s;
+}
+
+@media (max-width: 1179.98px) {
+  :root {
+    --gap-grid: 14px;
+  }
+}
+
+@media (max-width: 719.98px) {
+  :root {
+    --gap-grid: 12px;
+    --radius-lg: 22px;
+    --card-min-h: 140px;
+    --hub-size: 320px;
+  }
+}
+
+/*
+ * EDITORIAL (2026-10-03, yeni tasarım dili — MASTER.md)
+ * Sayfalar dergi "spread"i gibi: kıl çizgili ızgara, poster tipografi, işlenmiş görsel.
+ */
+:root {
+  --font-poster: 'Instrument Serif', 'Source Serif 4', Georgia, serif;
+  --font-editorial: 'Instrument Serif', 'Source Serif 4', Georgia, serif;
+
+  /* Poster yazı ölçeği */
+  --fs-folio: clamp(26px, 2.4vw, 36px);
+  --fs-poster-xl: clamp(34px, 3.4vw, 52px);
+  --fs-poster-l: clamp(26px, 2.6vw, 40px);
+  --fs-poster-m: clamp(22px, 2vw, 30px);
+  --fs-poster-s: clamp(15px, 1.2vw, 19px);
+  --fs-whisper: clamp(19px, 1.7vw, 26px);
+  --fs-whisper-s: clamp(16px, 1.3vw, 19px);
+  --fs-dropcap: clamp(38px, 3.2vw, 52px);
+  --fs-metric: clamp(28px, 2.6vw, 40px);
+  --lh-poster: 1.02;
+  --lh-whisper: 1.18;
+  --ls-poster: 0.04em;
+  --ls-micro: 0.22em;
+
+  /* Spread ızgarası */
+  --hair: 1px;
+  --spread-row: clamp(110px, 10vw, 160px);
+  --spread-pad: clamp(16px, 1.5vw, 22px);
+  --spread-gap: 0px;
+  --block-min-mobile: 120px;
+  --mark: 10px;
+  --mini-w: 46px;
+  --mini-h: 30px;
+  --mini-gap: 2px;
+  --measure: 46ch;
+  --metric-min: 140px;
+  --measure-title: 16ch;
+  --fs-fit-word: 19cqi;
+  --toc-n-w: 2.2ch;
+  --fs-tp: clamp(10px, 0.85vw, 13px);
+  --lh-tp: 1;
+  --rl-room: 0.16em;
+
+  /* Görsel işlemleri */
+  --slit-w: clamp(70px, 7vw, 110px);
+  --slit-blur: 14px;
+  --frost-blur: 22px;
+  --frost-hole: 120px;
+  --frost-feather: 70px;
+  --flute: 26px;
+  --flute-blur: 1.5px;
+  --halftone: 7px;
+  --halftone-dot: 1.4px;
+  --grain-size: 180px;
+  --tilt: 1400px;
+  --deck-w: clamp(190px, 21vw, 340px);
+  --deck-btn: 32px;
+  --deck-ratio: 16 / 10;
+  --deck-pose: rotateX(50deg) rotateZ(-34deg);
+  --deck-x: 46%;
+  --deck-y: 34%;
+  --index-cols: 5;
+  --ribbon-h: clamp(46px, 4vw, 58px);
+  --bar-h-l: 14px;
+  --tape-h: clamp(48px, 4vw, 60px);
+  --tape-tilt: -2.4deg;
+  --bp-cell: 24px;
+  --play: 34px;
+  --bp-tablet: 62%;
+  --bp-mobile: 36%;
+  --bp-stage-h: 300px;
+  --paper-w: 560px;
+  --seal: 64px;
+  --envelope-w: 420px;
+  --envelope-h: 260px;
+  --toggle-w: 34px;
+  --toggle-h: 20px;
+  --phone-max: 300px;
+  --receipt-w: 300px;
+  --receipt-tooth: 8px;
+  --bar-xl: 28px;
+  --doc-w: 480px;
+  --doc-min-h: 360px;
+  --freq-dot: 7px;
+  --hp-h: 380px;
+  --hp-tablet: 70%;
+  --hp-mobile: 34%;
+  --hp-bars-h: 90px;
+  --hp-img-h: 120px;
+  --photo-bw: grayscale(1) contrast(1.06);
+  --deck-mobile-h: 420px;
+  --sheet-min-h: 340px;
+  --sb-head-h: 52px;
+  --ig-phone-w: 360px;
+  --ig-phone-h: 600px;
+  --ig-avatar: 34px;
+  --reel-min-h: 520px;
+  --band-w: 10ch;
+  --band-blur: 18px;
+  --band-tilt: -9deg;
+  --snake-w: 34ch;
+  --snake-period: 640px;
+  --snake-start: calc(var(--snake-period) * -0.25);
+  --snake: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 340 640' preserveAspectRatio='none'%3E%3Cpath d='M170 0 C 310 160 310 160 170 320 C 30 480 30 480 170 640' fill='none' stroke='black' stroke-width='92'/%3E%3C/svg%3E");
+  --rings: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 340 640' preserveAspectRatio='none'%3E%3Ccircle cx='170' cy='150' r='118' fill='none' stroke='black' stroke-width='30'/%3E%3Ccircle cx='170' cy='150' r='34' fill='black'/%3E%3Ccircle cx='170' cy='340' r='16' fill='black'/%3E%3Ccircle cx='170' cy='400' r='10' fill='black'/%3E%3Ccircle cx='170' cy='520' r='76' fill='none' stroke='black' stroke-width='22'/%3E%3Ccircle cx='170' cy='620' r='8' fill='black'/%3E%3C/svg%3E");
+  --beam-step: 0.42s;
+  --beam-line: 1.5px;
+  --pw-h: clamp(300px, 30vw, 440px);
+  --measure-tag: clamp(130px, 13vw, 180px);
+  --node-w: clamp(220px, 22vw, 300px);
+  --beam-w: 2px;
+  --beam-dot: 9px;
+  --leaf: clamp(48px, 6vw, 96px);
+  --thumb-follow: clamp(120px, 11vw, 170px);
+
+  /* Hareket */
+  --ease-wipe: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-reveal: 0.8s;
+  --dur-morph: 0.7s;
+}
+
+@media (max-width: 719.98px) {
+  :root {
+    --spread-row: auto;
+    --slit-w: 96px;
+    --frost-hole: 90px;
+  }
+}
+
+/* Doku: Filmkorn / beschlagenes Glas (graues Rauschen, keine Themenfarbe) */
+:root {
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --pebble: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='turbulence' baseFrequency='.045' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+}

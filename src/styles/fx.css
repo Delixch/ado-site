@@ -1,0 +1,250 @@
+/* Bildbehandlungen und Typo-Effekte (src/components/fx). */
+
+/* Zeilen aus der Maske */
+.rl {
+  display: block;
+}
+
+.rl-line {
+  display: block;
+  overflow: hidden;
+  padding: var(--rl-room) 0 calc(var(--rl-room) / 2);
+  margin: calc(var(--rl-room) * -1) 0 calc(var(--rl-room) / -2);
+}
+
+.rl-inner {
+  display: inline-block;
+}
+
+/* Bild / Video randlos */
+.media {
+  position: absolute;
+  inset: 0;
+}
+
+.media video,
+.media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Schlitz (Slit) ---------- */
+.slit {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+  --sx: 50%;
+  cursor: crosshair;
+}
+
+.slit-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--veil);
+  -webkit-backdrop-filter: var(--slit-filter) blur(var(--slit-blur));
+  backdrop-filter: var(--slit-filter) blur(var(--slit-blur));
+  -webkit-mask-image:
+    linear-gradient(to right, black calc(var(--sx) - var(--slit-w) / 2), transparent 0, transparent calc(var(--sx) + var(--slit-w) / 2), black 0),
+    linear-gradient(to bottom, black 8%, transparent 0, transparent 86%, black 0);
+  mask-image:
+    linear-gradient(to right, black calc(var(--sx) - var(--slit-w) / 2), transparent 0, transparent calc(var(--sx) + var(--slit-w) / 2), black 0),
+    linear-gradient(to bottom, black 8%, transparent 0, transparent 86%, black 0);
+}
+
+.slit-frame {
+  position: absolute;
+  z-index: 2;
+  top: 8%;
+  bottom: 14%;
+  left: 0;
+  width: var(--slit-w);
+  transform: translateX(calc(var(--sx) - var(--slit-w) / 2));
+  border: var(--hair) solid var(--slit-frame);
+  pointer-events: none;
+}
+
+.slit-frame i {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--sp-2) * -1);
+  bottom: calc(var(--sp-2) * -1);
+  border-left: var(--hair) dashed var(--slit-frame);
+  opacity: 0.35;
+}
+
+/* ---------- Raster, Korn ---------- */
+.dots {
+  background-image: radial-gradient(var(--halftone-color) var(--halftone-dot), transparent calc(var(--halftone-dot) + var(--hair)));
+  background-size: var(--halftone) var(--halftone);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  background-image: var(--noise);
+  background-size: var(--grain-size);
+  opacity: var(--grain-opacity);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slit-veil,
+  .slit-frame {
+    transition: none;
+  }
+}
+
+/* ---------- Typografisches Portraet ---------- */
+.tp {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ink-block);
+  cursor: ew-resize;
+  --split: 50%;
+}
+
+.tp-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.08) brightness(0.78);
+  clip-path: inset(0 calc(100% - var(--split)) 0 0);
+}
+
+.tp-text {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  font-size: var(--fs-tp);
+  line-height: var(--lh-tp);
+  word-break: break-all;
+  text-align: justify;
+  color: transparent;
+  background-image: var(--tp-src);
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: grayscale(1) contrast(1.35) brightness(0.92);
+  clip-path: inset(0 0 0 var(--split));
+}
+
+.tp-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--split);
+  border-left: var(--hair) solid var(--brand);
+}
+
+.tp-label {
+  position: absolute;
+  left: var(--spread-pad);
+  bottom: var(--spread-pad);
+  color: var(--on-scrim);
+  mix-blend-mode: difference;
+}
+
+/* Video: erst auf Knopfdruck */
+.media-play {
+  position: absolute;
+  left: var(--spread-pad);
+  bottom: var(--spread-pad);
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  width: var(--play);
+  height: var(--play);
+  border-radius: var(--radius-pill);
+  border: var(--hair) solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  pointer-events: auto;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.media-play:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.media-play:active {
+  transform: scale(var(--press));
+}
+
+.media-play svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+/* ---------- Fotoplatte (WebGL, entwickelt sich) ---------- */
+.liquid {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.liquid canvas,
+.liquid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plate {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.plate figcaption {
+  z-index: 3;
+  position: absolute;
+  left: var(--spread-pad);
+  right: var(--spread-pad);
+  bottom: var(--sp-3);
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--sp-1) var(--sp-3);
+  color: var(--on-scrim);
+  --ink: var(--on-scrim);
+  pointer-events: none;
+}
+
+.plate::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: var(--teaser-art-h);
+  background: linear-gradient(transparent, var(--scrim));
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.plate figcaption a {
+  pointer-events: auto;
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+.plate figcaption a:hover {
+  opacity: 1;
+}
+
+/* Fotos schwarzweiss - passen zu jedem Farbthema */
+.bw,
+.hp-hero img,
+.toc-thumb img {
+  filter: var(--photo-bw);
+}

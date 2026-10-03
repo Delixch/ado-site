@@ -1,0 +1,114 @@
+/* @tr Sarı */
+/* @de Amber */
+
+/*
+ * Koyu cam tema. Yeni koyu tema: bu dosyayi kopyala, ad/secici ve --brand degerini degistir.
+ * Diger her sey --brand'den turetilir.
+ */
+[data-color="amber"] {
+  color-scheme: dark;
+
+  /* Themenfarbe */
+  --brand: #FFD60A;
+  --brand-hover: color-mix(in srgb, var(--brand) 80%, #FFFFFF);
+  --brand-deep: color-mix(in srgb, var(--brand) 35%, #050507);
+  --brand-soft: color-mix(in srgb, var(--brand) 16%, transparent);
+  --brand-mid: color-mix(in srgb, var(--brand) 45%, #0B0B0F);
+  --on-brand: #0B0B0F;
+  --brand-text: color-mix(in srgb, var(--brand) 72%, #FFFFFF);
+
+  /* Flaechen */
+  --canvas: #07070A;
+  --panel: color-mix(in srgb, var(--brand) 9%, rgba(18, 18, 24, 0.62));
+  --surface: rgba(20, 20, 26, 0.62);
+  --surface-solid: #111116;
+  --sunken: rgba(255, 255, 255, 0.05);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+
+  /* Schrift */
+  --ink: #F4F4F6;
+  --ink-soft: #9C9CA8;
+
+  /* Akzentflaechen (frueher "dunkle Karten") */
+  --dark: #111116;
+  --dark-card: linear-gradient(150deg, color-mix(in srgb, var(--brand) 24%, rgba(16, 16, 22, 0.75)), rgba(16, 16, 22, 0.6) 70%);
+  --on-dark: #F4F4F6;
+  --dark-edge: rgba(255, 255, 255, 0.12);
+  --night: #1B1B22;
+  --night-ink: #F4F4F6;
+
+  /* Ring um Kreise, Streifen in den Bildflaechen */
+  --ring: #111116;
+  --pulse: rgba(255, 255, 255, 0.07);
+  --strip-out: rgba(255, 255, 255, 0.015);
+
+  /* Werdegang-Stationen */
+  --station-2: #38BDF8;
+  --station-3: #A78BFA;
+  --station-4: #F472B6;
+
+  /* Material: Glaskarten */
+  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.02));
+  --card-edge: rgba(255, 255, 255, 0.09);
+  --card-backdrop: blur(var(--glass-blur)) saturate(150%);
+  --card-shine: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  --spot: color-mix(in srgb, var(--brand) 20%, transparent);
+  --ambient-1: color-mix(in srgb, var(--brand) 26%, transparent);
+  --ambient-2: color-mix(in srgb, var(--brand) 12%, transparent);
+
+  /* Menue (Glas), Schatten, Vorhang */
+  --glass: rgba(14, 14, 19, 0.72);
+  --highlight: rgba(255, 255, 255, 0.08);
+  --pressed-bg: rgba(255, 255, 255, 0.07);
+  --pressed-edge-top: rgba(0, 0, 0, 0.6);
+  --pressed-edge-bottom: rgba(255, 255, 255, 0.08);
+  --pressed-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 18px 40px -14px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 32px 70px -22px rgba(0, 0, 0, 0.8);
+  --overlay: rgba(0, 0, 0, 0.55);
+
+  /* Bild-Abdunklung (Text auf Fotos) */
+  --scrim: rgba(0, 0, 0, 0.72);
+  --on-scrim: #FFFFFF;
+}
+
+/* Editorial (MASTER.md): schwarzes Papier, Haarlinien, inverse Bloecke, Bildbehandlung */
+[data-color="amber"] {
+  --paper: #07070A;
+  --paper-2: #0E0E12;
+  --rule: rgba(255, 255, 255, 0.13);
+  --rule-soft: rgba(255, 255, 255, 0.07);
+  --ink-block: #141419;
+  --on-ink-block: #F4F4F6;
+  --ink-block-soft: #8A8A96;
+  --brand-block: color-mix(in srgb, var(--brand) 14%, #0B0B0F);
+  --on-brand-block: color-mix(in srgb, var(--brand) 70%, #FFFFFF);
+  --veil: rgba(0, 0, 0, 0.42);
+  --slit-filter: grayscale(1) contrast(1.1) brightness(0.62);
+  --slit-frame: rgba(255, 255, 255, 0.85);
+  --frost-tint: rgba(10, 10, 14, 0.3);
+  --frost-edge: rgba(255, 255, 255, 0.18);
+  --knock-bg: #07070A;
+  --knock-blend: darken;
+  --knock-ink: #FFFFFF;
+  --halftone-color: rgba(255, 255, 255, 0.14);
+  --grain-opacity: 0.06;
+  --mark-color: rgba(255, 255, 255, 0.35);
+  --beam-core: var(--brand);
+  --beam-glow: color-mix(in srgb, var(--brand) 55%, transparent);
+  --flute-hi: rgba(255, 255, 255, 0.16);
+  --flute-lo: rgba(0, 0, 0, 0.5);
+  --deck-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.9);
+}
+
+/* Lichtband in Themenfarbe (spread.css .band), Bloecke halbtransparent */
+[data-color="amber"] {
+  --band: color-mix(in srgb, var(--brand) 90%, transparent);
+  --band-solid: var(--brand);
+  --band-glow: color-mix(in srgb, var(--brand) 70%, transparent);
+  --paper: rgba(7, 7, 10, 0.62);
+  --paper-2: rgba(14, 14, 18, 0.66);
+  --blk-backdrop: blur(26px) saturate(140%);
+}

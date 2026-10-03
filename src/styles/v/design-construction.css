@@ -1,0 +1,279 @@
+/* Portfolio > Im Aufbau: Bauplan, der sich selbst umbaut (test.html), Absperrband. */
+
+.bp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.bp-frame .bp-cap {
+  text-transform: none;
+}
+
+.bp-cap b {
+  color: var(--brand-text);
+}
+
+.bp-grid {
+  display: grid;
+  flex: 1;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  background-image:
+    linear-gradient(var(--rule-soft) var(--hair), transparent var(--hair)),
+    linear-gradient(90deg, var(--rule-soft) var(--hair), transparent var(--hair));
+  background-size: var(--bp-cell) var(--bp-cell);
+  border: var(--hair) solid var(--rule);
+}
+
+.bp-part {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--sp-2);
+  border: var(--hair) dashed var(--brand);
+  background: color-mix(in srgb, var(--brand) 7%, transparent);
+}
+
+.bp-part[data-part="main"] {
+  border-style: solid;
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+}
+
+.bp-part[data-part="header"],
+.bp-part[data-part="footer"] {
+  border-color: var(--ink);
+  background: transparent;
+}
+
+.bp-part .micro {
+  color: var(--ink);
+}
+
+.bp-code {
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  line-height: var(--lh-body);
+  white-space: pre-wrap;
+  color: var(--ink);
+}
+
+.bp-code .ck {
+  color: var(--brand);
+}
+
+.bp-code .cp {
+  color: var(--ink-soft);
+}
+
+.bp-code .cv {
+  color: var(--ink);
+}
+
+.bp-code .cs {
+  color: var(--brand);
+}
+
+.cn-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.cn-status .poster {
+  font-size: var(--fs-poster-l);
+}
+
+.cn-lab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  height: 100%;
+}
+
+.cn-lab h3 {
+  font-size: var(--fs-poster-s);
+}
+
+.cn-lab .lede {
+  margin-top: auto;
+}
+
+/* Absperrband */
+.tape {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: var(--tape-h);
+  overflow: hidden;
+  background: repeating-linear-gradient(-45deg, var(--brand) 0 var(--sp-4), var(--ink-block) var(--sp-4) var(--sp-8));
+}
+
+.tape-band {
+  display: flex;
+  width: 120%;
+  padding: var(--sp-2) 0;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  transform: rotate(var(--tape-tilt));
+}
+
+.blk[data-tone="ink"] .tape-band {
+  color: var(--ink-block);
+}
+
+.tape-run {
+  display: flex;
+  flex-shrink: 0;
+  animation: sk-left 30s linear infinite;
+}
+
+.tape-run span {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-poster-s);
+  white-space: nowrap;
+}
+
+.tape-run i {
+  width: var(--dot);
+  height: var(--dot);
+  margin: 0 var(--sp-5);
+  background: var(--brand);
+  transform: rotate(45deg);
+}
+
+.cn-para {
+  height: 100%;
+}
+
+.cn-tags {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+  height: 100%;
+}
+
+.cn-tags li {
+  position: relative;
+  width: max-content;
+  font-size: var(--fs-poster-s);
+}
+
+.cn-tags li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--bar-h);
+  background: var(--brand);
+  transform-origin: left;
+  animation: cn-build 3.2s var(--ease-wipe) infinite;
+  animation-delay: inherit;
+}
+
+@keyframes cn-build {
+  0% {
+    transform: scaleX(0);
+  }
+  55%,
+  80% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+/* Bedienung: Satzspiegel + Geraet */
+.bp-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.bp-plans,
+.bp-devices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+}
+
+.bp-plans button,
+.bp-devices button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-2);
+  border: var(--hair) solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wide);
+  color: var(--ink-soft);
+  transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.bp-plans button:hover,
+.bp-devices button:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.bp-plans button:active,
+.bp-devices button:active {
+  transform: scale(var(--press));
+}
+
+.bp-plans button[aria-pressed="true"],
+.bp-devices button[aria-pressed="true"] {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--paper);
+}
+
+.bp-devices svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.bp-stage {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  min-height: var(--bp-stage-h);
+}
+
+.bp-frame {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  width: 100%;
+  padding: var(--sp-2);
+  border: var(--hair) solid var(--rule);
+}
+
+.bp-frame[data-device="tablet"] {
+  width: var(--bp-tablet);
+  border-radius: var(--radius-md);
+  border-color: var(--ink-soft);
+}
+
+.bp-frame[data-device="mobile"] {
+  width: var(--bp-mobile);
+  border-radius: var(--radius-lg);
+  border-color: var(--ink-soft);
+}
+
+.bp-frame .bp-grid {
+  border: 0;
+}
