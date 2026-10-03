@@ -124,6 +124,8 @@
   --sb-sheen: rgba(255, 255, 255, 0.22);
   --sb-active: linear-gradient(135deg, color-mix(in srgb, var(--brand) 30%, rgba(255, 255, 255, 0.06)), rgba(255, 255, 255, 0.04));
   --sb-active-glow: 0 0 28px -6px color-mix(in srgb, var(--brand) 60%, transparent);
-  --sb-blob-a: color-mix(in srgb, var(--brand) 18%, transparent);
-  --sb-blob-b: color-mix(in srgb, var(--brand) 8%, rgb(40 40 52 / 0.4));
+  /* Versuch 2026-10-03: hinter der Karte schwarz statt Themenfarbe */
+  --sb-blob-a: rgba(0, 0, 0, 0.75);
+  --sb-blob-b: rgba(0, 0, 0, 0.65);
+  --sb-glow: rgba(0, 0, 0, 0.7);
 }
