@@ -50,6 +50,7 @@ export function FirmaPlanning() {
   const pick = (i: number) => {
     touched.current = Date.now();
     setSel(i);
+    openSheet();
   };
 
   /* Vor dem Ereignis arbeitet die kranke Person ihre normale Schicht. */
@@ -143,10 +144,7 @@ export function FirmaPlanning() {
         <ol className="pl-features">
           {p.items.map((it, i) => (
             <li key={it.title}>
-              <button type="button" aria-pressed={i === sel} onClick={() => {
-                pick(i);
-                openSheet();
-              }} onPointerEnter={(ev) => ev.pointerType === 'mouse' && pick(i)}>
+              <button type="button" aria-pressed={i === sel} onClick={() => pick(i)} onPointerEnter={(ev) => ev.pointerType === 'mouse' && pick(i)}>
                 <span className="micro">{String(i + 1).padStart(2, '0')}</span>
                 <span className="whisper">{it.title}</span>
               </button>

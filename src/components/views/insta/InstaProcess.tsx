@@ -28,6 +28,7 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
   const pick = (i: number) => {
     touched.current = Date.now();
     setActive(i);
+    openSheet();
   };
   const st = p.steps[active];
   const mobile = useMode() === 'mobile';
@@ -46,10 +47,7 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
       node: (
         <FlowNodes
           active={active}
-          onPick={(i) => {
-            pick(i);
-            openSheet();
-          }}
+          onPick={pick}
           items={p.steps.map((s, i) => (
             <>
               <span className="micro">

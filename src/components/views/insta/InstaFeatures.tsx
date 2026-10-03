@@ -30,6 +30,7 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
   const pick = (i: number) => {
     touched.current = Date.now();
     setSel(i);
+    openSheet();
   };
 
   const blocks: Block[] = [
@@ -41,10 +42,7 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
           <ol className="ig-steps ig-steps-pick" data-idle="false">
             {f.items.map((it, i) => (
               <li key={it.t} data-on={i === sel} data-now={i === sel} style={{ ['--i' as string]: i }}>
-                <button type="button" aria-pressed={i === sel} onClick={() => {
-                  pick(i);
-                  openSheet();
-                }} onPointerEnter={(e) => e.pointerType === 'mouse' && pick(i)}>
+                <button type="button" aria-pressed={i === sel} onClick={() => pick(i)} onPointerEnter={(e) => e.pointerType === 'mouse' && pick(i)}>
                   <span className="ig-dot">{i + 1}</span>
                   <span className="whisper">{it.t}</span>
                 </button>

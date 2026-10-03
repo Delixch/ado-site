@@ -305,12 +305,10 @@
   --runner-size: 9px;
   --runner-dur: 9s;
   --sb-rail-w: 64px;
-  /* Handy-Menue: Hoehe eines Gruppentitels (kleben oben/unten) */
-  --sb-group-h: 46px;
+  /* Zeilenhoehe fuer Gruppentitel im Handy-Menue und Akkordeons auf Seiten */
+  --row-h: 46px;
   --sb-pad-top: 6px;
   --sb-pad-bottom: 10px;
-  /* Zeilenhoehe von Akkordeons auf Seiten (z. B. Meldungen) */
-  --acc-row-h: 46px;
   /* Breite des offenen Menues (App.tsx expandedWidth) */
   --sb-w: 275px;
   --sb-ring-w: 1.5px;

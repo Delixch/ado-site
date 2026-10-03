@@ -24,6 +24,10 @@ export function DesignRepos() {
   const r = t.d.repos;
   const [sel, setSel] = useState(4);
   const [copied, setCopied] = useState(false);
+  const pick = (i: number) => {
+    setSel(i);
+    openSheet();
+  };
   const repo = REPOS[sel];
   const text = r.items[sel];
 
@@ -51,10 +55,7 @@ export function DesignRepos() {
                   type="button"
                   aria-pressed={i === sel}
                   onPointerEnter={(e) => e.pointerType === 'mouse' && setSel(i)}
-                  onClick={() => {
-                    setSel(i);
-                    openSheet();
-                  }}
+                  onClick={() => pick(i)}
                 >
                   <span className="rp-name">{x.title}</span>
                   <span className="rp-bar">

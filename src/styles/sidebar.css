@@ -12,7 +12,7 @@
   -webkit-backdrop-filter: blur(40px);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-lg), inset 0 1px 1px var(--highlight);
-  padding: 6px 10px 10px;
+  padding: var(--sb-pad-top) 10px var(--sb-pad-bottom);
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -681,10 +681,6 @@
 }
 
 @media (max-width: 719.98px) {
-  .sb[data-expanded="true"] .sb-nav {
-    gap: var(--sp-5);
-  }
-
   .sb[data-expanded="true"] .sb-search-wrap {
     margin-bottom: var(--sp-8);
   }
@@ -1152,10 +1148,10 @@
   .sb[data-expanded="true"] .sb-section-toggle {
     position: sticky;
     z-index: 3;
-    /* minus Innenabstand des Panels (oben 6px, unten 10px), damit nichts durchscheint */
-    top: calc(var(--gi) * var(--sb-group-h) - var(--sb-pad-top));
-    bottom: calc((var(--gn) - 1 - var(--gi)) * var(--sb-group-h) - var(--sb-pad-bottom));
-    height: var(--sb-group-h);
+    /* minus Innenabstand des Panels, damit nichts durchscheint */
+    top: calc(var(--gi) * var(--row-h) - var(--sb-pad-top));
+    bottom: calc((var(--gn) - 1 - var(--gi)) * var(--row-h) - var(--sb-pad-bottom));
+    height: var(--row-h);
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { useMemo, useState, type CSSProperties, type ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { LAYOUT_INTERVAL } from '../../config';
 import { useLayoutCycle } from '../../hooks/useLayoutCycle';
@@ -6,7 +6,6 @@ import { useMode } from '../../hooks/useMode';
 import { useView } from '../ViewFrame';
 import { RevealLines } from '../fx/RevealLines';
 import { BottomSheet } from './BottomSheet';
-import { SHEET_EVENT } from './sheet';
 import { MastRobot } from '../robot/MastRobot';
 
 /** Ein Baustein der Doppelseite. `id` ist zugleich der Name im grid-template-areas. */
@@ -95,17 +94,10 @@ export function Spread({
   const [hover, setHover] = useState(false);
   const { index, setIndex } = useLayoutCycle(view, layouts.length, auto && !hover, LAYOUT_INTERVAL, nonce);
   const layout = layouts[index];
+  // Handy: Detail-Bausteine wandern ins Bottom Sheet
   const mobile = mode === 'mobile';
   const sheetBlocks = mobile ? blocks.filter((b) => b.sheet) : [];
-  const shown = mobile ? blocks.filter((b) => !b.sheet) : blocks;
-  const [sheetOpen, setSheetOpen] = useState(false);
-  useEffect(() => {
-    if (!mobile || sheetBlocks.length === 0) return;
-    const h = () => setSheetOpen(true);
-    window.addEventListener(SHEET_EVENT, h);
-    return () => window.removeEventListener(SHEET_EVENT, h);
-  }, [mobile, sheetBlocks.length]);
-  useEffect(() => setSheetOpen(false), [view, mobile]);
+  const shown = sheetBlocks.length ? blocks.filter((b) => !b.sheet) : blocks;
 
   const plan = useMemo(() => {
     if (mode === 'desktop') return { style: gridStyle(layout.cols, layout.areas, layout.rows), order: null };
@@ -188,7 +180,7 @@ export function Spread({
         ))}
       </div>
       {sheetBlocks.length > 0 && (
-        <BottomSheet open={sheetOpen} onClose={() => setSheetOpen(false)} label={t.ui.closeMenu}>
+        <BottomSheet view={view} label={t.ui.close}>
           {sheetBlocks.map((b) => (
             <section key={b.id} className={`blk bsheet-blk ${b.className ?? ''}`} data-tone={b.tone ?? 'paper'} data-bleed={b.bleed || undefined}>
               <div className="blk-in">{b.node}</div>

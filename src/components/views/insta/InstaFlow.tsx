@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Check, Play, Send } from 'lucide-react';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
+import { useMode } from '../../../hooks/useMode';
 
 const LAYOUTS: LayoutDef[] = [
   { name: 'Phone', cols: '1fr 1fr 1fr', areas: ['phone phone steps'] },
@@ -25,6 +26,8 @@ function useChat() {
   const [typing, setTyping] = useState(false);
   const id = useRef(0);
   const timers = useRef<number[]>([]);
+  const phoneRef = useRef<HTMLDivElement>(null);
+  const mobile = useMode() === 'mobile';
 
   useEffect(() => () => timers.current.forEach((x) => window.clearTimeout(x)), []);
 
@@ -83,7 +86,7 @@ function useChat() {
 
   /** Vorschau: Ablauf von vorn bis zum gewaehlten Schritt abspielen. */
   const playTo = (target: number) => {
-    if (window.matchMedia('(max-width: 719.98px)').matches) document.querySelector('.ig-phone')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (mobile) phoneRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     reset();
     const at = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
     at(250, () => comment(f.keywords[0]));
@@ -91,7 +94,7 @@ function useChat() {
     if (target >= 3) at(3800, () => press(b.followBtn));
   };
 
-  return { msgs, step, typing, comment, press, reset, playTo };
+  return { msgs, step, typing, comment, press, reset, playTo, phoneRef };
 }
 
 export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
@@ -117,7 +120,7 @@ export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
       tone: 'deep',
       node: (
         <div className="ig-stage">
-          <div className="ig-phone">
+          <div ref={chat.phoneRef} className="ig-phone">
             <div className="ig-top">
               <span className="ig-avatar">A</span>
               <span>

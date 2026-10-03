@@ -41,6 +41,7 @@ export function DesignSkills() {
     touched.current = Date.now();
     setDomain(i);
     setWord(0);
+    openSheet();
   };
 
   const b = s.blocks[domain];
@@ -76,10 +77,7 @@ export function DesignSkills() {
         <ol className="pl-features">
           {s.blocks.map((blk, i) => (
             <li key={blk.title}>
-              <button type="button" aria-pressed={i === domain} onClick={() => {
-                pick(i);
-                openSheet();
-              }} onPointerEnter={(e) => e.pointerType === 'mouse' && pick(i)}>
+              <button type="button" aria-pressed={i === domain} onClick={() => pick(i)} onPointerEnter={(e) => e.pointerType === 'mouse' && pick(i)}>
                 <span className="micro">{String(i + 1).padStart(2, '0')}</span>
                 <span className="whisper">{blk.title}</span>
               </button>

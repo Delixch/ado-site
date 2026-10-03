@@ -23,7 +23,7 @@ export function FirmaReports() {
   const d = r.doc;
   const [top, setTop] = useState(0);
   const mobile = useMode() === 'mobile';
-  const [accOpen, setAccOpen] = useState(0);
+  const [accShut, setAccShut] = useState(false);
   const monthTile = useHoverTile();
   const [stamped, setStamped] = useState(false);
   const touched = useRef(0);
@@ -47,6 +47,7 @@ export function FirmaReports() {
   const pickRep = (i: number) => {
     repTouched.current = Date.now();
     setRep(i);
+    openSheet();
   };
 
   useEffect(() => {
@@ -64,30 +65,24 @@ export function FirmaReports() {
     return () => window.clearInterval(id);
   }, [d.items.length, mobile]);
 
-  const toggleAcc = (i: number) => {
-    if (accOpen === i) {
-      setAccOpen(-1);
-      return;
-    }
-    setAccOpen(i);
-    pick(i);
-  };
-
   const pick = (i: number) => {
     touched.current = Date.now();
     setTop(i);
   };
 
-  const docCard = (it: (typeof d.items)[number], i: number, depth: number) => (
-    <motion.article
-      key={it.title}
-      className="doc"
-      animate={{ y: depth * -14, x: depth * 10, rotate: depth === 0 ? -0.6 : depth * 2.2, scale: 1 - depth * 0.04, opacity: depth > 1 ? 0.55 : 1 }}
-      transition={spring}
-      style={{ zIndex: 10 - depth }}
-      onClick={() => depth && pick(i)}
-      aria-hidden={depth !== 0}
-    >
+  /** Akkordeon (Handy): offene Zeile antippen klappt zu, andere Zeile oeffnet sie. */
+  const toggleAcc = (i: number) => {
+    if (i === top) {
+      setAccShut((x) => !x);
+      return;
+    }
+    pick(i);
+    setAccShut(false);
+  };
+
+  /** Inhalt eines Belegs; `live` = vorderster/offener Beleg (Haken und Stempel). */
+  const docBody = (it: (typeof d.items)[number], live: boolean) => (
+    <>
       <header className="doc-head">
         <span className="micro">
           <b>{d.kicker}</b> · {it.year}
@@ -97,7 +92,7 @@ export function FirmaReports() {
       </header>
       <ol className="doc-steps micro">
         {d.steps.map((st, k) => (
-          <li key={st} data-on={depth === 0 && (stamped || k < 2)}>
+          <li key={st} data-on={live && (stamped || k < 2)}>
             <Check /> {st}
           </li>
         ))}
@@ -115,7 +110,7 @@ export function FirmaReports() {
       </p>
       <p className="doc-deadline whisper">{it.deadline}</p>
       <AnimatePresence>
-        {depth === 0 && stamped && (
+        {live && stamped && (
           <motion.span
             key="stamp"
             className="doc-stamp"
@@ -129,7 +124,71 @@ export function FirmaReports() {
           </motion.span>
         )}
       </AnimatePresence>
-    </motion.article>
+    </>
+  );
+
+  /** Desktop: gefaecherter Stapel, vorderster Beleg oben. */
+  const stack = (
+    <>
+      <div className="rp-tabs" role="tablist">
+        {d.items.map((it, i) => (
+          <button type="button" role="tab" key={it.title} aria-selected={i === top} onClick={() => pick(i)}>
+            <span className="micro">{it.year}</span>
+            {it.title}
+          </button>
+        ))}
+      </div>
+      <div className="rp-stack">
+        {d.items.map((it, i) => {
+          const depth = (i - top + d.items.length) % d.items.length;
+          return (
+            <motion.article
+              key={it.title}
+              className="doc"
+              animate={{ y: depth * -14, x: depth * 10, rotate: depth === 0 ? -0.6 : depth * 2.2, scale: 1 - depth * 0.04, opacity: depth > 1 ? 0.55 : 1 }}
+              transition={spring}
+              style={{ zIndex: 10 - depth }}
+              onClick={() => depth && pick(i)}
+              aria-hidden={depth !== 0}
+            >
+              {docBody(it, depth === 0)}
+            </motion.article>
+          );
+        })}
+      </div>
+    </>
+  );
+
+  /** Handy: Akkordeon, Beleg direkt unter seiner Zeile. */
+  const accordion = (
+    <div className="rp-acc">
+      {d.items.map((it, i) => {
+        const open = i === top && !accShut;
+        return (
+          <div key={it.title} className="rp-acc-item">
+            <button type="button" className="rp-acc-btn" aria-expanded={open} onClick={() => toggleAcc(i)}>
+              <span className="micro">{it.year}</span>
+              {it.title}
+              <ChevronDown aria-hidden />
+            </button>
+            <AnimatePresence initial={false}>
+              {open && (
+                <motion.div
+                  key="doc"
+                  className="rp-acc-body"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <article className="doc doc-flat">{docBody(it, true)}</article>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
   );
 
   const blocks: Block[] = [
@@ -137,52 +196,7 @@ export function FirmaReports() {
       id: 'docs',
       tone: 'deep',
       node: (
-        <div className="rp-docs">
-          {mobile ? (
-            <div className="rp-acc">
-              {d.items.map((it, i) => (
-                <div key={it.title} className="rp-acc-item" data-open={i === accOpen}>
-                  <button type="button" className="rp-acc-btn" aria-expanded={i === accOpen} onClick={() => toggleAcc(i)}>
-                    <span className="micro">{it.year}</span>
-                    {it.title}
-                    <ChevronDown aria-hidden />
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {i === accOpen && (
-                      <motion.div
-                        key="doc"
-                        className="rp-acc-body"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      >
-                        {docCard(it, i, 0)}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
-          ) : (
-          <>
-          <div className="rp-tabs" role="tablist">
-            {d.items.map((it, i) => (
-              <button type="button" role="tab" key={it.title} aria-selected={i === top} onClick={() => pick(i)}>
-                <span className="micro">{it.year}</span>
-                {it.title}
-              </button>
-            ))}
-          </div>
-          <div className="rp-stack">
-            {d.items.map((it, i) => {
-              const depth = (i - top + d.items.length) % d.items.length;
-              return docCard(it, i, depth);
-            })}
-          </div>
-          </>
-          )}
-        </div>
+        <div className="rp-docs">{mobile ? accordion : stack}</div>
       ),
     },
     {
@@ -197,10 +211,7 @@ export function FirmaReports() {
               const n = parseInt(x.freq, 10);
               return (
                 <li key={x.name}>
-                  <button type="button" aria-pressed={i === rep} onClick={() => {
-                    pickRep(i);
-                    openSheet();
-                  }} onPointerEnter={(e) => e.pointerType === 'mouse' && pickRep(i)}>
+                  <button type="button" aria-pressed={i === rep} onClick={() => pickRep(i)} onPointerEnter={(e) => e.pointerType === 'mouse' && pickRep(i)}>
                     <span className="rp-dots" aria-label={x.freq}>
                       {Array.from({ length: 12 }, (_, k) => (
                         <i key={k} data-on={k < n} />

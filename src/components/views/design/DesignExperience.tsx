@@ -30,6 +30,7 @@ export function DesignExperience() {
   const pick = (i: number) => {
     touched.current = Date.now();
     setActive(i);
+    openSheet();
   };
 
   const st = e.journey[active];
@@ -42,10 +43,7 @@ export function DesignExperience() {
       node: (
         <FlowNodes
           active={active}
-          onPick={(i) => {
-            pick(i);
-            openSheet();
-          }}
+          onPick={pick}
           items={e.journey.map((j, i) => (
             <>
               <span className="micro">

@@ -39,6 +39,10 @@ export function DesignWork() {
     touched.current = Date.now();
     setActive((i + PROJECTS.length) % PROJECTS.length);
   };
+  const open = (i: number) => {
+    pick(i);
+    openSheet();
+  };
 
   const project = PROJECTS[active];
   const text = p.items[active];
@@ -145,10 +149,7 @@ export function DesignWork() {
           <ol style={{ ['--n' as string]: PROJECTS.length }}>
             {PROJECTS.map((x, i) => (
               <li key={x.number} style={{ ['--i' as string]: i }}>
-                <button type="button" aria-pressed={i === active} title={x.title} onClick={() => {
-                  pick(i);
-                  openSheet();
-                }}>
+                <button type="button" aria-pressed={i === active} title={x.title} onClick={() => open(i)}>
                   {x.number}
                 </button>
               </li>
