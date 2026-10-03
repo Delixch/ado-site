@@ -436,3 +436,23 @@
     display: none;
   }
 }
+
+/* Farbwahl-Liste: immer schwarz und deckend, Schrift weiss (sonst erbt sie die dunkle Schrift der farbigen Kopfzeile) */
+.tb .cp-panel {
+  --ink: var(--bar-ink);
+  --ink-2: var(--bar-ink);
+  --muted: var(--bar-ink);
+  --sunken: var(--tb-m-surface);
+  --line: var(--tb-m-line);
+  background: var(--bar-bg);
+  border-color: var(--tb-m-line);
+  color: var(--bar-ink);
+}
+
+.tb .cp-option[aria-selected="true"] {
+  background: var(--tb-m-surface);
+}
+
+.tb .cp-panel .cp-check {
+  color: var(--bar-ink);
+}
