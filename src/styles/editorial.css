@@ -192,7 +192,9 @@
 .intro-call:hover,
 .intro-call:focus-visible {
   transform: translateY(-2px);
-  background: var(--brand-hover);
+  /* gleiche Farbe, dunkle Schrift bleibt lesbar - nur Anheben und Schein */
+  background: var(--brand);
+  color: var(--on-brand);
   box-shadow: 0 var(--sp-2) var(--sp-5) color-mix(in srgb, var(--brand) 45%, transparent);
   outline: none;
 }
@@ -247,4 +249,10 @@
   width: var(--icon-sm);
   height: var(--icon-sm);
   color: var(--brand-text);
+}
+
+/* Erstgespraech: Schrift beim Zeigen ausdruecklich dunkel (ueberstimmt .e-link:hover) */
+.e-link.intro-call:hover,
+.e-link.intro-call:focus-visible {
+  color: var(--on-brand);
 }
