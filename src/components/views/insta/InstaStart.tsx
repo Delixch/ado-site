@@ -56,8 +56,24 @@ export function InstaStart() {
       bleed: true,
       node: (
         <div className="in-reel">
-          <div className="in-reel-frame">
-            <Media src={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.mp4`} fallback="/media/insta/promo-tr.mp4" poster={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.webp`} sound />
+          {/* iPhone: Gehaeuse mit Seitentasten, Bildschirm mit Statusleiste, Story 9:16 in der Mitte */}
+          <div className="iphone">
+            <div className="iphone-screen">
+              <div className="iphone-status" aria-hidden>
+                <span>9:41</span>
+                <span className="iphone-island" />
+                <span className="iphone-icons">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+              </div>
+              <div className="iphone-story">
+                <span className="iphone-progress" aria-hidden />
+                <Media src={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.mp4`} fallback="/media/insta/promo-tr.mp4" poster={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.webp`} sound />
+              </div>
+              <span className="iphone-home" aria-hidden />
+            </div>
           </div>
         </div>
       ),

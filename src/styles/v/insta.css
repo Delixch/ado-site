@@ -53,37 +53,142 @@
 }
 
 /* Rahmen in Themenfarbe, leicht leuchtend */
-.in-reel-frame {
-  /* iPhone, Story-Format 9:16: Breite fuehrt, Hoehe folgt dem Seitenverhaeltnis */
+/* iPhone (Seitenverhaeltnis wie iPhone 15: 71.6 x 147.6 mm), Story 9:16 im Bildschirm */
+.iphone {
   position: relative;
   width: min(100%, var(--reel-w));
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
+  aspect-ratio: 71.6 / 147.6;
+  padding: var(--phone-bezel);
   border-radius: var(--phone-radius);
-  border: var(--phone-bezel) solid #050506;
-  outline: calc(var(--hair) * 2) solid var(--brand);
-  outline-offset: 0;
-  box-shadow: 0 0 var(--sp-10) var(--brand-soft), var(--deck-shadow);
+  /* Titanrahmen: feiner Metallverlauf */
+  background: linear-gradient(145deg, #3a3a3e, #1a1a1d 40%, #2c2c30 70%, #111113);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.6),
+    0 var(--sp-6) var(--sp-12) rgba(0, 0, 0, 0.55),
+    0 0 var(--sp-10) var(--brand-soft);
 }
 
-/* Dynamic Island */
-.in-reel-frame::before {
+/* Seitentasten: links Aktion + Lautstaerke, rechts Seitentaste */
+.iphone::before,
+.iphone::after {
   content: "";
   position: absolute;
-  top: var(--sp-2);
-  left: 50%;
-  z-index: 3;
-  width: 30%;
-  height: var(--sp-5);
-  border-radius: var(--radius-pill);
-  background: #050506;
-  transform: translateX(-50%);
-  pointer-events: none;
+  width: 3px;
+  border-radius: 2px;
+  background: #2a2a2e;
 }
 
-.in-reel-frame .media,
-.in-reel-frame video {
+.iphone::before {
+  left: -3px;
+  top: 18%;
+  height: 22%;
+  box-shadow: 0 calc(var(--reel-w) * -0.12) 0 0 #2a2a2e;
+  clip-path: inset(-200% 0 0 0);
+}
+
+.iphone::after {
+  right: -3px;
+  top: 26%;
+  height: 13%;
+}
+
+.iphone-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
   border-radius: calc(var(--phone-radius) - var(--phone-bezel));
+  background: #000;
+}
+
+.iphone-status {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 7%;
+  padding: 0 9%;
+  font-family: var(--font-sans);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  color: #fff;
+}
+
+.iphone-island {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  width: 32%;
+  height: 56%;
+  border-radius: var(--radius-pill);
+  background: #000;
+  box-shadow: 0 0 0 1px #111;
+  transform: translateX(-50%);
+}
+
+.iphone-icons {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.iphone-icons i {
+  display: block;
+  width: 3px;
+  background: #fff;
+  border-radius: 1px;
+}
+
+.iphone-icons i:nth-child(1) { height: 4px; }
+.iphone-icons i:nth-child(2) { height: 6px; }
+.iphone-icons i:nth-child(3) { height: 8px; }
+
+/* Story 9:16, oben und unten bleibt schwarz wie in Instagram */
+.iphone-story {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.iphone-story .media {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: var(--sp-2);
+}
+
+.iphone-progress {
+  position: absolute;
+  top: var(--sp-2);
+  left: 4%;
+  right: 4%;
+  z-index: 2;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #fff 35%, rgba(255, 255, 255, 0.35) 35%);
+}
+
+.iphone-home {
+  align-self: center;
+  width: 36%;
+  height: 4px;
+  margin: 3% 0 2.5%;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.iphone .media video {
+  filter: var(--photo-bw);
+  transition: filter var(--dur) var(--ease);
+}
+
+.iphone:hover .media video {
+  filter: none;
 }
 
 .in-reel .media video {
@@ -595,14 +700,6 @@
 }
 
 /* Film schwarzweiss wie die Fotos, beim Zeigen farbig */
-.in-reel-frame video {
-  filter: var(--photo-bw);
-  transition: filter var(--dur) var(--ease);
-}
-
-.in-reel-frame:hover video {
-  filter: none;
-}
 
 /* Feinschliff: Listen mittig von oben nach unten, Nebentexte lesbar */
 .in-need {

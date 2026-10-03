@@ -291,9 +291,9 @@
 :root {
   --sb-blur: 30px;
   /* InstaOto-Video als iPhone im Story-Format */
-  --reel-w: 300px;
-  --phone-radius: 44px;
-  --phone-bezel: 10px;
+  --reel-w: 270px;
+  --phone-radius: 42px;
+  --phone-bezel: 7px;
   /* InstaOto Preise: Preis im Kreis, Checklisten-Kreise */
   --op-btn: 88px;
   --ck-dot: 40px;
