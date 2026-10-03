@@ -169,4 +169,4 @@ epos\instagramoto tanıtımı)
 - InstaOto-Menü 3 -> 2: Übersicht + So funktioniert's. Preise & Anfrage ist der 4. Reiter (Tabellenzeilen: In 4 Schritten · Funktionen · Von der Anfrage bis live · Preise & Anfrage). Erstgespräch von der Übersicht öffnet direkt den Preise-Reiter (views/insta/howTab.ts). Altes Merkzeichen i-pricing -> i-flow.
 - Preise: "Dieses Paket anfragen" / Erstgespräch öffnen den Brief direkt unter den Paketkreisen (statt Paketblatt), Betreff = Paket + Preis, "Zurück zum Paket". Kein eigener Brief-Baustein mehr.
 - Handy: Bottom Sheet (spread/BottomSheet.tsx, Block.sheet + openSheet()). Auswahl oben -> Detail fährt unten herein (Erfahrung, Inspiration, Skills, Projekte, Einsatzplanung, Meldungen, InstaOto Funktionen/Ablauf). Auf Tablet/Desktop unverändert. InstaOto 4 Schritte: Telefon scrollt ins Bild.
-- Handy: Lichtband/Schlange ein Viertel der Desktop-Grösse.
+- Handy: Lichtband/Schlange ein Achtel der Desktop-Grösse.
