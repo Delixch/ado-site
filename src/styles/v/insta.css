@@ -595,3 +595,13 @@
 .in-sub {
   color: color-mix(in srgb, var(--ink) 82%, transparent);
 }
+
+/* Senden-Hinweis: Text nutzt die volle Breite */
+.in-send > span {
+  flex: 1;
+  min-width: 0;
+}
+
+.in-send .lede {
+  max-width: none;
+}

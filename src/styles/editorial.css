@@ -167,3 +167,8 @@
 .blk-in > p.lede:only-child {
   max-width: none;
 }
+
+/* In den Bausteinen nutzt jeder Absatz die volle Breite (keine schmale Spalte mit Leerraum daneben) */
+.blk .lede {
+  max-width: none;
+}
