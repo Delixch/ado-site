@@ -4,6 +4,7 @@ import { ABOUT_STATS } from '../../../content/design-data';
 import { FitHeadline } from '../../fx/FitHeadline';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
+import { Proverb } from '../../fx/Proverb';
 import { SlitMedia } from '../../fx/SlitMedia';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -73,9 +74,7 @@ export function DesignStart() {
           <span className="ds-quote-mark poster" aria-hidden>
             “
           </span>
-          <blockquote className="whisper">
-            {h.quoteLine1} <em>{h.quoteLine2}</em>
-          </blockquote>
+          <Proverb lang={t.lang} />
           <figcaption className="micro">— ADO · {t.lang === 'tr' ? 'Zürih' : 'Zürich'}</figcaption>
         </figure>
       ),

@@ -34,3 +34,6 @@ export const RAIL_STYLE = '1';
 
 /** Breite des eingeklappten Menues in px (gleich wie --sb-rail-w in tokens.css). */
 export const RAIL_WIDTH = 64;
+
+/** Sprichwort auf der Startseite wechselt alle ... ms (20 Sprichwoerter, content/proverbs.ts). */
+export const PROVERB_INTERVAL = 9000;
