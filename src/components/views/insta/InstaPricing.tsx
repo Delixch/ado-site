@@ -90,30 +90,9 @@ export function InstaPricing() {
 
   const plan = p.plans.find((x) => x.id === sel) ?? p.plans[0];
   const icons = PLAN_ICONS[plan.id];
-  const n = plan.nodes.length;
-  const R = 38; // Bahnradius in Prozent
-  const pos = plan.nodes.map((_, i) => {
-    const a = (i / n) * Math.PI * 2 - Math.PI / 2;
-    return { x: 50 + Math.cos(a) * R, y: 50 + Math.sin(a) * R };
-  });
 
   const pick = (id: string) => setSel(id);
   const toggle = (i: number) => setReady((r) => r.map((x, k) => (k === i ? !x : x)));
-
-  const Selector = ({ care }: { care: boolean }) => (
-    <div className="op-row" data-care={care}>
-      {p.plans
-        .filter((x) => x.care === care)
-        .map((x) => (
-          <button key={x.id} type="button" className="op-btn" aria-pressed={x.id === sel} onClick={() => pick(x.id)}>
-            <span className="op-name">{x.name}</span>
-            <span className="op-price">{x.price}.–</span>
-            <span className="op-unit">{x.care ? `/ ${p.perMonth}` : p.once}</span>
-            {x.id === reco && <span className="op-reco" aria-label={p.recommended} />}
-          </button>
-        ))}
-    </div>
-  );
 
   const blocks: Block[] = [
     { id: 'desk', tone: 'deep', node: <LetterDesk labels={p.form} to="ADO InstaOto" /> },
@@ -136,78 +115,72 @@ export function InstaPricing() {
       id: 'plans',
       node: (
         <div className="op">
-          <div className="op-pick">
-            <span className="micro">{p.setupLabel}</span>
-            <Selector care={false} />
-            <span className="micro">{p.careLabel}</span>
-            <Selector care />
-            <span className="op-hourly micro">{p.hourly}</span>
+          <div className="op-groups">
+            {[false, true].map((care) => (
+              <div key={String(care)} className="op-group">
+                <span className="op-label micro">{care ? p.careLabel : p.setupLabel}</span>
+                <div className="op-row">
+                  {p.plans
+                    .filter((x) => x.care === care)
+                    .map((x) => (
+                      <button key={x.id} type="button" className="op-btn" aria-pressed={x.id === sel} onClick={() => pick(x.id)}>
+                        <span className="op-name">{x.name}</span>
+                        <span className="op-price">{x.price}.–</span>
+                        <span className="op-unit">{x.care ? `/ ${p.perMonth}` : p.once}</span>
+                        {x.id === reco && <span className="op-reco" aria-label={p.recommended} />}
+                      </button>
+                    ))}
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div className="op-stage">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={plan.id}
-                className="op-orbit"
-                initial={{ opacity: 0, scale: 0.94, rotate: -8 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                exit={{ opacity: 0, scale: 0.94, rotate: 8 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <svg className="op-lines" viewBox="0 0 100 100" aria-hidden>
-                  <circle cx="50" cy="50" r={R} className="op-track" />
-                  {pos.map((q, i) => (
-                    <motion.line
-                      key={i}
-                      x1="50"
-                      y1="50"
-                      x2={q.x}
-                      y2={q.y}
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
-                    />
-                  ))}
-                </svg>
-                <div className="op-core" data-reco={plan.id === reco}>
-                  <span className="op-core-name">{plan.name}</span>
-                  <span className="op-core-price">
-                    <small>{p.currency}</small> {plan.price}.–
-                  </span>
-                  <span className="op-core-unit">{plan.care ? `/ ${p.perMonth}` : p.once}</span>
-                </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={plan.id}
+              className="op-detail"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ol className="ck2-track op-track">
                 {plan.nodes.map((label, i) => {
                   const I = icons[i];
                   return (
-                    <motion.span
+                    <motion.li
                       key={label}
-                      className="op-node"
-                      style={{ left: `${pos[i].x}%`, top: `${pos[i].y}%` }}
-                      initial={{ opacity: 0, scale: 0.4 }}
+                      initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.2 + i * 0.06, type: 'spring', stiffness: 260, damping: 20 }}
+                      transition={{ delay: 0.08 + i * 0.06, type: 'spring', stiffness: 280, damping: 20 }}
                     >
-                      <span className="op-node-dot">
-                        <I />
+                      <span className="ck2-node">
+                        <span className="ck2-dot op-dot">
+                          <I />
+                        </span>
+                        <span className="ck2-t">{label}</span>
                       </span>
-                      <span className="op-node-label">{label}</span>
-                    </motion.span>
+                    </motion.li>
                   );
                 })}
-              </motion.div>
-            </AnimatePresence>
-            <div className="op-foot">
-              <span className="op-for">{plan.for}</span>
-              <IntroCall
-                contact="i-pricing"
-                here
-                topic={`InstaOto · ${plan.name} (${p.currency} ${plan.price}.–${plan.care ? ` / ${p.perMonth}` : ''})`}
-                className="e-link op-choose"
-              >
-                {p.choose} →
-              </IntroCall>
-            </div>
-          </div>
+              </ol>
+              <div className="op-foot">
+                <span className="op-for">{plan.for}</span>
+                <span className="op-sum micro">
+                  {plan.name} · {p.currency} {plan.price}.– {plan.care ? `/ ${p.perMonth}` : p.once}
+                </span>
+                <IntroCall
+                  contact="i-pricing"
+                  here
+                  topic={`InstaOto · ${plan.name} (${p.currency} ${plan.price}.–${plan.care ? ` / ${p.perMonth}` : ''})`}
+                  className="e-link op-choose"
+                >
+                  {p.choose} →
+                </IntroCall>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+          <span className="op-hourly micro">{p.hourly}</span>
         </div>
       ),
     },

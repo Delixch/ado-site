@@ -619,22 +619,43 @@
    Checkliste als verbundene Kreise. Wenig Text, Erklaerung nur beim Zeigen.
    ===================================================================== */
 .op {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  gap: var(--sp-5);
   height: 100%;
 }
 
-.op-pick {
+/* vier gleich grosse Kreise, je Gruppe durch eine feine Leitung verbunden */
+.op-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-5) var(--sp-10);
+}
+
+.op-group {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: var(--sp-2);
+}
+
+.op-label {
+  color: var(--ink);
 }
 
 .op-row {
+  position: relative;
   display: flex;
-  gap: var(--sp-3);
+  gap: var(--sp-5);
+}
+
+.op-row::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--op-btn) / 2);
+  right: calc(var(--op-btn) / 2);
+  border-top: var(--hair) solid color-mix(in srgb, var(--brand) 50%, transparent);
 }
 
 .op-btn {
@@ -645,24 +666,20 @@
   width: var(--op-btn);
   aspect-ratio: 1;
   border-radius: 50%;
-  border: var(--hair) solid color-mix(in srgb, var(--brand) 45%, transparent);
+  border: var(--hair) solid var(--brand);
+  background: var(--paper);
   color: var(--ink);
   cursor: pointer;
   transition: transform var(--dur-fast) var(--ease), background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
-.op-row[data-care="true"] .op-btn {
-  width: var(--op-btn-s);
-}
-
 .op-btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
   box-shadow: 0 0 var(--sp-5) color-mix(in srgb, var(--brand) 35%, transparent);
 }
 
 .op-btn[aria-pressed="true"] {
   background: var(--brand);
-  border-color: var(--brand);
   color: var(--on-brand);
   box-shadow: 0 0 var(--sp-6) color-mix(in srgb, var(--brand) 45%, transparent);
 }
@@ -703,139 +720,29 @@
   background: var(--on-brand);
 }
 
-.op-hourly {
-  max-width: calc(var(--op-btn) * 2 + var(--sp-3));
-}
-
-/* Umlaufbahn */
-.op-stage {
+/* Inhalt des gewaehlten Pakets: dieselbe Kreis-Reihe wie die Checkliste */
+.op-detail {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--sp-3);
-  min-width: 0;
+  gap: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: var(--hair) solid var(--rule);
 }
 
-.op-orbit {
-  position: relative;
-  width: min(100%, var(--op-stage));
-  aspect-ratio: 1;
+.op-track::before {
+  border-top-color: color-mix(in srgb, var(--brand) 50%, transparent);
 }
 
-.op-lines {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.op-lines line {
-  stroke: color-mix(in srgb, var(--brand) 55%, transparent);
-  stroke-width: 0.35;
-}
-
-.op-track {
-  fill: none;
-  stroke: var(--rule);
-  stroke-width: 0.3;
-  stroke-dasharray: 1 1.5;
-  transform-origin: 50px 50px;
-  animation: op-spin var(--ring-spin) linear infinite;
-}
-
-@keyframes op-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.op-core {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  width: 36%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  border: var(--hair) solid var(--brand);
-  background: var(--paper);
-  box-shadow: 0 0 var(--sp-6) color-mix(in srgb, var(--brand) 30%, transparent), inset 0 0 var(--sp-5) color-mix(in srgb, var(--brand) 20%, transparent);
-  text-align: center;
-}
-
-.op-core-name {
-  font-family: var(--font-mono);
-  font-size: var(--fs-tiny);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
+.op-dot {
+  border-color: var(--brand);
   color: var(--brand-text);
-}
-
-.op-core-price {
-  font-family: var(--font-poster);
-  font-size: var(--fs-poster-m);
-  line-height: 1.05;
-  color: var(--ink);
-}
-
-.op-core-price small {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  color: var(--brand-text);
-}
-
-.op-core-unit {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  color: var(--ink);
-}
-
-.op-node {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-1);
-  width: calc(var(--op-node) * 2.4);
-  margin-left: calc(var(--op-node) * -1.2);
-  margin-top: calc(var(--op-node) / -2);
-  text-align: center;
-}
-
-.op-node-dot {
-  display: grid;
-  place-items: center;
-  width: var(--op-node);
-  height: var(--op-node);
-  border-radius: 50%;
-  border: var(--hair) solid var(--brand);
-  background: var(--paper);
-  color: var(--brand-text);
-}
-
-.op-node-dot svg {
-  width: var(--icon-md);
-  height: var(--icon-md);
-}
-
-.op-node-label {
-  font-family: var(--font-mono);
-  font-size: var(--fs-tiny);
-  line-height: 1.3;
-  color: var(--ink);
 }
 
 .op-foot {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: var(--sp-2) var(--sp-4);
-  width: 100%;
 }
 
 .op-for {
@@ -845,9 +752,18 @@
   color: var(--ink);
 }
 
-.op-choose {
+.op-sum {
   margin-left: auto;
   color: var(--brand-text);
+}
+
+.op-choose {
+  color: var(--brand-text);
+}
+
+.op-hourly {
+  align-self: flex-end;
+  color: var(--ink);
 }
 
 /* Checkliste: drei Reihen verbundener Kreise */
@@ -1016,17 +932,12 @@ button.ck2-node {
 }
 
 @media (max-width: 719.98px) {
-  .op {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .ck2-row {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .op-track,
   .op-reco {
     animation: none;
   }
