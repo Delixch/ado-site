@@ -290,6 +290,10 @@
 /* Buzlu cam menu (sidebar.css "Eis-Glas") */
 :root {
   --sb-blur: 30px;
+  /* InstaOto-Video als iPhone im Story-Format */
+  --reel-w: 300px;
+  --phone-radius: 44px;
+  --phone-bezel: 10px;
   /* InstaOto Preise: Preis im Kreis, Checklisten-Kreise */
   --op-btn: 88px;
   --ck-dot: 40px;

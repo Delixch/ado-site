@@ -54,15 +54,36 @@
 
 /* Rahmen in Themenfarbe, leicht leuchtend */
 .in-reel-frame {
+  /* iPhone, Story-Format 9:16: Breite fuehrt, Hoehe folgt dem Seitenverhaeltnis */
   position: relative;
-  height: 100%;
-  min-height: calc(var(--reel-min-h) - var(--sp-12));
+  width: min(100%, var(--reel-w));
   aspect-ratio: 9 / 16;
-  max-width: 100%;
   overflow: hidden;
-  border-radius: var(--radius-lg);
-  border: calc(var(--hair) * 3) solid var(--brand);
-  box-shadow: 0 0 0 var(--sp-1) var(--brand-soft), 0 0 var(--sp-10) var(--brand-soft), var(--deck-shadow);
+  border-radius: var(--phone-radius);
+  border: var(--phone-bezel) solid #050506;
+  outline: calc(var(--hair) * 2) solid var(--brand);
+  outline-offset: 0;
+  box-shadow: 0 0 var(--sp-10) var(--brand-soft), var(--deck-shadow);
+}
+
+/* Dynamic Island */
+.in-reel-frame::before {
+  content: "";
+  position: absolute;
+  top: var(--sp-2);
+  left: 50%;
+  z-index: 3;
+  width: 30%;
+  height: var(--sp-5);
+  border-radius: var(--radius-pill);
+  background: #050506;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.in-reel-frame .media,
+.in-reel-frame video {
+  border-radius: calc(var(--phone-radius) - var(--phone-bezel));
 }
 
 .in-reel .media video {
