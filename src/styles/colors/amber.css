@@ -124,6 +124,6 @@
   --sb-sheen: rgba(255, 255, 255, 0.22);
   --sb-active: linear-gradient(135deg, color-mix(in srgb, var(--brand) 30%, rgba(255, 255, 255, 0.06)), rgba(255, 255, 255, 0.04));
   --sb-active-glow: 0 0 28px -6px color-mix(in srgb, var(--brand) 60%, transparent);
-  --sb-blob-a: color-mix(in srgb, var(--brand) 45%, transparent);
-  --sb-blob-b: color-mix(in srgb, var(--brand) 22%, #3a3a55);
+  --sb-blob-a: color-mix(in srgb, var(--brand) 30%, transparent);
+  --sb-blob-b: color-mix(in srgb, var(--brand) 14%, rgb(58 58 85 / 0.5));
 }
