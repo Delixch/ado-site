@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { Menu, X } from 'lucide-react';
 import { firmaFlow } from '../../../content/firma-flow';
 import { useMode } from '../../../hooks/useMode';
 import { FlowNodes } from '../../fx/FlowNodes';
@@ -23,6 +24,7 @@ export function FirmaHow() {
   const fl = firmaFlow[t.lang];
   const [tab, setTab] = useState(takeHowTab);
   const [active, setActive] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
   const touched = useRef(0);
   const mobile = useMode() === 'mobile';
 
@@ -53,14 +55,37 @@ export function FirmaHow() {
     setActive(i);
   };
 
-  const tabs = (
-    <div className="how-tabs" role="tablist">
+  /** Bereich waehlen: Seite springt nach oben, Ueberschrift oben, Inhalt direkt darunter. */
+  const choose = (i: number) => {
+    setTab(i);
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const list = (
+    <div className="how-tabs" role="tablist" id="fh-menu">
       {FIRMA_SECTIONS.map((s, i) => (
-        <button key={s.key} type="button" role="tab" aria-selected={i === tab} className="how-tab fh-tab" onClick={() => setTab(i)}>
+        <button key={s.key} type="button" role="tab" aria-selected={i === tab} className="how-tab fh-tab" onClick={() => choose(i)}>
           <s.icon /> {t.f.nav[s.nav]}
         </button>
       ))}
     </div>
+  );
+
+  // Handy: Hamburger - nur der gewaehlte Bereich, die Liste klappt auf Wunsch auf
+  const tabs = mobile ? (
+    <div className="fh-burger">
+      <button type="button" className="fh-burger-btn" aria-expanded={menuOpen} aria-controls="fh-menu" onClick={() => setMenuOpen((o) => !o)}>
+        {menuOpen ? <X /> : <Menu />}
+        <span>{t.f.nav[sec.nav]}</span>
+        <span className="micro">
+          {tab + 1}/{FIRMA_SECTIONS.length}
+        </span>
+      </button>
+      {menuOpen && list}
+    </div>
+  ) : (
+    list
   );
 
   const st = area.steps[active];

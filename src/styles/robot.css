@@ -148,46 +148,40 @@
   }
 }
 
-/* Mobil: kleiner Roboter oben rechts im Kopf */
+/* Mobil: kleiner Roboter unten rechts */
 @media (max-width: 719.98px) {
   .mast {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* Handy: Roboter fest in der Bildschirmmitte, bleibt beim Scrollen stehen.
+  /* Handy: Roboter fest unten rechts, direkt ueber dem Nach-oben-Knopf (ToTop).
      Klicks gehen durch (AdoRobot prueft selbst, ob er getroffen wurde). */
   .mast-robot {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    right: var(--sp-1);
+    bottom: calc(var(--sp-4) + var(--sp-12) + var(--sp-1) + env(safe-area-inset-bottom));
     z-index: 40;
     margin: 0;
     width: var(--robot-size-s);
     height: var(--robot-size-s);
-    transform: translate(-50%, -50%);
     pointer-events: none;
   }
 
+  /* Blase und Fragefeld oeffnen nach oben, rechtsbuendig */
   .ado-robot-bubble,
   .ado-robot-chat {
-    right: auto;
-    left: 50%;
+    top: auto;
+    bottom: calc(100% + var(--sp-2));
+    right: 0;
     pointer-events: auto;
-  }
-
-  .ado-robot-bubble {
-    transform: translate(-50%, calc(var(--sp-1) * -1)) scale(0.97);
-  }
-
-  .ado-robot-bubble[data-show="true"] {
-    transform: translateX(-50%);
   }
 
   .ado-robot-bubble:not([data-show="true"]) {
     pointer-events: none;
   }
 
-  .ado-robot-chat {
-    transform: translateX(-50%);
+  .ado-robot-bubble:has(~ .ado-robot-chat) {
+    top: auto;
+    bottom: calc(100% + var(--sp-12));
   }
 }

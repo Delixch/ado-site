@@ -32,3 +32,56 @@
   margin: 0;
   color: var(--ink);
 }
+
+/* Handy: Bereichswahl als Hamburger */
+.fh-burger {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.fh-burger-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-sm);
+  background: var(--bar-bg);
+  color: var(--bar-ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.fh-burger-btn svg {
+  flex: none;
+  width: var(--icon-md);
+  height: var(--icon-md);
+  color: var(--accent);
+}
+
+.fh-burger-btn > span:nth-of-type(1) {
+  flex: 1;
+}
+
+.fh-burger-btn .micro {
+  color: var(--bar-ink);
+}
+
+.how-detail > .fh-burger {
+  margin-bottom: var(--sp-6);
+}
+
+/* Gewaehlter Bereich: schwarz mit weisser Schrift (in jedem Thema lesbar) */
+.fh-tab[aria-selected="true"] {
+  background: var(--bar-bg);
+  color: var(--bar-ink);
+}
+
+.fh-tab[aria-selected="true"] svg {
+  color: var(--accent);
+}
