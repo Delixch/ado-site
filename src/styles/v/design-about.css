@@ -37,14 +37,14 @@
 }
 
 .ab-bio h2 {
-  font-size: var(--fs-bio-title);
+  font-size: var(--fs-poster-m);
   max-width: none;
   text-wrap: balance;
 }
 
 .ab-bio .lede {
   max-width: none;
-  font-size: var(--fs-bio-text);
+  font-size: var(--fs-body);
 }
 
 .ab-bio em {
