@@ -210,3 +210,14 @@
   aspect-ratio: 16 / 9;
   height: auto;
 }
+
+/* Feinschliff: Schlagzeile als Gruppe mittig (innen linksbuendig), Schalterliste mittig */
+.fs-head {
+  display: grid;
+  place-content: center;
+  justify-items: start;
+}
+
+.fs-switch {
+  justify-content: center;
+}

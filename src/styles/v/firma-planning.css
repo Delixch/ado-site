@@ -201,3 +201,17 @@
   justify-content: center;
   height: 100%;
 }
+
+/* Kennwerte: Wert unter der Ueberschrift ganz rechts */
+.pl-metrics dd {
+  text-align: right;
+}
+
+/* Beispiel: Block mittig von oben nach unten, Wert der Zeile ganz rechts */
+.pl-example {
+  justify-content: center;
+}
+
+.pl-example li > span:last-child {
+  text-align: right;
+}

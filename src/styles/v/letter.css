@@ -288,3 +288,21 @@
   width: var(--icon-sm);
   height: var(--icon-sm);
 }
+
+/* Feinschliff: Gruppen mittig von oben nach unten, Text volle Breite, Begriff neben der Nummer ganz rechts */
+.fc-benefits,
+.fc-areas {
+  justify-content: center;
+}
+
+.fc-benefits .lede {
+  max-width: none;
+}
+
+.fc-benefits ol {
+  margin-top: 0;
+}
+
+.fc-benefits .whisper {
+  text-align: right;
+}

@@ -336,3 +336,8 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Feinschliff: Einarbeitung als Gruppe mittig von oben nach unten */
+.ob {
+  justify-content: center;
+}

@@ -319,3 +319,12 @@
 .hp-bars i[data-top="true"] {
   background: var(--brand);
 }
+
+/* Feinschliff: Besucher-Block mittig von oben nach unten, Bewertung ganz rechts */
+.hp-stats {
+  justify-content: center;
+}
+
+.hp-stats > .micro:last-child {
+  align-self: flex-end;
+}

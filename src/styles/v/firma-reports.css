@@ -254,3 +254,13 @@
 .rp-info h3 {
   font-size: var(--fs-whisper);
 }
+
+/* Feinschliff: Listen und Kalender mittig von oben nach unten, Erklaerung volle Breite */
+.rp-freq,
+.rp-cal {
+  justify-content: center;
+}
+
+.rp-info .lede {
+  max-width: none;
+}

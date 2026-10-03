@@ -348,3 +348,13 @@
   padding-top: var(--sp-2);
   border-top: var(--hair) solid var(--rule);
 }
+
+/* Feinschliff: Aufteilung und Schritte als Gruppe mittig von oben nach unten, Text volle Breite */
+.ac-split,
+.ac-steps {
+  justify-content: center;
+}
+
+.ac-step .lede {
+  max-width: none;
+}
