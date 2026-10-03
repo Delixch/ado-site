@@ -686,18 +686,6 @@
   }
 }
 
-/* Panel-Aufnahmen schwarzweiss, beim Zeigen farbig */
-.shot img {
-  filter: var(--photo-bw);
-  transition: filter var(--dur) var(--ease);
-}
-
-.shot:hover img {
-  filter: none;
-}
-
-/* Film schwarzweiss wie die Fotos, beim Zeigen farbig */
-
 /* Feinschliff: Listen mittig von oben nach unten, Nebentexte lesbar */
 .in-need {
   justify-content: safe center;
