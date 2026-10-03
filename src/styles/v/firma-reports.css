@@ -51,7 +51,8 @@
   width: 100%;
   max-width: var(--doc-w);
   padding: var(--sp-5);
-  background: var(--paper);
+  /* deckend, sonst scheint die Schrift der hinteren Belege durch */
+  background: var(--surface-solid);
   border: var(--hair) solid var(--rule);
   box-shadow: var(--deck-shadow);
   cursor: pointer;
@@ -268,4 +269,11 @@
 /* Kachel-Effekt ueber den Monaten: enger, weil die Kaestchen dicht stehen */
 .rp-months {
   --hover-tile-out: var(--sp-1);
+}
+
+/* Handy: Belegstapel etwas schmaler, damit die gefaecherten hinteren Belege nicht rechts abgeschnitten werden */
+@media (max-width: 719.98px) {
+  .doc {
+    max-width: calc(100% - var(--sp-6));
+  }
 }

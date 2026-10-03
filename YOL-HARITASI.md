@@ -47,7 +47,7 @@ Start (yarık pencereli kapak videosu), Über mich (tipografik portre, s/b), Pro
 5. instagramoto panelinde kimin açtığı belirsiz bir **"Neuer Ablauf · aus"** akışı var — gerekmiyorsa sil.
 
 ### Teknik borç
-6. Tablet (820 px) genişliği tek tek kontrol edilmedi.
+6. ~~Tablet ve mobil kontrolü~~ ✅ 2026-10-03: 820 px ve 390 px, bütün sayfalar ölçüldü.
 7. Bazı CSS'lerde süre/derece sayıları henüz token değil.
 8. Ana JS paketi 500 KB üstü → sayfaları parça parça yükle.
 9. `public/video/` ham klipler (21 MB) sitede kullanılmıyor — yayından çıkarılabilir.

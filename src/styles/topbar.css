@@ -329,3 +329,9 @@
   position: relative;
   z-index: 1;
 }
+
+/* Knoepfe immer vor dem Lichtband (auf schmalen Schirmen laeuft es ueber die rechte Seite) */
+.tb-right {
+  position: relative;
+  z-index: 40;
+}

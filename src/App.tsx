@@ -149,7 +149,7 @@ export default function App() {
               expandedWidth={mode === 'mobile' ? Math.min(300, window.innerWidth - 24) : 275}
               collapsible
               openByDefault={mode === 'mobile' ? [] : ['design']}
-              footer={mode === 'mobile' ? <BandPicker inline band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} /> : undefined}
+              footer={mode !== 'desktop' ? <BandPicker inline band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} /> : undefined}
             />
           </div>
 
@@ -210,7 +210,7 @@ export default function App() {
               <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
             </footer>
           </main>
-          {mode !== 'mobile' && (
+          {mode === 'desktop' && (
             <BandPicker band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} dock={mode === 'desktop' && desktopExpanded} />
           )}
           <LegalDialog doc={legal} lang={lang} onOpen={setLegal} onClose={() => setLegal(null)} />

@@ -1,5 +1,6 @@
 import { Fragment, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { HoverTile, useHoverTile } from './HoverTile';
+import { useMode } from '../../hooks/useMode';
 
 /**
  * Knoten im Zickzack, verbunden durch rechtwinklige Leitungen mit wanderndem Lichtpunkt
@@ -9,10 +10,10 @@ export function FlowNodes({
   items,
   active,
   onPick,
-  cols = 2,
-  place,
   links,
   hoverTile = false,
+  cols: colsWide = 2,
+  place: placeWide,
 }: {
   items: ReactNode[];
   active: number;
@@ -26,6 +27,10 @@ export function FlowNodes({
   hoverTile?: boolean;
 }) {
   const tile = useHoverTile();
+  // Handy: Karten untereinander statt Zickzack/Spalten (sonst wird der Text gequetscht)
+  const narrow = useMode() === 'mobile';
+  const cols = narrow ? 1 : colsWide;
+  const place = narrow ? undefined : placeWide;
   const box = useRef<HTMLDivElement>(null);
   const nodes = useRef<(HTMLButtonElement | null)[]>([]);
   const [geo, setGeo] = useState<{ w: number; h: number; paths: string[] }>({ w: 0, h: 0, paths: [] });
