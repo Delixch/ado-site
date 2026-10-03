@@ -322,7 +322,9 @@ function RailGroups({
               onClick={() => toggleGroup(sec.group)}
             >
               <GroupIcon className="sb-icon" />
-              <ChevronDown className="sb-rail-chevron" aria-hidden />
+              <span className="sb-rail-name" aria-hidden>
+                {t.ui.groups[sec.group].short}
+              </span>
             </button>
             <AnimatePresence initial={false}>
               {isOpen && (

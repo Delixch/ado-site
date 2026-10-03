@@ -878,115 +878,66 @@
   }
 }
 
-/* Eingeklappt: Gruppensymbole; nur die offene Gruppe zeigt ihre Seiten darunter */
+/* Eingeklappt: Gruppen als kleine Etiketten (Symbol + Name), die offene Gruppe
+   ist gefuellt; ihre Seiten liegen darunter in einer eingelassenen Glasschale. */
 .sb-rail {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
+  gap: var(--sp-3);
   padding-top: var(--sp-4);
 }
 
 .sb-rail-group {
   display: flex;
   flex-direction: column;
+  border-radius: var(--radius-md);
+}
+
+.sb[data-expanded="false"] .sb-rail-btn {
+  flex-direction: column;
   gap: var(--sp-1);
-}
-
-.sb-rail-group[data-open="true"] {
-  padding-bottom: var(--sp-2);
-  border-bottom: var(--hair) solid var(--sb-glass-line);
-}
-
-.sb-rail-btn[data-open="true"] {
-  color: var(--brand-text);
+  padding: var(--sp-2) 0;
+  border-radius: var(--radius-md);
   background: var(--sb-pill);
-  border-color: var(--sb-pill-edge);
+  border: var(--hair) solid var(--sb-pill-edge);
+  color: var(--ink);
 }
 
+.sb-rail-name {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.sb[data-expanded="false"] .sb-rail-btn:hover {
+  color: var(--brand-text);
+  border-color: var(--brand);
+}
+
+.sb[data-expanded="false"] .sb-rail-btn[data-open="true"] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--on-brand);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+/* Schale mit den Seiten, haengt am offenen Etikett */
 .sb-rail-items {
   display: flex;
   flex-direction: column;
   gap: var(--sp-1);
+  padding: var(--sp-2) var(--sp-1);
   overflow: hidden;
+  border: var(--hair) solid var(--brand);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  background: color-mix(in srgb, var(--brand) 8%, transparent);
+  box-shadow: inset 0 var(--sp-1) var(--sp-3) color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 .sb-rail-items .sb-item .sb-icon {
   width: var(--sp-4);
   height: var(--sp-4);
-}
-
-/* Gruppensymbole als Hauptueberschrift erkennbar: Licht in Themenfarbe atmet dahinter,
-   kleiner Pfeil zeigt offen/zu. Versetzt, damit nicht alle gleichzeitig pulsieren. */
-.sb-rail-btn {
-  isolation: isolate;
-}
-
-.sb-rail-btn::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: -1;
-  width: var(--sb-breath-size);
-  height: var(--sb-breath-size);
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--brand) 0%, color-mix(in srgb, var(--brand) 35%, transparent) 40%, transparent 70%);
-  transform: translate(-50%, -50%) scale(0.7);
-  opacity: 0.15;
-  pointer-events: none;
-  animation: sb-breath var(--sb-breath) ease-in-out infinite;
-}
-
-.sb-rail-group:nth-child(2) .sb-rail-btn::before {
-  animation-delay: calc(var(--sb-breath) / -3);
-}
-
-.sb-rail-group:nth-child(3) .sb-rail-btn::before {
-  animation-delay: calc(var(--sb-breath) / -1.5);
-}
-
-/* offene Gruppe: ruhiges, stehendes Licht statt Atmen */
-.sb-rail-btn[data-open="true"]::before {
-  animation: none;
-  opacity: 0.35;
-  transform: translate(-50%, -50%) scale(0.9);
-}
-
-@keyframes sb-breath {
-  0%,
-  100% {
-    opacity: 0.12;
-    transform: translate(-50%, -50%) scale(0.65);
-  }
-  50% {
-    opacity: 0.55;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-.sb-rail-btn .sb-icon {
-  color: var(--brand-text);
-}
-
-.sb-rail-chevron {
-  position: absolute;
-  right: var(--sp-1);
-  bottom: var(--sp-1);
-  width: var(--sp-3);
-  height: var(--sp-3);
-  color: var(--brand-text);
-  opacity: 0.8;
-  transform: rotate(-90deg);
-  transition: transform var(--dur-fast) var(--ease);
-}
-
-.sb-rail-btn[data-open="true"] .sb-rail-chevron {
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sb-rail-btn::before {
-    animation: none;
-    opacity: 0.3;
-  }
 }

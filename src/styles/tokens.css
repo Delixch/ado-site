@@ -285,9 +285,6 @@
 /* Buzlu cam menu (sidebar.css "Eis-Glas") */
 :root {
   --sb-blur: 30px;
-  /* Eingeklappt: Gruppensymbole atmen in Themenfarbe */
-  --sb-breath: 3.2s;
-  --sb-breath-size: 46px;
   /* KI-Roboter im Seitenkopf */
   --robot-size: 156px;
   --robot-size-s: 84px;
