@@ -1056,3 +1056,28 @@
 .sb .sb-search svg {
   color: color-mix(in srgb, var(--ink) 82%, transparent);
 }
+
+/* Aktive Seite (offen und eingeklappt): nur das Symbol in Themenfarbe.
+   Keine Kapsel, kein Leuchten, keine LED. */
+.sb .sb-item[data-active="true"],
+.sb .sb-item[data-active="true"]:hover {
+  background: none;
+  border-color: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.sb .sb-item[data-active="true"]::after {
+  display: none;
+}
+
+.sb .sb-led {
+  display: none;
+}
+
+.sb .sb-item[data-active="true"] .sb-icon {
+  color: var(--brand-text);
+  filter: none;
+  transform: none;
+  margin-left: 0;
+}
