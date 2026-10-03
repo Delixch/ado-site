@@ -1090,3 +1090,24 @@
   letter-spacing: var(--ls-logo);
   text-transform: uppercase;
 }
+
+/* =====================================================================
+   Ruhig wie die Lichtband-Auswahl (Adnan 2026-10-03: "muethis"):
+   schlichtes dunkles Glas, feine Kante, nur die umlaufende Lichtlinie.
+   Keine Farbflecken, kein Glanz, kein Korn, kein Unterlicht.
+   ===================================================================== */
+.sb {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: var(--hair) solid var(--sb-glass-edge);
+  box-shadow: var(--shadow-md);
+}
+
+.sb::before,
+.sb::after,
+.sb-slot::before,
+.sb-slot::after,
+.sb .sb-glow {
+  display: none;
+}
