@@ -248,3 +248,24 @@
 .toc-thumb img {
   filter: var(--photo-bw);
 }
+
+/* Kachel-Effekt (fx/HoverTile.tsx): Quadrat hinter der Karte unter dem Zeiger */
+[data-hover-tile] > li {
+  position: relative;
+}
+
+[data-hover-tile] > li > :not(.hover-tile) {
+  position: relative;
+  z-index: 1;
+}
+
+.hover-tile {
+  position: absolute;
+  inset: calc(var(--hover-tile-out) * -1);
+  z-index: 0;
+  display: block;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--brand) 20%, transparent);
+  border: var(--hair) solid color-mix(in srgb, var(--brand) 30%, transparent);
+  pointer-events: none;
+}

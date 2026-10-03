@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Database, KeyRound, Lock, RefreshCw, ShieldCheck, Trash2 } from 'lucide-react';
+import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -16,16 +17,18 @@ export function InstaSecurity() {
   const { t } = useView();
   const s = t.i.security;
   const [open, setOpen] = useState(0);
+  const tile = useHoverTile();
 
   const blocks: Block[] = [
     {
       id: 'grid',
       node: (
-        <ul className="in-sec">
+        <ul className="in-sec" {...tile.list}>
           {s.items.map((it, i) => {
             const Icon = ICONS[i];
             return (
-              <li key={it.t} data-open={i === open}>
+              <li key={it.t} data-open={i === open} {...tile.item(i)}>
+                <HoverTile {...tile.at(i)} />
                 <button type="button" onClick={() => setOpen(i)} onPointerEnter={(e) => e.pointerType === 'mouse' && setOpen(i)} aria-expanded={i === open}>
                   <span className="in-sec-icon">
                     <Icon />
