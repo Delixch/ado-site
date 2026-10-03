@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Check, Play, Send } from 'lucide-react';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
@@ -93,7 +93,7 @@ function useChat() {
   return { msgs, step, typing, comment, press, reset, playTo };
 }
 
-export function InstaFlow() {
+export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
   const { t } = useView();
   const f = t.i.flow;
   const chat = useChat();
@@ -187,9 +187,6 @@ export function InstaFlow() {
       id: 'steps',
       node: (
         <div className="ig-steps-wrap">
-          <span className="ig-steps-title micro">
-            <b>„{f.keywords[0]}“</b> · {f.stepsTitle}
-          </span>
           <ol className="ig-steps" data-idle={chat.step < 0}>
             {f.steps.map((x, i) => (
               <li key={x} data-on={chat.step >= i} data-now={chat.step === i} style={{ ['--i' as string]: i }}>
@@ -218,5 +215,5 @@ export function InstaFlow() {
     },
   ];
 
-  return <Spread view="i-flow" head={{ folio: '01', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-flow" tabs={tabs} head={{ folio: '01', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }

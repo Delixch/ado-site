@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { FlowNodes } from '../../fx/FlowNodes';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
@@ -10,7 +10,7 @@ const LAYOUTS: LayoutDef[] = [
   { name: 'Mirror', cols: '1fr 3fr 1fr', areas: ['flow flow detail'] },
 ];
 
-export function InstaProcess() {
+export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
   const { t } = useView();
   const p = t.i.process;
   const [active, setActive] = useState(0);
@@ -63,5 +63,5 @@ export function InstaProcess() {
     },
   ];
 
-  return <Spread view="i-process" robot={false} head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-process" tabs={tabs} head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -13,7 +13,7 @@ const LAYOUTS: LayoutDef[] = [
   { name: 'Wide', cols: '1fr 1fr 1fr', areas: ['shot shot shot', 'list list detail'], rows: 'auto minmax(var(--spread-row), auto)' },
 ];
 
-export function InstaFeatures() {
+export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
   const { t } = useView();
   const f = t.i.features;
   const [sel, setSel] = useState(0);
@@ -81,5 +81,5 @@ export function InstaFeatures() {
     },
   ];
 
-  return <Spread view="i-features" robot={false} head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-features" tabs={tabs} head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }

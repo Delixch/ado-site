@@ -52,6 +52,7 @@ export const instaTexts = {
     },
     features: {
       eyebrow: 'Das Panel',
+      tab: 'Funktionen',
       line1: 'Alles in',
       line2: 'einer Oberfläche.',
       items: [
@@ -65,6 +66,7 @@ export const instaTexts = {
     },
     process: {
       eyebrow: 'Ablauf',
+      tab: 'Von der Anfrage bis live',
       line1: 'Von der Anfrage',
       line2: 'bis live.',
       steps: [
@@ -255,6 +257,7 @@ export const instaTexts = {
     },
     features: {
       eyebrow: 'Panel',
+      tab: 'Özellikler',
       line1: 'Her şey',
       line2: 'tek ekranda.',
       items: [
@@ -268,6 +271,7 @@ export const instaTexts = {
     },
     process: {
       eyebrow: 'Süreç',
+      tab: 'Talepten yayına',
       line1: 'Talepten',
       line2: 'yayına.',
       steps: [

@@ -75,6 +75,7 @@ export function Spread({
   blocks,
   layouts,
   robot = true,
+  tabs,
 }: {
   view: string;
   head: Masthead;
@@ -82,6 +83,8 @@ export function Spread({
   layouts: LayoutDef[];
   /** Mehrere Abschnitte auf einer Seite: nur der erste zeigt den Roboter. */
   robot?: boolean;
+  /** Reiter unter der Ueberschrift (eine Seite mit mehreren Ansichten). */
+  tabs?: ReactNode;
 }) {
   const { auto, nonce, t } = useView();
   const mode = useMode();
@@ -110,6 +113,7 @@ export function Spread({
             <RevealLines lines={[head.line1]} className="mast-l1" />
             <RevealLines lines={[head.line2]} className="mast-l2" delay={0.12} />
           </h1>
+          {tabs}
         </div>
         {robot && <MastRobot />}
         <nav className="dial" aria-label="Layout">
