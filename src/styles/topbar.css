@@ -294,3 +294,27 @@
     display: none;
   }
 }
+
+/* Eis-Glas wie das Menue (2026-10-03) */
+.tb {
+  background: var(--sb-glass);
+  -webkit-backdrop-filter: blur(var(--sb-blur)) saturate(170%);
+  backdrop-filter: blur(var(--sb-blur)) saturate(170%);
+  border-color: var(--sb-glass-edge);
+  box-shadow: var(--sb-glass-shadow);
+}
+
+.tb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(100deg, var(--sb-sheen) 0%, transparent 18%, transparent 82%, var(--sb-glass-line) 100%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.tb > * {
+  position: relative;
+  z-index: 1;
+}
