@@ -24,3 +24,10 @@ export const BAND_SHAPE = '3';
  * Eroeffnung (2026-10-03): Claude-Thema, Schlange, ADO-Regen.
  */
 export const BAND_FX = '11';
+
+/**
+ * Eingeklapptes Menue: wie die Gruppen von den Seiten unterschieden werden.
+ * Zum Vergleichen: Adresse ?rail=1 ... ?rail=3
+ * 1 = feiner Ring um das Gruppensymbol · 2 = Baumlinie zu den Seiten · 3 = Trennlinie mit Buchstabe
+ */
+export const RAIL_STYLE = '1';

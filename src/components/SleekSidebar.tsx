@@ -5,6 +5,10 @@ import { ALL_ITEMS, MENU_SECTIONS, type MenuItemDef } from '../content/menu';
 import { buildIndex, searchSite } from '../content/search';
 import type { Texts } from '../content/ui';
 import { getStoredAvatar, setStoredAvatar } from '../avatar';
+import { RAIL_STYLE } from '../config';
+
+const railParam = new URLSearchParams(window.location.search).get('rail');
+const RAIL = railParam && /^[1-3]$/.test(railParam) ? railParam : RAIL_STYLE;
 
 interface SleekSidebarProps {
   isExpanded: boolean;
@@ -78,6 +82,7 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
       }}
       className="sb"
       data-expanded={isExpanded}
+      data-rail={RAIL}
       aria-label="Navigation"
     >
       <span className="sb-orbit" aria-hidden />
@@ -322,8 +327,8 @@ function RailGroups({
               onClick={() => toggleGroup(sec.group)}
             >
               <GroupIcon className="sb-icon" />
-              <span className="sb-rail-name" aria-hidden>
-                {t.ui.groups[sec.group].short}
+              <span className="sb-rail-letter" aria-hidden>
+                {t.ui.groups[sec.group].short.charAt(0)}
               </span>
             </button>
             <AnimatePresence initial={false}>
