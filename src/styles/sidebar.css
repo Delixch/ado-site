@@ -906,24 +906,28 @@
   display: none;
 }
 
-/* 1 · feiner Ring: Gruppensymbol im Kreis, offene Gruppe gefuellt */
-.sb[data-rail="1"] .sb-rail-btn {
+/* 1 · feiner Ring: Gruppensymbol im Kreis. Zu = leiser Ring, offen = Ring und Symbol
+   in Themenfarbe (nichts gefuellt). */
+.sb[data-rail="1"] .sb-rail-btn,
+.sb[data-rail="1"] .sb-rail-btn:hover {
   background: none;
   border-color: transparent;
+  box-shadow: none;
 }
 
 .sb[data-rail="1"] .sb-rail-btn .sb-icon {
   box-sizing: content-box;
   padding: var(--sp-2);
   border-radius: 50%;
-  border: var(--sb-ring-w) solid var(--brand);
-  color: var(--brand-text);
-  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+  border: var(--sb-ring-w) solid var(--line-strong);
+  color: var(--ink);
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 
+.sb[data-rail="1"] .sb-rail-btn:hover .sb-icon,
 .sb[data-rail="1"] .sb-rail-btn[data-open="true"] .sb-icon {
-  background: var(--brand);
-  color: var(--on-brand);
+  border-color: var(--brand);
+  color: var(--brand-text);
 }
 
 /* 2 · Baumlinie: offene Gruppe haengt an einer feinen Linie */
@@ -999,4 +1003,17 @@
 .sb[data-rail="3"] .sb-rail-btn[data-open="true"]::before,
 .sb[data-rail="3"] .sb-rail-btn[data-open="true"]::after {
   border-top-color: var(--brand);
+}
+
+/* Eingeklappt: aktive Seite nur ueber die Farbe des Symbols, kein Hintergrund */
+.sb[data-expanded="false"] .sb-rail-items .sb-item[data-active="true"],
+.sb[data-expanded="false"] .sb-rail-items .sb-item[data-active="true"]:hover {
+  background: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.sb[data-expanded="false"] .sb-rail-items .sb-item[data-active="true"] .sb-icon {
+  color: var(--brand-text);
+  filter: none;
 }
