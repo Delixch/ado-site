@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { CONTACT_MAIL } from '../../../config';
 import { ABOUT_STATS } from '../../../content/design-data';
+import { FitHeadline } from '../../fx/FitHeadline';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { SlitMedia } from '../../fx/SlitMedia';
@@ -44,11 +45,7 @@ export function DesignStart() {
     {
       id: 'headline',
       node: (
-        <h2 className="ds-head">
-          <span className="poster">{h.lineBuild}</span>
-          <span className="whisper">{h.lineDigital}</span>
-          <span className="poster">{h.lineExperiences}</span>
-        </h2>
+        <FitHeadline className="ds-head" parts={[h.lineBuild, h.lineDigital, h.lineExperiences]} />
       ),
     },
     {

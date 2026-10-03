@@ -766,9 +766,9 @@ export const tr: TranslationSchema = {
   hero: {
     badgeAvailable: 'Projelere açığım',
     badgeLocation: 'Zürih · İsviçre',
-    lineBuild: 'İnşa ediyorum',
+    lineBuild: 'İz bırakan',
     lineDigital: 'dijital',
-    lineExperiences: 'deneyimler',
+    lineExperiences: 'deneyimler inşa ediyorum',
     roleLine: 'Web Geliştirici',
     subtitle:
       'Fikirleri akılda kalan web sitelerine dönüştürüyorum – net, hızlı ve her cihazda. Tasarım ve kod tek elden: ilk taslaktan gerçek zamanlı 3D ve motion tasarıma, oradan temiz bir yayına kadar – birebir ilgiyle ve hazır şablon olmadan.',

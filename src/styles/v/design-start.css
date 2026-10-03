@@ -35,16 +35,29 @@
 }
 
 .ds-head {
-  /* Platz da: eine Zeile, mittig in beiden Richtungen. Eng: bricht von selbst um. */
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  /* Block als Ganzes mittig (beide Richtungen); die Zeilen darin gleich linksbuendig.
+     Erste Zeile = weisses Wort + Akzent als ein Stueck, damit der Akzent daneben bleibt.
+     data-one (fx/FitHeadline.tsx): passt in eine Zeile -> eine Zeile, sonst zwei. */
+  display: grid;
+  grid-template-columns: auto;
   justify-content: safe center;
   align-content: safe center;
+  justify-items: start;
+  align-items: baseline;
   column-gap: 0.3em;
   height: 100%;
-  text-align: center;
+  text-align: left;
   font-weight: var(--fw-regular);
+}
+
+.ds-head[data-one="true"] {
+  grid-template-columns: auto auto;
+}
+
+.ds-head .fit-line {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3em;
 }
 
 .ds-head .poster {
@@ -54,25 +67,6 @@
 .ds-head .whisper {
   font-size: var(--fs-poster-l);
   color: var(--brand-text);
-}
-
-/* Eng: die weissen Zeilen linksbuendig untereinander, "digitale" bleibt neben "Ich baue" */
-.blk-in:has(> .ds-head) {
-  container-type: inline-size;
-}
-
-@container (max-width: 600px) {
-  .ds-head {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: safe center;
-    align-items: baseline;
-    text-align: left;
-  }
-
-  .ds-head .poster:last-child {
-    grid-column: 1 / -1;
-  }
 }
 
 .blk .knock {
