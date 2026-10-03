@@ -43,7 +43,8 @@
   position: relative;
   height: 100%;
   min-height: var(--reel-min-h);
-  background: var(--ink-block);
+  /* gleicher warmer Ton wie die Themen-Kaesten (Amber: #302A12) */
+  background: var(--brand-block);
 }
 
 .in-reel {
