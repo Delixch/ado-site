@@ -8,9 +8,9 @@ import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Reel', cols: '1fr 1fr 0.8fr', areas: ['headline headline film', 'lede lede film', 'stats stats plate', 'safe safe safe'], rows: 'repeat(3, minmax(var(--spread-row), auto)) auto' },
-  { name: 'Story', cols: '0.8fr 1fr 1fr', areas: ['film headline headline', 'film lede lede', 'plate stats stats', 'safe safe safe'], rows: 'repeat(3, minmax(var(--spread-row), auto)) auto' },
-  { name: 'Feed', cols: '1fr 1fr 1fr', areas: ['headline film lede', 'plate film lede', 'stats stats stats', 'safe safe safe'], rows: 'minmax(var(--spread-row), auto) minmax(var(--spread-row), auto) auto auto' },
+  { name: 'Reel', cols: '1fr 1fr 0.8fr', areas: ['intro intro film', 'stats stats plate', 'safe safe safe'], rows: 'minmax(var(--spread-row), auto) auto auto' },
+  { name: 'Story', cols: '0.8fr 1fr 1fr', areas: ['film intro intro', 'plate stats stats', 'safe safe safe'], rows: 'minmax(var(--spread-row), auto) auto auto' },
+  { name: 'Feed', cols: '1fr 1fr 1fr', areas: ['intro film plate', 'stats stats stats', 'safe safe safe'], rows: 'minmax(var(--spread-row), auto) auto auto' },
 ];
 
 /** Daten & Sicherheit als ruhiger Streifen: sechs Kreise, Erklaerung nur beim Zeigen. */
@@ -25,21 +25,13 @@ export function InstaStart() {
 
   const blocks: Block[] = [
     {
-      id: 'headline',
+      id: 'intro',
       node: (
-        <h2 className="fs-head">
-          <span className="poster">{s.line1}</span>
-          <span className="whisper">
-            <em>{s.line2}</em>
-          </span>
-        </h2>
-      ),
-    },
-    {
-      id: 'lede',
-      node: (
-        <div className="ds-lede">
+        <div className="ds-lede in-intro">
           <span className="micro live">{s.eyebrow}</span>
+          <h2 className="in-intro-head">
+            {s.line1} <em>{s.line2}</em>
+          </h2>
           <p className="lede">{s.lede}</p>
           <div className="e-links">
             <button type="button" className="e-link" data-solid onClick={() => go('i-flow')}>

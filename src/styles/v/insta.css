@@ -1167,3 +1167,27 @@
 .op-ask .desk {
   padding: 0;
 }
+
+/* Uebersicht: Schlagzeile und Text in einem Baustein, Schrift ruhig statt riesig */
+.in-intro {
+  gap: var(--sp-4);
+}
+
+.in-intro-head {
+  margin: 0;
+  font-family: var(--font-poster);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-poster-m);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.in-intro-head em {
+  display: block;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.8em;
+  text-transform: none;
+  color: var(--brand-text);
+}
