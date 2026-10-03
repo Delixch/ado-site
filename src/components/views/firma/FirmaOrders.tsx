@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Mail, Package, Smartphone, Truck, Users } from 'lucide-react';
 import { useInView } from '../../../hooks/useInView';
 import { FlowNodes } from '../../fx/FlowNodes';
+import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -43,6 +44,7 @@ function useRun() {
 
 export function FirmaOrders() {
   const { t } = useView();
+  const statTile = useHoverTile();
   const a = t.f.about;
   const m = a.mock;
   const { ref, step, setStep } = useRun();
@@ -113,9 +115,10 @@ export function FirmaOrders() {
       id: 'stats',
       bleed: true,
       node: (
-        <div className="metrics">
+        <div className="metrics" {...statTile.list}>
           {STATS.map((v, i) => (
-            <div className="metric" key={i}>
+            <div className="metric" key={i} {...statTile.item(i)}>
+              <HoverTile {...statTile.at(i)} className="hover-tile hover-tile-in" />
               <span className="micro">{String(i + 1).padStart(2, '0')}</span>
               <span>
                 <span className="metric-v">{v}</span>

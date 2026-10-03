@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { Media } from '../../fx/Media';
+import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -13,6 +14,7 @@ const LAYOUTS: LayoutDef[] = [
 
 export function InstaStart() {
   const { t, go } = useView();
+  const statTile = useHoverTile();
   const s = t.i.start;
 
   const blocks: Block[] = [
@@ -58,9 +60,10 @@ export function InstaStart() {
       id: 'stats',
       bleed: true,
       node: (
-        <div className="metrics">
+        <div className="metrics" {...statTile.list}>
           {s.stats.map((x, i) => (
-            <div className="metric" key={x.l}>
+            <div className="metric" key={x.l} {...statTile.item(i)}>
+              <HoverTile {...statTile.at(i)} className="hover-tile hover-tile-in" />
               <span className="micro">{String(i + 1).padStart(2, '0')}</span>
               <span>
                 <span className="metric-v">{x.v}</span>

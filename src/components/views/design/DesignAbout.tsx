@@ -3,6 +3,7 @@ import { CONTACT_MAIL } from '../../../config';
 import { ABOUT_STATS, LAB_TAGS } from '../../../content/design-data';
 import { CountUp } from '../../common/CountUp';
 import { TypePortrait } from '../../fx/TypePortrait';
+import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -15,6 +16,7 @@ const LAYOUTS: LayoutDef[] = [
 
 export function DesignAbout() {
   const { t } = useView();
+  const statTile = useHoverTile();
   const a = t.d.about;
 
   const blocks: Block[] = [
@@ -65,9 +67,10 @@ export function DesignAbout() {
       id: 'stats',
       bleed: true,
       node: (
-        <div className="metrics">
+        <div className="metrics" {...statTile.list}>
           {ABOUT_STATS.map((s, i) => (
-            <div className="metric" key={i}>
+            <div className="metric" key={i} {...statTile.item(i)}>
+              <HoverTile {...statTile.at(i)} className="hover-tile hover-tile-in" />
               <span className="micro">{String(i + 1).padStart(2, '0')}</span>
               <span>
                 <span className="metric-v">
