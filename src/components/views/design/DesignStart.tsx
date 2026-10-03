@@ -1,4 +1,5 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { IntroCall } from '../../common/IntroCall';
 import { CONTACT_MAIL } from '../../../config';
 import { ABOUT_STATS } from '../../../content/design-data';
 import { FitHeadline } from '../../fx/FitHeadline';
@@ -62,6 +63,7 @@ export function DesignStart() {
             <a className="e-link" href={`mailto:${CONTACT_MAIL}`}>
               {h.ctaEmail.replace(/[↗↓]/g, '').trim()} <ArrowDown />
             </a>
+            <IntroCall contact="d-contact" />
           </div>
         </div>
       ),

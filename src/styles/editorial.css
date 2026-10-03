@@ -172,3 +172,28 @@
 .blk .lede {
   max-width: none;
 }
+
+/* Erstgespraech-Knopf (common/IntroCall.tsx): wie die anderen Links, in Themenfarbe, mit Kalender */
+.intro-call {
+  color: var(--brand-text);
+}
+
+.intro-call svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+/* in Bausteinen ganz rechts */
+.ex-detail > .intro-call,
+.fc-benefits > .intro-call,
+.intro-block > .intro-call {
+  align-self: flex-end;
+}
+
+.intro-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  gap: var(--sp-5);
+  height: 100%;
+}

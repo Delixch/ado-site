@@ -38,6 +38,12 @@ const shell = {
     choose: 'Auswählen',
     play: 'Video abspielen',
     pause: 'Video anhalten',
+    /** Erstgespraech-Knopf: oeffnet den Brief mit fertigem Betreff (kein Kalenderdienst). */
+    intro: {
+      cta: 'Kostenloses Erstgespräch · 15 Min.',
+      topic: 'Kostenloses Erstgespräch (15 Min.)',
+      when: 'Passende Zeiten für mich: ',
+    },
     letter: {
       greeting: 'Lieber ADO,',
       name: 'mein Name ist',
@@ -80,6 +86,11 @@ const shell = {
     choose: 'Seçin',
     play: 'Videoyu oynat',
     pause: 'Videoyu durdur',
+    intro: {
+      cta: 'Ücretsiz ön görüşme · 15 dk.',
+      topic: 'Ücretsiz ön görüşme (15 dk.)',
+      when: 'Bana uygun zamanlar: ',
+    },
     letter: {
       greeting: 'Sevgili ADO,',
       name: 'benim adım',

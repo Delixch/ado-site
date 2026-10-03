@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { IntroCall } from '../../common/IntroCall';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowDown, ArrowUpRight, CalendarDays, FolderOpen, Globe, Landmark, Package, Receipt } from 'lucide-react';
 import { CONTACT_MAIL } from '../../../config';
@@ -65,6 +66,7 @@ export function FirmaStart() {
             <a className="e-link" href={`mailto:${CONTACT_MAIL}`}>
               {h.ctaEmail.replace(/[↗↓]/g, '').trim()} <ArrowUpRight />
             </a>
+            <IntroCall contact="f-contact" />
           </div>
         </div>
       ),

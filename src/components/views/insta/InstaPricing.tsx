@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react';
+import { IntroCall } from '../../common/IntroCall';
 import { LetterDesk } from '../../common/Letter';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -23,6 +24,7 @@ export function InstaPricing() {
           <span className="micro">{p.eyebrow}</span>
           <h3 className="poster">{p.line2}</h3>
           <p className="lede">{p.lede}</p>
+          <IntroCall contact="i-pricing" here />
         </div>
       ),
     },

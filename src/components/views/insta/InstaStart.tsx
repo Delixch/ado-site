@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { IntroCall } from '../../common/IntroCall';
 import { Media } from '../../fx/Media';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
@@ -39,6 +40,7 @@ export function InstaStart() {
             <button type="button" className="e-link" data-solid onClick={() => go('i-flow')}>
               {s.cta} <ArrowRight />
             </button>
+            <IntroCall contact="i-pricing" />
           </div>
         </div>
       ),

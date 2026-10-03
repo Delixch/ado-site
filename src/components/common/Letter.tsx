@@ -1,8 +1,9 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { CONTACT_MAIL } from '../../config';
 import { useView } from '../ViewFrame';
+import { onIntroCall, takeIntroCall } from './IntroCall';
 
 export interface LetterLabels {
   namePlaceholder: string;
@@ -21,12 +22,29 @@ export function LetterDesk({ labels, to = 'ADO' }: { labels: LetterLabels; to?: 
   const { t } = useView();
   const L = t.ui.letter;
   const lang = t.lang;
-  const [v, setV] = useState({ name: '', email: '', message: '' });
+  const I = t.ui.intro;
+  const [intro, setIntro] = useState(takeIntroCall);
+  const [v, setV] = useState(() => ({ name: '', email: '', message: intro ? `${I.topic}
+${I.when}` : '' }));
   const [sealed, setSealed] = useState(false);
+  const area = useRef<HTMLTextAreaElement>(null);
+
+  // Erstgespraech-Knopf auf derselben Seite: Brief oeffnen und vorfuellen
+  useEffect(
+    () =>
+      onIntroCall(() => {
+        setSealed(false);
+        setIntro(true);
+        setV((cur) => ({ ...cur, message: `${I.topic}
+${I.when}` }));
+        window.setTimeout(() => area.current?.focus(), 500);
+      }),
+    [I.topic, I.when],
+  );
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`${labels.mailSubjectPrefix} ${v.name}`.trim());
+    const subject = encodeURIComponent(intro ? `${I.topic} · ${v.name}`.trim() : `${labels.mailSubjectPrefix} ${v.name}`.trim());
     const body = encodeURIComponent(`${L.greeting}\n\n${v.message}\n\n${L.bye}\n${v.name} · ${v.email}`);
     setSealed(true);
     window.setTimeout(() => {
@@ -81,6 +99,7 @@ export function LetterDesk({ labels, to = 'ADO' }: { labels: LetterLabels; to?: 
             </p>
             <p className="paper-line">{L.about}</p>
             <textarea
+              ref={area}
               className="ink-area"
               name="message"
               required

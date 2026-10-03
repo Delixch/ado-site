@@ -1,4 +1,5 @@
 import { ArrowUpRight, Github, Instagram, Mail, MapPin } from 'lucide-react';
+import { IntroCall } from '../../common/IntroCall';
 import { CONTACT_MAIL } from '../../../config';
 import { SOCIAL } from '../../../content/design-data';
 import { LetterDesk } from '../../common/Letter';
@@ -46,7 +47,15 @@ export function DesignContact() {
         </ul>
       ),
     },
-    { id: 'intro', node: <p className="lede drop">{c.intro}</p> },
+    {
+      id: 'intro',
+      node: (
+        <div className="intro-block">
+          <p className="lede drop">{c.intro}</p>
+          <IntroCall contact="d-contact" here />
+        </div>
+      ),
+    },
   ];
 
   return <Spread view="d-contact" head={{ folio: '07', kicker: c.eyebrow, line1: c.line1, line2: c.line2 }} blocks={blocks} layouts={LAYOUTS} />;
