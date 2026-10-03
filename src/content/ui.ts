@@ -139,7 +139,6 @@ export function texts(lang: Lang) {
     'f-contact': f.nav.contact,
     'i-start': i.nav.start,
     'i-flow': i.nav.flow,
-    'i-security': i.nav.security,
     'i-pricing': i.nav.pricing,
   };
   return { ui: s, menu, d, f, i, lang };

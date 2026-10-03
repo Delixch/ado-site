@@ -144,5 +144,5 @@ export function InstaPricing() {
     },
   ];
 
-  return <Spread view="i-pricing" head={{ folio: '05', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-pricing" head={{ folio: '04', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }

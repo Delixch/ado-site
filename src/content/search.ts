@@ -41,9 +41,8 @@ export function buildIndex(t: Texts) {
     'f-homepage': f.construction,
     'f-personnel': f.experience,
     'f-contact': f.contact,
-    'i-start': t.i.start,
+    'i-start': [t.i.start, t.i.security],
     'i-flow': [t.i.flow, t.i.features, t.i.process],
-    'i-security': t.i.security,
     'i-pricing': t.i.pricing,
   };
   return Object.entries(src).map(([id, v]) => ({ id, texts: [t.menu[id], ...leaves(v), ...(extra[id] ?? [])] }));

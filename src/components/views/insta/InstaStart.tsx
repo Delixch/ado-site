@@ -1,4 +1,5 @@
-import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, Database, KeyRound, Lock, RefreshCw, ShieldCheck, Trash2 } from 'lucide-react';
 import { IntroCall } from '../../common/IntroCall';
 import { Media } from '../../fx/Media';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
@@ -8,15 +9,20 @@ import { useView } from '../../ViewFrame';
 import { Shot } from './parts';
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Reel', cols: '1fr 1fr 0.8fr', areas: ['headline headline film', 'lede shot film', 'stats stats plate'] },
-  { name: 'Story', cols: '0.8fr 1fr 1fr', areas: ['film headline headline', 'film shot lede', 'plate stats stats'] },
-  { name: 'Feed', cols: '1fr 1fr 1fr', areas: ['headline film lede', 'shot film plate', 'stats stats stats'], rows: 'minmax(var(--spread-row), auto) minmax(var(--spread-row), auto) auto' },
+  { name: 'Reel', cols: '1fr 1fr 0.8fr', areas: ['headline headline film', 'lede shot film', 'stats stats plate', 'safe safe safe'], rows: 'repeat(3, minmax(var(--spread-row), auto)) auto' },
+  { name: 'Story', cols: '0.8fr 1fr 1fr', areas: ['film headline headline', 'film shot lede', 'plate stats stats', 'safe safe safe'], rows: 'repeat(3, minmax(var(--spread-row), auto)) auto' },
+  { name: 'Feed', cols: '1fr 1fr 1fr', areas: ['headline film lede', 'shot film plate', 'stats stats stats', 'safe safe safe'], rows: 'minmax(var(--spread-row), auto) minmax(var(--spread-row), auto) auto auto' },
 ];
+
+/** Daten & Sicherheit als ruhiger Streifen: sechs Kreise, Erklaerung nur beim Zeigen. */
+const SAFE_ICONS = [Database, Lock, ShieldCheck, RefreshCw, Trash2, KeyRound];
 
 export function InstaStart() {
   const { t, go } = useView();
   const statTile = useHoverTile();
   const s = t.i.start;
+  const sec = t.i.security;
+  const [safeHint, setSafeHint] = useState<string | null>(null);
 
   const blocks: Block[] = [
     {
@@ -77,6 +83,44 @@ export function InstaStart() {
       ),
     },
     { id: 'plate', tone: 'media', bleed: true, node: <Plate name="phone" caption={s.eyebrow} /> },
+    {
+      id: 'safe',
+      tone: 'deep',
+      node: (
+        <div className="safe">
+          <div className="safe-head">
+            <span className="micro">
+              <b>{sec.eyebrow}</b> · {sec.line1} {sec.line2}
+            </span>
+          </div>
+          <ol className="safe-track">
+            {sec.items.map((it, i) => {
+              const I = SAFE_ICONS[i];
+              return (
+                <li key={it.t}>
+                  <span
+                    className="safe-node"
+                    tabIndex={0}
+                    onPointerEnter={() => setSafeHint(it.d)}
+                    onPointerLeave={() => setSafeHint(null)}
+                    onFocus={() => setSafeHint(it.d)}
+                    onBlur={() => setSafeHint(null)}
+                  >
+                    <span className="safe-dot">
+                      <I />
+                    </span>
+                    <span className="safe-t">{it.t}</span>
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+          <p className="safe-hint" aria-live="polite">
+            {safeHint ?? sec.hint}
+          </p>
+        </div>
+      ),
+    },
   ];
 
   return <Spread view="i-start" head={{ folio: '00', kicker: 'ADO InstaOto', line1: s.line1, line2: s.line2 }} blocks={blocks} layouts={LAYOUTS} />;
