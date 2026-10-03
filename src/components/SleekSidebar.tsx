@@ -79,6 +79,7 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
       data-expanded={isExpanded}
       aria-label="Navigation"
     >
+      <span className="sb-orbit" aria-hidden />
       {/* 1. Üst kontrol başlığı */}
       {isExpanded ? (
         <div className="sb-head">

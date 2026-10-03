@@ -836,3 +836,44 @@
     animation: none;
   }
 }
+
+/* Umlaufende Lichtlinie: feine Linie in Themenfarbe, kreist langsam um das Menue */
+@property --sb-orbit-a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.sb > .sb-orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: var(--sb-orbit-w);
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--sb-orbit-a),
+    transparent 0%,
+    transparent 62%,
+    color-mix(in srgb, var(--brand) 40%, transparent) 80%,
+    var(--brand) 92%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  filter: drop-shadow(0 0 var(--sb-orbit-glow) var(--brand));
+  animation: sb-orbit var(--sb-orbit-dur) linear infinite;
+}
+
+@keyframes sb-orbit {
+  to {
+    --sb-orbit-a: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb > .sb-orbit {
+    animation: none;
+  }
+}

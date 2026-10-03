@@ -285,6 +285,10 @@
 /* Buzlu cam menu (sidebar.css "Eis-Glas") */
 :root {
   --sb-blur: 30px;
+  /* Umlaufende Lichtlinie am Menuerand */
+  --sb-orbit-w: 1.5px;
+  --sb-orbit-dur: 16s;
+  --sb-orbit-glow: 6px;
   /* Impressum / Datenschutz (Dialog) */
   --legal-w: 680px;
   --legal-h: 86vh;
