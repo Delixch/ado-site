@@ -1111,3 +1111,47 @@
 .sb .sb-glow {
   display: none;
 }
+
+/* Handy: Gruppentitel bleiben sichtbar - obere kleben oben, untere unten,
+   die Seiten der offenen Gruppe laufen dazwischen durch. */
+@media (max-width: 719.98px) {
+  /* das ganze Panel scrollt (nicht nur die Liste) - so bleibt Platz fuer die Seiten */
+  .sb-slot[data-open="true"] .sb[data-expanded="true"] {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .sb[data-expanded="true"] .sb-nav {
+    flex: none;
+    gap: 0;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .sb[data-expanded="true"] .sb-section {
+    display: contents;
+  }
+
+  /* Liste ist ein Flex-Container mit fester Hoehe: Eintraege nicht quetschen */
+  .sb[data-expanded="true"] .sb-nav > *,
+  .sb[data-expanded="true"] .sb-section > * {
+    flex-shrink: 0;
+  }
+
+  .sb[data-expanded="true"] .sb-section-toggle {
+    position: sticky;
+    z-index: 3;
+    top: calc(var(--gi) * var(--sb-group-h));
+    bottom: calc((var(--gn) - 1 - var(--gi)) * var(--sb-group-h));
+    height: var(--sb-group-h);
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background: var(--surface-solid);
+  }
+
+  .sb[data-expanded="true"] .sb-section-toggle + .sb-items {
+    padding-bottom: var(--sp-4);
+  }
+}

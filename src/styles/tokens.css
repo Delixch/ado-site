@@ -305,6 +305,8 @@
   --runner-size: 9px;
   --runner-dur: 9s;
   --sb-rail-w: 64px;
+  /* Handy-Menue: Hoehe eines Gruppentitels (kleben oben/unten) */
+  --sb-group-h: 46px;
   /* Breite des offenen Menues (App.tsx expandedWidth) */
   --sb-w: 275px;
   --sb-ring-w: 1.5px;

@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Check } from 'lucide-react';
+import { Check, ChevronDown } from 'lucide-react';
 import { calLabel, reportInfo, reportMonths } from '../../../content/firma-extra';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { openSheet } from '../../spread/sheet';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
+import { useMode } from '../../../hooks/useMode';
 
 const LAYOUTS: LayoutDef[] = [
   { name: 'Dossier', cols: '1fr 1fr 1fr', areas: ['docs docs freq', 'docs docs cal', 'intro count cal', 'intro plate plate'] },
@@ -22,6 +23,7 @@ export function FirmaReports() {
   const d = r.doc;
   const [top, setTop] = useState(0);
   const monthTile = useHoverTile();
+  const mobile = useMode() === 'mobile';
   const [stamped, setStamped] = useState(false);
   const touched = useRef(0);
   const perYear = r.reports.reduce((sum, x) => sum + parseInt(x.freq, 10), 0);
@@ -64,12 +66,94 @@ export function FirmaReports() {
     setTop(i);
   };
 
+  const docCard = (it: (typeof d.items)[number], i: number, depth: number) => (
+    <motion.article
+      key={it.title}
+      className="doc"
+      animate={{ y: depth * -14, x: depth * 10, rotate: depth === 0 ? -0.6 : depth * 2.2, scale: 1 - depth * 0.04, opacity: depth > 1 ? 0.55 : 1 }}
+      transition={spring}
+      style={{ zIndex: 10 - depth }}
+      onClick={() => depth && pick(i)}
+      aria-hidden={depth !== 0}
+    >
+      <header className="doc-head">
+        <span className="micro">
+          <b>{d.kicker}</b> · {it.year}
+        </span>
+        <h3 className="poster">{it.title}</h3>
+        <span className="micro">{it.recipient}</span>
+      </header>
+      <ol className="doc-steps micro">
+        {d.steps.map((st, k) => (
+          <li key={st} data-on={depth === 0 && (stamped || k < 2)}>
+            <Check /> {st}
+          </li>
+        ))}
+      </ol>
+      <dl className="doc-fields">
+        {it.fields.map((f) => (
+          <div key={f.label}>
+            <dt className="micro">{f.label}</dt>
+            <dd>{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="doc-src micro">
+        {d.sourcesLabel}: {it.sources.join(' · ')}
+      </p>
+      <p className="doc-deadline whisper">{it.deadline}</p>
+      <AnimatePresence>
+        {depth === 0 && stamped && (
+          <motion.span
+            key="stamp"
+            className="doc-stamp"
+            initial={{ scale: 2, opacity: 0, rotate: -20 }}
+            animate={{ scale: 1, opacity: 1, rotate: -9 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 16 }}
+          >
+            <b>{d.stamp}</b>
+            <span>{it.stampDate}</span>
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.article>
+  );
+
   const blocks: Block[] = [
     {
       id: 'docs',
       tone: 'deep',
       node: (
         <div className="rp-docs">
+          {mobile ? (
+            <div className="rp-acc">
+              {d.items.map((it, i) => (
+                <div key={it.title} className="rp-acc-item" data-open={i === top}>
+                  <button type="button" className="rp-acc-btn" aria-expanded={i === top} onClick={() => pick(i)}>
+                    <span className="micro">{it.year}</span>
+                    {it.title}
+                    <ChevronDown aria-hidden />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {i === top && (
+                      <motion.div
+                        key="doc"
+                        className="rp-acc-body"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        {docCard(it, i, 0)}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          ) : (
+          <>
           <div className="rp-tabs" role="tablist">
             {d.items.map((it, i) => (
               <button type="button" role="tab" key={it.title} aria-selected={i === top} onClick={() => pick(i)}>
@@ -81,61 +165,11 @@ export function FirmaReports() {
           <div className="rp-stack">
             {d.items.map((it, i) => {
               const depth = (i - top + d.items.length) % d.items.length;
-              return (
-                <motion.article
-                  key={it.title}
-                  className="doc"
-                  animate={{ y: depth * -14, x: depth * 10, rotate: depth === 0 ? -0.6 : depth * 2.2, scale: 1 - depth * 0.04, opacity: depth > 1 ? 0.55 : 1 }}
-                  transition={spring}
-                  style={{ zIndex: 10 - depth }}
-                  onClick={() => depth && pick(i)}
-                  aria-hidden={depth !== 0}
-                >
-                  <header className="doc-head">
-                    <span className="micro">
-                      <b>{d.kicker}</b> · {it.year}
-                    </span>
-                    <h3 className="poster">{it.title}</h3>
-                    <span className="micro">{it.recipient}</span>
-                  </header>
-                  <ol className="doc-steps micro">
-                    {d.steps.map((st, k) => (
-                      <li key={st} data-on={depth === 0 && (stamped || k < 2)}>
-                        <Check /> {st}
-                      </li>
-                    ))}
-                  </ol>
-                  <dl className="doc-fields">
-                    {it.fields.map((f) => (
-                      <div key={f.label}>
-                        <dt className="micro">{f.label}</dt>
-                        <dd>{f.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  <p className="doc-src micro">
-                    {d.sourcesLabel}: {it.sources.join(' · ')}
-                  </p>
-                  <p className="doc-deadline whisper">{it.deadline}</p>
-                  <AnimatePresence>
-                    {depth === 0 && stamped && (
-                      <motion.span
-                        key="stamp"
-                        className="doc-stamp"
-                        initial={{ scale: 2, opacity: 0, rotate: -20 }}
-                        animate={{ scale: 1, opacity: 1, rotate: -9 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 16 }}
-                      >
-                        <b>{d.stamp}</b>
-                        <span>{it.stampDate}</span>
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.article>
-              );
+              return docCard(it, i, depth);
             })}
           </div>
+          </>
+          )}
         </div>
       ),
     },

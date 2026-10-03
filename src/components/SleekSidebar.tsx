@@ -214,8 +214,12 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
             t={t}
           />
         )}
-        {isExpanded && sections.map((section) => (
-          <div key={section.group} className="sb-section">
+        {isExpanded && sections.map((section, gi) => (
+          <div
+            key={section.group}
+            className="sb-section"
+            style={{ ['--gi' as string]: gi, ['--gn' as string]: sections.length }}
+          >
             {accordion ? (
               <button
                 type="button"
