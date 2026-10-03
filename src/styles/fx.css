@@ -250,11 +250,11 @@
 }
 
 /* Kachel-Effekt (fx/HoverTile.tsx): Quadrat hinter der Karte unter dem Zeiger */
-[data-hover-tile] > li {
+[data-hover-tile] > * {
   position: relative;
 }
 
-[data-hover-tile] > li > :not(.hover-tile) {
+[data-hover-tile] > * > :not(.hover-tile) {
   position: relative;
   z-index: 1;
 }
@@ -280,4 +280,9 @@
   background: color-mix(in srgb, var(--brand) 20%, transparent);
   border: var(--hair) solid color-mix(in srgb, var(--brand) 30%, transparent);
   pointer-events: none;
+}
+
+/* Variante innen: das Quadrat bleibt in der Kachel (Kennzahlen) */
+.hover-tile.hover-tile-in {
+  inset: var(--hover-tile-in);
 }

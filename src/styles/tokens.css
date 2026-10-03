@@ -290,6 +290,7 @@
   --sb-blur: 30px;
   /* Kachel-Effekt: so weit ragt das Quadrat hinter der Karte hervor */
   --hover-tile-out: 8px;
+  --hover-tile-in: 6px;
   /* Quadrat, das auf der linken Kante der Doppelseite auf und ab faehrt */
   --runner-size: 9px;
   --runner-dur: 9s;

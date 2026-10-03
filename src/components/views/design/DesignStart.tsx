@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { CONTACT_MAIL } from '../../../config';
 import { ABOUT_STATS } from '../../../content/design-data';
+import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { SlitMedia } from '../../fx/SlitMedia';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
@@ -14,6 +15,7 @@ const LAYOUTS: LayoutDef[] = [
 
 export function DesignStart() {
   const { t, go } = useView();
+  const statTile = useHoverTile();
   const h = t.d.hero;
 
   const blocks: Block[] = [
@@ -85,9 +87,10 @@ export function DesignStart() {
       id: 'stats',
       bleed: true,
       node: (
-        <div className="metrics">
+        <div className="metrics" {...statTile.list}>
           {ABOUT_STATS.map((s, i) => (
-            <div className="metric" key={i}>
+            <div className="metric" key={i} {...statTile.item(i)}>
+              <HoverTile {...statTile.at(i)} className="hover-tile hover-tile-in" />
               <span className="micro">{String(i + 1).padStart(2, '0')}</span>
               <span>
                 <span className="metric-v">
