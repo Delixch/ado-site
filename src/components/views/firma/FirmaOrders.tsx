@@ -90,7 +90,7 @@ export function FirmaOrders() {
             <span>{a.flow.app}</span>
             <span>{a.flow.suppliers}</span>
           </div>
-          <FlowNodes items={items} active={step} onPick={setStep} cols={3} place={PLACE} links={LINKS} />
+          <FlowNodes items={items} active={step} onPick={setStep} cols={3} place={PLACE} links={LINKS} hoverTile />
         </div>
       ),
     },

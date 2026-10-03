@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { Fragment, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { HoverTile, useHoverTile } from './HoverTile';
 
 /**
  * Knoten im Zickzack, verbunden durch rechtwinklige Leitungen mit wanderndem Lichtpunkt
@@ -11,6 +12,7 @@ export function FlowNodes({
   cols = 2,
   place,
   links,
+  hoverTile = false,
 }: {
   items: ReactNode[];
   active: number;
@@ -20,7 +22,10 @@ export function FlowNodes({
   place?: { col: number; row: number }[];
   /** Eigene Verbindungen [von, nach]; sonst der Reihe nach. */
   links?: [number, number][];
+  /** Kachel-Effekt: Quadrat folgt dem Zeiger hinter den Karten. */
+  hoverTile?: boolean;
 }) {
+  const tile = useHoverTile();
   const box = useRef<HTMLDivElement>(null);
   const nodes = useRef<(HTMLButtonElement | null)[]>([]);
   const [geo, setGeo] = useState<{ w: number; h: number; paths: string[] }>({ w: 0, h: 0, paths: [] });
@@ -69,7 +74,7 @@ export function FlowNodes({
   }, [items.length, cols, place, links]);
 
   return (
-    <div ref={box} className="steps" style={{ ['--flow-cols' as string]: cols }}>
+    <div ref={box} className="steps" style={{ ['--flow-cols' as string]: cols }} onPointerLeave={hoverTile ? tile.list.onPointerLeave : undefined}>
       <svg className="steps-wires" width={geo.w} height={geo.h} viewBox={`0 0 ${geo.w || 1} ${geo.h || 1}`} aria-hidden>
         {geo.paths.map((d, i) => (
           <g key={i} data-lit={links ? (links[i][1] <= active) : i < active}>
@@ -80,25 +85,31 @@ export function FlowNodes({
           </g>
         ))}
       </svg>
-      {items.map((node, i) => (
-        <button
-          type="button"
-          key={i}
-          ref={(n) => {
-            nodes.current[i] = n;
-          }}
-          className="step"
-          data-side={i % cols}
-          data-done={i <= active}
-          aria-pressed={i === active}
-          onClick={() => onPick(i)}
-          style={place ? { gridColumn: place[i].col, gridRow: place[i].row } : { gridColumn: (i % cols) + 1, gridRow: i + 1 }}
-        >
-          <span className="step-pin step-pin-in" aria-hidden />
-          {node}
-          <span className="step-pin step-pin-out" aria-hidden />
-        </button>
-      ))}
+      {items.map((node, i) => {
+        const cell = place ? { gridColumn: place[i].col, gridRow: place[i].row } : { gridColumn: (i % cols) + 1, gridRow: i + 1 };
+        return (
+          <Fragment key={i}>
+            {hoverTile && <HoverTile {...tile.at(i)} className="hover-tile-cell" style={cell} />}
+            <button
+              type="button"
+              ref={(n) => {
+                nodes.current[i] = n;
+              }}
+              className="step"
+              data-side={i % cols}
+              data-done={i <= active}
+              aria-pressed={i === active}
+              onClick={() => onPick(i)}
+              onPointerEnter={hoverTile ? tile.item(i).onPointerEnter : undefined}
+              style={cell}
+            >
+              <span className="step-pin step-pin-in" aria-hidden />
+              {node}
+              <span className="step-pin step-pin-out" aria-hidden />
+            </button>
+          </Fragment>
+        );
+      })}
     </div>
   );
 }

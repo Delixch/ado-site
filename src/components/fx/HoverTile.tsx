@@ -22,12 +22,24 @@ export function useHoverTile() {
   };
 }
 
-export function HoverTile({ show, group }: { show: boolean; group: string }) {
+export function HoverTile({
+  show,
+  group,
+  className = 'hover-tile',
+  style,
+}: {
+  show: boolean;
+  group: string;
+  /** 'hover-tile' (absolut in der Karte) oder 'hover-tile-cell' (eigene Rasterzelle hinter der Karte). */
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   return (
     <AnimatePresence>
       {show && (
         <motion.span
-          className="hover-tile"
+          className={className}
+          style={style}
           aria-hidden
           layoutId={`hover-tile-${group}`}
           transition={{ type: 'spring', bounce: 0, duration: 0.3 }}

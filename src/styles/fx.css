@@ -269,3 +269,15 @@
   border: var(--hair) solid color-mix(in srgb, var(--brand) 30%, transparent);
   pointer-events: none;
 }
+
+/* Variante als eigene Rasterzelle (FlowNodes): liegt in derselben Zelle hinter der Karte */
+.hover-tile-cell {
+  position: relative;
+  z-index: 0;
+  display: block;
+  margin: calc(var(--hover-tile-out) * -1);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--brand) 20%, transparent);
+  border: var(--hair) solid color-mix(in srgb, var(--brand) 30%, transparent);
+  pointer-events: none;
+}
