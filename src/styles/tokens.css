@@ -285,7 +285,9 @@
 /* Buzlu cam menu (sidebar.css "Eis-Glas") */
 :root {
   --sb-blur: 30px;
+  --sb-rail-w: 64px;
   --sb-ring-w: 1.5px;
+  --sb-ring-pad: 5px;
   --sb-ring-glow: 8px;
   --sb-ring-glow-on: 14px;
   --sb-tree-x: 6px;

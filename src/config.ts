@@ -31,3 +31,6 @@ export const BAND_FX = '11';
  * 1 = feiner Ring um das Gruppensymbol · 2 = Baumlinie zu den Seiten · 3 = Trennlinie mit Buchstabe
  */
 export const RAIL_STYLE = '1';
+
+/** Breite des eingeklappten Menues in px (gleich wie --sb-rail-w in tokens.css). */
+export const RAIL_WIDTH = 64;

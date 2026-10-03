@@ -126,7 +126,7 @@
 @media (min-width: 720px) and (max-width: 1179.98px) {
   .app {
     --gutter: 16px;
-    padding-left: calc(var(--gutter) + 74px + 16px);
+    padding-left: calc(var(--gutter) + var(--sb-rail-w) + 16px);
   }
 
   .sb-slot {

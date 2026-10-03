@@ -917,7 +917,7 @@
 
 .sb[data-rail="1"] .sb-rail-btn .sb-icon {
   box-sizing: content-box;
-  padding: var(--sp-2);
+  padding: var(--sb-ring-pad);
   border-radius: 50%;
   border: var(--sb-ring-w) solid var(--brand);
   color: var(--brand-text);
@@ -1019,4 +1019,18 @@
 .sb[data-expanded="false"] .sb-rail-items .sb-item[data-active="true"] .sb-icon {
   color: var(--brand-text);
   filter: none;
+}
+
+/* Eingeklappt schmaler: weniger Polster um die Symbole */
+.sb[data-expanded="false"] {
+  padding-left: var(--sp-2);
+  padding-right: var(--sp-2);
+}
+
+.sb[data-expanded="false"] .sb-rail-group .sb-item {
+  padding: var(--sp-2) 0;
+}
+
+.sb[data-expanded="false"] .sb-rail {
+  gap: var(--sp-1);
 }

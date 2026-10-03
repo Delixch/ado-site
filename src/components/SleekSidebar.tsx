@@ -5,7 +5,7 @@ import { ALL_ITEMS, MENU_SECTIONS, type MenuItemDef } from '../content/menu';
 import { buildIndex, searchSite } from '../content/search';
 import type { Texts } from '../content/ui';
 import { getStoredAvatar, setStoredAvatar } from '../avatar';
-import { RAIL_STYLE } from '../config';
+import { RAIL_STYLE, RAIL_WIDTH } from '../config';
 
 const railParam = new URLSearchParams(window.location.search).get('rail');
 const RAIL = railParam && /^[1-3]$/.test(railParam) ? railParam : RAIL_STYLE;
@@ -77,7 +77,7 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
     <motion.aside
       initial={false}
       animate={{
-        width: isExpanded ? expandedWidth : 74,
+        width: isExpanded ? expandedWidth : RAIL_WIDTH,
         transition: { type: 'spring', stiffness: 350, damping: 30 },
       }}
       className="sb"
