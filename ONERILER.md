@@ -41,9 +41,6 @@ Vercel Analytics (çerezsiz, DSG uyumlu): hangi sayfa, hangi tema, hangi ışık
 
 ## 4. Güven ve yasal
 
-**4.2 Güven işaretleri** · emek: küçük
-"Daten in der EU (Frankfurt)", "Schweizer Ansprechpartner", "kein Abo" — küçük rozetler halinde fiyat/talep sayfalarında.
-
 ## 5. Ürün (instagramoto)
 
 **5.1 Panelden mesaj gönderme** · emek: büyük
@@ -69,7 +66,6 @@ Firma ve InstaOto videolarından 15 saniyelik Reels kesimleri (her bölüm bir R
 ---
 
 ## Önerilen sıra (ilk 2 hafta)
-1. Güven rozetleri (4.2)
 2. SSS (2.2)
 3. Ölçüm (3.3)
 4. Bölüm adresleri / SEO (3.1)
