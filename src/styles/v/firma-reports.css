@@ -271,12 +271,6 @@
   --hover-tile-out: var(--sp-1);
 }
 
-/* Handy: Belegstapel etwas schmaler, damit die gefaecherten hinteren Belege nicht rechts abgeschnitten werden */
-@media (max-width: 719.98px) {
-  .doc {
-    max-width: calc(100% - var(--sp-6));
-  }
-}
 
 /* Handy: Belege als Akkordeon - Beleg erscheint direkt unter seiner Zeile */
 .rp-acc {
@@ -294,7 +288,7 @@
   align-items: center;
   gap: var(--sp-3);
   width: 100%;
-  min-height: var(--sb-group-h);
+  min-height: var(--acc-row-h);
   padding: var(--sp-2) 0;
   font-family: var(--font-editorial);
   font-size: var(--fs-whisper-s);
@@ -322,7 +316,11 @@
   overflow: hidden;
 }
 
+/* im Akkordeon: gerade, ohne Stapelschatten, kein Klick (sonst Ecken abgeschnitten) */
 .rp-acc-body .doc {
   max-width: none;
   margin: var(--sp-1) 0 var(--sp-4);
+  transform: none !important;
+  box-shadow: none;
+  cursor: default;
 }

@@ -173,7 +173,7 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
       </div>
 
       {/* 4. Menü: önce portfolyo, altında firma */}
-      <nav className="sb-nav">
+      <nav className="sb-nav" style={{ ['--gn' as string]: sections.length }}>
         {sections.length === 0 && hits.length === 0 && <div className="sb-empty">{t.ui.noResults}</div>}
         {isExpanded && hits.length > 0 && (
           <div className="sb-section sb-hits">
@@ -218,7 +218,7 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
           <div
             key={section.group}
             className="sb-section"
-            style={{ ['--gi' as string]: gi, ['--gn' as string]: sections.length }}
+            style={{ ['--gi' as string]: gi }}
           >
             {accordion ? (
               <button

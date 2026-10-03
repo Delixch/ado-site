@@ -22,8 +22,9 @@ export function FirmaReports() {
   const r = t.f.repos;
   const d = r.doc;
   const [top, setTop] = useState(0);
-  const monthTile = useHoverTile();
   const mobile = useMode() === 'mobile';
+  const [accOpen, setAccOpen] = useState(0);
+  const monthTile = useHoverTile();
   const [stamped, setStamped] = useState(false);
   const touched = useRef(0);
   const perYear = r.reports.reduce((sum, x) => sum + parseInt(x.freq, 10), 0);
@@ -55,11 +56,22 @@ export function FirmaReports() {
   }, [top]);
 
   useEffect(() => {
+    // Handy: kein Selbstwechsel - das Akkordeon wuerde sonst auf- und zuklappen und die Seite springen
+    if (mobile) return;
     const id = window.setInterval(() => {
       if (Date.now() - touched.current > 10000) setTop((x) => (x + 1) % d.items.length);
     }, 5200);
     return () => window.clearInterval(id);
-  }, [d.items.length]);
+  }, [d.items.length, mobile]);
+
+  const toggleAcc = (i: number) => {
+    if (accOpen === i) {
+      setAccOpen(-1);
+      return;
+    }
+    setAccOpen(i);
+    pick(i);
+  };
 
   const pick = (i: number) => {
     touched.current = Date.now();
@@ -129,14 +141,14 @@ export function FirmaReports() {
           {mobile ? (
             <div className="rp-acc">
               {d.items.map((it, i) => (
-                <div key={it.title} className="rp-acc-item" data-open={i === top}>
-                  <button type="button" className="rp-acc-btn" aria-expanded={i === top} onClick={() => pick(i)}>
+                <div key={it.title} className="rp-acc-item" data-open={i === accOpen}>
+                  <button type="button" className="rp-acc-btn" aria-expanded={i === accOpen} onClick={() => toggleAcc(i)}>
                     <span className="micro">{it.year}</span>
                     {it.title}
                     <ChevronDown aria-hidden />
                   </button>
                   <AnimatePresence initial={false}>
-                    {i === top && (
+                    {i === accOpen && (
                       <motion.div
                         key="doc"
                         className="rp-acc-body"

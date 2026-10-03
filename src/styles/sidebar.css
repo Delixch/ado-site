@@ -1129,8 +1129,18 @@
     mask-image: none;
   }
 
-  .sb[data-expanded="true"] .sb-section {
+  .sb[data-expanded="true"] .sb-section:not(.sb-hits) {
     display: contents;
+  }
+
+  /* Suchtreffer behalten ihren Abstand */
+  .sb[data-expanded="true"] .sb-hits {
+    margin-bottom: var(--sp-4);
+  }
+
+  /* Lichtlinie wuerde sonst mit dem Inhalt mitscrollen */
+  .sb-slot[data-open="true"] .sb > .sb-orbit {
+    display: none;
   }
 
   /* Liste ist ein Flex-Container mit fester Hoehe: Eintraege nicht quetschen */
@@ -1142,8 +1152,9 @@
   .sb[data-expanded="true"] .sb-section-toggle {
     position: sticky;
     z-index: 3;
-    top: calc(var(--gi) * var(--sb-group-h));
-    bottom: calc((var(--gn) - 1 - var(--gi)) * var(--sb-group-h));
+    /* minus Innenabstand des Panels (oben 6px, unten 10px), damit nichts durchscheint */
+    top: calc(var(--gi) * var(--sb-group-h) - var(--sb-pad-top));
+    bottom: calc((var(--gn) - 1 - var(--gi)) * var(--sb-group-h) - var(--sb-pad-bottom));
     height: var(--sb-group-h);
     margin: 0;
     padding-top: 0;
@@ -1151,7 +1162,8 @@
     background: var(--surface-solid);
   }
 
-  .sb[data-expanded="true"] .sb-section-toggle + .sb-items {
-    padding-bottom: var(--sp-4);
+  /* Abstand ueber das letzte Element, damit das Zuklappen bis 0 laeuft */
+  .sb[data-expanded="true"] .sb-section-toggle + .sb-items > :last-child {
+    margin-bottom: var(--sp-4);
   }
 }
