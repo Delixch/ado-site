@@ -122,6 +122,9 @@
 }
 
 .metric-v {
+  /* nur die grosse Zahl mittig; Nummer und Beschriftung bleiben links */
+  display: block;
+  text-align: center;
   font-family: var(--font-poster);
   font-size: var(--fs-metric);
   line-height: var(--lh-poster);
