@@ -689,3 +689,16 @@
     margin-bottom: var(--sp-8);
   }
 }
+
+/* Menue: anfangs hell und klar, beim Zeigen in Themenfarbe (Kundenwunsch 2026-10-03) */
+.sb-item {
+  color: var(--ink);
+}
+
+.sb-item:hover {
+  color: var(--brand-text);
+}
+
+.sb-item:hover .sb-count {
+  color: var(--brand-text);
+}
