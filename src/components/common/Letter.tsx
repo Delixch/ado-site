@@ -18,13 +18,13 @@ export interface LetterLabels {
  * Kein Formular, sondern ein Brief: man schreibt direkt in die Luecken auf dem Papier.
  * Das Wachssiegel ist der Senden-Knopf; danach faltet sich der Brief und wird versiegelt.
  */
-export function LetterDesk({ labels, to = 'ADO' }: { labels: LetterLabels; to?: string }) {
+export function LetterDesk({ labels, to = 'ADO', topic: given }: { labels: LetterLabels; to?: string; /** fertiger Betreff, z. B. gewaehltes Paket */ topic?: string }) {
   const { t } = useView();
   const L = t.ui.letter;
   const lang = t.lang;
   const I = t.ui.intro;
-  const [wish] = useState(takeIntroCall);
-  const [topic, setTopic] = useState<string | null>(wish ? (wish.topic ?? I.topic) : null);
+  const [wish] = useState(() => (given ? null : takeIntroCall()));
+  const [topic, setTopic] = useState<string | null>(given ?? (wish ? (wish.topic ?? I.topic) : null));
   const [v, setV] = useState(() => ({ name: '', email: '', message: topic ? `${topic}
 ${I.when}` : '' }));
   const [sealed, setSealed] = useState(false);

@@ -1,28 +1,37 @@
 import { useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Check, Clock, Target, UserRound, Wrench } from 'lucide-react';
-import { IntroCall } from '../../common/IntroCall';
+import { ArrowLeft, CalendarClock, Check, Clock, Target, UserRound, Wrench } from 'lucide-react';
+import { takeIntroCall } from '../../common/IntroCall';
 import { LetterDesk } from '../../common/Letter';
 import { TrustBadges } from '../../common/TrustBadges';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Halo', cols: '1fr 1fr 1fr', areas: ['plans plans offer', 'desk desk desk'], rows: 'auto auto' },
-  { name: 'Open', cols: '1fr 1fr 1fr', areas: ['offer plans plans', 'desk desk desk'], rows: 'auto auto' },
-  { name: 'Letter', cols: '1fr 1fr 1fr', areas: ['desk desk offer', 'plans plans plans'], rows: 'auto auto' },
+  { name: 'Halo', cols: '1fr 1fr 1fr', areas: ['plans plans offer'] },
+  { name: 'Open', cols: '1fr 1fr 1fr', areas: ['offer plans plans'] },
+  { name: 'Wide', cols: '1fr 1fr 1fr', areas: ['plans plans plans', 'offer offer offer'], rows: 'auto auto' },
 ];
 
 /** Paket waehlen -> darunter alles zu genau diesem Paket: Ziel, was Sie mitbringen, was wir erledigen, Preis, Dauer. */
 export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
   const { t } = useView();
   const p = t.i.pricing;
+  const I = t.ui.intro;
   const [sel, setSel] = useState('komplett');
+  // Brief erscheint unter den Paketen statt des Paketblatts (Erstgespraech von der Uebersicht: gleich offen)
+  const [ask, setAsk] = useState<string | null>(() => {
+    const w = takeIntroCall();
+    return w ? (w.topic ?? I.topic) : null;
+  });
+  const open = (topic: string) => {
+    setAsk(topic);
+    window.setTimeout(() => document.querySelector('.op .desk')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+  };
   const plan = p.plans.find((x) => x.id === sel) ?? p.plans[0];
   const unit = (care: boolean) => (care ? `/ ${p.perMonth}` : p.once);
 
   const blocks: Block[] = [
-    { id: 'desk', tone: 'deep', node: <LetterDesk labels={p.form} to="ADO InstaOto" /> },
     {
       id: 'offer',
       tone: 'brand',
@@ -34,7 +43,9 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
             {p.line1} {p.line2}
           </h3>
           <p className="lede">{p.lede}</p>
-          <IntroCall contact="i-flow" here />
+          <button type="button" className="e-link intro-call" onClick={() => open(I.topic)}>
+            <CalendarClock /> {I.cta}
+          </button>
           <TrustBadges product="insta" />
         </div>
       ),
@@ -51,7 +62,10 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
                   {p.plans
                     .filter((x) => x.care === care)
                     .map((x) => (
-                      <button key={x.id} type="button" className="op-btn" aria-pressed={x.id === sel} onClick={() => setSel(x.id)}>
+                      <button key={x.id} type="button" className="op-btn" aria-pressed={x.id === sel} onClick={() => {
+                          setSel(x.id);
+                          setAsk(null);
+                        }}>
                         <span className="op-name">{x.name}</span>
                         <span className="op-price">{x.price}.–</span>
                         <span className="op-unit">{unit(x.care)}</span>
@@ -64,6 +78,21 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
           </div>
 
           <AnimatePresence mode="wait">
+            {ask ? (
+              <motion.div
+                key="ask"
+                className="op-ask"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <button type="button" className="e-link op-back" onClick={() => setAsk(null)}>
+                  <ArrowLeft /> {p.back}
+                </button>
+                <LetterDesk key={ask} labels={p.form} to="ADO InstaOto" topic={ask} />
+              </motion.div>
+            ) : (
             <motion.div
               key={plan.id}
               className="op-sheet"
@@ -129,16 +158,16 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
                   {!plan.care && <br />}
                   {p.hostingNote}
                 </span>
-                <IntroCall
-                  contact="i-flow"
-                  here
-                  topic={`InstaOto · ${plan.name} (${p.currency} ${plan.price}.–${plan.care ? ` / ${p.perMonth}` : ''})`}
+                <button
+                  type="button"
                   className="e-link intro-call"
+                  onClick={() => open(`InstaOto · ${plan.name} (${p.currency} ${plan.price}.–${plan.care ? ` / ${p.perMonth}` : ''})`)}
                 >
                   {p.choose} →
-                </IntroCall>
+                </button>
               </div>
             </motion.div>
+            )}
           </AnimatePresence>
         </div>
       ),

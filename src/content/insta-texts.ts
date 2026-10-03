@@ -103,6 +103,7 @@ export const instaTexts = {
       perMonth: 'Monat',
       once: 'einmalig',
       choose: 'Dieses Paket anfragen',
+      back: 'Zurück zum Paket',
       recommended: 'Empfohlen',
       hourly: 'Ohne Betreuung: Einzelaufträge CHF 90.– / Stunde',
       plans: [
@@ -288,6 +289,7 @@ export const instaTexts = {
       perMonth: 'ay',
       once: 'tek sefer',
       choose: 'Bu paketi iste',
+      back: 'Pakete dön',
       recommended: 'Önerilen',
       hourly: 'Destek almadan: tek tek işler CHF 90.– / saat',
       plans: [
