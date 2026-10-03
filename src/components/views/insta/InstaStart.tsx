@@ -6,12 +6,11 @@ import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
-import { Shot } from './parts';
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Reel', cols: '1fr 1fr 0.8fr', areas: ['headline headline film', 'lede shot film', 'stats stats plate', 'safe safe safe'], rows: 'repeat(3, minmax(var(--spread-row), auto)) auto' },
-  { name: 'Story', cols: '0.8fr 1fr 1fr', areas: ['film headline headline', 'film shot lede', 'plate stats stats', 'safe safe safe'], rows: 'repeat(3, minmax(var(--spread-row), auto)) auto' },
-  { name: 'Feed', cols: '1fr 1fr 1fr', areas: ['headline film lede', 'shot film plate', 'stats stats stats', 'safe safe safe'], rows: 'minmax(var(--spread-row), auto) minmax(var(--spread-row), auto) auto auto' },
+  { name: 'Reel', cols: '1fr 1fr 0.8fr', areas: ['headline headline film', 'lede lede film', 'stats stats plate', 'safe safe safe'], rows: 'repeat(3, minmax(var(--spread-row), auto)) auto' },
+  { name: 'Story', cols: '0.8fr 1fr 1fr', areas: ['film headline headline', 'film lede lede', 'plate stats stats', 'safe safe safe'], rows: 'repeat(3, minmax(var(--spread-row), auto)) auto' },
+  { name: 'Feed', cols: '1fr 1fr 1fr', areas: ['headline film lede', 'plate film lede', 'stats stats stats', 'safe safe safe'], rows: 'minmax(var(--spread-row), auto) minmax(var(--spread-row), auto) auto auto' },
 ];
 
 /** Daten & Sicherheit als ruhiger Streifen: sechs Kreise, Erklaerung nur beim Zeigen. */
@@ -63,7 +62,6 @@ export function InstaStart() {
         </div>
       ),
     },
-    { id: 'shot', tone: 'deep', node: <Shot name="uebersicht" /> },
     {
       id: 'stats',
       bleed: true,
