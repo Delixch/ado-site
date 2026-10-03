@@ -6,10 +6,7 @@
 
 ## 1. Satış — ziyaretçiyi müşteriye çevirmek
 
-**1.1 Tek net çağrı: ücretsiz ön görüşme** · emek: küçük
-Her ürünün son sayfasında ve Übersicht'te aynı düğme: *"Kostenloses Erstgespräch · 15 Min."* → mektup/e-posta ile. ✅ 2026-10-03 yapıldı (common/IntroCall.tsx). İleride gerçek takvim: Cal.com gömülü.
-
-**1.2 Gerçek müşteri sesi** · emek: küçük
+**1.2 Gerçek müşteri sesi** · emek: küçük · ⏸ ertelendi (Adnan'dan gerçek alıntılar gelince)
 Happy Beck, SAZCAR gibi müşterilerden 1–2 cümlelik alıntı + logo + isim. Firma ve InstaOto Übersicht'te birer blok.
 *Neden:* "Benim gibi biri kullanıyor mu?" sorusu satın almadan önceki en büyük soru.
 
@@ -48,9 +45,6 @@ Vercel Analytics (çerezsiz, DSG uyumlu): hangi sayfa, hangi tema, hangi ışık
 
 ## 4. Güven ve yasal
 
-**4.1 Impressum + Datenschutz** (sitede) · ✅ 2026-10-03 yapıldı (firma bilgileri boş → işaretli Musterfirma; doldurmak için `src/content/company.ts`)
-İsviçre DSG'ye uygun; InstaOto ve Firma müşteri verisi işlediği için şart. instagramoto panelinde var, sitede yok.
-
 **4.2 Güven işaretleri** · emek: küçük
 "Daten in der EU (Frankfurt)", "Schweizer Ansprechpartner", "kein Abo" — küçük rozetler halinde fiyat/talep sayfalarında.
 
@@ -79,8 +73,9 @@ Firma ve InstaOto videolarından 15 saniyelik Reels kesimleri (her bölüm bir R
 ---
 
 ## Önerilen sıra (ilk 2 hafta)
-1. ~~Impressum/Datenschutz~~ ✅ + ön görüşme düğmesi (1.1)
-2. Müşteri alıntıları + SSS (1.2, 2.2)
+1. InstaOto fiyat çerçevesi + güven rozetleri (1.3, 4.2)
+2. SSS (2.2)
 3. Ölçüm (3.3)
 4. Bölüm adresleri / SEO (3.1)
 5. Vaka hikâyesi + Reels serisi (2.1, 6.3)
+6. Müşteri alıntıları (1.2) – gerçek alıntılar gelince
