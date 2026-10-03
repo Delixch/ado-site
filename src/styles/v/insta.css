@@ -183,12 +183,8 @@
   background: rgba(255, 255, 255, 0.85);
 }
 
+/* Video im iPhone in Farbe (Seite ist ruhig genug) */
 .iphone .media video {
-  filter: var(--photo-bw);
-  transition: filter var(--dur) var(--ease);
-}
-
-.iphone:hover .media video {
   filter: none;
 }
 
