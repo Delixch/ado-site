@@ -669,6 +669,8 @@ export function AdoRobot({
       timer.dispose();
       pmrem.dispose();
       renderer.dispose();
+      // Kontext sofort freigeben: der Roboter wird bei jedem Seitenwechsel neu aufgebaut
+      renderer.forceContextLoss();
       renderer.domElement.remove();
       host.style.cursor = '';
     };

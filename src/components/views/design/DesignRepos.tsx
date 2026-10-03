@@ -73,7 +73,7 @@ export function DesignRepos() {
       tone: 'brand',
       node: (
         <div className="rp-big">
-          <span className="micro">★ Stars</span>
+          <span className="micro">★ {t.lang === 'tr' ? 'Yıldız' : 'Stars'}</span>
           <AnimatePresence mode="wait">
             <motion.span key={sel} className="poster" {...swap}>
               {kilo(repo.stars)}

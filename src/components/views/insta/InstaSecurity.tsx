@@ -48,7 +48,7 @@ export function InstaSecurity() {
       tone: 'brand',
       node: (
         <div className="ex-detail">
-          <span className="micro">EU · Frankfurt</span>
+          <span className="micro">{t.lang === 'tr' ? 'AB' : 'EU'} · Frankfurt</span>
           <h3 className="whisper">{s.dbTitle}</h3>
           <p className="lede">{s.dbText}</p>
         </div>

@@ -79,7 +79,7 @@ export function DesignStart() {
           <blockquote className="whisper">
             {h.quoteLine1} <em>{h.quoteLine2}</em>
           </blockquote>
-          <figcaption className="micro">— ADO · Zürich</figcaption>
+          <figcaption className="micro">— ADO · {t.lang === 'tr' ? 'Zürih' : 'Zürich'}</figcaption>
         </figure>
       ),
     },
