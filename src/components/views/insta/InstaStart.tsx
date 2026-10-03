@@ -45,7 +45,7 @@ export function InstaStart() {
             <button type="button" className="e-link" data-solid onClick={() => go('i-flow')}>
               {s.cta} <ArrowRight />
             </button>
-            <IntroCall contact="i-pricing" />
+            <IntroCall contact="i-flow" tab={3} />
           </div>
         </div>
       ),

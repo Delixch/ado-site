@@ -21,7 +21,6 @@ import { FirmaPersonnel } from './components/views/firma/FirmaPersonnel';
 import { FirmaContact } from './components/views/firma/FirmaContact';
 import { InstaStart } from './components/views/insta/InstaStart';
 import { InstaHow } from './components/views/insta/InstaHow';
-import { InstaPricing } from './components/views/insta/InstaPricing';
 import { ALL_ITEMS } from './content/menu';
 import { texts, type Lang } from './content/ui';
 import { COLORS, isColor } from './colors';
@@ -52,7 +51,6 @@ const VIEWS: Record<string, ComponentType> = {
   'f-contact': FirmaContact,
   'i-start': InstaStart,
   'i-flow': InstaHow,
-  'i-pricing': InstaPricing,
 };
 const ids = ALL_ITEMS.map((i) => i.id);
 
@@ -61,6 +59,7 @@ try {
   const v = localStorage.getItem('ado_view2');
   if (v === 'i-features' || v === 'i-process') localStorage.setItem('ado_view2', 'i-flow');
   if (v === 'i-security') localStorage.setItem('ado_view2', 'i-start');
+  if (v === 'i-pricing') localStorage.setItem('ado_view2', 'i-flow');
 } catch {
   /* Speicher gesperrt - egal */
 }

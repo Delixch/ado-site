@@ -42,8 +42,7 @@ export function buildIndex(t: Texts) {
     'f-personnel': f.experience,
     'f-contact': f.contact,
     'i-start': [t.i.start, t.i.security],
-    'i-flow': [t.i.flow, t.i.features, t.i.process],
-    'i-pricing': t.i.pricing,
+    'i-flow': [t.i.flow, t.i.features, t.i.process, t.i.pricing],
   };
   return Object.entries(src).map(([id, v]) => ({ id, texts: [t.menu[id], ...leaves(v), ...(extra[id] ?? [])] }));
 }

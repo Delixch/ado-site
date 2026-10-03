@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Check, Clock, Target, UserRound, Wrench } from 'lucide-react';
 import { IntroCall } from '../../common/IntroCall';
@@ -14,7 +14,7 @@ const LAYOUTS: LayoutDef[] = [
 ];
 
 /** Paket waehlen -> darunter alles zu genau diesem Paket: Ziel, was Sie mitbringen, was wir erledigen, Preis, Dauer. */
-export function InstaPricing() {
+export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
   const { t } = useView();
   const p = t.i.pricing;
   const [sel, setSel] = useState('komplett');
@@ -28,12 +28,13 @@ export function InstaPricing() {
       tone: 'brand',
       node: (
         <div className="ex-detail">
-          <span className="micro">{p.eyebrow}</span>
+          {tabs}
+          {!tabs && <span className="micro">{p.eyebrow}</span>}
           <h3 className="poster">
             {p.line1} {p.line2}
           </h3>
           <p className="lede">{p.lede}</p>
-          <IntroCall contact="i-pricing" here />
+          <IntroCall contact="i-flow" here />
           <TrustBadges product="insta" />
         </div>
       ),
@@ -129,7 +130,7 @@ export function InstaPricing() {
                   {p.hostingNote}
                 </span>
                 <IntroCall
-                  contact="i-pricing"
+                  contact="i-flow"
                   here
                   topic={`InstaOto · ${plan.name} (${p.currency} ${plan.price}.–${plan.care ? ` / ${p.perMonth}` : ''})`}
                   className="e-link intro-call"

@@ -1019,3 +1019,12 @@
   font-size: var(--fs-whisper-s);
   color: var(--brand-text);
 }
+
+/* Reiter im Angebots-Baustein (Preise): oben, Inhalt darunter */
+.ex-detail:has(> .how-tabs) {
+  justify-content: flex-start;
+}
+
+.ex-detail > .how-tabs {
+  margin-bottom: var(--sp-4);
+}

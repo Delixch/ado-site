@@ -17,7 +17,6 @@ import {
   User,
   Instagram,
   Workflow,
-  BadgePercent,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -62,7 +61,6 @@ export const MENU_SECTIONS: { group: Group; items: MenuItemDef[] }[] = [
     items: [
       { id: 'i-start', icon: Instagram },
       { id: 'i-flow', icon: Workflow },
-      { id: 'i-pricing', icon: BadgePercent },
     ],
   },
 ];
