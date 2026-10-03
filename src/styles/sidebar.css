@@ -702,3 +702,137 @@
 .sb-item:hover .sb-count {
   color: var(--brand-text);
 }
+
+/* =====================================================================
+ * EIS-GLAS (2026-10-03): durchscheinendes Menue mit Lichtkante, dahinter
+ * wandernde Lichtflecken in Themenfarbe; Eintraege als Glaskapseln.
+ * Farben: colors/<thema>.css (--sb-*), Masse: tokens.css.
+ * ===================================================================== */
+.sb-slot::before,
+.sb-slot::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: var(--sb-blob);
+  height: var(--sb-blob);
+  border-radius: var(--radius-pill);
+  filter: blur(var(--sb-blur));
+  pointer-events: none;
+}
+
+.sb-slot::before {
+  top: 8%;
+  left: -30%;
+  background: radial-gradient(circle, var(--sb-blob-a), transparent 65%);
+  animation: sb-drift-a 18s ease-in-out infinite alternate;
+}
+
+.sb-slot::after {
+  bottom: 6%;
+  left: 10%;
+  background: radial-gradient(circle, var(--sb-blob-b), transparent 65%);
+  animation: sb-drift-b 22s ease-in-out infinite alternate;
+}
+
+@keyframes sb-drift-a {
+  to {
+    transform: translate(40%, 60%) scale(1.15);
+  }
+}
+
+@keyframes sb-drift-b {
+  to {
+    transform: translate(-25%, -70%) scale(0.9);
+  }
+}
+
+.sb {
+  background: var(--sb-glass);
+  -webkit-backdrop-filter: blur(var(--sb-blur)) saturate(170%);
+  backdrop-filter: blur(var(--sb-blur)) saturate(170%);
+  border: var(--hair) solid var(--sb-glass-edge);
+  box-shadow: var(--sb-glass-shadow);
+}
+
+/* Eis: feines Korn + Lichtkante oben links */
+.sb::before,
+.sb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.sb::before {
+  background-image: var(--noise);
+  background-size: var(--grain-size);
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+}
+
+.sb::after {
+  background: linear-gradient(125deg, var(--sb-sheen) 0%, transparent 22%, transparent 78%, var(--sb-glass-line) 100%);
+  opacity: 0.55;
+}
+
+.sb > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sb-head,
+.sb[data-expanded="true"] .sb-section-toggle {
+  border-color: var(--sb-glass-line);
+}
+
+/* Eintraege: Glaskapsel beim Zeigen, Lichtstreif zieht durch */
+.sb-item {
+  overflow: hidden;
+  border: var(--hair) solid transparent;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur) var(--ease);
+}
+
+.sb-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, var(--sb-sheen) 50%, transparent 70%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.sb-item:hover {
+  background: var(--sb-pill);
+  border-color: var(--sb-pill-edge);
+  transform: translateX(var(--sp-1));
+}
+
+.sb-item:hover::after {
+  transform: translateX(120%);
+  transition: transform var(--sb-sweep) var(--ease);
+}
+
+/* Aktiv: Eiskapsel in Themenfarbe */
+.sb-item[data-active="true"],
+.sb-item[data-active="true"]:hover {
+  background: var(--sb-active);
+  border-color: var(--sb-pill-edge);
+  box-shadow: var(--sb-active-glow), inset 0 1px 0 var(--sb-sheen);
+  transform: none;
+}
+
+.sb-led {
+  box-shadow: 0 0 12px var(--accent), 0 0 3px var(--accent);
+}
+
+.sb-search {
+  border-bottom-color: var(--sb-glass-edge);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-slot::before,
+  .sb-slot::after {
+    animation: none;
+  }
+}

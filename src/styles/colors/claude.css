@@ -111,3 +111,18 @@
   --paper-2: rgba(237, 229, 215, 0.76);
   --blk-backdrop: blur(26px) saturate(120%);
 }
+
+/* Eis-Glas-Menue */
+[data-color="claude"] {
+  --sb-glass: linear-gradient(165deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.28));
+  --sb-glass-edge: rgba(255, 255, 255, 0.85);
+  --sb-glass-line: rgba(33, 31, 28, 0.08);
+  --sb-glass-shadow: 0 30px 60px -28px rgba(33, 31, 28, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(33, 31, 28, 0.04);
+  --sb-pill: rgba(255, 255, 255, 0.55);
+  --sb-pill-edge: rgba(255, 255, 255, 0.95);
+  --sb-sheen: rgba(255, 255, 255, 0.85);
+  --sb-active: linear-gradient(135deg, color-mix(in srgb, var(--brand) 22%, rgba(255, 255, 255, 0.7)), rgba(255, 255, 255, 0.45));
+  --sb-active-glow: 0 8px 24px -10px color-mix(in srgb, var(--brand) 55%, transparent);
+  --sb-blob-a: color-mix(in srgb, var(--brand) 40%, transparent);
+  --sb-blob-b: rgba(232, 196, 170, 0.6);
+}
