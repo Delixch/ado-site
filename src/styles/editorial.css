@@ -157,3 +157,13 @@
   /* Beschriftung ganz rechts, die Nummer oben bleibt links */
   text-align: right;
 }
+
+/* Baustein mit nur einem Absatz: mittig von oben nach unten, volle Breite (alle Seiten) */
+.blk-in:has(> p.lede:only-child) {
+  display: flex;
+  align-items: center;
+}
+
+.blk-in > p.lede:only-child {
+  max-width: none;
+}
