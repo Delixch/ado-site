@@ -734,9 +734,10 @@
    Checkliste als verbundene Kreise. Wenig Text, Erklaerung nur beim Zeigen.
    ===================================================================== */
 .op {
+  /* oben beginnen: Kreise, direkt darunter das Blatt - kein Loch dazwischen */
   display: flex;
   flex-direction: column;
-  justify-content: safe center;
+  justify-content: flex-start;
   gap: var(--sp-5);
   height: 100%;
 }
@@ -845,14 +846,15 @@
 }
 
 .op-sheet-head {
+  /* immer gleich: Name + Preis, darunter eine Zeile mit Art und Dauer */
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--sp-2) var(--sp-4);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-2);
 }
 
 .op-sheet-head h4 {
+  margin: 0;
   font-size: var(--fs-poster-m);
   color: var(--ink);
 }

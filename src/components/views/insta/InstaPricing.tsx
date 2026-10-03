@@ -103,11 +103,15 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
             >
               <header className="op-sheet-head">
                 <h4 className="poster">
-                  {plan.name} <span>· {p.currency} {plan.price}.–</span>
+                  {plan.name} <span>· {p.currency} {plan.price}.–{plan.care ? ` / ${p.perMonth}` : ''}</span>
                 </h4>
                 <span className="op-meta micro">
-                  {unit(plan.care)}
-                  <Clock aria-hidden /> {plan.time}
+                  {plan.care ? p.careLabel : p.setupLabel}
+                  {plan.time && (
+                    <>
+                      <Clock aria-hidden /> {plan.time}
+                    </>
+                  )}
                 </span>
               </header>
 
