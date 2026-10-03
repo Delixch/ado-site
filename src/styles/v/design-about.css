@@ -62,6 +62,9 @@
 
 .ab-tags .poster {
   font-size: var(--fs-poster-s);
+  /* Nummer bleibt links, der Begriff steht rechts */
+  align-self: flex-end;
+  text-align: right;
 }
 
 .ab-film-q {
