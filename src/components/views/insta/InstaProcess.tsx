@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Check, ShieldAlert } from 'lucide-react';
 import { FlowNodes } from '../../fx/FlowNodes';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Route', cols: '1fr 1fr 1fr', areas: ['flow flow detail', 'flow flow need', 'send send need'] },
-  { name: 'Checklist', cols: '1fr 1fr 1fr', areas: ['need flow flow', 'need flow flow', 'detail send send'] },
-  { name: 'Wide', cols: '1fr 1fr 1fr', areas: ['flow flow flow', 'detail need send'], rows: 'auto minmax(var(--spread-row), auto)' },
+  { name: 'Route', cols: '1fr 3fr 1fr', areas: ['detail flow flow'] },
+  { name: 'Wide', cols: '1fr 1fr 1fr', areas: ['flow flow flow', 'detail detail detail'], rows: 'auto auto' },
+  { name: 'Mirror', cols: '1fr 3fr 1fr', areas: ['flow flow detail'] },
 ];
 
 export function InstaProcess() {
@@ -62,44 +61,7 @@ export function InstaProcess() {
         </AnimatePresence>
       ),
     },
-    {
-      id: 'need',
-      node: (
-        <div className="in-need">
-          <span className="micro">
-            <b>{p.needTitle}</b>
-          </span>
-          <ul>
-            {p.need.map((n) => (
-              <li key={n.t}>
-                <span className="in-check">
-                  <Check />
-                </span>
-                <span>
-                  <span className="whisper">{n.t}</span>
-                  <span className="in-sub">{n.d}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ),
-    },
-    {
-      id: 'send',
-      node: (
-        <div className="in-send">
-          <ShieldAlert />
-          <span>
-            <span className="micro">
-              <b>{p.sendTitle}</b>
-            </span>
-            <p className="lede">{p.send}</p>
-          </span>
-        </div>
-      ),
-    },
   ];
 
-  return <Spread view="i-process" head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-process" robot={false} head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }

@@ -69,7 +69,20 @@ function MiniPlan({ layout, blocks }: { layout: LayoutDef; blocks: Block[] }) {
  * Doppelseite: Kopf (Folio, Titel, Layout-Wahl) + Bausteine im Satzspiegel.
  * Wechselt der Satzspiegel, gleiten alle Bausteine an ihren neuen Platz.
  */
-export function Spread({ view, head, blocks, layouts }: { view: string; head: Masthead; blocks: Block[]; layouts: LayoutDef[] }) {
+export function Spread({
+  view,
+  head,
+  blocks,
+  layouts,
+  robot = true,
+}: {
+  view: string;
+  head: Masthead;
+  blocks: Block[];
+  layouts: LayoutDef[];
+  /** Mehrere Abschnitte auf einer Seite: nur der erste zeigt den Roboter. */
+  robot?: boolean;
+}) {
   const { auto, nonce, t } = useView();
   const mode = useMode();
   const [hover, setHover] = useState(false);
@@ -98,7 +111,7 @@ export function Spread({ view, head, blocks, layouts }: { view: string; head: Ma
             <RevealLines lines={[head.line2]} className="mast-l2" delay={0.12} />
           </h1>
         </div>
-        <MastRobot />
+        {robot && <MastRobot />}
         <nav className="dial" aria-label="Layout">
           <span className="dial-label">
             <span>{t.ui.layout}</span>

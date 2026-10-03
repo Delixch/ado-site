@@ -865,3 +865,33 @@
     animation: none;
   }
 }
+
+/* So funktioniert's: drei Abschnitte untereinander, jeder mit eigenem Kopf */
+.insta-how {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-16);
+}
+
+.ig-steps-title {
+  color: var(--ink);
+}
+
+.ig-steps-title b {
+  color: var(--brand-text);
+}
+
+/* Funktionen-Liste: gewaehlter Kreis gefuellt, kein Lauflicht */
+.ig-steps-pick::after {
+  display: none;
+}
+
+.ig-steps-pick li[data-now="true"] .ig-dot {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--on-brand);
+}
+
+.ig-steps-pick li[data-now="true"] button {
+  color: var(--ink);
+}

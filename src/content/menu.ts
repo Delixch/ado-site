@@ -17,8 +17,6 @@ import {
   User,
   Instagram,
   Workflow,
-  Blocks,
-  ListChecks,
   ShieldCheck,
   BadgePercent,
   type LucideIcon,
@@ -65,8 +63,6 @@ export const MENU_SECTIONS: { group: Group; items: MenuItemDef[] }[] = [
     items: [
       { id: 'i-start', icon: Instagram },
       { id: 'i-flow', icon: Workflow },
-      { id: 'i-features', icon: Blocks },
-      { id: 'i-process', icon: ListChecks },
       { id: 'i-security', icon: ShieldCheck },
       { id: 'i-pricing', icon: BadgePercent },
     ],

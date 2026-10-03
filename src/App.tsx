@@ -20,9 +20,7 @@ import { FirmaHomepage } from './components/views/firma/FirmaHomepage';
 import { FirmaPersonnel } from './components/views/firma/FirmaPersonnel';
 import { FirmaContact } from './components/views/firma/FirmaContact';
 import { InstaStart } from './components/views/insta/InstaStart';
-import { InstaFlow } from './components/views/insta/InstaFlow';
-import { InstaFeatures } from './components/views/insta/InstaFeatures';
-import { InstaProcess } from './components/views/insta/InstaProcess';
+import { InstaHow } from './components/views/insta/InstaHow';
 import { InstaSecurity } from './components/views/insta/InstaSecurity';
 import { InstaPricing } from './components/views/insta/InstaPricing';
 import { ALL_ITEMS } from './content/menu';
@@ -54,13 +52,19 @@ const VIEWS: Record<string, ComponentType> = {
   'f-personnel': FirmaPersonnel,
   'f-contact': FirmaContact,
   'i-start': InstaStart,
-  'i-flow': InstaFlow,
-  'i-features': InstaFeatures,
-  'i-process': InstaProcess,
+  'i-flow': InstaHow,
   'i-security': InstaSecurity,
   'i-pricing': InstaPricing,
 };
 const ids = ALL_ITEMS.map((i) => i.id);
+
+// InstaOto: Funktionen und Ablauf stehen jetzt auf "So funktioniert's" - alte Merkzeichen umlenken
+try {
+  const v = localStorage.getItem('ado_view2');
+  if (v === 'i-features' || v === 'i-process') localStorage.setItem('ado_view2', 'i-flow');
+} catch {
+  /* Speicher gesperrt - egal */
+}
 
 export default function App() {
   const mode = useMode();

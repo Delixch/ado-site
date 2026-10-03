@@ -8,9 +8,9 @@ import { Shot, type ShotName } from './parts';
 const SHOTS: ShotName[] = ['akislar', 'editor', 'simulator', 'inbox', 'posts', 'uebersicht'];
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Studio', cols: '1fr 1fr 1fr', areas: ['list shot shot', 'list shot shot', 'detail shot shot'] },
-  { name: 'Screen', cols: '1fr 1fr 1fr', areas: ['shot shot shot', 'list list detail'], rows: 'auto minmax(var(--spread-row), auto)' },
-  { name: 'Mirror', cols: '1fr 1fr 1fr', areas: ['shot shot list', 'shot shot list', 'shot shot detail'] },
+  { name: 'Screen', cols: '1fr 1fr 1fr', areas: ['shot shot list', 'shot shot detail'] },
+  { name: 'Mirror', cols: '1fr 1fr 1fr', areas: ['list shot shot', 'detail shot shot'] },
+  { name: 'Wide', cols: '1fr 1fr 1fr', areas: ['shot shot shot', 'list list detail'], rows: 'auto minmax(var(--spread-row), auto)' },
 ];
 
 export function InstaFeatures() {
@@ -35,16 +35,18 @@ export function InstaFeatures() {
     {
       id: 'list',
       node: (
-        <ol className="pl-features">
-          {f.items.map((it, i) => (
-            <li key={it.t}>
-              <button type="button" aria-pressed={i === sel} onClick={() => pick(i)} onPointerEnter={(e) => e.pointerType === 'mouse' && pick(i)}>
-                <span className="micro">{String(i + 1).padStart(2, '0')}</span>
-                <span className="whisper">{it.t}</span>
-              </button>
-            </li>
-          ))}
-        </ol>
+        <div className="ig-steps-wrap">
+          <ol className="ig-steps ig-steps-pick" data-idle="false">
+            {f.items.map((it, i) => (
+              <li key={it.t} data-on={i === sel} data-now={i === sel} style={{ ['--i' as string]: i }}>
+                <button type="button" aria-pressed={i === sel} onClick={() => pick(i)} onPointerEnter={(e) => e.pointerType === 'mouse' && pick(i)}>
+                  <span className="ig-dot">{i + 1}</span>
+                  <span className="whisper">{it.t}</span>
+                </button>
+              </li>
+            ))}
+          </ol>
+        </div>
       ),
     },
     {
@@ -79,5 +81,5 @@ export function InstaFeatures() {
     },
   ];
 
-  return <Spread view="i-features" head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-features" robot={false} head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
 }

@@ -187,6 +187,9 @@ export function InstaFlow() {
       id: 'steps',
       node: (
         <div className="ig-steps-wrap">
+          <span className="ig-steps-title micro">
+            <b>„{f.keywords[0]}“</b> · {f.stepsTitle}
+          </span>
           <ol className="ig-steps" data-idle={chat.step < 0}>
             {f.steps.map((x, i) => (
               <li key={x} data-on={chat.step >= i} data-now={chat.step === i} style={{ ['--i' as string]: i }}>

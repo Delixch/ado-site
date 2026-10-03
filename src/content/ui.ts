@@ -139,8 +139,6 @@ export function texts(lang: Lang) {
     'f-contact': f.nav.contact,
     'i-start': i.nav.start,
     'i-flow': i.nav.flow,
-    'i-features': i.nav.features,
-    'i-process': i.nav.process,
     'i-security': i.nav.security,
     'i-pricing': i.nav.pricing,
   };
