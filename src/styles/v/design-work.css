@@ -144,12 +144,21 @@
 }
 
 .wk-tech {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+  /* Technik mittig in beiden Richtungen, Knopf ganz rechts unten */
+  display: grid;
+  grid-template-rows: 1fr auto;
   gap: var(--sp-4);
   height: 100%;
+}
+
+.wk-tech .wk-tags {
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+}
+
+.wk-tech > .e-link {
+  justify-self: end;
 }
 
 .wk-tags {
