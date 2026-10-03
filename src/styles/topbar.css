@@ -425,8 +425,9 @@
     backdrop-filter: none;
   }
 
+  /* spread.css setzt .tb::after (Bandstueck) spaeter und mit [data-band] staerker - hier gezielt aus */
   .tb::before,
-  .tb::after {
+  .main[data-band] .tb::after {
     content: none;
   }
 
