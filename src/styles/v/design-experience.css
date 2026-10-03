@@ -30,3 +30,28 @@
 .ex-span .poster {
   font-size: var(--fs-poster-l);
 }
+
+/* Feinschliff: Station als Gruppe mittig, Zeitraum mittig, Anzahl ganz rechts */
+.ex-detail {
+  justify-content: center;
+}
+
+.ex-detail .lede {
+  margin-top: var(--sp-2);
+  max-width: none;
+}
+
+.ex-span {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ex-span .poster {
+  align-self: center;
+  justify-self: center;
+}
+
+.ex-span .micro:last-child {
+  justify-self: end;
+}
