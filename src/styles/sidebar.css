@@ -1057,13 +1057,13 @@
   color: color-mix(in srgb, var(--ink) 82%, transparent);
 }
 
-/* Aktive Seite (offen und eingeklappt): nur das Symbol in Themenfarbe.
-   Keine Kapsel, kein Leuchten, keine LED. */
+/* Aktive Seite (offen): Symbol in Themenfarbe + weiches Leuchten dahinter.
+   Keine Kanten, keine Linien, keine LED. */
 .sb .sb-item[data-active="true"],
 .sb .sb-item[data-active="true"]:hover {
-  background: none;
+  background: var(--sb-active);
   border-color: transparent;
-  box-shadow: none;
+  box-shadow: var(--sb-active-glow);
   transform: none;
 }
 
