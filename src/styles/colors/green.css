@@ -115,7 +115,7 @@
 
 /* Eis-Glas-Menue */
 [data-color="green"] {
-  --sb-glass: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.012));
+  --sb-glass: linear-gradient(165deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01)), linear-gradient(rgba(8, 8, 10, 0.58), rgba(8, 8, 10, 0.58));
   --sb-glass-edge: rgba(255, 255, 255, 0.22);
   --sb-glass-line: rgba(255, 255, 255, 0.07);
   --sb-glass-shadow: 0 30px 70px -26px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.16), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
@@ -124,6 +124,6 @@
   --sb-sheen: rgba(255, 255, 255, 0.22);
   --sb-active: linear-gradient(135deg, color-mix(in srgb, var(--brand) 30%, rgba(255, 255, 255, 0.06)), rgba(255, 255, 255, 0.04));
   --sb-active-glow: 0 0 28px -6px color-mix(in srgb, var(--brand) 60%, transparent);
-  --sb-blob-a: color-mix(in srgb, var(--brand) 30%, transparent);
-  --sb-blob-b: color-mix(in srgb, var(--brand) 14%, rgb(58 58 85 / 0.5));
+  --sb-blob-a: color-mix(in srgb, var(--brand) 18%, transparent);
+  --sb-blob-b: color-mix(in srgb, var(--brand) 8%, rgb(40 40 52 / 0.4));
 }
