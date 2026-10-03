@@ -64,7 +64,8 @@ export default function App() {
   const [lang, setLang] = useStored<Lang>('ado_lang', DEFAULT_LANG, (v) => v === 'de' || v === 'tr');
   const [color, setColor] = useStored<string>('ado_color2', isColor(DEFAULT_COLOR) ? DEFAULT_COLOR : COLORS[0].id, isColor);
   const [active, setActive] = useStored<string>('ado_view2', 'd-start', (v) => !!v && ids.includes(v));
-  const [autoPref, setAutoPref] = useStored<'on' | 'off'>('ado_auto', 'on', (v) => v === 'on' || v === 'off');
+  // Karten wechseln ihr Layout nicht von selbst: jeder Besuch startet angehalten (Play in der Kopfzeile startet)
+  const [autoPref, setAutoPref] = useState<'on' | 'off'>('off');
   const [desktopExpanded, setDesktopExpanded] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [nonce, setNonce] = useState(0);

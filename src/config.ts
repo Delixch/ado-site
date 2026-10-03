@@ -5,7 +5,13 @@ export const DEFAULT_COLOR = 'claude';
 export const DEFAULT_LANG: Lang = 'de';
 export const CONTACT_MAIL = 'xdd@hotmail.com';
 
-/** Doppelseiten wechseln ihren Satzspiegel von selbst (ms). */
+/**
+ * Mit welchem Layout jede Seite oeffnet (0 = erstes, 1 = zweites, 2 = drittes Mini-Plan im Seitenkopf).
+ * Fehlt eine Seite, gilt 0. Die Karten wechseln erst, wenn Play in der Kopfzeile gedrueckt wird.
+ */
+export const START_LAYOUT: Record<string, number> = {};
+
+/** Doppelseiten wechseln ihren Satzspiegel von selbst (ms), sobald Play laeuft. */
 export const LAYOUT_INTERVAL = 9000;
 
 /**

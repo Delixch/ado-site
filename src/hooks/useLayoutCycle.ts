@@ -1,16 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { START_LAYOUT } from '../config';
 
 /**
  * Welches Layout einer Doppelseite gerade gilt.
  * - Kopfzeilen-Knopf (nonce) und Automatik schalten zum naechsten,
  * - die Mini-Plaene im Kopf der Seite springen direkt.
+ * Start: Layout aus config.ts START_LAYOUT (sonst das erste).
  */
 export function useLayoutCycle(view: string, count: number, auto: boolean, interval: number, nonce: number) {
-  const [index, setIndex] = useState(0);
+  const start = START_LAYOUT[view] ?? 0;
+  const [index, setIndex] = useState(start);
   const firstNonce = useRef(nonce);
 
   useEffect(() => {
-    setIndex(0);
+    setIndex(START_LAYOUT[view] ?? 0);
     firstNonce.current = nonce;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view]);
