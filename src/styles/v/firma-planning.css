@@ -183,3 +183,15 @@
   border-top: var(--hair) solid var(--rule);
   font-size: var(--fs-ui);
 }
+
+/* Nummer links, Begriff ganz rechts (Skills, Einsatzplanung, InstaOto-Funktionen).
+   Gut lesbar: volle Schriftfarbe, der gewaehlte Eintrag in Themenfarbe und leicht nach links. */
+.pl-features:not(.hp-tiles) .whisper {
+  text-align: right;
+  color: var(--ink);
+}
+
+.pl-features:not(.hp-tiles) button[aria-pressed="true"] .whisper {
+  transform: translateX(calc(var(--sp-2) * -1));
+  color: var(--brand-text);
+}
