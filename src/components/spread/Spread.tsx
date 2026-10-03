@@ -14,6 +14,8 @@ export interface Block {
   node: ReactNode;
   /** Flaeche: Papier (Standard), tiefes Papier, Tinte (invers), Markenfarbe, Bild (randlos). */
   tone?: 'paper' | 'deep' | 'ink' | 'brand' | 'media';
+  /** Handy: Lichtlinie laeuft endlos um den Baustein (fx.css .trace); 'corners' = vier Ecken atmen (Videos). */
+  trace?: boolean | 'corners';
   /** Ohne Innenabstand (Bilder, Buehnen). */
   bleed?: boolean;
   className?: string;
@@ -179,6 +181,7 @@ export function Spread({
             <motion.div layout="position" className="blk-in" transition={{ layout: morph }}>
               {b.node}
             </motion.div>
+            {b.trace && <i className={b.trace === 'corners' ? 'trace-corners' : 'trace'} aria-hidden />}
           </motion.section>
         ))}
       </div>

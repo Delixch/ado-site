@@ -146,6 +146,7 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
   const blocks: Block[] = [
     {
       id: 'offer',
+      trace: true,
       tone: 'brand',
       node: (
         <div className="ex-detail">

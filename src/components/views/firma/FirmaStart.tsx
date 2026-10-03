@@ -71,6 +71,7 @@ export function FirmaStart() {
     },
     {
       id: 'app',
+      trace: true,
       tone: 'deep',
       node: (
         <div className="fs-app">
@@ -117,9 +118,10 @@ export function FirmaStart() {
         </div>
       ),
     },
-    { id: 'film', tone: 'media', bleed: true, node: <Media src={`/media/firma/plattform-de-${color}.mp4`} fallback="/media/firma/plattform-de-cyan.mp4" sound /> },
+    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <Media src={`/media/firma/plattform-de-${color}.mp4`} fallback="/media/firma/plattform-de-cyan.mp4" sound /> },
     {
       id: 'quote',
+      trace: true,
       tone: 'brand',
       node: (
         <figure className="ds-quote">

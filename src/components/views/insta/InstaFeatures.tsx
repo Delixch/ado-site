@@ -57,6 +57,7 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
     },
     {
       id: 'shot',
+      trace: true,
       sheet: true,
       tone: 'deep',
       node: (

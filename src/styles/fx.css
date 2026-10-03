@@ -291,3 +291,155 @@
   border-color: color-mix(in srgb, var(--brand) 45%, transparent);
   box-shadow: inset 0 0 var(--hover-tile-edge) color-mix(in srgb, var(--brand) 40%, transparent);
 }
+
+/*
+ * Lichtlinie um Bausteine/Kacheln (nur Handy): ein heller Strich laeuft endlos um den Rand.
+ * .trace = Dauerschleife (Block.trace), .trace-step = eine Runde je Kachel (hooks/useTraceStep).
+ */
+@property --trace-a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.trace {
+  display: none;
+}
+
+@media (max-width: 719.98px) {
+  .trace {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: block;
+    padding: var(--trace-w);
+    border-radius: inherit;
+    background: conic-gradient(from var(--trace-a), transparent 0 62%, color-mix(in srgb, var(--brand) 35%, transparent) 78%, var(--brand) 92%, var(--bar-ink) 96%, transparent 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    pointer-events: none;
+    animation: trace-spin var(--trace-loop) linear infinite;
+  }
+
+  .trace-step {
+    animation: trace-spin var(--trace-step) linear 1 both;
+  }
+
+  /* Kachel braucht einen Bezugsrahmen fuer die Linie */
+  .metric {
+    position: relative;
+  }
+}
+
+@keyframes trace-spin {
+  to {
+    --trace-a: 360deg;
+  }
+}
+
+/* Handy: Station mit glow (Erfahrung) blinkt, gelbes Licht pulsiert dahinter */
+@media (max-width: 719.98px) {
+  .glow-blink {
+    position: relative;
+    isolation: isolate;
+    animation: glow-blink 1.6s ease-in-out infinite;
+  }
+
+  .glow-blink::before {
+    content: "";
+    position: absolute;
+    inset: -40% -12%;
+    z-index: -1;
+    border-radius: var(--radius-pill);
+    background: radial-gradient(closest-side, var(--glow-yellow), transparent);
+    filter: blur(var(--sp-2));
+    animation: glow-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes glow-blink {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace,
+  .glow-blink,
+  .glow-blink::before {
+    animation: none;
+  }
+}
+
+/* Videos: statt Linie vier Ecken, die ein- und ausatmen (Block.trace = 'corners', nur Handy) */
+.trace-corners {
+  display: none;
+}
+
+@media (max-width: 719.98px) {
+  .trace-corners {
+    position: absolute;
+    inset: var(--sp-2);
+    z-index: 4;
+    display: block;
+    --c: var(--sp-6);
+    background:
+      linear-gradient(var(--brand), var(--brand)) top left / var(--c) var(--trace-w),
+      linear-gradient(var(--brand), var(--brand)) top left / var(--trace-w) var(--c),
+      linear-gradient(var(--brand), var(--brand)) top right / var(--c) var(--trace-w),
+      linear-gradient(var(--brand), var(--brand)) top right / var(--trace-w) var(--c),
+      linear-gradient(var(--brand), var(--brand)) bottom left / var(--c) var(--trace-w),
+      linear-gradient(var(--brand), var(--brand)) bottom left / var(--trace-w) var(--c),
+      linear-gradient(var(--brand), var(--brand)) bottom right / var(--c) var(--trace-w),
+      linear-gradient(var(--brand), var(--brand)) bottom right / var(--trace-w) var(--c);
+    background-repeat: no-repeat;
+    pointer-events: none;
+    animation: corners-breathe 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes corners-breathe {
+  50% {
+    inset: var(--sp-4);
+    opacity: 0.55;
+  }
+}
+
+/* Nummer blinkt gelb (alle Geraete) */
+.blink-num {
+  animation: blink-num 1.2s steps(1, end) infinite;
+}
+
+@keyframes blink-num {
+  0%,
+  100% {
+    color: var(--glow-yellow);
+    text-shadow: 0 0 var(--sp-2) var(--glow-yellow);
+  }
+
+  50% {
+    color: inherit;
+    text-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-corners,
+  .blink-num {
+    animation: none;
+  }
+}

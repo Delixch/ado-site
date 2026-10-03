@@ -4,6 +4,7 @@ import { ABOUT_STATS, LAB_TAGS } from '../../../content/design-data';
 import { CountUp } from '../../common/CountUp';
 import { TypePortrait } from '../../fx/TypePortrait';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
+import { useTraceStep } from '../../../hooks/useTraceStep';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -17,11 +18,13 @@ const LAYOUTS: LayoutDef[] = [
 export function DesignAbout() {
   const { t } = useView();
   const statTile = useHoverTile();
+  const step = useTraceStep(ABOUT_STATS.length);
   const a = t.d.about;
 
   const blocks: Block[] = [
     {
       id: 'type',
+      trace: true,
       tone: 'ink',
       bleed: true,
       node: <TypePortrait src="/media/design/koltuk.webp" words={[...a.tags, ...LAB_TAGS, 'ADO', 'Zürich']} label={t.ui.split} />,
@@ -57,6 +60,7 @@ export function DesignAbout() {
     },
     {
       id: 'film',
+      trace: true,
       tone: 'media',
       bleed: true,
       node: (
@@ -71,6 +75,7 @@ export function DesignAbout() {
           {ABOUT_STATS.map((s, i) => (
             <div className="metric" key={i} {...statTile.item(i)}>
               <HoverTile {...statTile.at(i)} className="hover-tile hover-tile-in" />
+              {step === i && <i className="trace trace-step" aria-hidden />}
               <span className="micro">{String(i + 1).padStart(2, '0')}</span>
               <span>
                 <span className="metric-v">

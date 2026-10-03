@@ -50,6 +50,7 @@ export function DesignWork() {
   const blocks: Block[] = [
     {
       id: 'deck',
+      trace: true,
       tone: 'deep',
       bleed: true,
       node: (

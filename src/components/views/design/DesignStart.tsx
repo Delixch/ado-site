@@ -4,6 +4,7 @@ import { CONTACT_MAIL } from '../../../config';
 import { ABOUT_STATS } from '../../../content/design-data';
 import { FitHeadline } from '../../fx/FitHeadline';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
+import { useTraceStep } from '../../../hooks/useTraceStep';
 import { Plate } from '../../fx/Plate';
 import { Proverb } from '../../fx/Proverb';
 import { SlitMedia } from '../../fx/SlitMedia';
@@ -19,11 +20,13 @@ const LAYOUTS: LayoutDef[] = [
 export function DesignStart() {
   const { t, go } = useView();
   const statTile = useHoverTile();
+  const step = useTraceStep(ABOUT_STATS.length);
   const h = t.d.hero;
 
   const blocks: Block[] = [
     {
       id: 'cover',
+      trace: true,
       tone: 'media',
       bleed: true,
       node: (
@@ -89,6 +92,7 @@ export function DesignStart() {
           {ABOUT_STATS.map((s, i) => (
             <div className="metric" key={i} {...statTile.item(i)}>
               <HoverTile {...statTile.at(i)} className="hover-tile hover-tile-in" />
+              {step === i && <i className="trace trace-step" aria-hidden />}
               <span className="micro">{String(i + 1).padStart(2, '0')}</span>
               <span>
                 <span className="metric-v">
@@ -102,7 +106,7 @@ export function DesignStart() {
         </div>
       ),
     },
-    { id: 'plate', tone: 'media', bleed: true, node: <Plate name="type" caption={h.roleLine} /> },
+    { id: 'plate', trace: true, tone: 'media', bleed: true, node: <Plate name="type" caption={h.roleLine} /> },
   ];
 
   return (

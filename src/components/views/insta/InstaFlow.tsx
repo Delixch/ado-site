@@ -120,6 +120,7 @@ export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
   const blocks: Block[] = [
     {
       id: 'phone',
+      trace: true,
       tone: 'deep',
       node: (
         <div className="ig-stage">

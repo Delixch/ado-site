@@ -39,7 +39,7 @@ export function DesignRepos() {
   };
 
   const blocks: Block[] = [
-    { id: 'plate', tone: 'media', bleed: true, node: <Plate name="repos" caption={r.eyebrow} /> },
+    { id: 'plate', trace: true, tone: 'media', bleed: true, node: <Plate name="repos" caption={r.eyebrow} /> },
     {
       id: 'chart',
       node: (
@@ -75,6 +75,7 @@ export function DesignRepos() {
     },
     {
       id: 'big',
+      trace: true,
       tone: 'brand',
       node: (
         <div className="rp-big">

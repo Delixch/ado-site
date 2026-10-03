@@ -43,6 +43,7 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
   const blocks: Block[] = [
     {
       id: 'flow',
+      trace: true,
       tone: 'deep',
       node: (
         <FlowNodes

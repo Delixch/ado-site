@@ -19,6 +19,7 @@ export function FirmaContact() {
     { id: 'photo', tone: 'media', bleed: true, node: <Plate name="zurich" caption={c.location} /> },
     {
       id: 'benefits',
+      trace: true,
       node: (
         <div className="fc-benefits">
           <IntroCall contact="f-contact" here />

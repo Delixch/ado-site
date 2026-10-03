@@ -3,6 +3,7 @@ import { ArrowRight, Database, KeyRound, Lock, RefreshCw, ShieldCheck, Trash2 } 
 import { IntroCall } from '../../common/IntroCall';
 import { Media } from '../../fx/Media';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
+import { useTraceStep } from '../../../hooks/useTraceStep';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -20,6 +21,7 @@ export function InstaStart() {
   const { t, go } = useView();
   const statTile = useHoverTile();
   const s = t.i.start;
+  const step = useTraceStep(s.stats.length);
   const sec = t.i.security;
   const [safeHint, setSafeHint] = useState<string | null>(null);
 
@@ -44,6 +46,7 @@ export function InstaStart() {
     },
     {
       id: 'film',
+      trace: 'corners',
       tone: 'media',
       bleed: true,
       node: (
@@ -78,6 +81,7 @@ export function InstaStart() {
           {s.stats.map((x, i) => (
             <div className="metric" key={x.l} {...statTile.item(i)}>
               <HoverTile {...statTile.at(i)} className="hover-tile hover-tile-in" />
+              {step === i && <i className="trace trace-step" aria-hidden />}
               <span className="micro">{String(i + 1).padStart(2, '0')}</span>
               <span>
                 <span className="metric-v">{x.v}</span>
@@ -88,9 +92,10 @@ export function InstaStart() {
         </div>
       ),
     },
-    { id: 'plate', tone: 'media', bleed: true, node: <Plate name="phone" caption={s.eyebrow} /> },
+    { id: 'plate', trace: true, tone: 'media', bleed: true, node: <Plate name="phone" caption={s.eyebrow} /> },
     {
       id: 'safe',
+      trace: true,
       tone: 'deep',
       node: (
         <div className="safe">

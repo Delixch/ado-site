@@ -50,6 +50,7 @@ export function DesignSkills() {
   const blocks: Block[] = [
     {
       id: 'stage',
+      trace: true,
       tone: 'deep',
       bleed: true,
       node: (
@@ -119,6 +120,7 @@ export function DesignSkills() {
     },
     {
       id: 'count',
+      trace: true,
       tone: 'brand',
       node: (
         <div className="sk-count">

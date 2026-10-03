@@ -9,6 +9,9 @@ import { useView } from '../../ViewFrame';
 import { HOW_TAB_EVENT, takeHowTab } from '../insta/howTab';
 import { FIRMA_SECTIONS } from './FirmaStart';
 
+/** Schritt 02 blinkt in Gelb (Kundenwunsch 2026-10-04, alle Geraete). */
+const BLINK = 1;
+
 const LAYOUTS: LayoutDef[] = [
   { name: 'Route', cols: '1fr 3fr 1fr', areas: ['detail flow flow'] },
   { name: 'Wide', cols: '1fr 1fr 1fr', areas: ['flow flow flow', 'detail detail detail'], rows: 'auto auto' },
@@ -110,7 +113,7 @@ export function FirmaHow() {
               {area.steps.map((s, i) => (
                 <li key={s.t}>
                   <span className="micro">
-                    <b>{String(i + 1).padStart(2, '0')}</b> · {s.who}
+                    <b className={i === BLINK ? 'blink-num' : undefined}>{String(i + 1).padStart(2, '0')}</b> · {s.who}
                   </span>
                   <span className="whisper">{s.t}</span>
                   <p>{s.d}</p>
@@ -131,7 +134,7 @@ export function FirmaHow() {
               items={area.steps.map((s, i) => (
                 <>
                   <span className="micro">
-                    <b>{String(i + 1).padStart(2, '0')}</b> · {s.who}
+                    <b className={i === BLINK ? 'blink-num' : undefined}>{String(i + 1).padStart(2, '0')}</b> · {s.who}
                   </span>
                   <span className="ex-title whisper">{s.t}</span>
                 </>

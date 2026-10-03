@@ -68,9 +68,10 @@ export function DesignConstruction() {
   const { ref, plan, i, device, pick, setDevice } = usePlan();
 
   const blocks: Block[] = [
-    { id: 'plate', tone: 'media', bleed: true, node: <Plate name="build" caption={c.statusBadge} /> },
+    { id: 'plate', trace: true, tone: 'media', bleed: true, node: <Plate name="build" caption={c.statusBadge} /> },
     {
       id: 'blue',
+      trace: true,
       tone: 'deep',
       node: (
         <div ref={ref} className="bp">

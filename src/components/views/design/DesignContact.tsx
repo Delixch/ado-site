@@ -29,6 +29,7 @@ export function DesignContact() {
     { id: 'photo', tone: 'media', bleed: true, node: <Plate name="letter" caption={c.eyebrow} /> },
     {
       id: 'info',
+      trace: true,
       node: (
         <ul className="ct-rows">
           {rows.map((r) => (

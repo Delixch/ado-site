@@ -19,6 +19,8 @@ export interface ExperienceEntryText {
   title: string;
   organization: string;
   description: string;
+  /** Handy: Titel blinkt mit gelbem Licht dahinter (Kundenwunsch). */
+  glow?: boolean;
 }
 
 export interface SkillBlockText {
@@ -580,6 +582,7 @@ export const de: TranslationSchema = {
       {
         year: '08.2014 — 08.2016',
         title: 'Chauffeur',
+        glow: true,
         organization: 'Zidus GmbH Transport, Zürich',
         description:
           'Belieferte die Verkaufsstellen zuverlässig, kontrollierte die tägeninge Ladung und sorgte für Pflege und Unterhalt des zugeteilten Fahrzeugs.',
@@ -1118,6 +1121,7 @@ export const tr: TranslationSchema = {
       {
         year: '08.2014 — 08.2016',
         title: 'Şoför',
+        glow: true,
         organization: 'Zidus GmbH Transport, Zürih',
         description:
           'Satış noktalarına güvenilir teslimat yaptım, günlük yükü kontrol ettim ve zimmetimdeki aracın bakım ve düzenini sağladım.',
