@@ -1034,3 +1034,25 @@
 .sb[data-expanded="false"] .sb-rail {
   gap: var(--sp-1);
 }
+
+/* Gruppenueberschriften gut lesbar: volle Schriftfarbe, eine Stufe groesser */
+.sb .sb-section-title,
+.sb .sb-section-toggle {
+  color: var(--ink);
+  font-size: var(--fs-tiny);
+}
+
+.sb .sb-section-chevron {
+  color: var(--ink);
+}
+
+.sb .sb-section-toggle:hover,
+.sb .sb-section-toggle:hover .sb-section-chevron {
+  color: var(--brand-text);
+}
+
+.sb .sb-profile-sub,
+.sb .sb-search input::placeholder,
+.sb .sb-search svg {
+  color: color-mix(in srgb, var(--ink) 82%, transparent);
+}
