@@ -8,9 +8,9 @@ import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Halo', cols: '1fr 1fr 1fr', areas: ['plans plans offer', 'plans plans terms', 'desk desk desk'], rows: 'auto auto auto' },
-  { name: 'Open', cols: '1fr 1fr 1fr', areas: ['offer plans plans', 'terms plans plans', 'desk desk desk'], rows: 'auto auto auto' },
-  { name: 'Letter', cols: '1fr 1fr 1fr', areas: ['desk desk offer', 'plans plans terms'], rows: 'auto auto' },
+  { name: 'Halo', cols: '1fr 1fr 1fr', areas: ['plans plans offer', 'desk desk desk'], rows: 'auto auto' },
+  { name: 'Open', cols: '1fr 1fr 1fr', areas: ['offer plans plans', 'desk desk desk'], rows: 'auto auto' },
+  { name: 'Letter', cols: '1fr 1fr 1fr', areas: ['desk desk offer', 'plans plans plans'], rows: 'auto auto' },
 ];
 
 /** Paket waehlen -> darunter alles zu genau diesem Paket: Ziel, was Sie mitbringen, was wir erledigen, Preis, Dauer. */
@@ -123,7 +123,11 @@ export function InstaPricing() {
               </div>
 
               <div className="op-foot">
-                <span className="op-hourly micro">{plan.care ? '' : p.hourly}</span>
+                <span className="op-hourly micro">
+                  {plan.care ? '' : p.hourly}
+                  {!plan.care && <br />}
+                  {p.hostingNote}
+                </span>
                 <IntroCall
                   contact="i-pricing"
                   here
@@ -135,27 +139,6 @@ export function InstaPricing() {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
-      ),
-    },
-    {
-      id: 'terms',
-      node: (
-        <div className="in-need">
-          <ul>
-            {p.terms.map((x) => (
-              <li key={x.t}>
-                <span className="in-check">
-                  <Check />
-                </span>
-                <span>
-                  <span className="whisper">{x.t}</span>
-                  <span className="in-sub">{x.d}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className="in-terms-note micro">{p.hostingNote}</p>
         </div>
       ),
     },
