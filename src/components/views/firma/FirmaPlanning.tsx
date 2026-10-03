@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { BellRing } from 'lucide-react';
 import { useInView } from '../../../hooks/useInView';
 import { Plate } from '../../fx/Plate';
+import { openSheet } from '../../spread/sheet';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
@@ -142,7 +143,10 @@ export function FirmaPlanning() {
         <ol className="pl-features">
           {p.items.map((it, i) => (
             <li key={it.title}>
-              <button type="button" aria-pressed={i === sel} onClick={() => pick(i)} onPointerEnter={(ev) => ev.pointerType === 'mouse' && pick(i)}>
+              <button type="button" aria-pressed={i === sel} onClick={() => {
+                pick(i);
+                openSheet();
+              }} onPointerEnter={(ev) => ev.pointerType === 'mouse' && pick(i)}>
                 <span className="micro">{String(i + 1).padStart(2, '0')}</span>
                 <span className="whisper">{it.title}</span>
               </button>
@@ -153,6 +157,7 @@ export function FirmaPlanning() {
     },
     {
       id: 'detail',
+      sheet: true,
       node: (
         <AnimatePresence mode="wait">
           <motion.div key={sel} className="ex-detail" {...swap}>
@@ -173,6 +178,7 @@ export function FirmaPlanning() {
     },
     {
       id: 'example',
+      sheet: true,
       tone: 'deep',
       node: (
         <AnimatePresence mode="wait">
@@ -194,6 +200,7 @@ export function FirmaPlanning() {
     },
     {
       id: 'key',
+      sheet: true,
       tone: 'brand',
       node: (
         <AnimatePresence mode="wait">

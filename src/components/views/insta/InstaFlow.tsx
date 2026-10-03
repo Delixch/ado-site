@@ -83,6 +83,7 @@ function useChat() {
 
   /** Vorschau: Ablauf von vorn bis zum gewaehlten Schritt abspielen. */
   const playTo = (target: number) => {
+    if (window.matchMedia('(max-width: 719.98px)').matches) document.querySelector('.ig-phone')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     reset();
     const at = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
     at(250, () => comment(f.keywords[0]));

@@ -4,6 +4,7 @@ import { ArrowDown, ArrowUp, ArrowUpRight, Lock } from 'lucide-react';
 import { PROJECTS } from '../../../content/design-data';
 import { RevealLines } from '../../fx/RevealLines';
 import { TiltDeck } from '../../fx/TiltDeck';
+import { openSheet } from '../../spread/sheet';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
@@ -80,6 +81,7 @@ export function DesignWork() {
     },
     {
       id: 'info',
+      sheet: true,
       node: (
         <AnimatePresence mode="wait">
           <motion.div key={project.number} className="wk-info" {...swap}>
@@ -92,6 +94,7 @@ export function DesignWork() {
     },
     {
       id: 'facts',
+      sheet: true,
       node: (
         <AnimatePresence mode="wait">
           <motion.dl key={project.number} className="wk-facts" {...swap}>
@@ -107,6 +110,7 @@ export function DesignWork() {
     },
     {
       id: 'tech',
+      sheet: true,
       node: (
         <div className="wk-tech">
           <AnimatePresence mode="wait">
@@ -141,7 +145,10 @@ export function DesignWork() {
           <ol style={{ ['--n' as string]: PROJECTS.length }}>
             {PROJECTS.map((x, i) => (
               <li key={x.number} style={{ ['--i' as string]: i }}>
-                <button type="button" aria-pressed={i === active} title={x.title} onClick={() => pick(i)}>
+                <button type="button" aria-pressed={i === active} title={x.title} onClick={() => {
+                  pick(i);
+                  openSheet();
+                }}>
                   {x.number}
                 </button>
               </li>

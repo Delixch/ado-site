@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { FlowNodes } from '../../fx/FlowNodes';
+import { openSheet } from '../../spread/sheet';
+import { useMode } from '../../../hooks/useMode';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
@@ -28,6 +30,14 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
     setActive(i);
   };
   const st = p.steps[active];
+  const mobile = useMode() === 'mobile';
+  const detail = (
+    <motion.div key={active} className="ex-detail" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
+      <span className="micro">{st.time}</span>
+      <h3 className="poster">{st.t}</h3>
+      <p className="lede">{st.d}</p>
+    </motion.div>
+  );
 
   const blocks: Block[] = [
     {
@@ -36,7 +46,10 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
       node: (
         <FlowNodes
           active={active}
-          onPick={pick}
+          onPick={(i) => {
+            pick(i);
+            openSheet();
+          }}
           items={p.steps.map((s, i) => (
             <>
               <span className="micro">
@@ -54,16 +67,11 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
       node: (
         <div className="how-detail">
           {tabs}
-          <AnimatePresence mode="wait">
-            <motion.div key={active} className="ex-detail" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-              <span className="micro">{st.time}</span>
-              <h3 className="poster">{st.t}</h3>
-              <p className="lede">{st.d}</p>
-            </motion.div>
-          </AnimatePresence>
+          {!mobile && <AnimatePresence mode="wait">{detail}</AnimatePresence>}
         </div>
       ),
     },
+    ...(mobile ? [{ id: 'more', tone: 'brand' as const, sheet: true, node: detail }] : []),
   ];
 
   return <Spread view="i-process" head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;

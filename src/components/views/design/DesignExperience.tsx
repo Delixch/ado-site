@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { FlowNodes } from '../../fx/FlowNodes';
 import { Plate } from '../../fx/Plate';
+import { openSheet } from '../../spread/sheet';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
@@ -41,7 +42,10 @@ export function DesignExperience() {
       node: (
         <FlowNodes
           active={active}
-          onPick={pick}
+          onPick={(i) => {
+            pick(i);
+            openSheet();
+          }}
           items={e.journey.map((j, i) => (
             <>
               <span className="micro">
@@ -56,6 +60,7 @@ export function DesignExperience() {
     },
     {
       id: 'detail',
+      sheet: true,
       node: (
         <AnimatePresence mode="wait">
           <motion.div

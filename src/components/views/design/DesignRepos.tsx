@@ -4,6 +4,7 @@ import { ArrowUpRight, Check, Copy } from 'lucide-react';
 import { REPOS } from '../../../content/design-data';
 import { Terminal } from '../../fx/Terminal';
 import { Plate } from '../../fx/Plate';
+import { openSheet } from '../../spread/sheet';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
@@ -50,7 +51,10 @@ export function DesignRepos() {
                   type="button"
                   aria-pressed={i === sel}
                   onPointerEnter={(e) => e.pointerType === 'mouse' && setSel(i)}
-                  onClick={() => setSel(i)}
+                  onClick={() => {
+                    setSel(i);
+                    openSheet();
+                  }}
                 >
                   <span className="rp-name">{x.title}</span>
                   <span className="rp-bar">
@@ -84,6 +88,7 @@ export function DesignRepos() {
     },
     {
       id: 'detail',
+      sheet: true,
       node: (
         <AnimatePresence mode="wait">
           <motion.div key={sel} className="rp-detail" {...swap}>

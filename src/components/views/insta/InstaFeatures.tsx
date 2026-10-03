@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { openSheet } from '../../spread/sheet';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 import { Shot, type ShotName } from './parts';
@@ -40,7 +41,10 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
           <ol className="ig-steps ig-steps-pick" data-idle="false">
             {f.items.map((it, i) => (
               <li key={it.t} data-on={i === sel} data-now={i === sel} style={{ ['--i' as string]: i }}>
-                <button type="button" aria-pressed={i === sel} onClick={() => pick(i)} onPointerEnter={(e) => e.pointerType === 'mouse' && pick(i)}>
+                <button type="button" aria-pressed={i === sel} onClick={() => {
+                  pick(i);
+                  openSheet();
+                }} onPointerEnter={(e) => e.pointerType === 'mouse' && pick(i)}>
                   <span className="ig-dot">{i + 1}</span>
                   <span className="whisper">{it.t}</span>
                 </button>
@@ -52,6 +56,7 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
     },
     {
       id: 'shot',
+      sheet: true,
       tone: 'deep',
       node: (
         <AnimatePresence mode="wait">
@@ -69,6 +74,7 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
     },
     {
       id: 'detail',
+      sheet: true,
       tone: 'brand',
       node: (
         <AnimatePresence mode="wait">

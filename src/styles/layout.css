@@ -192,12 +192,12 @@
   align-items: flex-start;
 }
 
-/* Handy: Lichtband und Schlange halb so breit (und die Schlange halb so lang je Welle) */
+/* Handy: Lichtband und Schlange ein Viertel so gross wie auf dem Desktop */
 @media (max-width: 719.98px) {
   :root {
-    --band-w: 5ch;
-    --band-blur: 9px;
-    --snake-w: 17ch;
-    --snake-period: 320px;
+    --band-w: 2.5ch;
+    --band-blur: 5px;
+    --snake-w: 8.5ch;
+    --snake-period: 160px;
   }
 }

@@ -4,6 +4,7 @@ import { Check } from 'lucide-react';
 import { calLabel, reportInfo, reportMonths } from '../../../content/firma-extra';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
+import { openSheet } from '../../spread/sheet';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
@@ -150,7 +151,10 @@ export function FirmaReports() {
               const n = parseInt(x.freq, 10);
               return (
                 <li key={x.name}>
-                  <button type="button" aria-pressed={i === rep} onClick={() => pickRep(i)} onPointerEnter={(e) => e.pointerType === 'mouse' && pickRep(i)}>
+                  <button type="button" aria-pressed={i === rep} onClick={() => {
+                    pickRep(i);
+                    openSheet();
+                  }} onPointerEnter={(e) => e.pointerType === 'mouse' && pickRep(i)}>
                     <span className="rp-dots" aria-label={x.freq}>
                       {Array.from({ length: 12 }, (_, k) => (
                         <i key={k} data-on={k < n} />
@@ -168,6 +172,7 @@ export function FirmaReports() {
     },
     {
       id: 'cal',
+      sheet: true,
       tone: 'deep',
       node: (
         <div className="rp-cal">
