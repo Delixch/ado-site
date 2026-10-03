@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { LAYOUT_INTERVAL } from '../../config';
 import { useLayoutCycle } from '../../hooks/useLayoutCycle';
@@ -94,7 +94,8 @@ export function Spread({
   /** Reihenfolge untereinander (Handy/Tablet), wenn sie von der Lesereihenfolge des Layouts abweicht - z. B. Reiter zuerst. */
   stack?: string[];
 }) {
-  const { auto, nonce, t } = useView();
+  const { auto, nonce, t, stacked } = useView();
+  const wrap = useRef<HTMLDivElement>(null);
   const mode = useMode();
   const [hover, setHover] = useState(false);
   const { index, setIndex } = useLayoutCycle(view, layouts.length, auto && !hover, LAYOUT_INTERVAL, nonce);
@@ -111,7 +112,7 @@ export function Spread({
   }, [layout, mode, stack]);
 
   return (
-    <div className="spread-wrap" data-view={view}>
+    <div ref={wrap} className="spread-wrap" data-view={view}>
       <header className="mast">
         <span className="mast-folio" aria-hidden>
           {head.folio}
@@ -127,7 +128,8 @@ export function Spread({
           </h1>
           {tabs}
         </div>
-        {robot && <MastRobot />}
+        {/* untereinander (Handy): ein einziger Roboter fuer alle Seiten, App.tsx */}
+        {robot && !stacked && <MastRobot />}
         <nav className="dial" aria-label="Layout">
           <span className="dial-label">
             <span>{t.ui.layout}</span>
@@ -186,7 +188,7 @@ export function Spread({
         ))}
       </div>
       {sheetBlocks.length > 0 && (
-        <BottomSheet view={view} label={t.ui.close}>
+        <BottomSheet view={view} label={t.ui.close} scope={wrap}>
           {sheetBlocks.map((b) => (
             <section key={b.id} className={`blk bsheet-blk ${b.className ?? ''}`} data-tone={b.tone ?? 'paper'} data-bleed={b.bleed || undefined}>
               <div className="blk-in">{b.node}</div>

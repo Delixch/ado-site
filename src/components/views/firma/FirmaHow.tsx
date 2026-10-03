@@ -6,7 +6,7 @@ import { useMode } from '../../../hooks/useMode';
 import { FlowNodes } from '../../fx/FlowNodes';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
-import { HOW_TAB_EVENT, takeHowTab } from '../insta/howTab';
+import { useHowTab } from '../insta/howTab';
 import { FIRMA_SECTIONS } from './FirmaStart';
 
 /** Schritt 02 blinkt in Gelb (Kundenwunsch 2026-10-04, alle Geraete). */
@@ -23,22 +23,13 @@ const LAYOUTS: LayoutDef[] = [
  * je Bereich nur der Ablauf in vier Schritten. Handy: Schritte mit Text untereinander, kein Sheet.
  */
 export function FirmaHow() {
-  const { t } = useView();
+  const { t, go } = useView();
   const fl = firmaFlow[t.lang];
-  const [tab, setTab] = useState(takeHowTab);
+  const [tab, setTab] = useHowTab('f-flow');
   const [active, setActive] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const touched = useRef(0);
   const mobile = useMode() === 'mobile';
-
-  useEffect(() => {
-    const h = (e: Event) => {
-      setTab((e as CustomEvent<number>).detail);
-      takeHowTab();
-    };
-    window.addEventListener(HOW_TAB_EVENT, h);
-    return () => window.removeEventListener(HOW_TAB_EVENT, h);
-  }, []);
 
   const sec = FIRMA_SECTIONS[tab] ?? FIRMA_SECTIONS[0];
   const area = fl.areas[tab] ?? fl.areas[0];
@@ -62,7 +53,7 @@ export function FirmaHow() {
   const choose = (i: number) => {
     setTab(i);
     setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    go('f-flow');
   };
 
   const list = (

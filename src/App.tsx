@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState, type ComponentType } from 'react';
+import { useEffect, useMemo, useRef, useState, type ComponentType } from 'react';
 import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'motion/react';
 import { SleekSidebar } from './components/SleekSidebar';
 import { Topbar } from './components/Topbar';
-import { ViewContext } from './components/ViewFrame';
+import { PageContext, ViewContext } from './components/ViewFrame';
+import { MastRobot } from './components/robot/MastRobot';
 import { DesignStart } from './components/views/design/DesignStart';
 import { DesignAbout } from './components/views/design/DesignAbout';
 import { DesignWork } from './components/views/design/DesignWork';
@@ -118,13 +119,50 @@ export default function App() {
   const isExpanded = mode === 'desktop' ? desktopExpanded : mode === 'tablet' ? overlayOpen : true;
   const setIsExpanded = mode === 'desktop' ? setDesktopExpanded : setOverlayOpen;
 
+  // Handy: alle Seiten untereinander - Menue springt zur Seite, Scrollen fuehrt weiter zur naechsten
+  const stacked = mode === 'mobile';
+  const spy = useRef(true);
+
   const go = (id: string) => {
     setActive(id);
     if (mode !== 'desktop') setOverlayOpen(false);
-    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    if (stacked) {
+      // Spruenge ueber mehrere Seiten sofort, damit der Kopf nicht unterwegs andere Titel zeigt
+      spy.current = false;
+      requestAnimationFrame(() => {
+        document.getElementById(`page-${id}`)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+        window.setTimeout(() => (spy.current = true), 120);
+      });
+    } else window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   };
 
-  const ctx = { t, color, auto: auto && mode !== 'mobile', nonce, go };
+  // Handy: beim Laden zur gemerkten Seite; beim Scrollen gilt die Seite unter dem Kopf als aktiv
+  useEffect(() => {
+    if (!stacked) return;
+    // erst nach dem Aufbau springen; bis dahin meldet der Beobachter nichts (sonst gewinnt "Start")
+    history.scrollRestoration = 'manual';
+    spy.current = false;
+    const jump = window.setTimeout(() => {
+      document.getElementById(`page-${active}`)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+      window.setTimeout(() => (spy.current = true), 300);
+    }, 150);
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!spy.current) return;
+        const hit = entries.find((e) => e.isIntersecting);
+        const id = (hit?.target as HTMLElement | undefined)?.dataset.page;
+        if (id) setActive(id);
+      },
+      { rootMargin: '-30% 0px -69% 0px' },
+    );
+    document.querySelectorAll('[data-page]').forEach((el) => io.observe(el));
+    return () => {
+      window.clearTimeout(jump);
+      io.disconnect();
+    };
+  }, [stacked, lang]);
+
+  const ctx = { t, color, auto: auto && mode !== 'mobile', nonce, go, stacked };
 
 
   return (
@@ -179,18 +217,36 @@ export default function App() {
               onMenu={mode === 'mobile' ? () => setOverlayOpen(true) : undefined}
             />
 
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.section
-                key={`${item.id}-${lang}`}
-                className="page"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-              >
-                <View />
-              </motion.section>
-            </AnimatePresence>
+            {stacked ? (
+              <>
+                {ALL_ITEMS.map(({ id }) => {
+                  const Page = VIEWS[id];
+                  return (
+                    <section key={`${id}-${lang}`} id={`page-${id}`} data-page={id} className="page page-stacked">
+                      <PageContext.Provider value={id}>
+                        <Page />
+                      </PageContext.Provider>
+                    </section>
+                  );
+                })}
+                <MastRobot />
+              </>
+            ) : (
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.section
+                  key={`${item.id}-${lang}`}
+                  className="page"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <PageContext.Provider value={item.id}>
+                    <View />
+                  </PageContext.Provider>
+                </motion.section>
+              </AnimatePresence>
+            )}
 
             <footer className="foot">
               <span>© {new Date().getFullYear()} ADO Design · ADO Firma</span>

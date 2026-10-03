@@ -280,3 +280,8 @@
 .fc-areas .trust {
   margin-top: var(--sp-3);
 }
+
+/* Lichtlinie um das Briefpapier (fx.css .trace, nur Handy) */
+.paper {
+  position: relative;
+}

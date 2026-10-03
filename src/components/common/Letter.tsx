@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { CONTACT_MAIL } from '../../config';
-import { useView } from '../ViewFrame';
+import { usePage, useView } from '../ViewFrame';
 import { onIntroCall, takeIntroCall } from './IntroCall';
 
 export interface LetterLabels {
@@ -20,6 +20,7 @@ export interface LetterLabels {
  */
 export function LetterDesk({ labels, to = 'ADO', topic: given }: { labels: LetterLabels; to?: string; /** fertiger Betreff, z. B. gewaehltes Paket */ topic?: string }) {
   const { t } = useView();
+  const page = usePage();
   const L = t.ui.letter;
   const lang = t.lang;
   const I = t.ui.intro;
@@ -33,7 +34,7 @@ ${I.when}` : '' }));
   // Erstgespraech- oder Paket-Knopf auf derselben Seite: Brief oeffnen und vorfuellen
   useEffect(
     () =>
-      onIntroCall((w) => {
+      onIntroCall(page, (w) => {
         const next = w.topic ?? I.topic;
         setSealed(false);
         setTopic(next);
@@ -41,7 +42,7 @@ ${I.when}` : '' }));
 ${I.when}` }));
         window.setTimeout(() => area.current?.focus(), 500);
       }),
-    [I.topic, I.when],
+    [page, I.topic, I.when],
   );
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
@@ -69,6 +70,7 @@ ${I.when}` }));
             exit={{ scaleY: 0.08, y: 40, opacity: 0, transition: { duration: 0.7, ease: [0.77, 0, 0.175, 1] } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
+            <i className="trace" aria-hidden />
             <p className="paper-date micro">
               {L.place}, {date}
             </p>

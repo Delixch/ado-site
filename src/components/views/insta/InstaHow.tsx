@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useView } from '../../ViewFrame';
-import { HOW_TAB_EVENT, takeHowTab } from './howTab';
+import { useHowTab } from './howTab';
 import { InstaFeatures } from './InstaFeatures';
 import { InstaFlow } from './InstaFlow';
 import { InstaPricing } from './InstaPricing';
@@ -12,16 +11,7 @@ const VIEWS = [InstaFlow, InstaFeatures, InstaProcess, InstaPricing];
 export function InstaHow() {
   const { t } = useView();
   const labels = [t.i.flow.stepsTitle, t.i.features.tab, t.i.process.tab, t.i.pricing.eyebrow];
-  const [tab, setTab] = useState(takeHowTab);
-
-  useEffect(() => {
-    const h = (e: Event) => {
-      setTab((e as CustomEvent<number>).detail);
-      takeHowTab();
-    };
-    window.addEventListener(HOW_TAB_EVENT, h);
-    return () => window.removeEventListener(HOW_TAB_EVENT, h);
-  }, []);
+  const [tab, setTab] = useHowTab('i-flow');
 
   const View = VIEWS[tab] ?? InstaFlow;
 

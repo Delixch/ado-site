@@ -89,7 +89,7 @@ export function FirmaStart() {
                     type="button"
                     className="fs-line"
                     onClick={() => {
-                      requestHowTab(i);
+                      requestHowTab(i, 'f-flow');
                       go('f-flow');
                     }}
                   >

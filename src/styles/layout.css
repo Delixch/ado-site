@@ -129,11 +129,12 @@
     padding-left: calc(var(--gutter) + var(--sb-rail-w) + 16px);
   }
 
+  /* Menue nur so hoch wie sein Inhalt (plus etwa 1 cm), hoechstens bis zum unteren Rand */
   .sb-slot {
     position: fixed;
     top: var(--gutter);
     left: var(--gutter);
-    bottom: var(--gutter);
+    bottom: auto;
     height: auto;
     max-height: none;
   }
@@ -162,7 +163,9 @@
   }
 
   .sb-slot .sb {
-    height: 100%;
+    height: auto;
+    max-height: calc(100dvh - var(--gutter) * 2);
+    padding-bottom: var(--sp-10);
   }
 
   .main {
@@ -192,3 +195,14 @@
   align-items: flex-start;
 }
 
+
+/* Handy: alle Seiten untereinander (App.tsx) - Sprungziel unter der festen Kopfzeile, klare Trennung */
+.page-stacked {
+  scroll-margin-top: calc(var(--tb-m-h) + env(safe-area-inset-top));
+}
+
+.page-stacked + .page-stacked {
+  margin-top: var(--sp-12);
+  padding-top: var(--sp-8);
+  border-top: var(--hair) solid var(--rule);
+}

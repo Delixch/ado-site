@@ -1,13 +1,13 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowLeft, CalendarClock, Check, Clock, Target, UserRound, Wrench } from 'lucide-react';
-import { takeIntroCall } from '../../common/IntroCall';
+import { onIntroCall, takeIntroCall } from '../../common/IntroCall';
 import { LetterDesk } from '../../common/Letter';
 import { TrustBadges } from '../../common/TrustBadges';
 import { openSheet } from '../../spread/sheet';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useMode } from '../../../hooks/useMode';
-import { useView } from '../../ViewFrame';
+import { usePage, useView } from '../../ViewFrame';
 
 /** Untereinander: Reiter zuerst (wie auf den anderen Seiten). */
 const STACK = ['offer', 'plans'];
@@ -32,14 +32,18 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
   const mobile = useMode() === 'mobile';
   const open = (topic: string) => {
     setAsk(topic);
-    if (mobile) openSheet();
+    if (mobile) openSheet('i-pricing');
     else window.setTimeout(() => document.querySelector('.op .desk')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
   };
 
   // Erstgespraech von der Uebersicht: Brief gleich offen - auf dem Handy im Sheet
   useEffect(() => {
-    if (mobile && ask) openSheet();
+    if (mobile && ask) openSheet('i-pricing');
   }, []);
+
+  // Seite steht schon (Handy, alles untereinander): Erstgespraech-Knopf anderswo oeffnet den Brief hier
+  const page = usePage();
+  useEffect(() => onIntroCall(page, (w) => open(w.topic ?? I.topic)));
   const plan = p.plans.find((x) => x.id === sel) ?? p.plans[0];
   const unit = (care: boolean) => (care ? `/ ${p.perMonth}` : p.once);
 

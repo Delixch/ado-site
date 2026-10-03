@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { X } from 'lucide-react';
@@ -9,9 +9,9 @@ import { onSheetOpen } from './sheet';
  * Griff nach unten, Tippen daneben, X oder Esc. Haelt den Offen-Zustand selbst, damit die
  * ganze Doppelseite beim Oeffnen nicht neu gemessen werden muss.
  */
-export function BottomSheet({ view, label, children }: { view: string; label: string; children: ReactNode }) {
+export function BottomSheet({ view, label, scope, children }: { view: string; label: string; scope: RefObject<HTMLElement | null>; children: ReactNode }) {
   const [open, setOpen] = useState(false);
-  useEffect(() => onSheetOpen(() => setOpen(true)), []);
+  useEffect(() => onSheetOpen(view, () => scope.current, () => setOpen(true)), [view, scope]);
   useEffect(() => setOpen(false), [view]);
 
   useEffect(() => {
