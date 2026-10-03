@@ -7,7 +7,7 @@
 ## 1. Satış — ziyaretçiyi müşteriye çevirmek
 
 **1.1 Tek net çağrı: ücretsiz ön görüşme** · emek: küçük
-Her ürünün son sayfasında ve Übersicht'te aynı düğme: *"Kostenloses Erstgespräch · 15 Min."* → mektup/e-posta ile (Calendly YOK, Adnan istemiyor).
+Her ürünün son sayfasında ve Übersicht'te aynı düğme: *"Kostenloses Erstgespräch · 15 Min."* → mektup/e-posta ile. ✅ 2026-10-03 yapıldı (common/IntroCall.tsx). İleride gerçek takvim: Cal.com gömülü.
 
 **1.2 Gerçek müşteri sesi** · emek: küçük
 Happy Beck, SAZCAR gibi müşterilerden 1–2 cümlelik alıntı + logo + isim. Firma ve InstaOto Übersicht'te birer blok.
