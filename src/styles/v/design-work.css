@@ -139,6 +139,8 @@
 
 .wk-facts dd {
   font-size: var(--fs-whisper-s);
+  /* Wert ganz rechts, die Ueberschrift bleibt links */
+  text-align: right;
 }
 
 .wk-tech {
