@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Camera, ChevronDown, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { Building2, Camera, ChevronDown, ChevronLeft, ChevronRight, MessageCircleHeart, PenTool, Search } from 'lucide-react';
 import { ALL_ITEMS, MENU_SECTIONS, type MenuItemDef } from '../content/menu';
 import { buildIndex, searchSite } from '../content/search';
 import type { Texts } from '../content/ui';
@@ -39,7 +39,8 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
     if (activeGroup) setOpenGroups([activeGroup]);
   }, [activeGroup]);
   const accordion = collapsible && isExpanded;
-  const toggleGroup = (g: string) => setOpenGroups((o) => (o.includes(g) ? o.filter((x) => x !== g) : [...o, g]));
+  // Immer nur eine Gruppe offen - eingeklappt und ausgeklappt derselbe Zustand.
+  const toggleGroup = (g: string) => setOpenGroups((o) => (o.includes(g) ? [] : [g]));
   const [avatarUrl, setAvatarUrl] = useState<string>(getStoredAvatar);
   const [imgLoadFailed, setImgLoadFailed] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -194,7 +195,17 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
             })}
           </div>
         )}
-        {sections.map((section) => (
+        {!isExpanded && (
+          <RailGroups
+            activeTab={activeTab}
+            activeGroup={activeGroup}
+            openGroups={openGroups}
+            toggleGroup={toggleGroup}
+            onSelect={onSelect}
+            t={t}
+          />
+        )}
+        {isExpanded && sections.map((section) => (
           <div key={section.group} className="sb-section">
             {accordion ? (
               <button
@@ -272,3 +283,80 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
     </motion.aside>
   );
 };
+
+const GROUP_ICONS = { design: PenTool, firma: Building2, insta: MessageCircleHeart } as const;
+
+/** Eingeklapptes Menue: jede Gruppe ist ein Symbol. Nur die offene Gruppe zeigt
+ *  darunter ihre Seiten; ein Klick auf ein anderes Gruppensymbol schliesst sie. */
+function RailGroups({
+  activeTab,
+  activeGroup,
+  openGroups,
+  toggleGroup,
+  onSelect,
+  t,
+}: {
+  activeTab: string;
+  activeGroup?: string;
+  openGroups: string[];
+  toggleGroup: (g: string) => void;
+  onSelect: (item: MenuItemDef) => void;
+  t: Texts;
+}) {
+  return (
+    <div className="sb-rail">
+      {MENU_SECTIONS.map((sec) => {
+        const GroupIcon = GROUP_ICONS[sec.group];
+        const label = t.ui.groups[sec.group].title;
+        const isOpen = openGroups.includes(sec.group);
+        return (
+          <div key={sec.group} className="sb-rail-group" data-open={isOpen}>
+            <button
+              type="button"
+              className="sb-item sb-rail-btn"
+              data-open={isOpen}
+              data-current={sec.group === activeGroup}
+              title={label}
+              aria-label={label}
+              aria-expanded={isOpen}
+              onClick={() => toggleGroup(sec.group)}
+            >
+              <GroupIcon className="sb-icon" />
+            </button>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  className="sb-rail-items"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {sec.items.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activeTab === item.id;
+                    const itemLabel = t.menu[item.id];
+                    return (
+                      <button
+                        type="button"
+                        key={item.id}
+                        className="sb-item"
+                        data-active={isActive}
+                        aria-current={isActive ? 'page' : undefined}
+                        title={itemLabel}
+                        aria-label={itemLabel}
+                        onClick={() => onSelect(item)}
+                      >
+                        <Icon className="sb-icon" />
+                      </button>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
+  );
+}

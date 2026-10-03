@@ -157,3 +157,4 @@ epos\instagramoto tanıtımı)
 - Menü kenarında yavaş dönen ince ışık çizgisi (16 sn/tur, tokens: --sb-orbit-*).
 - **KI-Roboter** (ADO Design'dan): her sayfanın başlığında, layout planlarının başında (3D, three.js ayrı parça olarak yüklenir). Tıklayınca konuşur + soru kutusu açılır. Servis: `api/chat.ts` (Vercel function) + lokal `vite.config.ts` ara katmanı.
   - **Ayar bekliyor (Vercel açılınca):** ortam değişkenleri `DAHL_API_KEY` ve/veya `ATRIA_API_KEY` (opsiyonel `ATRIA_BASE_URL`, `DAHL_MODEL`). Anahtar yokken robot kibar yedek cevap verir.
+- Menü akışı (Adnan'ın tarifi): her an tek grup açık. Açılış: Portfolio açık. Daraltılınca 3 grup ikonu; yalnız açık grubun sayfa ikonları altında. Başka grup ikonuna tıklayınca o açılır, öteki kapanır. Genişletince aynı grup açık gelir. Başka sayfaya geçince o sayfanın grubu açılır.
