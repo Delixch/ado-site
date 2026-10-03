@@ -84,10 +84,12 @@
 }
 
 .ab-cta {
+  /* mittig in beiden Richtungen, Reihenfolge bleibt: Etikett, Adresse, Knopf */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   gap: var(--sp-3);
   height: 100%;
 }
