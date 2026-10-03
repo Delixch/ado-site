@@ -98,6 +98,17 @@
   max-width: none;
 }
 
+/* Eng: die beiden Knoepfe ganz nach rechts */
+.blk-in:has(> .ds-lede) {
+  container-type: inline-size;
+}
+
+@container (max-width: 600px) {
+  .ds-lede .e-links {
+    justify-content: flex-end;
+  }
+}
+
 .ds-quote {
   /* Spruch mittig in beiden Richtungen, Herkunft ganz rechts unten */
   display: grid;
