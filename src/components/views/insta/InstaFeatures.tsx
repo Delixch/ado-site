@@ -8,6 +8,9 @@ import { Shot, type ShotName } from './parts';
 /** Funktion -> passende Aufnahme des echten Panels. */
 const SHOTS: ShotName[] = ['akislar', 'editor', 'simulator', 'inbox', 'posts', 'uebersicht'];
 
+/** Untereinander: Reiter zuerst (wie auf den anderen Seiten). */
+const STACK = ['list', 'shot', 'detail'];
+
 const LAYOUTS: LayoutDef[] = [
   { name: 'Screen', cols: '1fr 1fr 1fr', areas: ['shot shot list', 'shot shot detail'] },
   { name: 'Mirror', cols: '1fr 1fr 1fr', areas: ['list shot shot', 'detail shot shot'] },
@@ -86,5 +89,5 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
     },
   ];
 
-  return <Spread view="i-features" head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-features" head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} stack={STACK} />;
 }

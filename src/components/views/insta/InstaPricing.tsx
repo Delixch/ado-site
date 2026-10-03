@@ -7,6 +7,9 @@ import { TrustBadges } from '../../common/TrustBadges';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
+/** Untereinander: Reiter zuerst (wie auf den anderen Seiten). */
+const STACK = ['offer', 'plans'];
+
 const LAYOUTS: LayoutDef[] = [
   { name: 'Halo', cols: '1fr 1fr 1fr', areas: ['plans plans offer'] },
   { name: 'Open', cols: '1fr 1fr 1fr', areas: ['offer plans plans'] },
@@ -178,5 +181,5 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
     },
   ];
 
-  return <Spread view="i-pricing" head={{ folio: '04', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-pricing" head={{ folio: '04', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} stack={STACK} />;
 }

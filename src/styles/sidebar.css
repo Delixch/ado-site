@@ -597,7 +597,8 @@
 }
 
 .sb[data-expanded="true"] .sb-nav {
-  gap: var(--sp-8);
+  /* Gruppentitel eng untereinander (Kundenwunsch 2026-10-04, vorher 32 px) */
+  gap: var(--sp-2);
   padding: var(--sp-1) 0 var(--sp-10);
   -webkit-mask-image: linear-gradient(to bottom, black calc(100% - var(--sp-10)), transparent);
   mask-image: linear-gradient(to bottom, black calc(100% - var(--sp-10)), transparent);

@@ -11,6 +11,9 @@ const LAYOUTS: LayoutDef[] = [
   { name: 'Wide', cols: '1.4fr 1fr', areas: ['phone steps'] },
 ];
 
+/** Untereinander: Reiter und Schritte oben, das Telefon darunter (wie auf den anderen Seiten). */
+const STACK = ['steps', 'phone'];
+
 type Msg = { id: number; from: 'user' | 'bot' | 'sys'; text: string; buttons?: string[]; link?: boolean };
 
 /**
@@ -209,5 +212,5 @@ export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
     },
   ];
 
-  return <Spread view="i-flow" head={{ folio: '01', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="i-flow" head={{ folio: '01', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} stack={STACK} />;
 }

@@ -79,6 +79,7 @@ export function Spread({
   layouts,
   robot = true,
   tabs,
+  stack,
 }: {
   view: string;
   head: Masthead;
@@ -88,6 +89,8 @@ export function Spread({
   robot?: boolean;
   /** Reiter unter der Ueberschrift (eine Seite mit mehreren Ansichten). */
   tabs?: ReactNode;
+  /** Reihenfolge untereinander (Handy/Tablet), wenn sie von der Lesereihenfolge des Layouts abweicht - z. B. Reiter zuerst. */
+  stack?: string[];
 }) {
   const { auto, nonce, t } = useView();
   const mode = useMode();
@@ -102,8 +105,8 @@ export function Spread({
   const plan = useMemo(() => {
     if (mode === 'desktop') return { style: gridStyle(layout.cols, layout.areas, layout.rows), order: null };
     if (mode === 'tablet' && layout.tablet) return { style: gridStyle(layout.tablet.cols, layout.tablet.areas, layout.tablet.rows), order: null };
-    return { style: undefined, order: readingOrder(layout.areas) };
-  }, [layout, mode]);
+    return { style: undefined, order: stack ?? readingOrder(layout.areas) };
+  }, [layout, mode, stack]);
 
   return (
     <div className="spread-wrap" data-view={view}>
