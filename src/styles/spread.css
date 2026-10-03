@@ -504,8 +504,19 @@
   border-color: var(--sb-glass-edge);
 }
 
-.bp-pick[data-dock] div {
+.bp-pick[data-dock] > div {
+  align-items: flex-start;
+}
+
+/* Knoepfe brechen unter dem ersten Knopf um, nicht unter der Beschriftung */
+.bp-pick .bp-btns {
+  flex: 1;
   flex-wrap: wrap;
+}
+
+.bp-pick > div > span {
+  flex-shrink: 0;
+  line-height: var(--icon-lg);
 }
 
 .bp-pick > .sb-orbit {

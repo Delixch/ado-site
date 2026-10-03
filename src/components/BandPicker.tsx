@@ -27,19 +27,23 @@ export function BandPicker({
       {dock && <span className="sb-orbit" aria-hidden />}
       <div>
         <span>Form</span>
-        {SHAPES.map((v) => (
-          <button type="button" key={v} aria-pressed={v === band} onClick={() => setBand(v)}>
-            {v}
-          </button>
-        ))}
+        <div className="bp-btns">
+          {SHAPES.map((v) => (
+            <button type="button" key={v} aria-pressed={v === band} onClick={() => setBand(v)}>
+              {v}
+            </button>
+          ))}
+        </div>
       </div>
       <div>
         <span>Effekt</span>
-        {FX.map((v, i) => (
-          <button type="button" key={v} aria-pressed={v === fx} onClick={() => setFx(v)} title={FX_NAMES[i]}>
-            {v}
-          </button>
-        ))}
+        <div className="bp-btns">
+          {FX.map((v, i) => (
+            <button type="button" key={v} aria-pressed={v === fx} onClick={() => setFx(v)} title={FX_NAMES[i]}>
+              {v}
+            </button>
+          ))}
+        </div>
       </div>
       <em>{FX_NAMES[Number(fx)]}</em>
     </div>
