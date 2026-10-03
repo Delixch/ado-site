@@ -92,12 +92,10 @@
 }
 
 .ab-cta {
-  /* mittig in beiden Richtungen, Reihenfolge bleibt: Etikett, Adresse, Knopf */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  /* die Gruppe als Ganzes mittig, darin bleibt alles linksbuendig untereinander */
+  display: grid;
+  place-content: center;
+  justify-items: start;
   gap: var(--sp-3);
   height: 100%;
 }
