@@ -277,3 +277,38 @@
 .bp-frame .bp-grid {
   border: 0;
 }
+
+/* Feinschliff: grosses Wort mittig, Gruppen mittig von oben nach unten, volle Breite */
+.cn-status {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.cn-status .poster {
+  align-self: center;
+  justify-self: center;
+}
+
+.cn-lab {
+  justify-content: center;
+}
+
+.cn-lab .lede {
+  margin-top: 0;
+  max-width: none;
+}
+
+.blk-in:has(> .cn-para) {
+  display: flex;
+  align-items: center;
+}
+
+.cn-para {
+  height: auto;
+  max-width: none;
+}
+
+.cn-tags {
+  justify-content: center;
+}
