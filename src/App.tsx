@@ -208,7 +208,9 @@ export default function App() {
               <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
             </footer>
           </main>
-          {mode !== 'mobile' && <BandPicker band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} />}
+          {mode !== 'mobile' && (
+            <BandPicker band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} dock={mode === 'desktop' && desktopExpanded} />
+          )}
           <LegalDialog doc={legal} lang={lang} onOpen={setLegal} onClose={() => setLegal(null)} />
         </div>
       </ViewContext.Provider>

@@ -6,9 +6,25 @@ const SHAPES = ['1', '2', '3', '4'];
 const FX = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 const FX_NAMES = ['aus', 'Licht', 'Partikel', 'Punkte', 'ADO', 'Herzschlag', 'Streifen', 'Funken', 'Schimmer', 'Sonar', 'Datenregen', 'ADO-Regen'];
 
-export function BandPicker({ band, fx, setBand, setFx, inline }: { band: string; fx: string; setBand: (v: string) => void; setFx: (v: string) => void; inline?: boolean }) {
+export function BandPicker({
+  band,
+  fx,
+  setBand,
+  setFx,
+  inline,
+  dock,
+}: {
+  band: string;
+  fx: string;
+  setBand: (v: string) => void;
+  setFx: (v: string) => void;
+  inline?: boolean;
+  /** Unten in der Menue-Spalte, so breit wie das Menue, mit umlaufender Lichtlinie. */
+  dock?: boolean;
+}) {
   return (
-    <div className="bp-pick" data-inline={inline || undefined} role="group" aria-label="Lichtband">
+    <div className="bp-pick" data-inline={inline || undefined} data-dock={dock || undefined} role="group" aria-label="Lichtband">
+      {dock && <span className="sb-orbit" aria-hidden />}
       <div>
         <span>Form</span>
         {SHAPES.map((v) => (
