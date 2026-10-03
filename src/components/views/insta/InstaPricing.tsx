@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react';
+import { TrustBadges } from '../../common/TrustBadges';
 import { IntroCall } from '../../common/IntroCall';
 import { LetterDesk } from '../../common/Letter';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
@@ -25,6 +26,7 @@ export function InstaPricing() {
           <h3 className="poster">{p.line2}</h3>
           <p className="lede">{p.lede}</p>
           <IntroCall contact="i-pricing" here />
+          <TrustBadges product="insta" />
         </div>
       ),
     },

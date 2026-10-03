@@ -197,3 +197,32 @@
   gap: var(--sp-5);
   height: 100%;
 }
+
+/* Vertrauens-Hinweise (common/TrustBadges.tsx): kleine Kapseln, ganz rechts */
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--sp-1);
+  align-self: stretch;
+}
+
+.trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-2);
+  border: var(--hair) solid color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--ls-wide);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.trust svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  color: var(--brand-text);
+}

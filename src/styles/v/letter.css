@@ -264,7 +264,7 @@
   height: 100%;
 }
 
-.fc-areas ul {
+.fc-areas ul:not(.trust) {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--sp-1) var(--sp-3);
@@ -305,4 +305,9 @@
 
 .fc-benefits .whisper {
   text-align: right;
+}
+
+/* Vertrauens-Hinweise im Bereiche-Block: eigene Zeile, nicht das Zweier-Raster der Bereiche */
+.fc-areas .trust {
+  margin-top: var(--sp-3);
 }

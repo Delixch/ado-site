@@ -1,4 +1,5 @@
 import { LetterDesk } from '../../common/Letter';
+import { TrustBadges } from '../../common/TrustBadges';
 import { IntroCall } from '../../common/IntroCall';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
@@ -52,6 +53,7 @@ export function FirmaContact() {
               </li>
             ))}
           </ul>
+          <TrustBadges product="firma" />
         </div>
       ),
     },

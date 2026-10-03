@@ -38,6 +38,11 @@ const shell = {
     choose: 'Auswählen',
     play: 'Video abspielen',
     pause: 'Video anhalten',
+    /** Vertrauens-Hinweise auf den Angebotsseiten. Nur sagen, was nachweislich stimmt. */
+    trust: {
+      insta: ['Daten in der EU · Frankfurt', 'Zugänge AES-256-verschlüsselt', 'Kein Monatsabo', 'Ansprechpartner in Zürich'],
+      firma: ['Ansprechpartner in Zürich', 'Deutsch & Türkisch', 'Auf Ihren Betrieb zugeschnitten', 'Persönliche Einweisung'],
+    },
     /** Erstgespraech-Knopf: oeffnet den Brief mit fertigem Betreff (kein Kalenderdienst). */
     intro: {
       cta: 'Kostenloses Erstgespräch · 15 Min.',
@@ -86,6 +91,10 @@ const shell = {
     choose: 'Seçin',
     play: 'Videoyu oynat',
     pause: 'Videoyu durdur',
+    trust: {
+      insta: ['Veriler AB’de · Frankfurt', 'Erişimler AES-256 ile şifreli', 'Aylık abonelik yok', 'Zürih’te muhatap'],
+      firma: ['Zürih’te muhatap', 'Almanca & Türkçe', 'İşletmenize göre yapılır', 'Kişisel tanıtım'],
+    },
     intro: {
       cta: 'Ücretsiz ön görüşme · 15 dk.',
       topic: 'Ücretsiz ön görüşme (15 dk.)',
