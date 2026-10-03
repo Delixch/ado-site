@@ -264,3 +264,8 @@
 .rp-info .lede {
   max-width: none;
 }
+
+/* Kachel-Effekt ueber den Monaten: enger, weil die Kaestchen dicht stehen */
+.rp-months {
+  --hover-tile-out: var(--sp-1);
+}

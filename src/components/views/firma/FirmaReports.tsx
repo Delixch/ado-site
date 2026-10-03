@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { calLabel, reportInfo, reportMonths } from '../../../content/firma-extra';
+import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { Plate } from '../../fx/Plate';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -19,6 +20,7 @@ export function FirmaReports() {
   const r = t.f.repos;
   const d = r.doc;
   const [top, setTop] = useState(0);
+  const monthTile = useHoverTile();
   const [stamped, setStamped] = useState(false);
   const touched = useRef(0);
   const perYear = r.reports.reduce((sum, x) => sum + parseInt(x.freq, 10), 0);
@@ -172,9 +174,10 @@ export function FirmaReports() {
           <span className="micro">
             <b>{cal.title}</b> · {cal.hint}
           </span>
-          <ol className="rp-months">
+          <ol className="rp-months" {...monthTile.list}>
             {monthNames.map((mn, i) => (
-              <li key={mn} data-due={due.includes(i + 1)}>
+              <li key={mn} data-due={due.includes(i + 1)} {...monthTile.item(i)}>
+                <HoverTile {...monthTile.at(i)} />
                 <span className="micro">{mn}</span>
                 <motion.i layout transition={{ type: 'spring', stiffness: 200, damping: 22 }} />
               </li>
