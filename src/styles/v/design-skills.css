@@ -91,19 +91,36 @@
   height: 100%;
 }
 
+/* Etikett + Text als Gruppe mittig von oben nach unten, Werkzeuge ganz rechts unten */
+.sk-focus > .micro {
+  margin-top: auto;
+}
+
 .sk-focus .lede {
+  max-width: none;
   color: var(--ink);
 }
 
 .sk-focus .sk-tools {
   margin-top: auto;
+  justify-content: flex-end;
 }
 
+/* grosse Zahl mittig, Zeile darunter ganz rechts */
 .sk-count {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 1fr auto;
   height: 100%;
+}
+
+.sk-count .poster {
+  align-self: center;
+  justify-self: center;
+}
+
+.sk-count .whisper {
+  justify-self: end;
+  text-align: right;
 }
 
 .sk-count .poster {
@@ -129,7 +146,7 @@
   gap: var(--sp-1);
   padding-bottom: var(--sp-3);
   border-bottom: var(--hair) solid var(--rule);
-  color: var(--ink-soft);
+  color: color-mix(in srgb, var(--ink) 82%, transparent);
 }
 
 .term-bar i {
@@ -156,7 +173,7 @@
 
 .term-out {
   display: block;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 
 .term-caret {
