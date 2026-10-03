@@ -418,6 +418,9 @@
     border-radius: 0 0 0 var(--radius-sm);
     background: var(--brand);
     color: var(--on-brand);
+    /* klare Unterkante mit Schatten: das Band laeuft sichtbar darunter durch, statt mit der Leiste zu verschmelzen */
+    border-bottom: var(--hair) solid color-mix(in srgb, var(--on-brand) 30%, transparent);
+    box-shadow: var(--tb-shadow);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -425,5 +428,10 @@
   .tb::before,
   .tb::after {
     content: none;
+  }
+
+  /* Effekte des Bands nicht mehr auf der Kopfzeile (sie liegt jetzt ueber dem Band) */
+  .band-fx-top {
+    display: none;
   }
 }

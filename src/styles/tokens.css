@@ -325,6 +325,7 @@
   --tb-m-line-strong: rgba(255, 255, 255, 0.3);
   --tb-m-surface: #141414;
   --tb-m-h: 64px;
+  --tb-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
   /* Lichtlinie um Bausteine (fx.css .trace) */
   --trace-w: 2px;
   --trace-loop: 7s;
