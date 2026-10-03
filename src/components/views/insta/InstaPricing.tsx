@@ -31,16 +31,25 @@ export function InstaPricing() {
     {
       id: 'included',
       node: (
-        <ul className="in-need">
-          {p.included.map((x) => (
-            <li key={x}>
-              <span className="in-check">
-                <Check />
-              </span>
-              <span className="whisper">{x}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="in-need">
+          <ul>
+            {p.terms.map((x) => (
+              <li key={x.t}>
+                <span className="in-check">
+                  <Check />
+                </span>
+                <span>
+                  <span className="whisper">{x.t}</span>
+                  <span className="in-sub">{x.d}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="in-terms-note micro">
+            <b>{p.includedLabel}:</b> {p.included.slice(0, 4).join(' · ')}
+          </p>
+          <p className="in-terms-note micro">{p.hostingNote}</p>
+        </div>
       ),
     },
   ];

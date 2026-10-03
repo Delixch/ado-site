@@ -605,3 +605,10 @@
 .in-send .lede {
   max-width: none;
 }
+
+/* Preisrahmen: kleine Hinweise unter der Liste, ganz rechts */
+.in-terms-note {
+  align-self: flex-end;
+  text-align: right;
+  line-height: var(--lh-body);
+}

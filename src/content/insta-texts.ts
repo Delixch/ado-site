@@ -104,6 +104,15 @@ export const instaTexts = {
       line2: 'auf Anfrage.',
       lede: 'Jede Einrichtung ist auf Ihren Betrieb zugeschnitten. Erzählen Sie uns kurz, wofür Sie Instagram nutzen – Sie erhalten ein klares Angebot ohne Monatsabo.',
       included: ['Einrichtung und erste Abläufe', 'Panel-Zugang für Ihr Team', 'Datenbank in der EU', 'Einweisung und Test', 'Kein Monatsabo'],
+      /** Preisrahmen ohne Zahl. */
+      terms: [
+        { t: 'Einmalig', d: 'Einmal eingerichtet – danach läuft es von selbst.' },
+        { t: 'Kein Monatsabo', d: 'Keine laufenden Lizenzkosten.' },
+        { t: 'Fixpreis nach dem Erstgespräch', d: 'Sie wissen vorher genau, was es kostet.' },
+        { t: 'Einweisung inklusive', d: 'Wir zeigen Ihrem Team alles einmal in Ruhe. Laufende Betreuung ist auf Wunsch möglich – gegen Aufpreis.' },
+      ],
+      includedLabel: 'Inbegriffen',
+      hostingNote: 'Datenbank & Hosting: in den meisten Fällen kostenlos.',
       form: {
         namePlaceholder: 'Ihr Name',
         emailPlaceholder: 'Ihre E-Mail-Adresse',
@@ -215,6 +224,14 @@ export const instaTexts = {
       line2: 'talep üzerine.',
       lede: 'Her kurulum işletmenize göre yapılır. Instagram’ı ne için kullandığınızı kısaca yazın – aylık abonelik olmadan net bir teklif alırsınız.',
       included: ['Kurulum ve ilk akışlar', 'Ekibiniz için panel erişimi', 'AB’de veritabanı', 'Tanıtım ve test', 'Aylık abonelik yok'],
+      terms: [
+        { t: 'Tek seferlik', d: 'Bir kez kurulur – sonra kendi kendine çalışır.' },
+        { t: 'Aylık abonelik yok', d: 'Sürekli lisans ücreti yok.' },
+        { t: 'Ön görüşmeden sonra sabit fiyat', d: 'Ne ödeyeceğinizi önceden bilirsiniz.' },
+        { t: 'Tanıtım dahil', d: 'Ekibinize her şeyi bir kez sakince gösteririz. Sürekli destek istenirse ek ücretle mümkündür.' },
+      ],
+      includedLabel: 'Dahil',
+      hostingNote: 'Veritabanı ve barındırma: çoğu durumda ücretsiz.',
       form: {
         namePlaceholder: 'Adınız',
         emailPlaceholder: 'E-posta adresiniz',
