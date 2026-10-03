@@ -1,8 +1,10 @@
 /* Kontakt: Brief auf dem Tisch, Wachssiegel als Senden-Knopf. */
 
 .desk {
+  /* Brief links, von oben nach unten mittig (Adnan: nie waagerecht zentriert) */
   display: grid;
-  place-items: center;
+  align-items: center;
+  justify-items: start;
   height: 100%;
   padding: var(--sp-6) var(--sp-2);
 }
