@@ -195,3 +195,9 @@
   transform: translateX(calc(var(--sp-2) * -1));
   color: var(--brand-text);
 }
+
+/* Grosser Baustein: Liste mittig von oben nach unten */
+.pl-features {
+  justify-content: center;
+  height: 100%;
+}
