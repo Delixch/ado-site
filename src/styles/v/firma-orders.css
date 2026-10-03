@@ -56,3 +56,10 @@
 .or-pipe .step-pin {
   display: none;
 }
+
+/* Handy: Spaltentitel passen nicht zur Liste untereinander */
+@media (max-width: 719.98px) {
+  .or-pipe .or-cols {
+    display: none;
+  }
+}

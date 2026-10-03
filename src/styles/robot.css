@@ -164,3 +164,13 @@
     height: var(--robot-size-s);
   }
 }
+
+/* Handy: Layout-Plaene machen dem Roboter rechts Platz */
+@media (max-width: 719.98px) {
+  .mast .dial {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--sp-2) var(--sp-4);
+    padding-right: calc(var(--robot-size-s) + var(--sp-2));
+  }
+}

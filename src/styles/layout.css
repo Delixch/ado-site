@@ -191,3 +191,13 @@
   align-content: flex-start;
   align-items: flex-start;
 }
+
+/* Handy: Lichtband und Schlange halb so breit (und die Schlange halb so lang je Welle) */
+@media (max-width: 719.98px) {
+  :root {
+    --band-w: 5ch;
+    --band-blur: 9px;
+    --snake-w: 17ch;
+    --snake-period: 320px;
+  }
+}
