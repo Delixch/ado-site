@@ -154,4 +154,6 @@
 .metric-v + .micro {
   display: block;
   margin-top: var(--sp-2);
+  /* Beschriftung ganz rechts, die Nummer oben bleibt links */
+  text-align: right;
 }
