@@ -170,3 +170,6 @@ epos\instagramoto tanıtımı)
 - Preise: "Dieses Paket anfragen" / Erstgespräch öffnen den Brief direkt unter den Paketkreisen (statt Paketblatt), Betreff = Paket + Preis, "Zurück zum Paket". Kein eigener Brief-Baustein mehr.
 - Handy: Bottom Sheet (spread/BottomSheet.tsx, Block.sheet + openSheet()). Auswahl oben -> Detail fährt unten herein (Erfahrung, Inspiration, Skills, Projekte, Einsatzplanung, Meldungen, InstaOto Funktionen/Ablauf). Auf Tablet/Desktop unverändert. InstaOto 4 Schritte: Telefon scrollt ins Bild.
 - Handy: Lichtband/Schlange ein Achtel der Desktop-Grösse.
+- Handy-Menü: Gruppentitel kleben oben/unten, ganzes Panel scrollt. Meldungen auf dem Handy als Akkordeon.
+- `/code-review` (10 Funde behoben, 927b9b8) und `/simplify` (Aufräumen, cb675f9) gelaufen.
+- Gesamtüberblick (gemacht / fehlt / offene Vorschläge): **YOL-HARITASI.md** (2026-10-03 gece neu geschrieben).
