@@ -285,6 +285,11 @@
 /* Buzlu cam menu (sidebar.css "Eis-Glas") */
 :root {
   --sb-blur: 30px;
+  /* KI-Roboter im Seitenkopf */
+  --robot-size: 156px;
+  --robot-size-s: 84px;
+  --robot-chat-w: 280px;
+  --robot-bubble-w: 280px;
   /* Umlaufende Lichtlinie am Menuerand */
   --sb-orbit-w: 1.5px;
   --sb-orbit-dur: 16s;

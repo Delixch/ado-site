@@ -5,6 +5,7 @@ import { useLayoutCycle } from '../../hooks/useLayoutCycle';
 import { useMode } from '../../hooks/useMode';
 import { useView } from '../ViewFrame';
 import { RevealLines } from '../fx/RevealLines';
+import { MastRobot } from '../robot/MastRobot';
 
 /** Ein Baustein der Doppelseite. `id` ist zugleich der Name im grid-template-areas. */
 export interface Block {
@@ -97,6 +98,7 @@ export function Spread({ view, head, blocks, layouts }: { view: string; head: Ma
             <RevealLines lines={[head.line2]} className="mast-l2" delay={0.12} />
           </h1>
         </div>
+        <MastRobot />
         <nav className="dial" aria-label="Layout">
           <span className="dial-label">
             <span>{t.ui.layout}</span>

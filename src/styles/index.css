@@ -26,3 +26,5 @@
 @import "./v/firma-homepage.css";
 @import "./v/firma-personnel.css";
 @import "./v/insta.css";
+/* nach spread.css: erweitert den Seitenkopf um den Roboter */
+@import "./robot.css";

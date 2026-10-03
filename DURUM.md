@@ -154,3 +154,6 @@ epos\instagramoto tanıtımı)
 - Menü döngüsü: açılışta Portfolio açık; başka gruptan sayfa seçilince yalnız o grup açık kalır (SleekSidebar).
 - Impressum + Datenschutz: altbilgide iki bağlantı → buzlu cam pencere (DE/TR, sekmeli). Metin: `src/content/legal-texts.ts` (bu siteye göre: çerez yok, istatistik yok, Google Fonts, Vercel, localStorage, mailto). Firma bilgileri `src/content/company.ts` — boş = işaretli Musterfirma; UID boşsa satır çıkmaz. Bildnachweis stock.ts'ten otomatik.
 - Calendly kullanılmayacak (Adnan).
+- Menü kenarında yavaş dönen ince ışık çizgisi (16 sn/tur, tokens: --sb-orbit-*).
+- **KI-Roboter** (ADO Design'dan): her sayfanın başlığında, layout planlarının başında (3D, three.js ayrı parça olarak yüklenir). Tıklayınca konuşur + soru kutusu açılır. Servis: `api/chat.ts` (Vercel function) + lokal `vite.config.ts` ara katmanı.
+  - **Ayar bekliyor (Vercel açılınca):** ortam değişkenleri `DAHL_API_KEY` ve/veya `ATRIA_API_KEY` (opsiyonel `ATRIA_BASE_URL`, `DAHL_MODEL`). Anahtar yokken robot kibar yedek cevap verir.
