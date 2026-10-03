@@ -75,11 +75,21 @@
 }
 
 .ds-quote {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  /* Spruch mittig in beiden Richtungen, Herkunft ganz rechts unten */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   gap: var(--sp-4);
   height: 100%;
+}
+
+.ds-quote blockquote {
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+}
+
+.ds-quote figcaption {
+  justify-self: end;
 }
 
 .ds-quote-mark {
