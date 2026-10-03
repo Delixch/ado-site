@@ -119,33 +119,35 @@ export default function App() {
   const isExpanded = mode === 'desktop' ? desktopExpanded : mode === 'tablet' ? overlayOpen : true;
   const setIsExpanded = mode === 'desktop' ? setDesktopExpanded : setOverlayOpen;
 
-  // Handy: alle Seiten untereinander - Menue springt zur Seite, Scrollen fuehrt weiter zur naechsten
+  // Handy: die Seiten eines Bereichs (Design, Firma, InstaOto) stehen untereinander -
+  // Menue springt zur Seite, Scrollen fuehrt weiter zur naechsten Seite desselben Bereichs
   const stacked = mode === 'mobile';
   const spy = useRef(true);
+  const [jumpTo, setJumpTo] = useState<string | null>(active);
 
   const go = (id: string) => {
     setActive(id);
     if (mode !== 'desktop') setOverlayOpen(false);
-    if (stacked) {
-      // Spruenge ueber mehrere Seiten sofort, damit der Kopf nicht unterwegs andere Titel zeigt
-      spy.current = false;
-      requestAnimationFrame(() => {
-        document.getElementById(`page-${id}`)?.scrollIntoView({ block: 'start', behavior: 'instant' });
-        window.setTimeout(() => (spy.current = true), 120);
-      });
-    } else window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    if (stacked) setJumpTo(id);
+    else window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   };
 
-  // Handy: beim Laden zur gemerkten Seite; beim Scrollen gilt die Seite unter dem Kopf als aktiv
+  // Sprung erst nach dem Aufbau (auch beim Laden und beim Bereichswechsel); solange meldet der Beobachter nichts
   useEffect(() => {
-    if (!stacked) return;
-    // erst nach dem Aufbau springen; bis dahin meldet der Beobachter nichts (sonst gewinnt "Start")
+    if (!stacked || !jumpTo) return;
     history.scrollRestoration = 'manual';
     spy.current = false;
-    const jump = window.setTimeout(() => {
-      document.getElementById(`page-${active}`)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    const t1 = window.setTimeout(() => {
+      document.getElementById(`page-${jumpTo}`)?.scrollIntoView({ block: 'start', behavior: 'instant' });
       window.setTimeout(() => (spy.current = true), 300);
-    }, 150);
+      setJumpTo(null);
+    }, 60);
+    return () => window.clearTimeout(t1);
+  }, [stacked, jumpTo, item.group, lang]);
+
+  // Beim Scrollen gilt die Seite unter dem Kopf als aktiv
+  useEffect(() => {
+    if (!stacked) return;
     const io = new IntersectionObserver(
       (entries) => {
         if (!spy.current) return;
@@ -156,11 +158,8 @@ export default function App() {
       { rootMargin: '-30% 0px -69% 0px' },
     );
     document.querySelectorAll('[data-page]').forEach((el) => io.observe(el));
-    return () => {
-      window.clearTimeout(jump);
-      io.disconnect();
-    };
-  }, [stacked, lang]);
+    return () => io.disconnect();
+  }, [stacked, lang, item.group]);
 
   const ctx = { t, color, auto: auto && mode !== 'mobile', nonce, go, stacked };
 
@@ -219,7 +218,7 @@ export default function App() {
 
             {stacked ? (
               <>
-                {ALL_ITEMS.map(({ id }) => {
+                {ALL_ITEMS.filter((i) => i.group === item.group).map(({ id }) => {
                   const Page = VIEWS[id];
                   return (
                     <section key={`${id}-${lang}`} id={`page-${id}`} data-page={id} className="page page-stacked">
