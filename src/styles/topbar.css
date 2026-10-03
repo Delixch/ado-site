@@ -395,3 +395,35 @@
   width: var(--icon-md);
   height: var(--icon-md);
 }
+
+/* Tablet/Desktop: Kopfzeile voll in Themenfarbe, oben randlos bis zum rechten Rand (Kundenwunsch 2026-10-04).
+   Das Bandstueck darauf entfaellt - es haette dieselbe Farbe. */
+@media (min-width: 720px) {
+  .tb {
+    --ink: var(--on-brand);
+    --ink-2: var(--on-brand);
+    --muted: var(--on-brand);
+    --brand-text: var(--on-brand);
+    --line: color-mix(in srgb, var(--on-brand) 22%, transparent);
+    --line-strong: color-mix(in srgb, var(--on-brand) 45%, transparent);
+    --accent: var(--on-brand);
+    --on-accent: var(--brand);
+    --pressed-bg: color-mix(in srgb, var(--on-brand) 10%, transparent);
+    --pressed-shadow: none;
+    top: 0;
+    height: calc(46px + var(--gutter));
+    margin: calc(var(--gutter) * -1) calc(var(--gutter) * -1) 0 0;
+    padding-top: var(--gutter);
+    border: 0;
+    border-radius: 0 0 0 var(--radius-sm);
+    background: var(--brand);
+    color: var(--on-brand);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .tb::before,
+  .tb::after {
+    content: none;
+  }
+}
