@@ -175,7 +175,30 @@
 
 /* Erstgespraech-Knopf (common/IntroCall.tsx): wie die anderen Links, in Themenfarbe, mit Kalender */
 .intro-call {
-  color: var(--brand-text);
+  /* klar ein Knopf: gefuellt in Themenfarbe, hebt sich beim Zeigen */
+  padding: var(--sp-2) var(--sp-4);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--brand);
+  color: var(--on-brand);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 0%, transparent);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+
+.intro-call::after {
+  display: none;
+}
+
+.intro-call:hover,
+.intro-call:focus-visible {
+  transform: translateY(-2px);
+  background: var(--brand-hover);
+  box-shadow: 0 var(--sp-2) var(--sp-5) color-mix(in srgb, var(--brand) 45%, transparent);
+  outline: none;
+}
+
+.intro-call:active {
+  transform: translateY(0);
 }
 
 .intro-call svg {
@@ -203,17 +226,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: var(--sp-1);
+  gap: 0 var(--sp-1);
   align-self: stretch;
 }
 
 .trust li {
+  /* Hinweis, kein Knopf: ohne Rahmen, nur Symbol und Text */
   display: inline-flex;
   align-items: center;
   gap: var(--sp-1);
-  padding: var(--sp-1) var(--sp-2);
-  border: var(--hair) solid color-mix(in srgb, var(--ink) 22%, transparent);
-  border-radius: var(--radius-pill);
+  padding: var(--sp-1) 0 var(--sp-1) var(--sp-3);
   font-family: var(--font-mono);
   font-size: var(--fs-tiny);
   letter-spacing: var(--ls-wide);

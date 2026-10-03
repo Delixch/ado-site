@@ -39,8 +39,6 @@ Sayfa kodunu bölmek (şu an 500 KB+), videoları WebM + küçük kapakla, foto�
 Vercel Analytics (çerezsiz, DSG uyumlu): hangi sayfa, hangi tema, hangi ışık efekti seçiliyor, form/randevu kaç kez açılıyor.
 *Neden:* Tasarım kararlarını tahmine değil veriye dayandırırız.
 
-## 4. Güven ve yasal
-
 ## 5. Ürün (instagramoto)
 
 **5.1 Panelden mesaj gönderme** · emek: büyük
@@ -66,6 +64,7 @@ Firma ve InstaOto videolarından 15 saniyelik Reels kesimleri (her bölüm bir R
 ---
 
 ## Önerilen sıra (ilk 2 hafta)
+1. Paketler (1.4)
 2. SSS (2.2)
 3. Ölçüm (3.3)
 4. Bölüm adresleri / SEO (3.1)
