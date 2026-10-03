@@ -18,7 +18,7 @@
   --brand-text: color-mix(in srgb, var(--brand) 72%, #FFFFFF);
 
   /* Flaechen */
-  --canvas: #07070A;
+  --canvas: #000000;
   --panel: color-mix(in srgb, var(--brand) 9%, rgba(18, 18, 24, 0.62));
   --surface: rgba(20, 20, 26, 0.62);
   --surface-solid: #111116;
@@ -54,8 +54,8 @@
   --card-backdrop: blur(var(--glass-blur)) saturate(150%);
   --card-shine: inset 0 1px 0 rgba(255, 255, 255, 0.09);
   --spot: color-mix(in srgb, var(--brand) 20%, transparent);
-  --ambient-1: color-mix(in srgb, var(--brand) 26%, transparent);
-  --ambient-2: color-mix(in srgb, var(--brand) 12%, transparent);
+  --ambient-1: transparent; /* Zemin tam siyah (Adnan 2026-10-03) */
+  --ambient-2: transparent;
 
   /* Menue (Glas), Schatten, Vorhang */
   --glass: rgba(14, 14, 19, 0.72);
