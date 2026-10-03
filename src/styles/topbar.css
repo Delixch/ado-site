@@ -292,8 +292,8 @@
     padding: 4px 7px;
   }
 
-  /* Mobilde kartlar kendiliğinden kaymaz; sadece "karıştır" düğmesi kalır */
-  .tb-right > .tb-icon:first-child {
+  /* Mobilde kartlar kaymaz ve karışmaz (hepsi alt alta): iki düğme de gizli */
+  .tb-right > .tb-icon {
     display: none;
   }
 }
@@ -334,4 +334,64 @@
 .tb-right {
   position: relative;
   z-index: 40;
+}
+
+/* Handy: Kopfzeile schwarz (Kundenwunsch 2026-10-04) */
+@media (max-width: 719.98px) {
+  .tb {
+    --ink: var(--tb-m-ink);
+    --ink-2: var(--tb-m-ink-2);
+    --muted: var(--tb-m-ink-2);
+    --line: var(--tb-m-line);
+    --line-strong: var(--tb-m-line-strong);
+    --surface: var(--tb-m-surface);
+    --sunken: var(--tb-m-surface);
+    --pressed-bg: var(--tb-m-surface);
+    --pressed-shadow: none;
+    /* ganz oben und randlos: iPhone faerbt Uhr/Akku-Leiste nach diesem Balken */
+    top: 0;
+    height: calc(var(--tb-m-h) + env(safe-area-inset-top));
+    margin: calc(var(--gutter) * -1) calc(var(--gutter) * -1) 0;
+    padding-top: env(safe-area-inset-top);
+    border: 0;
+    border-radius: 0;
+    background: var(--tb-m-bg);
+    color: var(--tb-m-ink);
+  }
+
+  .tb::before {
+    content: none;
+  }
+}
+
+/* Handy: nach oben (components/common/ToTop) - schwarz wie die Kopfzeile */
+.to-top {
+  position: fixed;
+  right: var(--sp-4);
+  bottom: calc(var(--sp-4) + env(safe-area-inset-bottom));
+  z-index: 45;
+  display: grid;
+  place-items: center;
+  width: var(--sp-12);
+  height: var(--sp-12);
+  border-radius: 50%;
+  border: var(--hair) solid var(--tb-m-line);
+  background: var(--bar-bg);
+  color: var(--bar-ink);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(var(--sp-2));
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.to-top[data-show="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.to-top svg {
+  width: var(--icon-md);
+  height: var(--icon-md);
 }

@@ -46,6 +46,9 @@ export class RobotAudio {
 
   /** Tarayıcılar sesi ancak bir tıklamadan sonra açar; ilk tıklamada çağır. */
   unlock() {
+    // iPhone: Sessiz-mod tuşu Web Audio'yu da kısar; 'playback' oturumu bunu aşar (iOS 17+)
+    const session = (navigator as Navigator & { audioSession?: { type: string } }).audioSession;
+    if (session) session.type = 'playback';
     if (!this.ctx) {
       this.ctx = new AudioContext();
       this.master = this.ctx.createGain();
@@ -57,6 +60,11 @@ export class RobotAudio {
       this.analyser.connect(this.ctx.destination);
     }
     if (this.ctx.state === 'suspended') void this.ctx.resume();
+    // iOS: kilidi ancak bir kaynak gerçekten çalınınca açar - sessiz tek örnek
+    const src = this.ctx.createBufferSource();
+    src.buffer = this.ctx.createBuffer(1, 1, 22050);
+    src.connect(this.ctx.destination);
+    src.start();
   }
 
   get ready() {

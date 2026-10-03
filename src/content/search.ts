@@ -1,4 +1,5 @@
 import { PROJECTS, REPOS, SKILL_ITEMS } from './design-data';
+import { firmaFlow } from './firma-flow';
 import type { Texts } from './ui';
 
 /** Alle lesbaren Texte einer Ansicht (Blaetter eines Textobjekts). */
@@ -34,12 +35,7 @@ export function buildIndex(t: Texts) {
     'd-experience': d.experience,
     'd-contact': d.contact,
     'f-start': f.hero,
-    'f-orders': f.about,
-    'f-planning': f.projects,
-    'f-accounting': f.skills,
-    'f-reports': f.repos,
-    'f-homepage': f.construction,
-    'f-personnel': f.experience,
+    'f-flow': [f.nav, firmaFlow[t.lang].areas],
     'f-contact': f.contact,
     'i-start': [t.i.start, t.i.security],
     'i-flow': [t.i.flow, t.i.features, t.i.process, t.i.pricing],

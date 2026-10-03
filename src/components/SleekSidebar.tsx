@@ -97,9 +97,14 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
               </span>
             </span>
           </div>
-          <button type="button" onClick={() => setIsExpanded(false)} title={t.ui.collapse} className="sb-collapse">
-            <span>{t.ui.collapse}</span>
+          <button type="button" onClick={() => setIsExpanded(false)} title={t.ui.collapse} aria-label={t.ui.collapse} className="sb-collapse">
+            <span className="sb-collapse-text">{t.ui.collapse}</span>
             <ChevronLeft className="sb-collapse-icon" />
+            {/* Handy: statt Text ein gezeichnetes X (sidebar.css) */}
+            <span className="sb-x" aria-hidden>
+              <i />
+              <i />
+            </span>
           </button>
         </div>
       ) : (

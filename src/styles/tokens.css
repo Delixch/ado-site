@@ -224,8 +224,6 @@
   --seal: 64px;
   --envelope-w: 420px;
   --envelope-h: 260px;
-  --toggle-w: 34px;
-  --toggle-h: 20px;
   --phone-max: 300px;
   --receipt-w: 300px;
   --receipt-tooth: 8px;
@@ -317,6 +315,16 @@
   --sb-ring-glow-on: 14px;
   --sb-tree-x: 6px;
   /* KI-Roboter im Seitenkopf */
+  /* Schwarze Leisten (alle Themen): Handy-Kopfzeile, Gruppentitel im Menue */
+  --bar-bg: #000;
+  --bar-ink: #fff;
+  --tb-m-bg: var(--bar-bg);
+  --tb-m-ink: var(--bar-ink);
+  --tb-m-ink-2: rgba(255, 255, 255, 0.85);
+  --tb-m-line: rgba(255, 255, 255, 0.16);
+  --tb-m-line-strong: rgba(255, 255, 255, 0.3);
+  --tb-m-surface: #141414;
+  --tb-m-h: 52px;
   --robot-size: 156px;
   --robot-size-s: 84px;
   --robot-chat-w: 280px;

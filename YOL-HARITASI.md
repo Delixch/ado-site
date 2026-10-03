@@ -2,7 +2,7 @@
 
 Site: **ADO Design** (portföy) + **ADO Firma** (işletme yazılımı) + **ADO InstaOto** (Instagram otomasyonu), tek sayfada.
 Ayrıntılı günlük: `DURUM.md` · Tasarım kuralları: `MASTER.md` · Öneri ayrıntıları: `ONERILER.md`
-Depolar: `Delixch/googleado` (site) · `Delixch/instagramoto` (panel, canlı: instagramoto.vercel.app) · `Delixch/videoedit-ozel` (videolar)
+Depolar: `Delixch/ado-site` (site) · `Delixch/instagramoto` (panel, canlı: instagramoto.vercel.app) · `Delixch/videoedit-ozel` (videolar)
 Son commit: `cb675f9` (her şey push'lu, açık iş yok).
 
 ---

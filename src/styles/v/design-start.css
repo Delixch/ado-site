@@ -61,12 +61,12 @@
 }
 
 .ds-head .poster {
-  font-size: var(--fs-poster-xl);
+  font-size: var(--fs-poster-m);
 }
 
 .ds-head .fit-accent {
   color: var(--brand-text);
-  font-size: var(--fs-poster-l);
+  font-size: var(--fs-poster-m);
 }
 
 .blk .knock {

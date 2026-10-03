@@ -520,6 +520,10 @@ export function AdoRobot({
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     window.addEventListener('pointerdown', onPointerDown);
+    // iOS Safari sesi pointerdown'da değil, ancak dokunuş bitince (touchend/click) açar
+    const unlockAudio = () => audio.unlock();
+    window.addEventListener('touchend', unlockAudio);
+    window.addEventListener('click', unlockAudio);
     window.addEventListener('touchstart', onTouch, { passive: true });
     window.addEventListener('touchmove', onTouch, { passive: true });
     window.addEventListener('deviceorientation', onOrientation);
@@ -652,6 +656,8 @@ export function AdoRobot({
       window.clearTimeout(bubbleTimer);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('touchend', unlockAudio);
+      window.removeEventListener('click', unlockAudio);
       window.removeEventListener('touchstart', onTouch);
       window.removeEventListener('touchmove', onTouch);
       window.removeEventListener('deviceorientation', onOrientation);

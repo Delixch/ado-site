@@ -12,12 +12,8 @@ import { DesignConstruction } from './components/views/design/DesignConstruction
 import { DesignExperience } from './components/views/design/DesignExperience';
 import { DesignContact } from './components/views/design/DesignContact';
 import { FirmaStart } from './components/views/firma/FirmaStart';
-import { FirmaOrders } from './components/views/firma/FirmaOrders';
-import { FirmaPlanning } from './components/views/firma/FirmaPlanning';
-import { FirmaAccounting } from './components/views/firma/FirmaAccounting';
-import { FirmaReports } from './components/views/firma/FirmaReports';
-import { FirmaHomepage } from './components/views/firma/FirmaHomepage';
-import { FirmaPersonnel } from './components/views/firma/FirmaPersonnel';
+import { FirmaHow } from './components/views/firma/FirmaHow';
+import { ToTop } from './components/common/ToTop';
 import { FirmaContact } from './components/views/firma/FirmaContact';
 import { InstaStart } from './components/views/insta/InstaStart';
 import { InstaHow } from './components/views/insta/InstaHow';
@@ -42,12 +38,7 @@ const VIEWS: Record<string, ComponentType> = {
   'd-experience': DesignExperience,
   'd-contact': DesignContact,
   'f-start': FirmaStart,
-  'f-orders': FirmaOrders,
-  'f-planning': FirmaPlanning,
-  'f-accounting': FirmaAccounting,
-  'f-reports': FirmaReports,
-  'f-homepage': FirmaHomepage,
-  'f-personnel': FirmaPersonnel,
+  'f-flow': FirmaHow,
   'f-contact': FirmaContact,
   'i-start': InstaStart,
   'i-flow': InstaHow,
@@ -60,6 +51,8 @@ try {
   if (v === 'i-features' || v === 'i-process') localStorage.setItem('ado_view2', 'i-flow');
   if (v === 'i-security') localStorage.setItem('ado_view2', 'i-start');
   if (v === 'i-pricing') localStorage.setItem('ado_view2', 'i-flow');
+  // ADO Firma: Beispielseiten aus dem Menue, nur noch "Ablaeufe" (Beispiele kommen spaeter als Beta)
+  if (v && /^f-(orders|planning|accounting|reports|homepage|personnel)$/.test(v)) localStorage.setItem('ado_view2', 'f-flow');
 } catch {
   /* Speicher gesperrt - egal */
 }
@@ -71,7 +64,7 @@ export default function App() {
   const [color, setColor] = useStored<string>('ado_color2', isColor(DEFAULT_COLOR) ? DEFAULT_COLOR : COLORS[0].id, isColor);
   const [active, setActive] = useStored<string>('ado_view2', 'd-start', (v) => !!v && ids.includes(v));
   const [autoPref, setAutoPref] = useStored<'on' | 'off'>('ado_auto', 'on', (v) => v === 'on' || v === 'off');
-  const [desktopExpanded, setDesktopExpanded] = useState(true);
+  const [desktopExpanded, setDesktopExpanded] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [nonce, setNonce] = useState(0);
   const [legal, setLegal] = useState<LegalDoc | null>(null);
@@ -148,8 +141,8 @@ export default function App() {
               t={t}
               expandedWidth={mode === 'mobile' ? Math.min(300, window.innerWidth - 24) : 275}
               collapsible
-              openByDefault={mode === 'mobile' ? [] : ['design']}
-              footer={mode !== 'desktop' ? <BandPicker inline band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} /> : undefined}
+              openByDefault={[]}
+              footer={mode === 'tablet' ? <BandPicker inline band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} /> : undefined}
             />
           </div>
 
@@ -164,11 +157,14 @@ export default function App() {
             />
           )}
 
-          <main className="main" data-band={band}>
-            <span className="band" aria-hidden>
-              <i />
-            </span>
-            {bandFx !== '0' && <BandFx key={`${band}-${bandFx}`} fx={bandFx} shape={band} />}
+          {/* Handy: kein Lichtband (Kundenwunsch 2026-10-04) */}
+          <main className="main" data-band={mode === 'mobile' ? undefined : band}>
+            {mode !== 'mobile' && (
+              <span className="band" aria-hidden>
+                <i />
+              </span>
+            )}
+            {mode !== 'mobile' && bandFx !== '0' && <BandFx key={`${band}-${bandFx}`} fx={bandFx} shape={band} />}
             <Topbar
               t={t}
               lang={lang}
@@ -210,6 +206,7 @@ export default function App() {
               <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
             </footer>
           </main>
+          {mode === 'mobile' && <ToTop label={t.ui.toTop} />}
           {mode === 'desktop' && (
             <BandPicker band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} dock={mode === 'desktop' && desktopExpanded} />
           )}

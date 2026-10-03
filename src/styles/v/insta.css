@@ -1052,6 +1052,11 @@
   flex: 1;
 }
 
+/* Reiter und Inhalt darunter klar trennen (etwa drei Zeilen Luft) */
+.how-detail > .how-tabs {
+  margin-bottom: var(--sp-8);
+}
+
 /* Uebersicht: Daten & Sicherheit als Streifen mit sechs Kreisen */
 .safe {
   display: flex;

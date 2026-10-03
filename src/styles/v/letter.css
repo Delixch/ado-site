@@ -259,41 +259,8 @@
   font-size: var(--fs-whisper-s);
 }
 
-.fc-areas {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  height: 100%;
-}
-
-.fc-areas ul:not(.trust) {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--sp-1) var(--sp-3);
-  margin-top: auto;
-}
-
-.fc-areas button {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-family: var(--font-editorial);
-  font-size: var(--fs-whisper-s);
-}
-
-.fc-areas button:hover {
-  text-decoration: underline;
-  text-underline-offset: var(--sp-1);
-}
-
-.fc-areas svg {
-  width: var(--icon-sm);
-  height: var(--icon-sm);
-}
-
 /* Feinschliff: Gruppen mittig von oben nach unten, Text volle Breite, Begriff neben der Nummer ganz rechts */
-.fc-benefits,
-.fc-areas {
+.fc-benefits {
   justify-content: safe center;
 }
 

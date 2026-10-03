@@ -49,12 +49,12 @@ export function BottomSheet({ view, label, children }: { view: string; label: st
               if (info.offset.y > 90 || info.velocity.y > 500) close();
             }}
           >
-            <div className="bsheet-grip" aria-hidden>
-              <span />
+            <div className="bsheet-head">
+              <span className="bsheet-grip" aria-hidden />
+              <button type="button" className="bsheet-x" onClick={close} aria-label={label}>
+                <X />
+              </button>
             </div>
-            <button type="button" className="bsheet-x" onClick={close} aria-label={label}>
-              <X />
-            </button>
             <div className="bsheet-body" onPointerDownCapture={(e) => e.stopPropagation()}>
               {children}
             </div>

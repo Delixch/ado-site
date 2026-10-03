@@ -151,26 +151,43 @@
 /* Mobil: kleiner Roboter oben rechts im Kopf */
 @media (max-width: 719.98px) {
   .mast {
-    position: relative;
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* Handy: Roboter fest in der Bildschirmmitte, bleibt beim Scrollen stehen.
+     Klicks gehen durch (AdoRobot prueft selbst, ob er getroffen wurde). */
   .mast-robot {
-    position: absolute;
-    top: var(--sp-2);
-    right: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 40;
     margin: 0;
     width: var(--robot-size-s);
     height: var(--robot-size-s);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
   }
-}
 
-/* Handy: Layout-Plaene machen dem Roboter rechts Platz */
-@media (max-width: 719.98px) {
-  .mast .dial {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: var(--sp-2) var(--sp-4);
-    padding-right: calc(var(--robot-size-s) + var(--sp-2));
+  .ado-robot-bubble,
+  .ado-robot-chat {
+    right: auto;
+    left: 50%;
+    pointer-events: auto;
+  }
+
+  .ado-robot-bubble {
+    transform: translate(-50%, calc(var(--sp-1) * -1)) scale(0.97);
+  }
+
+  .ado-robot-bubble[data-show="true"] {
+    transform: translateX(-50%);
+  }
+
+  .ado-robot-bubble:not([data-show="true"]) {
+    pointer-events: none;
+  }
+
+  .ado-robot-chat {
+    transform: translateX(-50%);
   }
 }

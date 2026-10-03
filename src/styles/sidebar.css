@@ -1163,3 +1163,81 @@
     margin-bottom: var(--sp-4);
   }
 }
+
+/* Gruppentitel im offenen Menue: schwarze Leiste, weisse Schrift (Kundenwunsch 2026-10-04) */
+.sb[data-expanded="true"] .sb-section-title,
+.sb[data-expanded="true"] .sb-section-toggle {
+  padding-left: var(--sp-3);
+  border-radius: var(--radius-sm);
+  border-bottom-color: transparent;
+  background: var(--bar-bg);
+  color: var(--bar-ink);
+}
+
+.sb[data-expanded="true"] .sb-section-toggle .sb-section-chevron {
+  color: var(--bar-ink);
+}
+
+.sb[data-expanded="true"] .sb-section-toggle[aria-expanded="true"] .sb-section-chevron {
+  color: var(--accent);
+}
+
+/* Schliessen-X (nur Handy): zwei Striche in Themenfarbe, ungleich lang, drehen sich beim Antippen */
+.sb-x {
+  display: none;
+}
+
+@media (max-width: 719.98px) {
+  .sb .sb-collapse {
+    width: var(--sp-10);
+    height: var(--sp-10);
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    border-color: var(--tb-m-line);
+    background: var(--bar-bg);
+  }
+
+  .sb .sb-collapse-text,
+  .sb .sb-collapse-icon {
+    display: none;
+  }
+
+  .sb-x {
+    position: relative;
+    display: block;
+    width: var(--sp-5);
+    height: var(--sp-5);
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .sb-x i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+  }
+
+  .sb-x i:first-child {
+    width: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .sb-x i:last-child {
+    width: 60%;
+    background: var(--bar-ink);
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .sb-collapse:hover .sb-x,
+  .sb-collapse:active .sb-x {
+    transform: rotate(90deg);
+  }
+
+  .sb-collapse:hover .sb-x i:last-child,
+  .sb-collapse:active .sb-x i:last-child {
+    width: 100%;
+  }
+}

@@ -9,108 +9,20 @@
   font-weight: var(--fw-regular);
 }
 
-.fs-head .poster {
-  font-size: var(--fs-poster-xl);
-}
-
+/* Ueberschrift wie alle Bausteinueberschriften: 30 px */
+.fs-head .poster,
 .fs-head .whisper {
-  font-size: var(--fs-poster-l);
+  font-size: var(--fs-poster-m);
 }
 
 .fs-head em {
   color: var(--brand-text);
 }
 
-.fs-switch {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  height: 100%;
-}
-
-.fs-switch ul {
-  display: flex;
-  flex-direction: column;
-}
-
-.fs-switch li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-3);
-  padding: var(--sp-2) 0;
-  border-top: var(--hair) solid var(--rule);
-  transition: opacity var(--dur) var(--ease);
-}
-
-.fs-switch li[data-on="false"] {
-  opacity: 0.5;
-}
-
-.fs-name {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  min-width: 0;
-  text-align: left;
-}
-
-.fs-name > svg {
-  width: var(--icon-md);
-  height: var(--icon-md);
-  color: var(--brand);
-}
-
-.fs-name > span {
-  display: flex;
-  flex-direction: column;
-}
-
 .fs-label {
   font-family: var(--font-editorial);
   font-size: var(--fs-whisper-s);
   line-height: var(--lh-snug);
-}
-
-.fs-name:hover .fs-label {
-  color: var(--brand-text);
-}
-
-/* Schalter */
-.toggle {
-  position: relative;
-  flex-shrink: 0;
-  width: var(--toggle-w);
-  height: var(--toggle-h);
-  border-radius: var(--radius-pill);
-  border: var(--hair) solid var(--rule);
-  background: var(--paper-2);
-  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
-}
-
-.toggle i {
-  position: absolute;
-  top: calc(var(--hair) * 2);
-  left: calc(var(--hair) * 2);
-  width: calc(var(--toggle-h) - var(--hair) * 6);
-  height: calc(var(--toggle-h) - var(--hair) * 6);
-  border-radius: var(--radius-pill);
-  background: var(--ink-soft);
-  transition: transform var(--dur) var(--ease), background-color var(--dur-fast) var(--ease);
-}
-
-.toggle[aria-checked="true"] {
-  background: var(--brand);
-  border-color: var(--brand);
-}
-
-.toggle[aria-checked="true"] i {
-  background: var(--paper);
-  transform: translateX(calc(var(--toggle-w) - var(--toggle-h)));
-}
-
-.toggle:active i {
-  transform: scale(var(--press));
 }
 
 /* Mini-App */
@@ -154,7 +66,14 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--sp-3);
+  width: 100%;
   padding: var(--sp-2) 0;
+  text-align: left;
+  color: var(--ink);
+}
+
+.fs-line:hover .fs-label {
+  color: var(--brand-text);
 }
 
 .fs-line > svg {
