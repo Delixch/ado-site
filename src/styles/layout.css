@@ -206,3 +206,25 @@
   padding-top: var(--sp-8);
   border-top: var(--hair) solid var(--rule);
 }
+
+/* Tablet/Desktop: Fusszeile in Themenfarbe wie die Kopfzeile, Schrift schwarz (Kundenwunsch 2026-10-04) */
+@media (min-width: 720px) {
+  .foot {
+    --muted: var(--bar-bg);
+    --accent-strong: var(--bar-bg);
+    border-top-color: transparent;
+    background: var(--brand);
+    color: var(--bar-bg);
+  }
+
+  .foot a,
+  .foot button {
+    color: var(--bar-bg);
+  }
+
+  .foot a:hover,
+  .foot button:hover {
+    text-decoration: underline;
+    text-underline-offset: var(--sp-1);
+  }
+}
