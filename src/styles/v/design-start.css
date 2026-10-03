@@ -56,6 +56,25 @@
   color: var(--brand-text);
 }
 
+/* Eng: die weissen Zeilen linksbuendig untereinander, "digitale" bleibt neben "Ich baue" */
+.blk-in:has(> .ds-head) {
+  container-type: inline-size;
+}
+
+@container (max-width: 600px) {
+  .ds-head {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: baseline;
+    text-align: left;
+  }
+
+  .ds-head .poster:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 .blk .knock {
   container-type: inline-size;
 }
@@ -67,11 +86,16 @@
 }
 
 .ds-lede {
+  /* ganzer Block mittig von oben nach unten, Text nutzt die volle Breite, linksbuendig */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--sp-5);
   height: 100%;
+}
+
+.ds-lede .lede {
+  max-width: none;
 }
 
 .ds-quote {
