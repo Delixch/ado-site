@@ -140,3 +140,4 @@ Test notu: playwright'ta CSS geçişleri donuyor → ekran görüntüsü öncesi
 - Canlı panel adresi: instagramoto.vercel.app (adnanwalk değil).
 - Fotoğraflar siyah-beyaz (LiquidImage shader + --photo-bw); panel görüntüleri s/b, üzerine gelince renkli. Portföy proje görüntüleri renkli kalır.
 - InstaFlow adımları tıklanınca telefonda o adıma kadar oynar (playTo); boşta sırayla nefes alır, çizgide ışık akar. Übersicht videosu tema renginde çerçeveli, s/b (üzerine gelince renkli).
+- 2026-10-03: ilk commit + push (4ca4d31) GitHub Delixch/googleado main.
