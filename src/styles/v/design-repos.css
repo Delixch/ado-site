@@ -159,3 +159,43 @@
 .rp-cmd .term-body p {
   overflow-wrap: anywhere;
 }
+
+/* Feinschliff (Regeln von Adnan): Flaeche nutzen, Gruppen mittig, Knoepfe rechts, lesbar */
+.rp-intro-s {
+  max-width: none;
+  color: var(--ink);
+}
+
+.rp-name {
+  color: var(--ink);
+}
+
+/* grosse Zahl mittig, Etikett bleibt oben links */
+.rp-big {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.rp-big .poster {
+  align-self: center;
+  justify-self: center;
+}
+
+/* Text als Gruppe mittig von oben nach unten, Schlagworte + Link ganz rechts unten */
+.rp-detail > .micro:first-child {
+  margin-top: auto;
+}
+
+.rp-detail .rp-tags {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.rp-detail > .e-link {
+  align-self: flex-end;
+}
+
+.rp-cmd .rp-copy {
+  align-self: flex-end;
+}

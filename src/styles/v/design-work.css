@@ -147,6 +147,7 @@
   /* Technik mittig in beiden Richtungen, Knopf ganz rechts unten */
   display: grid;
   grid-template-rows: 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--sp-4);
   height: 100%;
 }

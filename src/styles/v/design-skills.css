@@ -110,6 +110,7 @@
 .sk-count {
   display: grid;
   grid-template-rows: 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
   height: 100%;
 }
 
