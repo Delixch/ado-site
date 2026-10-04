@@ -498,6 +498,19 @@
   }
 }
 
+/* Ausser Sicht (Spread.tsx setzt data-still): Endlos-Animationen ruhen - spart dem Handy Rechenzeit */
+.spread[data-still] *,
+.spread[data-still] *::before,
+.spread[data-still] *::after,
+.blk[data-still],
+.blk[data-still]::before,
+.blk[data-still]::after,
+.blk[data-still] *,
+.blk[data-still] *::before,
+.blk[data-still] *::after {
+  animation-play-state: paused !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .spread-runner {
     animation: none;

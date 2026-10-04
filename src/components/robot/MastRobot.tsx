@@ -4,7 +4,8 @@ import { useView } from '../ViewFrame';
 /** three.js nur laden, wenn der Roboter wirklich erscheint (eigener Chunk). */
 const AdoRobot = lazy(() => import('./AdoRobot').then((m) => ({ default: m.AdoRobot })));
 
-/** Roboter erst nach dem Seitenaufbau holen (Seite zuerst, dann three.js) - oder sofort bei der ersten Beruehrung. */
+/** Roboter erst nach dem Seitenaufbau holen (Seite zuerst, dann three.js) - oder sofort bei der ersten Beruehrung.
+ *  Handy: nur bei der ersten Beruehrung - three.js blockiert schwache Telefone sonst sekundenlang. */
 function useAfterLoad() {
   const [go, setGo] = useState(false);
   useEffect(() => {
@@ -14,7 +15,9 @@ function useAfterLoad() {
     // kein 'scroll': der Sprung zur gemerkten Seite beim Laden scrollt auch
     const events = ['pointerdown', 'keydown', 'touchstart'] as const;
     events.forEach((e) => window.addEventListener(e, start, { once: true, passive: true }));
+    const phone = window.matchMedia('(max-width: 719.98px), (pointer: coarse)').matches;
     const whenIdle = () => {
+      if (phone) return;
       timer = window.setTimeout(() => {
         if ('requestIdleCallback' in window) idle = window.requestIdleCallback(start, { timeout: 2000 });
         else start();

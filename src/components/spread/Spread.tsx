@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { LAYOUT_INTERVAL } from '../../config';
 import { useLayoutCycle } from '../../hooks/useLayoutCycle';
@@ -109,6 +109,19 @@ export function Spread({
   const mobile = mode === 'mobile';
   const sheetBlocks = mobile ? blocks.filter((b) => b.sheet) : [];
   const shown = sheetBlocks.length ? blocks.filter((b) => !b.sheet) : blocks;
+
+  // Endlos-Animationen (Lichtlinie, Laeufer, Strahlen) ruhen, solange ihr Baustein nicht zu sehen ist (spread.css [data-still])
+  const ids = shown.map((b) => b.id).join();
+  useEffect(() => {
+    const root = wrap.current;
+    if (!root) return;
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.toggleAttribute('data-still', !e.isIntersecting)),
+      { rootMargin: '25% 0px' },
+    );
+    root.querySelectorAll('.spread, .spread > .blk').forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, [ids]);
 
   const plan = useMemo(() => {
     if (mode === 'desktop') return { style: gridStyle(layout.cols, layout.areas, layout.rows), order: null };

@@ -888,6 +888,13 @@
   animation: sb-orbit var(--sb-orbit-dur) linear infinite;
 }
 
+/* Handy: Menue zugeklappt ausserhalb des Bildes - Lichtlinie ruht */
+@media (max-width: 719.98px) {
+  .sb-slot:not([data-open="true"]) .sb > .sb-orbit {
+    animation-play-state: paused;
+  }
+}
+
 @keyframes sb-orbit {
   to {
     --sb-orbit-a: 360deg;
