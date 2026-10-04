@@ -24,9 +24,9 @@ const shell = {
     soundOn: 'Ton einschalten',
     soundOff: 'Ton ausschalten',
     groups: {
-      design: { title: 'ADO Design · Portfolio', short: 'Design' },
-      firma: { title: 'ADO Firma · Unternehmen', short: 'Firma' },
-      insta: { title: 'ADO InstaOto · Automation', short: 'Insta' },
+      design: { title: 'EKADO Design · Portfolio', short: 'Design' },
+      firma: { title: 'EKADO Firma · Unternehmen', short: 'Firma' },
+      insta: { title: 'EKADO InstaOto · Automation', short: 'Insta' },
     } as Record<Group, { title: string; short: string }>,
     start: 'Start',
     overview: 'Übersicht',
@@ -69,7 +69,7 @@ const shell = {
       when: 'Passende Zeiten für mich: ',
     },
     letter: {
-      greeting: 'Lieber ADO,',
+      greeting: 'Lieber EKADO,',
       name: 'mein Name ist',
       reach: 'und Sie erreichen mich unter',
       about: 'Es geht um Folgendes:',
@@ -96,9 +96,9 @@ const shell = {
     soundOn: 'Sesi aç',
     soundOff: 'Sesi kapat',
     groups: {
-      design: { title: 'ADO DESIGN · PORTFOLYO', short: 'Design' },
-      firma: { title: 'ADO FIRMA · ŞİRKETLER', short: 'Firma' },
-      insta: { title: 'ADO INSTAOTO · OTOMASYON', short: 'Insta' },
+      design: { title: 'EKADO DESIGN · PORTFOLYO', short: 'Design' },
+      firma: { title: 'EKADO FIRMA · ŞİRKETLER', short: 'Firma' },
+      insta: { title: 'EKADO INSTAOTO · OTOMASYON', short: 'Insta' },
     } as Record<Group, { title: string; short: string }>,
     start: 'Başlangıç',
     overview: 'Genel Bakış',
@@ -139,7 +139,7 @@ const shell = {
       when: 'Bana uygun zamanlar: ',
     },
     letter: {
-      greeting: 'Sevgili ADO,',
+      greeting: 'Sevgili EKADO,',
       name: 'benim adım',
       reach: 've bana şu adresten ulaşabilirsiniz:',
       about: 'Konu şu:',

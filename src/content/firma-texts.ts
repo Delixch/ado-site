@@ -336,7 +336,7 @@ export interface TranslationSchema {
     privacyUpdated: string;
     privacySections: { heading: string; lines: string[] }[];
   };
-  /** Der Assistent von ADO Design (keine echte KI, feste Antworten). Die
+  /** Der Assistent von EKADO Design (keine echte KI, feste Antworten). Die
    *  Stichworte und die Reihenfolge der Themen stehen in lib/botRules.ts,
    *  hier nur die Antworten. `{email}` wird durch COMPANY.email ersetzt.
    *  Die Antworten sagen nur, was auch auf der Seite steht - nichts
@@ -427,7 +427,7 @@ export const de: TranslationSchema = {
     ring: 'BESTELLEN • SENDEN • BESTÄTIGEN • ',
     flow: {
       team: 'Ihr Team',
-      app: 'ADO App',
+      app: 'EKADO App',
       suppliers: 'Lieferanten',
     },
     mock: {
@@ -950,9 +950,9 @@ export const de: TranslationSchema = {
     ],
   },
   bot: {
-    title: 'ADO Design · Assistent',
+    title: 'EKADO Design · Assistent',
     welcome:
-      'Grüezi! Ich bin der Assistent von ADO Design. Wie kann ich Ihnen helfen? Fragen Sie mich zum Beispiel, wie Bestellungen, Einsatzplanung, Buchhaltung, Meldungen, Personal oder Homepage bei uns funktionieren.',
+      'Grüezi! Ich bin der Assistent von EKADO Design. Wie kann ich Ihnen helfen? Fragen Sie mich zum Beispiel, wie Bestellungen, Einsatzplanung, Buchhaltung, Meldungen, Personal oder Homepage bei uns funktionieren.',
     fallback:
       'Dazu habe ich leider keine fertige Antwort. Ich kenne mich aus mit Bestellungen, Einsatzplanung & Überstunden, Buchhaltung, staatlichen Meldungen, Personal und Homepage – oder Sie schreiben uns direkt: {email}',
     placeholder: 'Ihre Frage…',
@@ -995,13 +995,13 @@ export const de: TranslationSchema = {
       app:
         'Ihre Mitarbeitenden sehen Arbeitstage, Einsatzzeiten, Aufgaben und Urlaub direkt in der App – auch unterwegs auf dem Handy. Änderungen im Plan erscheinen sofort, Krankmeldungen und Urlaubsanträge laufen ebenfalls über die App.',
       overview:
-        'ADO Design bündelt die digitalen Abläufe Ihres Betriebs in einer Plattform: Bestellungen, Einsatzplanung & Überstunden, Buchhaltung & Zahlungen, staatliche Meldungen, Personalprozesse und Ihre Homepage. Alles läuft automatisiert und strukturiert – Sie konzentrieren sich auf Ihr Kerngeschäft.',
+        'EKADO Design bündelt die digitalen Abläufe Ihres Betriebs in einer Plattform: Bestellungen, Einsatzplanung & Überstunden, Buchhaltung & Zahlungen, staatliche Meldungen, Personalprozesse und Ihre Homepage. Alles läuft automatisiert und strukturiert – Sie konzentrieren sich auf Ihr Kerngeschäft.',
       audience:
         'Die Plattform ist für Betriebe gedacht, die Mitarbeitende einplanen, bei Lieferanten bestellen und Pflichtmeldungen erledigen müssen – vom kleinen Team bis zum grösseren KMU. Die Firmen in den Beispielen auf dieser Seite (Frischwaren AG, Bäckerei Keller …) sind übrigens erfunden.',
       demo:
         'Sehr gern zeigen wir Ihnen die Plattform in einem persönlichen Gespräch. Schreiben Sie uns kurz, welche Bereiche Sie interessieren: {email} – oder nutzen Sie das Kontaktformular im Abschnitt 07.',
       location:
-        'ADO Design ist in Zürich, Schweiz, zu Hause. Gespräche führen wir gern persönlich oder online.',
+        'EKADO Design ist in Zürich, Schweiz, zu Hause. Gespräche führen wir gern persönlich oder online.',
       language:
         'Diese Seite gibt es auf Deutsch und Türkisch – oben rechts können Sie umschalten. Beraten können wir Sie ebenfalls auf Deutsch oder Türkisch.',
       contact:
@@ -1127,7 +1127,7 @@ export const tr: TranslationSchema = {
     ring: 'SİPARİŞ • GÖNDER • ONAY • ',
     flow: {
       team: 'Ekibiniz',
-      app: 'ADO App',
+      app: 'EKADO App',
       suppliers: 'Tedarikçiler',
     },
     mock: {
@@ -1649,9 +1649,9 @@ export const tr: TranslationSchema = {
     ],
   },
   bot: {
-    title: 'ADO Design · Asistan',
+    title: 'EKADO Design · Asistan',
     welcome:
-      'Merhaba! Ben ADO Design asistanıyım. Size nasıl yardımcı olabilirim? Örneğin siparişlerin, vardiya planının, muhasebenin, resmi bildirimlerin, personel işlerinin ya da ana sayfanın bizde nasıl işlediğini sorabilirsiniz.',
+      'Merhaba! Ben EKADO Design asistanıyım. Size nasıl yardımcı olabilirim? Örneğin siparişlerin, vardiya planının, muhasebenin, resmi bildirimlerin, personel işlerinin ya da ana sayfanın bizde nasıl işlediğini sorabilirsiniz.',
     fallback:
       'Buna hazır bir cevabım yok maalesef. Siparişler, vardiya planı ve fazla mesai, muhasebe, resmi bildirimler, personel ve ana sayfa konularında yardımcı olabilirim – ya da bize doğrudan yazın: {email}',
     placeholder: 'Sorunuz…',
@@ -1694,13 +1694,13 @@ export const tr: TranslationSchema = {
       app:
         'Çalışanlarınız çalışma günlerini, saatlerini, görevlerini ve izinlerini doğrudan uygulamada görür – yolda da, telefondan. Plandaki değişiklikler anında görünür; hastalık bildirimleri ve izin talepleri de uygulama üzerinden yapılır.',
       overview:
-        'ADO Design işletmenizin dijital süreçlerini tek bir platformda toplar: siparişler, vardiya planı ve fazla mesai, muhasebe ve ödemeler, resmi bildirimler, personel süreçleri ve ana sayfanız. Her şey otomatik ve düzenli işler – siz asıl işinize odaklanırsınız.',
+        'EKADO Design işletmenizin dijital süreçlerini tek bir platformda toplar: siparişler, vardiya planı ve fazla mesai, muhasebe ve ödemeler, resmi bildirimler, personel süreçleri ve ana sayfanız. Her şey otomatik ve düzenli işler – siz asıl işinize odaklanırsınız.',
       audience:
         'Platform; çalışan planlayan, tedarikçilerden sipariş veren ve zorunlu bildirim yapması gereken işletmeler için düşünüldü – küçük ekiplerden büyük KOBİ\'lere kadar. Bu arada bu sayfadaki örnek firmalar (Frischwaren AG, Bäckerei Keller …) uydurmadır.',
       demo:
         'Platformu size memnuniyetle birebir bir görüşmede gösteririz. Hangi alanlarla ilgilendiğinizi kısaca yazın: {email} – ya da 07. bölümdeki iletişim formunu kullanın.',
       location:
-        'ADO Design İsviçre\'nin Zürih şehrinde. Görüşmeleri yüz yüze ya da online yapabiliriz.',
+        'EKADO Design İsviçre\'nin Zürih şehrinde. Görüşmeleri yüz yüze ya da online yapabiliriz.',
       language:
         'Bu sayfa Almanca ve Türkçe – sağ üstten değiştirebilirsiniz. Danışmanlığı da Almanca ya da Türkçe verebiliriz.',
       contact:

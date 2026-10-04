@@ -62,7 +62,7 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
           <button type="button" className="e-link op-back" onClick={() => setAsk(null)}>
             <ArrowLeft /> {p.back}
           </button>
-          <LetterDesk key={ask} labels={p.form} to="ADO InstaOto" topic={ask} />
+          <LetterDesk key={ask} labels={p.form} to="EKADO InstaOto" topic={ask} />
         </motion.div>
       ) : (
       <motion.div

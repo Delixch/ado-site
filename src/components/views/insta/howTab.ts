@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 /**
  * Welcher Reiter auf einer Seite mit Reitern offen sein soll (InstaOto "So funktioniert's" = i-flow,
- * ADO Firma "Ablaeufe" = f-flow), z. B. Erstgespraech von der Uebersicht -> Preise.
+ * EKADO Firma "Ablaeufe" = f-flow), z. B. Erstgespraech von der Uebersicht -> Preise.
  * Je Seite getrennt: auf dem Handy stehen alle Seiten gleichzeitig untereinander.
  */
 const EVENT = 'ado-how-tab';

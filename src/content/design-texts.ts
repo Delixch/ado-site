@@ -245,7 +245,7 @@ export const de: TranslationSchema = {
     eyebrow: 'Über mich',
     line1: 'Nicht nur Code.',
     line2: 'Bleibendes.',
-    bioTitle: 'Ich bin ADO, Web-Entwickler in Zürich.',
+    bioTitle: 'Ich bin EKADO, Web-Entwickler in Zürich.',
     bioPart1: 'Angefangen habe ich mit dem Web-Publisher-Lehrgang (HTML, CSS, PHP, DB). Heute entwickle ich moderne High-End-Webseiten mit ',
     bioStrong1: 'Echtzeit-3D',
     bioPart2: ', ',
@@ -286,12 +286,12 @@ export const de: TranslationSchema = {
         badge: 'Werkstatt',
         stat: 'Täglich im Einsatz',
         description:
-          'Ich nutze KI dort, wo sie Zeit spart — und dokumentiere jeden Schritt auf ADO 3D, damit andere ihn nachvollziehen können.',
+          'Ich nutze KI dort, wo sie Zeit spart — und dokumentiere jeden Schritt auf EKADO 3D, damit andere ihn nachvollziehen können.',
       },
     ],
     terminal: {
       whoami: '$ whoami',
-      name: 'ADO',
+      name: 'EKADO',
       echo: '$ echo "gefunden?"',
       found: 'gefunden das versteckte terminal 👀',
       openFull: '$ open --full',
@@ -639,17 +639,17 @@ export const de: TranslationSchema = {
     mailSubjectPrefix: 'Anfrage von',
   },
   bot: {
-    title: 'ADO Bot',
-    welcome: 'Hallo! Ich bin ADO Bot. Frag mich nach Preis, Dauer, Technik oder Kontakt.',
+    title: 'EKADO Bot',
+    welcome: 'Hallo! Ich bin EKADO Bot. Frag mich nach Preis, Dauer, Technik oder Kontakt.',
     fallback:
-      'Darauf bin ich nicht vorbereitet — ich kenne nur ein paar Stichworte. Schreib ADO direkt, der antwortet richtig: xdd@hotmail.com',
+      'Darauf bin ich nicht vorbereitet — ich kenne nur ein paar Stichworte. Schreib EKADO direkt, der antwortet richtig: xdd@hotmail.com',
     placeholder: 'Frag etwas…',
     send: 'Los',
     rules: [
       {
         keywords: ['preis', 'kosten', 'kostet', 'wieviel', 'wie viel', 'budget', 'angebot', 'offerte', 'fiyat', 'ücret', 'ne kadar'],
         reply:
-          'Kommt auf den Umfang an — eine schlanke Firmenseite ist etwas anderes als ein Echtzeit-3D-Auftritt. Schreib ADO kurz, was dir vorschwebt, dann bekommst du ein konkretes Angebot: xdd@hotmail.com',
+          'Kommt auf den Umfang an — eine schlanke Firmenseite ist etwas anderes als ein Echtzeit-3D-Auftritt. Schreib EKADO kurz, was dir vorschwebt, dann bekommst du ein konkretes Angebot: xdd@hotmail.com',
       },
       {
         keywords: ['wie lange', 'dauer', 'dauert', 'termin', 'deadline', 'frist', 'ne kadar sürer', 'süre', 'teslim'],
@@ -679,7 +679,7 @@ export const de: TranslationSchema = {
       {
         keywords: ['verfügbar', 'verfuegbar', 'frei', 'kapazität', 'auftrag', 'müsait', 'musait', 'boş', 'vakit'],
         reply:
-          'Ja, ADO nimmt gerade Projekte an. Am besten kurz per E-Mail melden, dann klärt sich der Rest schnell.',
+          'Ja, EKADO nimmt gerade Projekte an. Am besten kurz per E-Mail melden, dann klärt sich der Rest schnell.',
       },
       {
         keywords: ['projekt', 'referenz', 'arbeiten', 'portfolio', 'beispiel', 'proje', 'referans', 'örnek', 'ornek', 'çalışma'],
@@ -784,7 +784,7 @@ export const tr: TranslationSchema = {
     eyebrow: 'Hakkımda',
     line1: 'Sadece kod değil.',
     line2: 'Kalıcılık.',
-    bioTitle: 'Ben ADO, Zürih\'te web geliştiriciyim.',
+    bioTitle: 'Ben EKADO, Zürih\'te web geliştiriciyim.',
     bioPart1: 'Web Publisher eğitimiyle başladım (HTML, CSS, PHP, veritabanı). Bugün modern, üst düzey web siteleri geliştiriyorum — ',
     bioStrong1: 'gerçek zamanlı 3D',
     bioPart2: ', ',
@@ -825,12 +825,12 @@ export const tr: TranslationSchema = {
         badge: 'Atölye',
         stat: 'Her gün kullanımda',
         description:
-          'Yapay zekayı zaman kazandırdığı yerde kullanıyorum — ve her adımı ADO 3D üzerinde belgeliyorum, başkaları da takip edebilsin diye.',
+          'Yapay zekayı zaman kazandırdığı yerde kullanıyorum — ve her adımı EKADO 3D üzerinde belgeliyorum, başkaları da takip edebilsin diye.',
       },
     ],
     terminal: {
       whoami: '$ whoami',
-      name: 'ADO',
+      name: 'EKADO',
       echo: '$ echo "bulundu mu?"',
       found: 'gizli terminal bulundu 👀',
       openFull: '$ open --full',
@@ -1178,17 +1178,17 @@ export const tr: TranslationSchema = {
     mailSubjectPrefix: 'Talep gönderen:',
   },
   bot: {
-    title: 'ADO Bot',
-    welcome: 'Merhaba! Ben ADO Bot\'um. Bana fiyat, süre, teknoloji ya da iletişim sorabilirsin.',
+    title: 'EKADO Bot',
+    welcome: 'Merhaba! Ben EKADO Bot\'um. Bana fiyat, süre, teknoloji ya da iletişim sorabilirsin.',
     fallback:
-      'Buna hazırlıklı değilim — sadece birkaç anahtar kelime biliyorum. ADO\'ya doğrudan yaz, o düzgün cevap verir: xdd@hotmail.com',
+      'Buna hazırlıklı değilim — sadece birkaç anahtar kelime biliyorum. EKADO\'ya doğrudan yaz, o düzgün cevap verir: xdd@hotmail.com',
     placeholder: 'Bir şey sor…',
     send: 'Gönder',
     rules: [
       {
         keywords: ['fiyat', 'ücret', 'ne kadar', 'maliyet', 'bütçe', 'teklif', 'preis', 'kosten', 'kostet'],
         reply:
-          'Kapsama göre değişiyor — sade bir firma sitesiyle gerçek zamanlı 3D bir çalışma aynı şey değil. Aklındakini kısaca yaz, ADO sana net bir teklif versin: xdd@hotmail.com',
+          'Kapsama göre değişiyor — sade bir firma sitesiyle gerçek zamanlı 3D bir çalışma aynı şey değil. Aklındakini kısaca yaz, EKADO sana net bir teklif versin: xdd@hotmail.com',
       },
       {
         keywords: ['ne kadar sürer', 'süre', 'zaman', 'teslim', 'ne zaman biter', 'wie lange', 'dauer'],
@@ -1208,7 +1208,7 @@ export const tr: TranslationSchema = {
       {
         keywords: ['3d', 'webgl', 'three', 'shader', 'glsl', 'motion'],
         reply:
-          'Tarayıcıda gerçek zamanlı 3D ADO\'nun asıl alanı — parçacık tipografisi, shader\'lar, scroll\'a bağlı kamera hareketleri. Projeler listesindeki 09 numaraya bak: tek bir Three.js sahnesi.',
+          'Tarayıcıda gerçek zamanlı 3D EKADO\'nun asıl alanı — parçacık tipografisi, shader\'lar, scroll\'a bağlı kamera hareketleri. Projeler listesindeki 09 numaraya bak: tek bir Three.js sahnesi.',
       },
       {
         keywords: ['bu site', 'bu sayfa', 'nasıl yapt', 'nasıl yapıld', 'diese seite', 'wie gebaut'],
@@ -1218,7 +1218,7 @@ export const tr: TranslationSchema = {
       {
         keywords: ['müsait', 'musait', 'boş', 'vakit', 'iş al', 'kapasite', 'verfügbar', 'frei'],
         reply:
-          'Evet, ADO şu an proje alıyor. Kısa bir e-posta at, gerisi hızlı ilerler.',
+          'Evet, EKADO şu an proje alıyor. Kısa bir e-posta at, gerisi hızlı ilerler.',
       },
       {
         keywords: ['proje', 'referans', 'örnek', 'ornek', 'çalışma', 'portfolyo', 'portfolio'],

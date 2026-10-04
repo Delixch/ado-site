@@ -52,7 +52,7 @@ const svg = `
   <g transform="translate(76, 12)">
     <!-- Sol Logo & Başlık Kapsülü -->
     <rect x="0" y="0" width="180" height="32" rx="16" fill="rgba(255, 255, 255, 0.16)"/>
-    <text x="16" y="21" font-family="'JetBrains Mono', sans-serif" font-weight="900" font-size="12" fill="#FFFFFF" letter-spacing="1">ADO DESIGN</text>
+    <text x="16" y="21" font-family="'JetBrains Mono', sans-serif" font-weight="900" font-size="12" fill="#FFFFFF" letter-spacing="1">EKADO DESIGN</text>
     <rect x="110" y="6" width="58" height="20" rx="4" fill="rgba(0, 0, 0, 0.2)"/>
     <text x="139" y="19.5" font-family="'JetBrains Mono', sans-serif" font-size="9" font-weight="bold" fill="#F4EFE6" text-anchor="middle">DESİGN</text>
     
@@ -131,7 +131,7 @@ const svg = `
   <!-- 1. Üst Başlık & Folio -->
   <g transform="translate(80, 80)">
     <text x="0" y="36" font-family="'Source Serif 4', Georgia, serif" font-size="34" font-weight="600" fill="#C96442">00</text>
-    <text x="52" y="24" font-family="'JetBrains Mono', sans-serif" font-size="9.5" font-weight="bold" fill="#7A7167" letter-spacing="2">ADO DESIGN · PORTFOLYO</text>
+    <text x="52" y="24" font-family="'JetBrains Mono', sans-serif" font-size="9.5" font-weight="bold" fill="#7A7167" letter-spacing="2">EKADO DESIGN · PORTFOLYO</text>
     <text x="52" y="42" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-weight="400" fill="#211F1C">WEB GELİŞTİRİCİ <tspan font-style="italic" fill="#C96442">Zürih · İsviçre</tspan></text>
   </g>
 
@@ -211,7 +211,7 @@ const svg = `
     <!-- Arka Siyah Görsel Kartı -->
     <rect x="0" y="0" width="690" height="300" fill="url(#dark-photo-bg)"/>
 
-    <!-- Dikey ADO Tipografisi -->
+    <!-- Dikey EKADO Tipografisi -->
     <g font-family="'Source Serif 4', Georgia, serif" font-size="34" fill="#F4EFE6" font-weight="400">
       <text x="24" y="90">A</text>
       <text x="24" y="130">D</text>
@@ -242,10 +242,10 @@ const svg = `
     <text x="660" y="278" font-family="'JetBrains Mono', sans-serif" font-size="9" font-weight="bold" fill="#7A7167" letter-spacing="1" text-anchor="end">WEB GELİŞTİRİCİ — ZÜRİH · İSVİÇRE</text>
     <text x="660" y="24" font-family="'JetBrains Mono', sans-serif" font-size="9" font-weight="bold" fill="#7A7167" letter-spacing="1" text-anchor="end">SAYI 01 · 2026</text>
 
-    <!-- Üstte Yüzen Chat Kutusu Kapsülü (ADO'ya bir şey sor...) -->
+    <!-- Üstte Yüzen Chat Kutusu Kapsülü (EKADO'ya bir şey sor...) -->
     <g transform="translate(380, -2)" filter="url(#soft-shadow)">
       <rect x="0" y="0" width="220" height="34" rx="17" fill="#FFFFFF" stroke="#E4DACB"/>
-      <text x="18" y="21" font-family="'Geist', sans-serif" font-size="11" fill="#7A7167">ADO'ya bir şey sor...</text>
+      <text x="18" y="21" font-family="'Geist', sans-serif" font-size="11" fill="#7A7167">EKADO'ya bir şey sor...</text>
       <circle cx="180" cy="17" r="10" fill="#E8DFD3"/>
       <text x="180" y="21" font-family="'JetBrains Mono', sans-serif" font-size="11" fill="#C96442" text-anchor="middle" font-weight="bold">→</text>
       <text x="202" y="21" font-family="'JetBrains Mono', sans-serif" font-size="11" fill="#7A7167" text-anchor="middle">✕</text>
@@ -273,7 +273,7 @@ const svg = `
     <text x="20" y="30" font-family="'Source Serif 4', Georgia, serif" font-size="26" fill="#C96442">“</text>
     <text x="180" y="52" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-style="italic" fill="#211F1C" text-anchor="middle">Çok okuyan değil,</text>
     <text x="180" y="74" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-style="italic" fill="#211F1C" text-anchor="middle">çok gezen bilir.</text>
-    <text x="340" y="104" font-family="'JetBrains Mono', sans-serif" font-size="9.5" fill="#7A7167" letter-spacing="1" text-anchor="end">— ADO · ZÜRİH</text>
+    <text x="340" y="104" font-family="'JetBrains Mono', sans-serif" font-size="9.5" fill="#7A7167" letter-spacing="1" text-anchor="end">— EKADO · ZÜRİH</text>
   </g>
 
   <!-- 3. Sağ: 4'lü Metrik Kartları -->
@@ -309,7 +309,7 @@ const svg = `
   <!-- EN ALT FOOTER BARI (TERRACOTTA) -->
   <g transform="translate(0, 592)">
     <rect x="0" y="0" width="${width}" height="38" fill="url(#terracotta-header)"/>
-    <text x="76" y="24" font-family="'JetBrains Mono', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">© 2026 ADO Design · ADO Firma</text>
+    <text x="76" y="24" font-family="'JetBrains Mono', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">© 2026 EKADO Design · EKADO Firma</text>
     <text x="600" y="24" font-family="'JetBrains Mono', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Zürih · İsviçre | Künye Gizlilik</text>
     <text x="1176" y="24" font-family="'JetBrains Mono', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="end">xdd@hotmail.com</text>
   </g>

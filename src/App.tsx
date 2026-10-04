@@ -55,7 +55,7 @@ try {
   if (v === 'i-features' || v === 'i-process') localStorage.setItem('ado_view2', 'i-flow');
   if (v === 'i-security') localStorage.setItem('ado_view2', 'i-start');
   if (v === 'i-pricing') localStorage.setItem('ado_view2', 'i-flow');
-  // ADO Firma: Beispielseiten aus dem Menue, nur noch "Ablaeufe" (Beispiele kommen spaeter als Beta)
+  // EKADO Firma: Beispielseiten aus dem Menue, nur noch "Ablaeufe" (Beispiele kommen spaeter als Beta)
   if (v && /^f-(orders|planning|accounting|reports|homepage|personnel)$/.test(v)) localStorage.setItem('ado_view2', 'f-flow');
 } catch {
   /* Speicher gesperrt - egal */
@@ -324,7 +324,7 @@ export default function App() {
             )}
 
             <footer className="foot">
-              <span>© {new Date().getFullYear()} ADO Design · ADO Firma</span>
+              <span>© {new Date().getFullYear()} EKADO Design · EKADO Firma</span>
               <span>{lang === 'tr' ? 'Zürih · İsviçre' : 'Zürich · Schweiz'}</span>
               <span className="foot-legal">
                 <button type="button" onClick={() => setLegal('impressum')}>

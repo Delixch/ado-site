@@ -1,4 +1,4 @@
-// ADO monogramı (D:\repos\Adodesign.ch\public\logo-*.svg ile aynı çizimler).
+// EKADO monogramı (D:\repos\Adodesign.ch\public\logo-*.svg ile aynı çizimler).
 // Robotun göğsündeki dokuya çizilir: halka ve harfler "ink", vurgular marka rengi.
 
 const A = 'M78 220 L130 92 L182 220 H154 L143 190 H116 L105 220 Z M124 166 H136 L130 148 Z';

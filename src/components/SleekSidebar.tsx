@@ -91,7 +91,7 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
         <div className="sb-head">
           <div className="sb-brand">
             <span className="sb-wordmark">
-              ADO DESIGN
+              EKADO DESIGN
               <span className="tb-caret" aria-hidden>
                 █
               </span>
@@ -128,7 +128,7 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
           {!imgLoadFailed ? (
             <img src={avatarUrl} alt="" onError={() => setImgLoadFailed(true)} />
           ) : (
-            <span className="sb-avatar-initials">ADO</span>
+            <span className="sb-avatar-initials">EKADO</span>
           )}
           <span className="sb-avatar-hover">
             <Camera />

@@ -22,7 +22,7 @@ export interface MenuItemDef {
   badge?: number | string;
 }
 
-/** Menü: önce portfolyo (ADO Design), altında firmanın menüleri (ADO Firma). */
+/** Menü: önce portfolyo (EKADO Design), altında firmanın menüleri (EKADO Firma). */
 export const MENU_SECTIONS: { group: Group; items: MenuItemDef[] }[] = [
   {
     group: 'design',

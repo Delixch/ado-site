@@ -27,7 +27,7 @@ export function DesignAbout() {
       trace: true,
       tone: 'ink',
       bleed: true,
-      node: <TypePortrait src="/media/design/koltuk.webp" words={[...a.tags, ...LAB_TAGS, 'ADO', 'Zürich']} label={t.ui.split} />,
+      node: <TypePortrait src="/media/design/koltuk.webp" words={[...a.tags, ...LAB_TAGS, 'EKADO', 'Zürich']} label={t.ui.split} />,
     },
     {
       id: 'bio',

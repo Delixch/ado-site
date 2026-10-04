@@ -15,7 +15,7 @@ export function FirmaContact() {
   const c = t.f.contact;
 
   const blocks: Block[] = [
-    { id: 'desk', tone: 'deep', node: <LetterDesk labels={c} to="ADO Firma" /> },
+    { id: 'desk', tone: 'deep', node: <LetterDesk labels={c} to="EKADO Firma" /> },
     { id: 'photo', tone: 'media', bleed: true, node: <Plate name="zurich" caption={c.location} /> },
     {
       id: 'benefits',

@@ -1,7 +1,7 @@
 import type { Lang } from './ui';
 
 /**
- * ADO Firma "Ablaeufe": je Bereich nur der Ablauf in vier Schritten (keine Beispiel-Firmen).
+ * EKADO Firma "Ablaeufe": je Bereich nur der Ablauf in vier Schritten (keine Beispiel-Firmen).
  * Reihenfolge wie FIRMA_SECTIONS (Bestellungen, Einsatzplanung, Buchhaltung, Meldungen, Homepage, Personal).
  * Die alten Beispielseiten (FirmaOrders usw.) bleiben im Code - spaeter als "Beta".
  */

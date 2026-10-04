@@ -2,7 +2,7 @@ import { useId, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 /**
- * Kachel-Effekt aus ADO Design (Favoriten & Inspiration): hinter der Karte unter dem
+ * Kachel-Effekt aus EKADO Design (Favoriten & Inspiration): hinter der Karte unter dem
  * Zeiger erscheint ein weiches Quadrat in Themenfarbe und gleitet von Karte zu Karte.
  * Verwendung: const tile = useHoverTile(); <ul {...tile.list}> ... <li {...tile.item(i)}>
  * <HoverTile {...tile.at(i)} /> <button .../> </li>

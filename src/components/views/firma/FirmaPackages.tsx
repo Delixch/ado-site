@@ -20,7 +20,7 @@ export function FirmaPackages() {
   });
 
   const openInquiry = (plan: (typeof pkg.plans)[0]) => {
-    const topic = `ADO Firma · ${plan.name} (${plan.badge ?? plan.id})`;
+    const topic = `EKADO Firma · ${plan.name} (${plan.badge ?? plan.id})`;
     setAsk(topic);
     window.setTimeout(() => {
       document.querySelector('.fp-ask .desk')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -69,9 +69,9 @@ export function FirmaPackages() {
                   messagePlaceholder: c.messagePlaceholder,
                   successTitle: c.successTitle,
                   successText: c.successText,
-                  mailSubjectPrefix: `ADO Firma Anfrage ·`,
+                  mailSubjectPrefix: `EKADO Firma Anfrage ·`,
                 }}
-                to="ADO Firma"
+                to="EKADO Firma"
                 topic={ask}
               />
             </div>

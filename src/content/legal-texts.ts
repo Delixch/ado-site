@@ -55,7 +55,7 @@ const de: LegalTexts = {
     },
     {
       heading: 'Beispieldaten',
-      lines: ['Namen, Firmen, Nachrichten, Zahlen und Beträge in den Beispielansichten (ADO Firma, ADO InstaOto) sind frei erfunden und dienen nur der Veranschaulichung. Ähnlichkeiten mit tatsächlichen Personen oder Unternehmen sind zufällig.'],
+      lines: ['Namen, Firmen, Nachrichten, Zahlen und Beträge in den Beispielansichten (EKADO Firma, EKADO InstaOto) sind frei erfunden und dienen nur der Veranschaulichung. Ähnlichkeiten mit tatsächlichen Personen oder Unternehmen sind zufällig.'],
     },
   ],
   privacyUpdated: 'Stand: Oktober 2026',
@@ -89,11 +89,11 @@ const de: LegalTexts = {
     },
     {
       heading: 'Bilder, Videos und Beispiele',
-      lines: ['Alle Fotos und Videos liegen auf unserem eigenen Server; Video- oder Bilddienste Dritter werden nicht eingebunden. Die Chat-Vorschau von ADO InstaOto läuft nur in Ihrem Browser; Ihre Eingaben werden weder übertragen noch gespeichert.'],
+      lines: ['Alle Fotos und Videos liegen auf unserem eigenen Server; Video- oder Bilddienste Dritter werden nicht eingebunden. Die Chat-Vorschau von EKADO InstaOto läuft nur in Ihrem Browser; Ihre Eingaben werden weder übertragen noch gespeichert.'],
     },
     {
-      heading: 'ADO InstaOto und ADO Firma',
-      lines: ['Diese Website stellt die Produkte nur vor. Für Kundinnen und Kunden, die ADO InstaOto oder ADO Firma nutzen, gelten zusätzlich die Datenschutzhinweise im jeweiligen Kundenbereich.'],
+      heading: 'EKADO InstaOto und EKADO Firma',
+      lines: ['Diese Website stellt die Produkte nur vor. Für Kundinnen und Kunden, die EKADO InstaOto oder EKADO Firma nutzen, gelten zusätzlich die Datenschutzhinweise im jeweiligen Kundenbereich.'],
     },
     {
       heading: 'Datensicherheit',
@@ -148,7 +148,7 @@ const tr: LegalTexts = {
     },
     {
       heading: 'Örnek veriler',
-      lines: ['Örnek görünümlerdeki (ADO Firma, ADO InstaOto) isimler, firmalar, mesajlar, sayılar ve tutarlar uydurmadır ve yalnızca tanıtım amaçlıdır. Gerçek kişi veya şirketlerle benzerlikler tesadüfidir.'],
+      lines: ['Örnek görünümlerdeki (EKADO Firma, EKADO InstaOto) isimler, firmalar, mesajlar, sayılar ve tutarlar uydurmadır ve yalnızca tanıtım amaçlıdır. Gerçek kişi veya şirketlerle benzerlikler tesadüfidir.'],
     },
   ],
   privacyUpdated: 'Güncelleme: Ekim 2026',
@@ -182,11 +182,11 @@ const tr: LegalTexts = {
     },
     {
       heading: 'Görseller, videolar ve örnekler',
-      lines: ['Tüm fotoğraf ve videolar kendi sunucumuzdadır; üçüncü tarafların video veya görsel hizmetleri kullanılmaz. ADO InstaOto sohbet önizlemesi yalnızca tarayıcınızda çalışır; yazdıklarınız gönderilmez ve saklanmaz.'],
+      lines: ['Tüm fotoğraf ve videolar kendi sunucumuzdadır; üçüncü tarafların video veya görsel hizmetleri kullanılmaz. EKADO InstaOto sohbet önizlemesi yalnızca tarayıcınızda çalışır; yazdıklarınız gönderilmez ve saklanmaz.'],
     },
     {
-      heading: 'ADO InstaOto ve ADO Firma',
-      lines: ['Bu site ürünleri yalnızca tanıtır. ADO InstaOto veya ADO Firma kullanan müşteriler için ayrıca ilgili müşteri panelindeki gizlilik bilgileri geçerlidir.'],
+      heading: 'EKADO InstaOto ve EKADO Firma',
+      lines: ['Bu site ürünleri yalnızca tanıtır. EKADO InstaOto veya EKADO Firma kullanan müşteriler için ayrıca ilgili müşteri panelindeki gizlilik bilgileri geçerlidir.'],
     },
     {
       heading: 'Veri güvenliği',

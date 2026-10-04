@@ -18,7 +18,7 @@ export interface LetterLabels {
  * Kein Formular, sondern ein Brief: man schreibt direkt in die Luecken auf dem Papier.
  * Das Wachssiegel ist der Senden-Knopf; danach faltet sich der Brief und wird versiegelt.
  */
-export function LetterDesk({ labels, to = 'ADO', topic: given }: { labels: LetterLabels; to?: string; /** fertiger Betreff, z. B. gewaehltes Paket */ topic?: string }) {
+export function LetterDesk({ labels, to = 'EKADO', topic: given }: { labels: LetterLabels; to?: string; /** fertiger Betreff, z. B. gewaehltes Paket */ topic?: string }) {
   const { t } = useView();
   const page = usePage();
   const L = t.ui.letter;
@@ -74,7 +74,7 @@ ${I.when}` }));
             <p className="paper-date micro">
               {L.place}, {date}
             </p>
-            <p className="paper-greet whisper">{L.greeting.replace('ADO', to)}</p>
+            <p className="paper-greet whisper">{L.greeting.replace('EKADO', to)}</p>
             <p className="paper-line">
               {L.name}{' '}
               <input

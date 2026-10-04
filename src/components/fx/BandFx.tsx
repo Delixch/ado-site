@@ -5,8 +5,8 @@ import { useReducedMotion } from 'motion/react';
  * Effekte am Rand des Lichtbands - fuer alle vier Formen (1 gerade, 2 schraeg, 3 Schlange, 4 Ringe).
  * Ein Canvas fest im Fenster ganz hinten in .main, ein zweites nur ueber der Kopfzeile (wie das Band selbst).
  * Die Formen werden aus denselben Werten berechnet wie das Band (tokens.css), daher liegen die Effekte genau am Rand.
- * Effekte: 1 Licht · 2 Partikel · 3 Punkte · 4 ADO-Buchstaben · 5 Herzschlag · 6 Streifen innen
- *          7 Funken · 8 Schimmer · 9 Sonar · 10 Datenregen · 11 ADO-Regen (nur A D O)
+ * Effekte: 1 Licht · 2 Partikel · 3 Punkte · 4 EKADO-Buchstaben · 5 Herzschlag · 6 Streifen innen
+ *          7 Funken · 8 Schimmer · 9 Sonar · 10 Datenregen · 11 EKADO-Regen (nur E K A D O)
  * Alle Varianten bleiben im Code (Kundenwunsch) - Auswahl ueber die Leiste unten rechts (BandPicker).
  */
 
@@ -319,11 +319,11 @@ export function BandFx({ fx, shape }: { fx: string; shape: string }) {
           break;
         }
         case '4': {
-          // ADO-Buchstaben treiben ziellos nach aussen
+          // EKADO-Buchstaben treiben ziellos nach aussen
           if (frame % 3 === 0) {
             const e = S.randomEdge(2);
             const v = rnd(0.15, 0.6);
-            parts.push({ x: e.x, y: e.y + sy, vx: e.nx * v, vy: e.ny * v + rnd(-0.3, 0.3), life: 0, max: rnd(120, 220), s: rnd(8, 11), ch: 'ADO'[Math.floor(Math.random() * 3)] });
+            parts.push({ x: e.x, y: e.y + sy, vx: e.nx * v, vy: e.ny * v + rnd(-0.3, 0.3), life: 0, max: rnd(120, 220), s: rnd(8, 11), ch: 'EKADO'[Math.floor(Math.random() * 5)] });
           }
           ctx.fillStyle = brand;
           ctx.textAlign = 'center';
@@ -408,8 +408,8 @@ export function BandFx({ fx, shape }: { fx: string; shape: string }) {
         }
         case '10':
         case '11': {
-          // Datenregen innen (11: nur die Buchstaben A D O)
-          const set = fx === '11' ? 'ADO' : '01ADO';
+          // Datenregen innen (11: nur die Buchstaben E K A D O)
+          const set = fx === '11' ? 'EKADO' : '01EKADO';
           if (parts.length < 70 && Math.random() < 0.6) {
             parts.push({ x: rnd(-0.75, 0.75), y: y0 + sy - 10, vx: 0, vy: rnd(1.4, 3.2), life: 0, max: 9999, s: rnd(9, 12), ch: set[Math.floor(Math.random() * set.length)] });
           }
@@ -485,7 +485,7 @@ export function BandFx({ fx, shape }: { fx: string; shape: string }) {
             ctx.fillStyle = 'rgba(4, 20, 28, 0.85)';
             ctx.fillText(p.ch!, s.cx + p.x * s.hw, vy);
             if (Math.random() < 0.04) {
-              const set = fx === '11' ? 'ADO' : '01ADO';
+              const set = fx === '11' ? 'EKADO' : '01EKADO';
               p.ch = set[Math.floor(Math.random() * set.length)];
             }
             break;

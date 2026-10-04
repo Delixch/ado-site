@@ -31,7 +31,7 @@ export function Topbar({ t, lang, setLang, color, setColor, title, group, auto, 
         <div className="tb-brand-badge" data-group={group} title={t.ui.groups[group].title}>
           <span className="tb-group-dot" aria-hidden />
           <span className="tb-logo">
-            {{ design: 'ADO DESIGN', firma: 'ADO FIRMA', insta: 'ADO INSTAOTO' }[group]}
+            {{ design: 'EKADO DESIGN', firma: 'EKADO FIRMA', insta: 'EKADO INSTAOTO' }[group]}
             <span className="tb-caret" aria-hidden>
               █
             </span>

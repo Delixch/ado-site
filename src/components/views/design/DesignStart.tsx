@@ -33,6 +33,8 @@ export function DesignStart() {
         <SlitMedia src="/media/design/schreibtisch.mp4" at={0.55}>
           <div className="cover-over">
             <span className="cover-ado poster" aria-hidden>
+              <span>E</span>
+              <span>K</span>
               <span>A</span>
               <span>D</span>
               <span>O</span>
@@ -80,7 +82,7 @@ export function DesignStart() {
             “
           </span>
           <Proverb lang={t.lang} />
-          <figcaption className="micro">— ADO · {t.lang === 'tr' ? 'Zürih' : 'Zürich'}</figcaption>
+          <figcaption className="micro">— EKADO · {t.lang === 'tr' ? 'Zürih' : 'Zürich'}</figcaption>
         </figure>
       ),
     },
@@ -112,7 +114,7 @@ export function DesignStart() {
   return (
     <Spread
       view="d-start"
-      head={{ folio: '00', kicker: t.lang === 'tr' ? 'ADO DESIGN · PORTFOLYO' : 'ADO Design · Portfolio', line1: h.roleLine, line2: h.badgeLocation }}
+      head={{ folio: '00', kicker: t.lang === 'tr' ? 'EKADO DESIGN · PORTFOLYO' : 'EKADO Design · Portfolio', line1: h.roleLine, line2: h.badgeLocation }}
       blocks={blocks}
       layouts={LAYOUTS}
     />

@@ -81,7 +81,7 @@ export function FirmaStart() {
           <div className="fs-phone">
             <div className="fs-phone-head">
               <span className="micro">
-                <b>ADO App</b>
+                <b>EKADO App</b>
               </span>
               <span className="micro">{f.repos.doc.items[0].fields[0].value}</span>
             </div>
@@ -134,7 +134,7 @@ export function FirmaStart() {
           <blockquote className="whisper">
             {h.quoteLine1} <em>{h.quoteLine2}</em>
           </blockquote>
-          <figcaption className="micro">— ADO Firma</figcaption>
+          <figcaption className="micro">— EKADO Firma</figcaption>
         </figure>
       ),
     },
@@ -146,5 +146,5 @@ export function FirmaStart() {
     },
   ];
 
-  return <Spread view="f-start" head={{ folio: '00', kicker: 'ADO Firma', line1: h.badgeAvailable, line2: h.badgeLocation }} blocks={blocks} layouts={LAYOUTS} />;
+  return <Spread view="f-start" head={{ folio: '00', kicker: 'EKADO Firma', line1: h.badgeAvailable, line2: h.badgeLocation }} blocks={blocks} layouts={LAYOUTS} />;
 }

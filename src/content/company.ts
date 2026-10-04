@@ -4,7 +4,7 @@ import { CONTACT_MAIL } from '../config';
  *  markierter Platzhalter (Musterfirma ...); leere UID = die Zeile entfaellt. */
 export const COMPANY = {
   name: '',
-  person: 'ADO',
+  person: 'EKADO',
   street: '',
   zipCity: '',
   uid: '',

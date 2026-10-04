@@ -24,13 +24,13 @@ const CHAT_TIMEOUT_MS = 40000;
 
 const CHAT_TEXT: Record<Lang, { placeholder: string; send: string; close: string; fallback: string }> = {
   tr: {
-    placeholder: "ADO'ya bir şey sor…",
+    placeholder: "EKADO'ya bir şey sor…",
     send: 'Gönder',
     close: 'Sohbeti kapat',
     fallback: 'Şu an bağlantım koptu. Bize xdd@hotmail.com adresinden yazabilirsin.',
   },
   de: {
-    placeholder: 'Frag ADO etwas…',
+    placeholder: 'Frag EKADO etwas…',
     send: 'Senden',
     close: 'Chat schliessen',
     fallback: 'Gerade kein Empfang. Schreib uns an xdd@hotmail.com.',
@@ -56,7 +56,7 @@ const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const damp = (cur: number, tgt: number, k: number, dt: number) => cur + (tgt - cur) * (1 - Math.exp(-k * dt));
 
 /**
- * ADO Design'ın TV kafalı robotu. Fareyi (telefonda eğimi) takip eder,
+ * EKADO Design'ın TV kafalı robotu. Fareyi (telefonda eğimi) takip eder,
  * tıklayınca konuşur, 3 hızlı tıklamada gıdıklanır, 15 sn hareketsizlikte uyur.
  * Renkleri sayfadaki --brand ve data-color="claude" değerlerinden alır.
  */

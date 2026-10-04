@@ -1,5 +1,5 @@
 /**
- * ADO InstaOto - Instagram-Automatisierung (Produkt: D:\repos\instagramoto).
+ * EKADO InstaOto - Instagram-Automatisierung (Produkt: D:\repos\instagramoto).
  * Neue Texte fuer die Website (nicht aus einem anderen Projekt kopiert). DE + TR.
  */
 export const instaTexts = {
@@ -12,7 +12,7 @@ export const instaTexts = {
       security: 'Daten & Sicherheit',
       pricing: 'Preise & Anfrage',
     },
-    group: { title: 'ADO InstaOto · Automation', short: 'Insta' },
+    group: { title: 'EKADO InstaOto · Automation', short: 'Insta' },
     start: {
       eyebrow: 'Instagram-Automatisierung',
       line1: 'Jeder Kommentar',
@@ -189,7 +189,7 @@ export const instaTexts = {
       security: 'Veri & Güvenlik',
       pricing: 'Fiyat & Talep',
     },
-    group: { title: 'ADO InstaOto · Otomasyon', short: 'Insta' },
+    group: { title: 'EKADO InstaOto · Otomasyon', short: 'Insta' },
     start: {
       eyebrow: 'Instagram otomasyonu',
       line1: 'Her yorum',

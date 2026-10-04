@@ -19,7 +19,7 @@ const LAYOUTS: LayoutDef[] = [
 ];
 
 /**
- * ADO Firma "Ablaeufe": sechs Bereiche hinter Reitern (wie InstaOto "So funktioniert's"),
+ * EKADO Firma "Ablaeufe": sechs Bereiche hinter Reitern (wie InstaOto "So funktioniert's"),
  * je Bereich nur der Ablauf in vier Schritten. Handy: Schritte mit Text untereinander, kein Sheet.
  */
 export function FirmaHow() {

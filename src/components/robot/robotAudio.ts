@@ -15,15 +15,15 @@ const FALLBACK_BEEP: Partial<Record<VoiceLine, 'giggle' | 'think'>> = { gidik: '
 
 export const VOICE_TEXT: Record<Lang, Record<VoiceLine, string>> = {
   tr: {
-    ado: 'ADO Design!',
-    merhaba: "Merhaba! Ben ADO Design'ın robotuyum.",
+    ado: 'EKADO Design!',
+    merhaba: "Merhaba! Ben EKADO Design'ın robotuyum.",
     gidik: 'Hihihi! Gıdıklanıyorum!',
     uyandim: 'Hmm? Uyandım!',
     dusun: 'Hmm, bir düşüneyim…',
   },
   de: {
-    ado: 'ADO Design!',
-    merhaba: 'Hallo! Willkommen bei ADO Design.',
+    ado: 'EKADO Design!',
+    merhaba: 'Hallo! Willkommen bei EKADO Design.',
     gidik: 'Hihihi! Das kitzelt!',
     uyandim: 'Hmm? Ich bin wach!',
     dusun: 'Hmm, lass mich kurz überlegen…',
