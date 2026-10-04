@@ -43,8 +43,22 @@ const shell = {
     pause: 'Video anhalten',
     /** Vertrauens-Hinweise auf den Angebotsseiten. Nur sagen, was nachweislich stimmt. */
     trust: {
-      insta: ['Software ohne Monatsabo', 'Ansprechpartner in Zürich'],
-      firma: ['Ansprechpartner in Zürich', 'Deutsch & Türkisch', 'Auf Ihren Betrieb zugeschnitten', 'Persönliche Einweisung'],
+      insta: [
+        '100% Swiss Hosted & DSG-konform',
+        'Keine Vertragsbindung (Monatlich kündbar)',
+        'Direkter Schweizer Support in Zürich',
+      ],
+      firma: [
+        '100% Swiss Hosted & DSG-konform',
+        'Keine Vertragsbindung (Monatlich kündbar)',
+        'Direkter Schweizer Support in Zürich (DE & TR)',
+        'Auf Ihren Betrieb zugeschnitten & Vor-Ort-Einweisung',
+      ],
+      swiss: [
+        { label: '100% Swiss Hosted', desc: 'Daten bleiben in der Schweiz · DSG-konform' },
+        { label: 'Keine Vertragsbindung', desc: 'Monatlich kündbar · Kein Knebelvertrag' },
+        { label: 'Direkter Support', desc: 'Persönlich in Zürich · Deutsch & Türkisch' },
+      ],
     },
     /** Erstgespraech-Knopf: oeffnet den Brief mit fertigem Betreff (kein Kalenderdienst). */
     intro: {
@@ -98,8 +112,22 @@ const shell = {
     play: 'Videoyu oynat',
     pause: 'Videoyu durdur',
     trust: {
-      insta: ['Yazılım için aylık ücret yok', 'Zürih’te muhatap'],
-      firma: ['Zürih’te muhatap', 'Almanca & Türkçe', 'İşletmenize göre yapılır', 'Kişisel tanıtım'],
+      insta: [
+        '%100 İsviçre Sunuculu & DSG Uyumlu',
+        'Sözleşme Bağlayıcılığı Yok (Aylık İptal)',
+        'Zürih’te Doğrudan Destek',
+      ],
+      firma: [
+        '%100 İsviçre Sunuculu & DSG Uyumlu',
+        'Sözleşme Bağlayıcılığı Yok (Aylık İptal)',
+        'Zürih’te Doğrudan Destek (Almanca & Türkçe)',
+        'İşletmenize Özel Kurulum & Yerinde Tanıtım',
+      ],
+      swiss: [
+        { label: '%100 İsviçre Sunuculu', desc: 'Veriler İsviçre’de kalır · DSG Uyumlu' },
+        { label: 'Taahhüt Yok', desc: 'Aylık Fesih İmkanı · Tam Özgürlük' },
+        { label: 'Doğrudan Destek', desc: 'Zürih’te Kişisel Muhatap · Almanca & Türkçe' },
+      ],
     },
     intro: {
       cta: 'Ücretsiz ön görüşme · 15 dk.',

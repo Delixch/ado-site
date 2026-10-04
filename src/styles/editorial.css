@@ -256,3 +256,286 @@
 .e-link.intro-call:focus-visible {
   color: var(--on-brand);
 }
+
+/* 3-B Schweizer Vertrauens-Karte */
+.swiss-trust-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--card-pad);
+  border-radius: var(--radius-card);
+  background: var(--surface-glass);
+  border: 1px solid var(--card-edge);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--card-backdrop);
+  -webkit-backdrop-filter: var(--card-backdrop);
+}
+
+.swiss-trust-head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.swiss-flag {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.swiss-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sp-3);
+}
+
+.swiss-trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--ink) 3%, transparent);
+}
+
+.swiss-trust-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--brand) 16%, transparent);
+  color: var(--brand-text);
+  flex-shrink: 0;
+}
+
+.swiss-trust-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.swiss-trust-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-semibold);
+  color: var(--ink);
+  line-height: var(--lh-snug);
+}
+
+.swiss-trust-desc {
+  display: block;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* 2-2 ADO Firma Pakete & Bento Grid */
+.fp-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  padding: var(--card-pad);
+  border-radius: var(--radius-card);
+  background: var(--surface-glass);
+  border: 1px solid var(--card-edge);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--card-backdrop);
+  -webkit-backdrop-filter: var(--card-backdrop);
+}
+
+.fp-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.fp-title {
+  font-size: var(--fs-heading);
+  line-height: var(--lh-tight);
+  margin-top: var(--sp-1);
+}
+
+.fp-lede {
+  max-width: 680px;
+  color: var(--muted);
+  margin-top: var(--sp-2);
+}
+
+.fp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+
+@media (max-width: 1024px) {
+  .fp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fp-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  padding: var(--card-pad);
+  border-radius: var(--radius-card);
+  background: color-mix(in oklab, var(--ink) 3%, transparent);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-xs);
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--fast), border-color var(--fast), box-shadow var(--fast);
+}
+
+.fp-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.fp-card[data-featured="true"] {
+  border-color: color-mix(in oklab, var(--brand) 40%, var(--line));
+  background: color-mix(in oklab, var(--brand) 4%, var(--surface-glass));
+}
+
+.fp-card[data-selected="true"] {
+  border-color: var(--brand);
+}
+
+.fp-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.fp-card-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.fp-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-title);
+  font-weight: var(--fw-bold);
+  color: var(--ink);
+}
+
+.fp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  background: color-mix(in oklab, var(--ink) 8%, transparent);
+  color: var(--ink);
+}
+
+.fp-badge[data-featured="true"] {
+  background: color-mix(in oklab, var(--brand) 18%, transparent);
+  color: var(--brand-text);
+  border: 1px solid color-mix(in oklab, var(--brand) 35%, transparent);
+}
+
+.fp-badge svg {
+  width: 11px;
+  height: 11px;
+}
+
+.fp-tagline {
+  color: var(--muted);
+  line-height: var(--lh-snug);
+}
+
+.fp-section-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--muted);
+  margin-bottom: var(--sp-2);
+}
+
+.fp-modules {
+  padding: var(--sp-3);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--ink) 2%, transparent);
+}
+
+.fp-module-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.fp-module-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--ink);
+}
+
+.fp-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--brand);
+  flex-shrink: 0;
+}
+
+.fp-feat-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.fp-feat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: var(--fs-small);
+  color: var(--ink);
+  line-height: var(--lh-snug);
+}
+
+.fp-check {
+  width: 14px;
+  height: 14px;
+  color: var(--brand-text);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.fp-card-foot {
+  margin-top: auto;
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--line);
+}
+
+.fp-cta {
+  width: 100%;
+  justify-content: center;
+}
+
+.fp-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-top: var(--sp-2);
+}
+
+.fp-note {
+  text-align: center;
+  color: var(--muted);
+}

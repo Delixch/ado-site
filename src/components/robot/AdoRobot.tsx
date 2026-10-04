@@ -541,19 +541,47 @@ export function AdoRobot({
     const ro = new ResizeObserver(resize);
     ro.observe(host);
     resize();
+    const startLoop = () => {
+      if (!raf && visible && !document.hidden) {
+        timer.update();
+        raf = requestAnimationFrame(frame);
+      }
+    };
+    const stopLoop = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      if (visible) startLoop();
+      else stopLoop();
     });
     io.observe(host);
+
+    const onVisibility = () => {
+      if (document.hidden) {
+        stopLoop();
+      } else {
+        lastInput = performance.now();
+        startLoop();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
 
     // ---------- Döngü ----------
     const timer = new THREE.Timer();
     let t = 0;
     let raf = 0;
     const frame = (ts?: number) => {
+      if (!visible || document.hidden) {
+        raf = 0;
+        return;
+      }
       raf = requestAnimationFrame(frame);
       timer.update(ts);
-      if (!visible || document.hidden) return;
       const dt = Math.min(timer.getDelta(), 0.05);
       t += dt;
       const now = performance.now();
@@ -652,7 +680,8 @@ export function AdoRobot({
     frame();
 
     return () => {
-      cancelAnimationFrame(raf);
+      stopLoop();
+      document.removeEventListener('visibilitychange', onVisibility);
       window.clearTimeout(bubbleTimer);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerdown', onPointerDown);

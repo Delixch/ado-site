@@ -5,6 +5,7 @@ import { Media } from '../../fx/Media';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
 import { useTraceStep } from '../../../hooks/useTraceStep';
 import { Plate } from '../../fx/Plate';
+import { TrustBadges } from '../../common/TrustBadges';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 
@@ -41,6 +42,7 @@ export function InstaStart() {
             </button>
             <IntroCall contact="i-flow" tab={3} />
           </div>
+          <TrustBadges product="insta" />
         </div>
       ),
     },

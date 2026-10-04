@@ -2,9 +2,11 @@ import { IntroCall } from '../../common/IntroCall';
 import { ArrowDown, ArrowUpRight, CalendarDays, FolderOpen, Globe, Landmark, Package, Receipt } from 'lucide-react';
 import { CONTACT_MAIL } from '../../../config';
 import { Media } from '../../fx/Media';
+import { TrustBadges } from '../../common/TrustBadges';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
 import { requestHowTab } from '../insta/howTab';
+import { FirmaPackages } from './FirmaPackages';
 
 /** Sechs Bereiche = Reiter auf "Ablaeufe" (FirmaHow); key = Texte in t.f, nav = Name in t.f.nav. */
 export const FIRMA_SECTIONS = [
@@ -17,9 +19,9 @@ export const FIRMA_SECTIONS = [
 ] as const;
 
 const LAYOUTS: LayoutDef[] = [
-  { name: 'Control', cols: '1fr 1fr 1fr', areas: ['headline headline app', 'film film app', 'lede lede quote'] },
-  { name: 'Panel', cols: '1fr 1fr 1fr', areas: ['app headline headline', 'app film film', 'quote lede lede'] },
-  { name: 'Wide', cols: '1fr 1fr 1fr', areas: ['film film headline', 'film film lede', 'app app quote'] },
+  { name: 'Control', cols: '1fr 1fr 1fr', areas: ['headline headline app', 'film film app', 'lede lede quote', 'packages packages packages'], rows: 'minmax(var(--spread-row), auto) auto auto auto' },
+  { name: 'Panel', cols: '1fr 1fr 1fr', areas: ['app headline headline', 'app film film', 'quote lede lede', 'packages packages packages'], rows: 'minmax(var(--spread-row), auto) auto auto auto' },
+  { name: 'Wide', cols: '1fr 1fr 1fr', areas: ['film film headline', 'film film lede', 'app app quote', 'packages packages packages'], rows: 'minmax(var(--spread-row), auto) auto auto auto' },
 ];
 
 export function FirmaStart() {
@@ -66,6 +68,7 @@ export function FirmaStart() {
             </a>
             <IntroCall contact="f-contact" />
           </div>
+          <TrustBadges product="firma" />
         </div>
       ),
     },
@@ -134,6 +137,12 @@ export function FirmaStart() {
           <figcaption className="micro">— ADO Firma</figcaption>
         </figure>
       ),
+    },
+    {
+      id: 'packages',
+      trace: true,
+      tone: 'deep',
+      node: <FirmaPackages />,
     },
   ];
 

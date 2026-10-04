@@ -39,4 +39,8 @@ function chatApi(): Plugin {
 
 export default defineConfig({
   plugins: [react(), chatApi()],
+  server: {
+    port: 3000,
+    host: '0.0.0.0',
+  },
 });

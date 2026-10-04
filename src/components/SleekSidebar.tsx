@@ -229,14 +229,21 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
               <button
                 type="button"
                 className="sb-section-title sb-section-toggle"
+                data-group={section.group}
                 aria-expanded={!!query || openGroups.includes(section.group)}
                 onClick={() => toggleGroup(section.group)}
               >
-                <span>{t.ui.groups[section.group].title}</span>
+                <span className="sb-section-group-badge">
+                  <span className="sb-group-dot" data-group={section.group} aria-hidden />
+                  <span>{t.ui.groups[section.group].title}</span>
+                </span>
                 <ChevronDown className="sb-section-chevron" />
               </button>
             ) : (
-              <div className="sb-section-title">{isExpanded ? t.ui.groups[section.group].title : t.ui.groups[section.group].short}</div>
+              <div className="sb-section-title" data-group={section.group}>
+                <span className="sb-group-dot" data-group={section.group} aria-hidden />
+                <span>{isExpanded ? t.ui.groups[section.group].title : t.ui.groups[section.group].short}</span>
+              </div>
             )}
 
             <AnimatePresence initial={false}>
@@ -328,10 +335,11 @@ function RailGroups({
         const label = t.ui.groups[sec.group].title;
         const isOpen = openGroups.includes(sec.group);
         return (
-          <div key={sec.group} className="sb-rail-group" data-open={isOpen}>
+          <div key={sec.group} className="sb-rail-group" data-group={sec.group} data-open={isOpen}>
             <button
               type="button"
               className="sb-item sb-rail-btn"
+              data-group={sec.group}
               data-open={isOpen}
               data-current={sec.group === activeGroup}
               title={label}

@@ -5,6 +5,14 @@
  * Bir tema fontu değiştirmek isterse kendi dosyasında --font-* değerini ezer.
  */
 :root {
+  /* 3 Ürün Renk ve Işıma İmzaları (3 Ürün, 1 Çatı) */
+  --group-design: #ff5a1f;
+  --group-design-glow: rgba(255, 90, 31, 0.5);
+  --group-firma: #10b981;
+  --group-firma-glow: rgba(16, 185, 129, 0.5);
+  --group-insta: #a855f7;
+  --group-insta-glow: rgba(168, 85, 247, 0.5);
+
   /* Fontlar */
   --font-sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;

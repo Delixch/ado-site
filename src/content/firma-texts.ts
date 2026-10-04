@@ -349,6 +349,22 @@ export interface TranslationSchema {
     send: string;
     replies: Record<BotTopic, string>;
   };
+  packages: {
+    eyebrow: string;
+    line1: string;
+    line2: string;
+    lede: string;
+    choose: string;
+    customNote: string;
+    plans: {
+      id: string;
+      name: string;
+      badge?: string;
+      tagline: string;
+      modules: string[];
+      features: string[];
+    }[];
+  };
 }
 
 // @section:de
@@ -998,6 +1014,57 @@ export const de: TranslationSchema = {
         'Grüezi! Wie kann ich helfen? Fragen Sie mich zu Bestellungen, Einsatzplanung, Buchhaltung, Meldungen, Personal oder Homepage.',
     },
   },
+  packages: {
+    eyebrow: 'Pakete & Lösungen',
+    line1: 'Klar strukturiert.',
+    line2: 'Passend für Ihren Betrieb.',
+    lede: 'Wählen Sie das Modell, das Ihren Alltag spürbar entlastet — vom schnellen Start bis zur schlüsselfertigen Gesamtlösung.',
+    choose: 'Paket anfragen',
+    customNote: 'Alle Pakete monatlich kündbar · Keine Einrichtungsgebühr bei Jahreszahlung · Schweizer Support',
+    plans: [
+      {
+        id: 'start',
+        name: 'Start',
+        badge: 'Fokus',
+        tagline: 'Für Cafés, Take-aways & kleine Teams',
+        modules: ['Bestellungen & Tische', 'Einsatz- & Dienstplanung', 'Mobil optimiert (PWA)'],
+        features: [
+          'Digitale Bestellaufnahme ohne Papierchaos',
+          'Wochen-Schichtplan per WhatsApp teilen',
+          'Mitarbeiter-Stempeluhr am Handy',
+          '100% Swiss Hosted & DSG-konform',
+        ],
+      },
+      {
+        id: 'betrieb',
+        name: 'Betrieb',
+        badge: 'Beliebt',
+        tagline: 'Die komplette Betriebszentrale für Restaurants & Handwerk',
+        modules: ['Alle Start-Funktionen', 'Tageskasse & Buchhaltung', 'Offizielle Meldungen & Hygiene'],
+        features: [
+          'Tagesabschluss (Z-Bericht) mit 1 Klick',
+          'MWST-Vorbereitung für Ihren Treuhänder',
+          'Digitale HACCP- & Reinigungsnachweise',
+          'Rollen & Rechte für Schichtleiter & Buchhalter',
+          'Prioritäts-Support aus Zürich (DE & TR)',
+        ],
+      },
+      {
+        id: 'komplett',
+        name: 'Komplett',
+        badge: 'Rundum-Sorglos',
+        tagline: 'Vollausstattung inklusive eigener Web-Präsenz & Vor-Ort-Setup',
+        modules: ['Alle Betrieb-Funktionen', 'Eigene moderne Website', 'Persönliche Vor-Ort-Einrichtung'],
+        features: [
+          'Massgeschneiderte Homepage mit Reservierung',
+          'Google Maps & Local SEO Optimierung',
+          'Persönliche Einführung & Schulung in Zürich',
+          'Individuelle Schnittstellen zu Ihrer Kasse',
+          'Direkter Draht zu Entwickler Adnan (24/7 Notfall)',
+        ],
+      },
+    ],
+  },
 };
 
 // @section:tr
@@ -1644,6 +1711,57 @@ export const tr: TranslationSchema = {
       hello:
         'Merhaba! Nasıl yardımcı olabilirim? Bana siparişler, vardiya planı, muhasebe, bildirimler, personel ya da ana sayfa hakkında sorabilirsiniz.',
     },
+  },
+  packages: {
+    eyebrow: 'Paketler & Çözümler',
+    line1: 'Net ve şeffaf.',
+    line2: 'İşletmenize tam uyumlu.',
+    lede: 'Günlük işlerinizi gözle görülür şekilde hafifleten modeli seçin — hızlı başlangıçtan anahtar teslim operasyon merkezine.',
+    choose: 'Paketi Seçin',
+    customNote: 'Tüm paketlerde aylık fesih imkanı · Gizli taahhüt yok · Zürih’ten birebir Türkçe destek',
+    plans: [
+      {
+        id: 'start',
+        name: 'Başlangıç (Start)',
+        badge: 'Hızlı Giriş',
+        tagline: 'Kafeler, paket servisler ve küçük ekipler için',
+        modules: ['Sipariş & Masa Takibi', 'Haftalık Vardiya Planı', 'Mobil Uyumlu (PWA)'],
+        features: [
+          'Kağıtsız, hatasız dijital sipariş akışı',
+          'Vardiya çizelgesini WhatsApp ile tek tıkla paylaşma',
+          'Telefondan kolay personel giriş/çıkış takibi',
+          '%100 İsviçre Sunuculu & DSG Uyumlu',
+        ],
+      },
+      {
+        id: 'betrieb',
+        name: 'Operasyon (Betrieb)',
+        badge: 'En Çok Tercih Edilen',
+        tagline: 'Restoranlar ve büyüyen işletmeler için tam kontrol',
+        modules: ['Tüm Başlangıç Modülleri', 'Kasa & Günlük Muhasebe', 'Resmi Bildirimler & Hijyen'],
+        features: [
+          'Tek tıkla otomatik gün sonu Z-raporu dökümü',
+          'Mali müşaviriniz (Treuhänder) için hazır KDV listesi',
+          'Dijital HACCP, temizlik ve hijyen kayıtları',
+          'Müdür ve personel için yetki seviyeleri',
+          'Zürih’ten öncelikli destek (Almanca & Türkçe)',
+        ],
+      },
+      {
+        id: 'komplett',
+        name: 'Tam Paket (Komplett)',
+        badge: 'Anahtar Teslim',
+        tagline: 'Kendi web siteniz ve yerinde kurulumla eksiksiz altyapı',
+        modules: ['Tüm Operasyon Modülleri', 'Özel Modern Web Sitesi', 'Yerinde Birebir Kurulum'],
+        features: [
+          'Online rezervasyonlu, modern mobil uyumlu web sitesi',
+          'Google Haritalar ve yerel SEO optimizasyonu',
+          'Zürih içi yerinde kurulum ve personel eğitimi',
+          'Mevcut kasanıza özel entegrasyonlar',
+          'Doğrudan geliştirici Adnan ile 1-e-1 iletişim',
+        ],
+      },
+    ],
   },
 };
 

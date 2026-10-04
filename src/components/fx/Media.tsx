@@ -25,6 +25,18 @@ export function Media({ src, className = '', alt = '', sound = false, fallback, 
     }
   }, [inView, playing]);
 
+  // Sekme arka plana geçtiğinde videoyu duraklat ve pil tasarrufu sağla
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden && playing) {
+        video.current?.pause();
+        setPlaying(false);
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, [playing]);
+
   const toggle = () => {
     const v = video.current;
     if (!v) return;
@@ -39,7 +51,20 @@ export function Media({ src, className = '', alt = '', sound = false, fallback, 
     <div ref={ref} className={`media ${className}`}>
       {isVideo ? (
         <>
-          <video ref={video} key={file} src={`${file}#t=0.6`} onError={() => setFailed(true)} poster={poster} muted={!sound} loop={!sound} playsInline preload="metadata" aria-hidden={!sound} onEnded={() => setPlaying(false)} />
+          <video
+            ref={video}
+            key={file}
+            src={inView ? `${file}#t=0.6` : undefined}
+            data-src={`${file}#t=0.6`}
+            onError={() => setFailed(true)}
+            poster={poster}
+            muted={!sound}
+            loop={!sound}
+            playsInline
+            preload={inView ? 'metadata' : 'none'}
+            aria-hidden={!sound}
+            onEnded={() => setPlaying(false)}
+          />
           <button type="button" className="media-play" onClick={toggle} aria-pressed={playing} aria-label={playing ? t.ui.pause : t.ui.play}>
             {playing ? <Pause /> : <Play />}
           </button>

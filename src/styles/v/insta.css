@@ -949,6 +949,77 @@
   color: var(--brand-text);
 }
 
+/* 3-B Schweizer Vertrauens-Garantien im Preissheet */
+.op-trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  margin-top: var(--sp-3);
+  margin-bottom: var(--sp-3);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--ink) 3%, transparent);
+  border: var(--hair) solid var(--line);
+}
+
+@media (max-width: 680px) {
+  .op-trust {
+    grid-template-columns: 1fr;
+    gap: var(--sp-2);
+    padding: var(--sp-2);
+  }
+}
+
+.op-trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+.op-trust-ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-xs, 6px);
+  background: color-mix(in oklab, var(--brand) 16%, transparent);
+  color: var(--brand-text);
+  flex-shrink: 0;
+}
+
+.op-trust-ico svg {
+  width: 14px;
+  height: 14px;
+}
+
+.op-trust-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: var(--lh-tight);
+}
+
+.op-trust-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.op-trust-sub {
+  color: var(--muted);
+  font-size: var(--fs-micro);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
 .op-foot {
   display: flex;
   flex-wrap: wrap;

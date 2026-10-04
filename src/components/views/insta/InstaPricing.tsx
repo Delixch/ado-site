@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowLeft, CalendarClock, Check, Clock, Target, UserRound, Wrench } from 'lucide-react';
+import { ArrowLeft, CalendarClock, Check, Clock, PhoneCall, ShieldCheck, Target, UserRound, Wrench, Zap } from 'lucide-react';
 import { onIntroCall, takeIntroCall } from '../../common/IntroCall';
 import { LetterDesk } from '../../common/Letter';
 import { TrustBadges } from '../../common/TrustBadges';
@@ -126,6 +126,30 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
               ))}
             </ul>
           </section>
+        </div>
+
+        <div className="op-trust" aria-label="Schweizer Standards">
+          <div className="op-trust-item">
+            <span className="op-trust-ico" aria-hidden><ShieldCheck /></span>
+            <span className="op-trust-text">
+              <strong className="op-trust-title">{t.lang === 'tr' ? '%100 İsviçre Sunuculu' : '100% Swiss Hosted'}</strong>
+              <span className="op-trust-sub micro">{t.lang === 'tr' ? 'DSG & KVKK Uyumlu' : 'DSG-konform · Daten in CH'}</span>
+            </span>
+          </div>
+          <div className="op-trust-item">
+            <span className="op-trust-ico" aria-hidden><Zap /></span>
+            <span className="op-trust-text">
+              <strong className="op-trust-title">{t.lang === 'tr' ? 'Taahhüt Yok' : 'Keine Vertragsbindung'}</strong>
+              <span className="op-trust-sub micro">{t.lang === 'tr' ? 'Aylık Fesih İmkanı' : 'Monatlich kündbar'}</span>
+            </span>
+          </div>
+          <div className="op-trust-item">
+            <span className="op-trust-ico" aria-hidden><PhoneCall /></span>
+            <span className="op-trust-text">
+              <strong className="op-trust-title">{t.lang === 'tr' ? 'Doğrudan Destek' : 'Support in Zürich'}</strong>
+              <span className="op-trust-sub micro">{t.lang === 'tr' ? 'Almanca & Türkçe' : 'Deutsch & Türkisch'}</span>
+            </span>
+          </div>
         </div>
 
         <div className="op-foot">

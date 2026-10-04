@@ -63,7 +63,17 @@ export default function App() {
   const reduced = useReducedMotion();
   const [lang, setLang] = useStored<Lang>('ado_lang', DEFAULT_LANG, (v) => v === 'de' || v === 'tr');
   const [color, setColor] = useStored<string>('ado_color2', isColor(DEFAULT_COLOR) ? DEFAULT_COLOR : COLORS[0].id, isColor);
-  const [active, setActive] = useStored<string>('ado_view2', 'd-start', (v) => !!v && ids.includes(v));
+  const getInitialActive = (): string => {
+    const hash = window.location.hash.replace(/^#/, '');
+    if (hash && ids.includes(hash)) return hash;
+    try {
+      const v = localStorage.getItem('ado_view2');
+      if (v && ids.includes(v)) return v;
+    } catch {}
+    return 'd-start';
+  };
+
+  const [active, setActive] = useStored<string>('ado_view2', getInitialActive(), (v) => !!v && ids.includes(v));
   // Karten wechseln ihr Layout nicht von selbst: jeder Besuch startet angehalten (Play in der Kopfzeile startet)
   const [autoPref, setAutoPref] = useState<'on' | 'off'>('off');
   const [desktopExpanded, setDesktopExpanded] = useState(false);
@@ -126,8 +136,34 @@ export default function App() {
   const spy = useRef(true);
   const [jumpTo, setJumpTo] = useState<string | null>(active);
 
+  // Tarayıcı Geri/İleri (History) ve URL Hash senkronizasyonu
+  useEffect(() => {
+    const syncHash = () => {
+      const hash = window.location.hash.replace(/^#/, '');
+      if (hash && ids.includes(hash) && hash !== active) {
+        setActive(hash);
+        if (stacked) setJumpTo(hash);
+      }
+    };
+    window.addEventListener('hashchange', syncHash);
+    window.addEventListener('popstate', syncHash);
+    return () => {
+      window.removeEventListener('hashchange', syncHash);
+      window.removeEventListener('popstate', syncHash);
+    };
+  }, [active, stacked]);
+
+  useEffect(() => {
+    if (window.location.hash !== `#${active}`) {
+      window.history.replaceState(null, '', `#${active}`);
+    }
+  }, [active]);
+
   const go = (id: string) => {
     setActive(id);
+    if (window.location.hash !== `#${id}`) {
+      window.history.pushState(null, '', `#${id}`);
+    }
     if (mode !== 'desktop') setOverlayOpen(false);
     if (stacked) setJumpTo(id);
     else window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
