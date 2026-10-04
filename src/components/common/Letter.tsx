@@ -18,7 +18,19 @@ export interface LetterLabels {
  * Kein Formular, sondern ein Brief: man schreibt direkt in die Luecken auf dem Papier.
  * Das Wachssiegel ist der Senden-Knopf; danach faltet sich der Brief und wird versiegelt.
  */
-export function LetterDesk({ labels, to = 'EKADO', topic: given }: { labels: LetterLabels; to?: string; /** fertiger Betreff, z. B. gewaehltes Paket */ topic?: string }) {
+export function LetterDesk({
+  labels,
+  to = 'EKADO',
+  topic: given,
+  pkg,
+}: {
+  labels: LetterLabels;
+  to?: string;
+  /** fertiger Betreff, z. B. gewaehltes Paket */
+  topic?: string;
+  /** Paket-Schluessel fuer die Eingangsbestaetigung (api/contact.ts PACKS), z. B. "insta-plus" */
+  pkg?: string;
+}) {
   const { t } = useView();
   const page = usePage();
   const L = t.ui.letter;
@@ -57,7 +69,7 @@ ${I.when}` }));
       const r = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...v, subject, page, lang, website }),
+        body: JSON.stringify({ ...v, subject, page, lang, website, pkg: pkg ?? (topic === I.topic ? 'intro' : '') }),
       });
       if (r.ok) return;
     } catch {

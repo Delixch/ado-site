@@ -14,6 +14,7 @@ export function FirmaPackages() {
   const [selectedPlan, setSelectedPlan] = useState<string>('betrieb');
 
   // Brief erscheint direkt anstelle der Pakete (analog zu InstaOto)
+  const [planKey, setPlanKey] = useState<string | undefined>();
   const [ask, setAsk] = useState<string | null>(() => {
     const w = takeIntroCall();
     return w ? (w.topic ?? null) : null;
@@ -22,6 +23,7 @@ export function FirmaPackages() {
   const openInquiry = (plan: (typeof pkg.plans)[0]) => {
     const topic = `EKADO Firma · ${plan.name} (${plan.badge ?? plan.id})`;
     setAsk(topic);
+    setPlanKey(`firma-${plan.id}`);
     window.setTimeout(() => {
       document.querySelector('.fp-ask .desk')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 60);
@@ -32,6 +34,7 @@ export function FirmaPackages() {
     return onIntroCall(page, (w) => {
       if (w.topic) {
         setAsk(w.topic);
+        setPlanKey(undefined);
         window.setTimeout(() => {
           document.querySelector('.fp-ask .desk')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 60);
@@ -73,6 +76,7 @@ export function FirmaPackages() {
                 }}
                 to="EKADO Firma"
                 topic={ask}
+                pkg={planKey}
               />
             </div>
           </motion.div>

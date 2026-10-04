@@ -25,13 +25,15 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
   const I = t.ui.intro;
   const [sel, setSel] = useState('komplett');
   // Brief erscheint unter den Paketen statt des Paketblatts (Erstgespraech von der Uebersicht: gleich offen)
+  const [pkg, setPkg] = useState<string | undefined>();
   const [ask, setAsk] = useState<string | null>(() => {
     const w = takeIntroCall();
     return w ? (w.topic ?? I.topic) : null;
   });
   const mobile = useMode() === 'mobile';
-  const open = (topic: string) => {
+  const open = (topic: string, key?: string) => {
     setAsk(topic);
+    setPkg(key);
     if (mobile) openSheet('i-pricing');
     else window.setTimeout(() => document.querySelector('.op .desk')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
   };
@@ -62,7 +64,7 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
           <button type="button" className="e-link op-back" onClick={() => setAsk(null)}>
             <ArrowLeft /> {p.back}
           </button>
-          <LetterDesk key={ask} labels={p.form} to="EKADO InstaOto" topic={ask} />
+          <LetterDesk key={ask} labels={p.form} to="EKADO InstaOto" topic={ask} pkg={pkg} />
         </motion.div>
       ) : (
       <motion.div
@@ -161,7 +163,7 @@ export function InstaPricing({ tabs }: { tabs?: ReactNode }) {
           <button
             type="button"
             className="e-link intro-call"
-            onClick={() => open(`InstaOto · ${plan.name} (${p.currency} ${plan.price}.–${plan.care ? ` / ${p.perMonth}` : ''})`)}
+            onClick={() => open(`InstaOto · ${plan.name} (${p.currency} ${plan.price}.–${plan.care ? ` / ${p.perMonth}` : ''})`, `insta-${plan.id}`)}
           >
             {p.choose} →
           </button>
