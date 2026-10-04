@@ -137,4 +137,13 @@
   --cp-ink: #211F1C;
   --cp-line: #E4DACB;
   --cp-selected: #F1EBE0;
+
+  /* Mobil Header (Handy-Kopfzeile) im Claude-Thema: #EEDED4 */
+  --tb-m-bg: #EEDED4;
+  --tb-m-ink: #211F1C;
+  --tb-m-ink-2: #5A534B;
+  --tb-m-line: rgba(33, 31, 28, 0.12);
+  --tb-m-line-strong: rgba(33, 31, 28, 0.22);
+  --tb-m-surface: #E4DACB;
 }
+

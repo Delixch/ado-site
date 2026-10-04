@@ -393,6 +393,7 @@
     padding-top: env(safe-area-inset-top);
     border: 0;
     border-radius: 0;
+    border-bottom: 1px solid var(--tb-m-line);
     background: var(--tb-m-bg);
     color: var(--tb-m-ink);
   }
@@ -402,7 +403,7 @@
   }
 }
 
-/* Handy: nach oben (components/common/ToTop) - schwarz wie die Kopfzeile */
+/* Handy: nach oben (components/common/ToTop) - farblich abgestimmt wie die Kopfzeile */
 .to-top {
   position: fixed;
   right: var(--sp-4);
@@ -414,8 +415,8 @@
   height: var(--sp-12);
   border-radius: 50%;
   border: var(--hair) solid var(--tb-m-line);
-  background: var(--bar-bg);
-  color: var(--bar-ink);
+  background: var(--tb-m-bg);
+  color: var(--tb-m-ink);
   box-shadow: var(--shadow-md);
   opacity: 0;
   pointer-events: none;

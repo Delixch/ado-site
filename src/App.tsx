@@ -93,6 +93,10 @@ export default function App() {
   useEffect(() => {
     document.documentElement.dataset.color = color;
     document.documentElement.lang = lang;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', color === 'claude' ? '#EEDED4' : '#000000');
+    }
   }, [color, lang]);
 
   useEffect(() => setOverlayOpen(false), [mode]);
