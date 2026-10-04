@@ -1,4 +1,4 @@
-# googleado — Durum (2026-10-03)
+# googleado — Durum (2026-10-04)
 
 ## Hedef
 ADO Design (portföy) + ADO Firma tek sayfada. Sol menü (googleado'nun açılıp kapanan menüsü, değişmeyecek):
@@ -173,3 +173,36 @@ epos\instagramoto tanıtımı)
 - Handy-Menü: Gruppentitel kleben oben/unten, ganzes Panel scrollt. Meldungen auf dem Handy als Akkordeon.
 - `/code-review` (10 Funde behoben, 927b9b8) und `/simplify` (Aufräumen, cb675f9) gelaufen.
 - Gesamtüberblick (gemacht / fehlt / offene Vorschläge): **YOL-HARITASI.md** (2026-10-03 gece neu geschrieben).
+
+## 2026-10-04 (gece) — mobil temizlik + Firma yeniden
+Depo adı değişti: **Delixch/ado-site** (remote güncel). Canlı: ado-site-alpha.vercel.app. Push sadece Adnan "push" deyince.
+
+**ADO Firma**
+- Menü Insta gibi: Übersicht · **Abläufe** (`f-flow`, `views/firma/FirmaHow.tsx`) · Kontakt.
+- Abläufe: 6 sekme (Bestellungen … Personal), her birinde sadece 4 adımlık akış (`content/firma-flow.ts`, DE/TR). Mobilde sekmeler hamburger; seçince sayfa başına kayar. 02 sarı yanıp söner (tüm cihazlar).
+- Eski örnek sayfalar (FirmaOrders, Planning, Accounting, Reports, Homepage, Personnel) **kodda duruyor ama menüde yok** → ileride "Beta" olarak dönecek. Eski kayıtlı adresler f-flow'a yönlenir.
+- Übersicht ve Kontakt'taki 6'lı açma/kapama listesi kaldırıldı. Kontakt'ta sadece "Erstgespräch · 15 Min." düğmesi.
+
+**Mobil**
+- Yılan/ışık bandı yok. Header simsiyah, en üstte kenardan kenara (iPhone durum çubuğu da siyah olsun diye), 64 px. Karıştır ve layout seçici gizli.
+- **Bölüm sayfaları alt alta**: seçili bölümün (Design / Firma / Insta) bütün sayfaları tek uzun sayfa; menüden seçince oraya atlar, kaydırınca başlık değişir (App.tsx `stacked`). Bottom sheet, sekme ve Erstgespräch olayları sayfaya bağlı (`PageContext`, `sheet.ts`, `howTab.ts useHowTab`).
+- Robot tek, sağ altta, "yukarı çık" okunun üstünde. Ses iPhone'da touchend/click ile açılıyor (test edilmedi).
+- Menü içeriği kadar uzun; kapatma "Einklappen" yerine X. Başlıklar arası 8 px.
+- Çizgi döngüsü (`Block.trace`, fx.css `.trace`): fotoğraflar, kartlar, mektup kâğıdı; rakam kutuları sırayla (`useTraceStep`); videolarda nefes alan köşeler (`trace: 'corners'`). Chauffeur kartının arkasında sarı ışık.
+- Insta: sekmeler/adımlar üstte, telefon altta; fiyat balonu → bottom sheet → aynı sheet'te mektup. Panel görüntüleri renkli.
+
+**Masaüstü / tablet**
+- Header temanın renginde, en üstte ve sağ kenara kadar; altında gölge. Footer: header kalınlığında renkli şerit, altı `--foot-rest` (Claude krem, koyu temalar siyah).
+- Yılandaki iki parça hatası düzeldi (eski `.tb::after` parçası + maske dikişi).
+- Menü her yerde kapalı açılır; ana başlıklar siyah şerit.
+- Kartlar **duraklatılmış** açılır (Play ile döner). Açılış layout'u sayfa başına `config.ts START_LAYOUT` (Adnan seçti).
+- Übersicht başlıkları 30 px (kural).
+
+**Kural hatırlatma:** Renk sadece `colors/*.css` (yeni: `--foot-rest`, `--cp-*`). Ortak dosyaya tema rengi koyma — Adnan bu yüzden kızdı.
+
+## Sırada / yapılamayanlar
+- İlk ekran görüntülerindeki eski hatalar tam taranmadı (Personal sayfası sıkışık yazılar → artık menüde yok).
+- Robot sesi iPhone'da gerçek cihazda denenmeli.
+- Abläufe'deki sarı 02 açık temada okunaklı mı bakılmalı.
+- Firma örnekleri "Beta" olarak geri gelecek (nerede/nasıl karar verilmedi).
+- Mobilde bütün bölüm sayfaları aynı anda yükleniyor; eski telefonda hız kontrolü.
