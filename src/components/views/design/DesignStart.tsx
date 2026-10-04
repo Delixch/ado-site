@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { IntroCall } from '../../common/IntroCall';
-import { CONTACT_MAIL } from '../../../config';
+import { CONTACT_MAIL, media } from '../../../config';
 import { ABOUT_STATS } from '../../../content/design-data';
 import { FitHeadline } from '../../fx/FitHeadline';
 import { HoverTile, useHoverTile } from '../../fx/HoverTile';
@@ -30,7 +30,7 @@ export function DesignStart() {
       tone: 'media',
       bleed: true,
       node: (
-        <SlitMedia src="/media/design/schreibtisch.mp4" at={0.55}>
+        <SlitMedia src={media('/media/design/schreibtisch.mp4')} at={0.55}>
           <div className="cover-over">
             <span className="cover-ado poster" aria-hidden>
               <span>E</span>

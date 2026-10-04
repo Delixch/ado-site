@@ -6,6 +6,13 @@ export const DEFAULT_LANG: Lang = 'de';
 export const CONTACT_MAIL = 'info@ekado.ch';
 
 /**
+ * Videos liegen im Vercel-Blob-Store "ekado-media", nicht in jedem Deployment (Speichergrenze).
+ * Lokal bleiben sie in public/ fuer die Render-Skripte; hochladen mit `npm run media:upload`.
+ */
+export const MEDIA_BASE = 'https://tu5g0pd0iphapwij.public.blob.vercel-storage.com';
+export const media = (path: string) => `${MEDIA_BASE}${path}`;
+
+/**
  * Mit welchem Layout jede Seite oeffnet (0 = erstes, 1 = zweites, 2 = drittes Mini-Plan im Seitenkopf).
  * Fehlt eine Seite, gilt 0. Die Karten wechseln erst, wenn Play in der Kopfzeile gedrueckt wird.
  */

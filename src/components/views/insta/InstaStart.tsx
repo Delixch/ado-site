@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { media } from '../../../config';
 import { ArrowRight, Database, KeyRound, Lock, RefreshCw, ShieldCheck, Trash2 } from 'lucide-react';
 import { IntroCall } from '../../common/IntroCall';
 import { Media } from '../../fx/Media';
@@ -67,7 +68,7 @@ export function InstaStart() {
               </div>
               <div className="iphone-story">
                 <span className="iphone-progress" aria-hidden />
-                <Media src={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.mp4`} fallback="/media/insta/promo-tr.mp4" poster={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.webp`} sound />
+                <Media src={media(`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.mp4`)} fallback={media('/media/insta/promo-tr.mp4')} poster={`/media/insta/promo-${t.lang === 'de' ? 'de' : 'tr'}.webp`} sound />
               </div>
               <span className="iphone-home" aria-hidden />
             </div>

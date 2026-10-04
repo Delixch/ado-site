@@ -1,6 +1,6 @@
 import { IntroCall } from '../../common/IntroCall';
 import { ArrowDown, ArrowUpRight, CalendarDays, FolderOpen, Globe, Landmark, Package, Receipt } from 'lucide-react';
-import { CONTACT_MAIL } from '../../../config';
+import { CONTACT_MAIL, media } from '../../../config';
 import { Media } from '../../fx/Media';
 import { TrustBadges } from '../../common/TrustBadges';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
@@ -121,7 +121,7 @@ export function FirmaStart() {
         </div>
       ),
     },
-    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <Media src={`/media/firma/plattform-de-${color}.mp4`} fallback="/media/firma/plattform-de-cyan.mp4" sound /> },
+    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <Media src={media(`/media/firma/plattform-de-${color}.mp4`)} fallback={media('/media/firma/plattform-de-cyan.mp4')} sound /> },
     {
       id: 'quote',
       trace: true,

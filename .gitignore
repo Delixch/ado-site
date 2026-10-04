@@ -7,3 +7,8 @@ coverage/
 .env*
 !.env.example
 .vercel
+
+# Videos liegen im Vercel-Blob-Store (npm run media:upload), nicht im Git/Deployment
+public/**/*.mp4
+public/**/*.webm
+public/**/*.mov

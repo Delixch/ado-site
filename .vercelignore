@@ -1,0 +1,4 @@
+# Videos kommen aus dem Blob-Store, nie mit dem Deployment hochladen
+public/**/*.mp4
+public/**/*.webm
+public/**/*.mov
