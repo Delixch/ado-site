@@ -28,8 +28,23 @@ export function DesignRepos() {
     setSel(i);
     openSheet();
   };
+
+  const onPrev = () => setSel((s) => (s - 1 + REPOS.length) % REPOS.length);
+  const onNext = () => setSel((s) => (s + 1) % REPOS.length);
+  const onJump = (i: number) => setSel(i);
+
   const repo = REPOS[sel];
   const text = r.items[sel];
+
+  const sheetNav = {
+    current: sel,
+    total: REPOS.length,
+    title: repo.title,
+    subtitle: `${String(sel + 1).padStart(2, '0')} / ${String(REPOS.length).padStart(2, '0')}`,
+    onPrev,
+    onNext,
+    onJump,
+  };
 
   const copy = () => {
     navigator.clipboard?.writeText(repo.commands[0].cmd).then(() => {
@@ -124,5 +139,13 @@ export function DesignRepos() {
     },
   ];
 
-  return <Spread view="d-repos" head={{ folio: '04', kicker: r.eyebrow, line1: r.line1, line2: r.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return (
+    <Spread
+      view="d-repos"
+      head={{ folio: '04', kicker: r.eyebrow, line1: r.line1, line2: r.line2 }}
+      blocks={blocks}
+      layouts={LAYOUTS}
+      sheetNav={sheetNav}
+    />
+  );
 }

@@ -263,3 +263,44 @@
     display: none;
   }
 }
+
+/* Mobil Bottom Sheet icinde web sayfasi ekran goruntusu */
+.wk-sheet-shot {
+  display: none;
+}
+
+.bsheet .wk-sheet-shot {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: var(--hair) solid var(--rule);
+  margin-bottom: var(--sp-3);
+  background: var(--paper-deep);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.bsheet .wk-sheet-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.bsheet .wk-sheet-num {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  padding: 3px 8px;
+  background: var(--ink-block);
+  color: var(--on-ink-block);
+  border-radius: var(--radius-sm);
+  letter-spacing: var(--ls-wide);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}

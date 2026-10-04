@@ -44,8 +44,33 @@ export function DesignWork() {
     openSheet();
   };
 
+  const onPrev = () => {
+    touched.current = Date.now();
+    setActive((a) => (a - 1 + PROJECTS.length) % PROJECTS.length);
+  };
+
+  const onNext = () => {
+    touched.current = Date.now();
+    setActive((a) => (a + 1) % PROJECTS.length);
+  };
+
+  const onJump = (i: number) => {
+    touched.current = Date.now();
+    setActive(i);
+  };
+
   const project = PROJECTS[active];
   const text = p.items[active];
+
+  const sheetNav = {
+    current: active,
+    total: PROJECTS.length,
+    title: project.title,
+    subtitle: `${project.number} / ${String(PROJECTS.length).padStart(2, '0')}`,
+    onPrev,
+    onNext,
+    onJump,
+  };
 
   const blocks: Block[] = [
     {
@@ -90,6 +115,10 @@ export function DesignWork() {
       node: (
         <AnimatePresence mode="wait">
           <motion.div key={project.number} className="wk-info" {...swap}>
+            <div className="wk-sheet-shot">
+              <img src={SHOTS[active]} alt={project.title} loading="lazy" />
+              <span className="wk-sheet-num">PROJE {project.number}</span>
+            </div>
             <span className="micro">{text.category}</span>
             <RevealLines lines={[project.title]} className="poster wk-title" />
             <p className="lede">{text.description}</p>
@@ -161,5 +190,13 @@ export function DesignWork() {
     },
   ];
 
-  return <Spread view="d-work" head={{ folio: '02', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return (
+    <Spread
+      view="d-work"
+      head={{ folio: '02', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }}
+      blocks={blocks}
+      layouts={LAYOUTS}
+      sheetNav={sheetNav}
+    />
+  );
 }

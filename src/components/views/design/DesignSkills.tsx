@@ -44,8 +44,36 @@ export function DesignSkills() {
     openSheet();
   };
 
+  const onPrev = () => {
+    touched.current = Date.now();
+    setDomain((d) => (d - 1 + SKILL_ITEMS.length) % SKILL_ITEMS.length);
+    setWord(0);
+  };
+
+  const onNext = () => {
+    touched.current = Date.now();
+    setDomain((d) => (d + 1) % SKILL_ITEMS.length);
+    setWord(0);
+  };
+
+  const onJump = (i: number) => {
+    touched.current = Date.now();
+    setDomain(i);
+    setWord(0);
+  };
+
   const b = s.blocks[domain];
   const term = s.terminal;
+
+  const sheetNav = {
+    current: domain,
+    total: SKILL_ITEMS.length,
+    title: b.title,
+    subtitle: `${String(domain + 1).padStart(2, '0')} / ${String(SKILL_ITEMS.length).padStart(2, '0')}`,
+    onPrev,
+    onNext,
+    onJump,
+  };
 
   const blocks: Block[] = [
     {
@@ -148,5 +176,13 @@ export function DesignSkills() {
     },
   ];
 
-  return <Spread view="d-skills" head={{ folio: '03', kicker: s.eyebrow, line1: s.line1, line2: s.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return (
+    <Spread
+      view="d-skills"
+      head={{ folio: '03', kicker: s.eyebrow, line1: s.line1, line2: s.line2 }}
+      blocks={blocks}
+      layouts={LAYOUTS}
+      sheetNav={sheetNav}
+    />
+  );
 }
