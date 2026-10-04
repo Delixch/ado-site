@@ -54,11 +54,12 @@ function colorNames(): Plugin {
     resolveId: (i) => (i === id ? vid : undefined),
     load(i) {
       if (i !== vid) return;
-      this.addWatchFile(dir);
+      // Einzelne Dateien beobachten: ein Ordner landet im Dev-Modus als Import im Modulgraph
       const list = fs
         .readdirSync(dir)
         .filter((f) => f.endsWith('.css'))
         .map((f) => {
+          this.addWatchFile(path.join(dir, f));
           const src = fs.readFileSync(path.join(dir, f), 'utf8');
           const cid = f.replace(/\.css$/, '');
           return { id: cid, name: { tr: pick(src, 'tr', cid), de: pick(src, 'de', cid) } };
