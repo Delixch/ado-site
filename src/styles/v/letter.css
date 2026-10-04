@@ -160,16 +160,17 @@
 .envelope-flap {
   position: absolute;
   inset: 0 0 auto 0;
-  height: 50%;
   background: var(--paper-2);
+  /* feste Hoehe: waechst der Text, bleibt die Klappe (und das Siegel an ihrer Spitze) stehen */
+  height: calc(var(--envelope-h) / 2);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   border-bottom: var(--hair) solid var(--rule);
 }
 
+/* Siegel im Fluss an der Klappenspitze, Text darunter: nichts liegt mehr uebereinander */
 .seal-stamp {
-  position: absolute;
-  top: calc(50% - var(--seal) / 2 - var(--sp-10));
-  left: calc(50% - var(--seal) / 2);
+  flex: none;
+  margin-top: calc(var(--envelope-h) / 2 - var(--seal) / 2 - var(--sp-10));
 }
 
 .envelope-text {
@@ -178,8 +179,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--sp-2);
-  margin-top: auto;
-  padding-top: var(--sp-10);
+  padding-top: var(--sp-4);
   text-align: center;
 }
 
