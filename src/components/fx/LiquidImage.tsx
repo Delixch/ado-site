@@ -75,10 +75,28 @@ export function LiquidImage({ src, alt = '', className = '' }: { src: string; al
       setGl(false);
       return;
     }
+    // WebGL und Bild erst kurz bevor das Foto in Sicht kommt (Handy: alle Seiten stehen untereinander)
+    let cleanup = () => {};
+    const near = new IntersectionObserver(
+      ([en]) => {
+        if (!en.isIntersecting) return;
+        near.disconnect();
+        cleanup = init(el, cv) ?? cleanup;
+      },
+      { rootMargin: '300px 0px' },
+    );
+    near.observe(el);
+    return () => {
+      near.disconnect();
+      cleanup();
+    };
+  }, [src, reduced]);
+
+  function init(el: HTMLDivElement, cv: HTMLCanvasElement): (() => void) | undefined {
     const ctx = cv.getContext('webgl', { premultipliedAlpha: false, antialias: false });
     if (!ctx) {
       setGl(false);
-      return;
+      return undefined;
     }
     const g = ctx;
     const prog = g.createProgram()!;
@@ -87,7 +105,7 @@ export function LiquidImage({ src, alt = '', className = '' }: { src: string; al
     g.linkProgram(prog);
     if (!g.getProgramParameter(prog, g.LINK_STATUS)) {
       setGl(false);
-      return;
+      return undefined;
     }
     g.useProgram(prog);
     const buf = g.createBuffer();
@@ -127,6 +145,8 @@ export function LiquidImage({ src, alt = '', className = '' }: { src: string; al
       cv.width = Math.max(1, Math.round(el.clientWidth * dpr));
       cv.height = Math.max(1, Math.round(el.clientHeight * dpr));
       g.viewport(0, 0, cv.width, cv.height);
+      // neue Groesse leert die Leinwand - einmal neu zeichnen, auch wenn sie gerade ruht
+      if (!raf && state.visible) raf = requestAnimationFrame(frame);
     };
 
     const frame = (now: number) => {
@@ -144,6 +164,11 @@ export function LiquidImage({ src, alt = '', className = '' }: { src: string; al
       g.uniform1f(U.develop, state.develop);
       g.uniform1f(U.time, (now - t0) / 1000);
       g.drawArrays(g.TRIANGLE_STRIP, 0, 4);
+      // entwickelt und ruhig: nicht weiter zeichnen, der Zeiger weckt es wieder
+      if (state.develop >= 1 && state.force < 0.002 && state.target < 0.002) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
     };
 
     const move = (e: PointerEvent) => {
@@ -154,11 +179,13 @@ export function LiquidImage({ src, alt = '', className = '' }: { src: string; al
       state.tx = x;
       state.ty = y;
       state.target = Math.min(1.4, state.target + speed * 9 + 0.05);
+      if (!raf && state.visible) raf = requestAnimationFrame(frame);
     };
 
     const io = new IntersectionObserver(([en]) => {
       state.visible = en.isIntersecting;
       cancelAnimationFrame(raf);
+      raf = 0;
       if (en.isIntersecting) {
         state.dev = true;
         raf = requestAnimationFrame(frame);
@@ -177,7 +204,7 @@ export function LiquidImage({ src, alt = '', className = '' }: { src: string; al
       el.removeEventListener('pointermove', move);
       g.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [src, reduced]);
+  }
 
   return (
     <div ref={wrap} className={`liquid ${className}`}>

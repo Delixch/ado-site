@@ -143,6 +143,8 @@ export function AdoRobot({
     // ---------- Sahne ----------
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Shader-Fehlerpruefung nur lokal: sie wartet synchron auf jeden Shader und blockiert die Seite
+    renderer.debug.checkShaderErrors = import.meta.env.DEV;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
@@ -151,8 +153,10 @@ export function AdoRobot({
 
     const scene = new THREE.Scene();
     const pmrem = new THREE.PMREMGenerator(renderer);
-    const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-    scene.environment = envTex;
+    const room = new RoomEnvironment();
+    // Umgebungslicht kommt asynchron (siehe compileAsync unten): fromScene uebersetzt sonst
+    // seine Blur-/GGX-Shader synchron und blockiert das Handy ueber eine Sekunde
+    let envTex: THREE.Texture | null = null;
 
     const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 50);
     camera.position.set(0, 0.1, 7.4);
@@ -541,8 +545,54 @@ export function AdoRobot({
     const ro = new ResizeObserver(resize);
     ro.observe(host);
     resize();
+    // Shader im Hintergrund uebersetzen (KHR_parallel_shader_compile), erst dann zeichnen -
+    // sonst blockiert das erste Bild den Hauptthread fuer Sekunden
+    let compiled = false;
+    let alive = true;
+    const warmEnv = async () => {
+      // PMREM-Materialien anlegen (interne Felder) und mit dem Raum zusammen im Hintergrund uebersetzen,
+      // im selben Zustand wie fromScene: Ziel = Render-Target, ohne Tone-Mapping
+      const gen = pmrem as unknown as {
+        _setSize(n: number): void;
+        _allocateTargets(): THREE.WebGLRenderTarget;
+        _blurMaterial: THREE.Material;
+        _ggxMaterial: THREE.Material;
+        _lodMeshes: THREE.Mesh[];
+      };
+      gen._setSize(256);
+      const rt = gen._allocateTargets();
+      // dieselbe Geometrie wie PMREM (Attribute gehoeren zum Programm-Schluessel), sonst wird doch neu uebersetzt
+      const geo = gen._lodMeshes[1]?.geometry ?? gen._lodMeshes[0].geometry;
+      const warm = new THREE.Scene();
+      for (const m of [gen._blurMaterial, gen._ggxMaterial]) if (m) warm.add(new THREE.Mesh(geo, m));
+      const prevTone = renderer.toneMapping;
+      const prevTarget = renderer.getRenderTarget();
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.setRenderTarget(rt);
+      const flat = new THREE.OrthographicCamera();
+      const cube = new THREE.PerspectiveCamera(90, 1, 0.1, 100);
+      const jobs = [renderer.compileAsync(warm, flat), renderer.compileAsync(room, cube)];
+      renderer.toneMapping = prevTone;
+      renderer.setRenderTarget(prevTarget);
+      await Promise.all(jobs);
+      rt.dispose();
+    };
+    warmEnv()
+      .catch(() => {})
+      .then(() => {
+        if (!alive) return;
+        envTex = pmrem.fromScene(room, 0.04).texture;
+        scene.environment = envTex;
+        return renderer.compileAsync(scene, camera);
+      })
+      .catch(() => {})
+      .then(() => {
+        if (!alive) return;
+        compiled = true;
+        startLoop();
+      });
     const startLoop = () => {
-      if (!raf && visible && !document.hidden) {
+      if (compiled && !raf && visible && !document.hidden) {
         timer.update();
         raf = requestAnimationFrame(frame);
       }
@@ -575,12 +625,18 @@ export function AdoRobot({
     const timer = new THREE.Timer();
     let t = 0;
     let raf = 0;
+    // Handy: hoechstens 30 Bilder/s - sieht gleich aus, halbiert die Rechenlast
+    const minGap = window.matchMedia('(max-width: 719.98px)').matches ? 1000 / 30 - 2 : 0;
+    let lastDraw = 0;
     const frame = (ts?: number) => {
       if (!visible || document.hidden) {
         raf = 0;
         return;
       }
       raf = requestAnimationFrame(frame);
+      const stamp = ts ?? performance.now();
+      if (minGap && stamp - lastDraw < minGap) return;
+      lastDraw = stamp;
       timer.update(ts);
       const dt = Math.min(timer.getDelta(), 0.05);
       t += dt;
@@ -677,7 +733,7 @@ export function AdoRobot({
 
       renderer.render(scene, camera);
     };
-    frame();
+    // erstes Bild kommt ueber startLoop, sobald die Shader fertig sind (compileAsync oben)
 
     return () => {
       stopLoop();
@@ -691,6 +747,7 @@ export function AdoRobot({
       window.removeEventListener('touchmove', onTouch);
       window.removeEventListener('deviceorientation', onOrientation);
       themeObserver.disconnect();
+      alive = false;
       ro.disconnect();
       io.disconnect();
       audio.dispose();
@@ -700,7 +757,9 @@ export function AdoRobot({
         if (o instanceof THREE.Mesh) o.geometry.dispose();
       });
       for (const m of [shellMat, trimMat, bezelMat, chromeMat, glowMat, glassMat, screenMat, logoMat, shadowMat]) m.dispose();
-      for (const tex of [faceTex, logoTex, shadowTex, envTex]) tex.dispose();
+      for (const tex of [faceTex, logoTex, shadowTex]) tex.dispose();
+      envTex?.dispose();
+      room.dispose();
       timer.dispose();
       pmrem.dispose();
       renderer.dispose();

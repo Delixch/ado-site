@@ -14,12 +14,13 @@ export function SlitMedia({ src, at = 0.5, children, className = '' }: { src: st
     const el = ref.current;
     if (!el) return;
     let target: number | null = null;
-    let x = el.clientWidth * at;
+    // Breite nur bei Groessenaenderung lesen - clientWidth in jedem Bild erzwingt ein neues Layout
+    let w = el.clientWidth;
+    let x = w * at;
     let raf = 0;
     const t0 = performance.now();
 
     const frame = (now: number) => {
-      const w = el.clientWidth;
       const goal = target ?? w * (at + (reduced ? 0 : Math.sin((now - t0) / 2600) * 0.1));
       x += (goal - x) * 0.08;
       el.style.setProperty('--sx', `${x.toFixed(1)}px`);
@@ -38,10 +39,13 @@ export function SlitMedia({ src, at = 0.5, children, className = '' }: { src: st
       if (visible) raf = requestAnimationFrame(frame);
     });
     io.observe(el);
+    const ro = new ResizeObserver(() => (w = el.clientWidth));
+    ro.observe(el);
     el.addEventListener('pointermove', move);
     el.addEventListener('pointerleave', leave);
     return () => {
       io.disconnect();
+      ro.disconnect();
       cancelAnimationFrame(raf);
       el.removeEventListener('pointermove', move);
       el.removeEventListener('pointerleave', leave);

@@ -1,23 +1,10 @@
-import { useEffect, useMemo, useRef, useState, type ComponentType } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type ComponentType } from 'react';
 import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'motion/react';
 import { SleekSidebar } from './components/SleekSidebar';
 import { Topbar } from './components/Topbar';
 import { PageContext, ViewContext } from './components/ViewFrame';
 import { MastRobot } from './components/robot/MastRobot';
-import { DesignStart } from './components/views/design/DesignStart';
-import { DesignAbout } from './components/views/design/DesignAbout';
-import { DesignWork } from './components/views/design/DesignWork';
-import { DesignSkills } from './components/views/design/DesignSkills';
-import { DesignRepos } from './components/views/design/DesignRepos';
-import { DesignConstruction } from './components/views/design/DesignConstruction';
-import { DesignExperience } from './components/views/design/DesignExperience';
-import { DesignContact } from './components/views/design/DesignContact';
-import { FirmaStart } from './components/views/firma/FirmaStart';
-import { FirmaHow } from './components/views/firma/FirmaHow';
 import { ToTop } from './components/common/ToTop';
-import { FirmaContact } from './components/views/firma/FirmaContact';
-import { InstaStart } from './components/views/insta/InstaStart';
-import { InstaHow } from './components/views/insta/InstaHow';
 import { ALL_ITEMS } from './content/menu';
 import { texts, type Lang } from './content/ui';
 import { COLORS, isColor } from './colors';
@@ -29,21 +16,35 @@ import { legalTexts } from './content/legal-texts';
 import { useMode } from './hooks/useMode';
 import { useStored } from './hooks/useStored';
 
-const VIEWS: Record<string, ComponentType> = {
-  'd-start': DesignStart,
-  'd-about': DesignAbout,
-  'd-work': DesignWork,
-  'd-skills': DesignSkills,
-  'd-repos': DesignRepos,
-  'd-construction': DesignConstruction,
-  'd-experience': DesignExperience,
-  'd-contact': DesignContact,
-  'f-start': FirmaStart,
-  'f-flow': FirmaHow,
-  'f-contact': FirmaContact,
-  'i-start': InstaStart,
-  'i-flow': InstaHow,
+// Jede Seite ist ein eigener Chunk: das Handy laedt zuerst nur den offenen Bereich, den Rest im Leerlauf
+type Loader = () => Promise<{ default: ComponentType }>;
+const LOADERS: Record<string, Loader> = {
+  'd-start': () => import('./components/views/design/DesignStart').then((m) => ({ default: m.DesignStart })),
+  'd-about': () => import('./components/views/design/DesignAbout').then((m) => ({ default: m.DesignAbout })),
+  'd-work': () => import('./components/views/design/DesignWork').then((m) => ({ default: m.DesignWork })),
+  'd-skills': () => import('./components/views/design/DesignSkills').then((m) => ({ default: m.DesignSkills })),
+  'd-repos': () => import('./components/views/design/DesignRepos').then((m) => ({ default: m.DesignRepos })),
+  'd-construction': () => import('./components/views/design/DesignConstruction').then((m) => ({ default: m.DesignConstruction })),
+  'd-experience': () => import('./components/views/design/DesignExperience').then((m) => ({ default: m.DesignExperience })),
+  'd-contact': () => import('./components/views/design/DesignContact').then((m) => ({ default: m.DesignContact })),
+  'f-start': () => import('./components/views/firma/FirmaStart').then((m) => ({ default: m.FirmaStart })),
+  'f-flow': () => import('./components/views/firma/FirmaHow').then((m) => ({ default: m.FirmaHow })),
+  'f-contact': () => import('./components/views/firma/FirmaContact').then((m) => ({ default: m.FirmaContact })),
+  'i-start': () => import('./components/views/insta/InstaStart').then((m) => ({ default: m.InstaStart })),
+  'i-flow': () => import('./components/views/insta/InstaHow').then((m) => ({ default: m.InstaHow })),
 };
+const VIEWS: Record<string, ComponentType> = Object.fromEntries(Object.entries(LOADERS).map(([id, load]) => [id, lazy(load)]));
+const preload = (id: string) => void LOADERS[id]?.().catch(() => {});
+
+/** Platzhalter, solange eine Seite laedt - haelt die Fusszeile unten. */
+const PageWait = () => <div className="page-wait" aria-busy="true" />;
+
+/** Meldet, wenn alle Seiten eines Bereichs da sind (Suspense zeigt sie gemeinsam). */
+function Ready({ onReady }: { onReady: () => void }) {
+  useEffect(onReady, []);
+  return null;
+}
+
 const ids = ALL_ITEMS.map((i) => i.id);
 
 // InstaOto: Funktionen und Ablauf stehen jetzt auf "So funktioniert's" - alte Merkzeichen umlenken
@@ -56,6 +57,25 @@ try {
   if (v && /^f-(orders|planning|accounting|reports|homepage|personnel)$/.test(v)) localStorage.setItem('ado_view2', 'f-flow');
 } catch {
   /* Speicher gesperrt - egal */
+}
+
+// Den Bereich der Startseite sofort holen (parallel zum Aufbau), alle anderen Seiten im Leerlauf
+{
+  const ids0 = ALL_ITEMS.map((i) => i.id);
+  let first = window.location.hash.replace(/^#/, '');
+  if (!ids0.includes(first)) {
+    try {
+      first = localStorage.getItem('ado_view2') ?? '';
+    } catch {
+      first = '';
+    }
+  }
+  const group = (ALL_ITEMS.find((i) => i.id === first) ?? ALL_ITEMS[0]).group;
+  ALL_ITEMS.filter((i) => i.group === group).forEach((i) => preload(i.id));
+  const rest = () => ids0.forEach(preload);
+  const later = () => window.setTimeout(() => ('requestIdleCallback' in window ? window.requestIdleCallback(rest, { timeout: 4000 }) : rest()), 2500);
+  if (document.readyState === 'complete') later();
+  else window.addEventListener('load', later, { once: true });
 }
 
 export default function App() {
@@ -139,6 +159,8 @@ export default function App() {
   const stacked = mode === 'mobile';
   const spy = useRef(true);
   const [jumpTo, setJumpTo] = useState<string | null>(active);
+  // zaehlt hoch, sobald die (nachgeladenen) Seiten eines Bereichs im DOM stehen
+  const [ready, setReady] = useState(0);
 
   // Tarayıcı Geri/İleri (History) ve URL Hash senkronizasyonu
   useEffect(() => {
@@ -179,12 +201,14 @@ export default function App() {
     history.scrollRestoration = 'manual';
     spy.current = false;
     const t1 = window.setTimeout(() => {
-      document.getElementById(`page-${jumpTo}`)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+      const target = document.getElementById(`page-${jumpTo}`);
+      if (!target) return; // Seite laedt noch - neuer Versuch, wenn 'ready' hochzaehlt
+      target.scrollIntoView({ block: 'start', behavior: 'instant' });
       window.setTimeout(() => (spy.current = true), 300);
       setJumpTo(null);
     }, 60);
     return () => window.clearTimeout(t1);
-  }, [stacked, jumpTo, item.group, lang]);
+  }, [stacked, jumpTo, item.group, lang, ready]);
 
   // Beim Scrollen gilt die Seite unter dem Kopf als aktiv
   useEffect(() => {
@@ -200,7 +224,7 @@ export default function App() {
     );
     document.querySelectorAll('[data-page]').forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, [stacked, lang, item.group]);
+  }, [stacked, lang, item.group, ready]);
 
   const ctx = { t, color, auto: auto && mode !== 'mobile', nonce, go, stacked };
 
@@ -259,16 +283,19 @@ export default function App() {
 
             {stacked ? (
               <>
-                {ALL_ITEMS.filter((i) => i.group === item.group).map(({ id }) => {
-                  const Page = VIEWS[id];
-                  return (
-                    <section key={`${id}-${lang}`} id={`page-${id}`} data-page={id} className="page page-stacked">
-                      <PageContext.Provider value={id}>
-                        <Page />
-                      </PageContext.Provider>
-                    </section>
-                  );
-                })}
+                <Suspense fallback={<PageWait />}>
+                  {ALL_ITEMS.filter((i) => i.group === item.group).map(({ id }) => {
+                    const Page = VIEWS[id];
+                    return (
+                      <section key={`${id}-${lang}`} id={`page-${id}`} data-page={id} className="page page-stacked">
+                        <PageContext.Provider value={id}>
+                          <Page />
+                        </PageContext.Provider>
+                      </section>
+                    );
+                  })}
+                  <Ready key={`${item.group}-${lang}`} onReady={() => setReady((n) => n + 1)} />
+                </Suspense>
                 <MastRobot />
               </>
             ) : (
@@ -282,7 +309,9 @@ export default function App() {
                   transition={{ duration: 0.25 }}
                 >
                   <PageContext.Provider value={item.id}>
-                    <View />
+                    <Suspense fallback={<PageWait />}>
+                      <View />
+                    </Suspense>
                   </PageContext.Provider>
                 </motion.section>
               </AnimatePresence>

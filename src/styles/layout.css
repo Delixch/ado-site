@@ -196,6 +196,11 @@
 }
 
 
+/* Seite laedt noch (eigener Chunk): Platz halten, damit die Fusszeile nicht hochspringt */
+.page-wait {
+  min-height: 100svh;
+}
+
 /* Handy: alle Seiten untereinander (App.tsx) - Sprungziel unter der festen Kopfzeile, klare Trennung */
 .page-stacked {
   scroll-margin-top: calc(var(--tb-m-h) + env(safe-area-inset-top));
