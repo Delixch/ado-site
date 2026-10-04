@@ -146,7 +146,7 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
               className="sb-profile-text"
             >
               <div>
-                <span className="sb-profile-name">ADOdesign</span>
+                <span className="sb-profile-name">EKADOdesign</span>
                 <button type="button" className="sb-profile-sub" onClick={() => fileInputRef.current?.click()}>
                   <Camera /> {t.ui.changePhoto}
                 </button>

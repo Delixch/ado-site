@@ -164,7 +164,7 @@ export function DesignSkills() {
       tone: 'deep',
       node: (
         <Terminal
-          title="ado@zuerich ~ skills"
+          title="ekado@zuerich ~ skills"
           lines={[
             { cmd: term.whoami.replace(/^\$\s*/, ''), out: term.name },
             { cmd: 'ls ~/werkzeuge', out: SKILL_ITEMS.map((x) => x[0]).join('  ') },

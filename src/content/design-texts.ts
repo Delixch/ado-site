@@ -669,7 +669,7 @@ export const de: TranslationSchema = {
       {
         keywords: ['3d', 'webgl', 'three', 'shader', 'glsl', 'motion'],
         reply:
-          'Echtzeit-3D im Browser ist ADOs Spezialgebiet — Partikeltypografie, Shader, scroll-getriebene Kamerafahrten. Schau dir Projekt 09 in der Liste an: eine einzige Three.js-Szene.',
+          'Echtzeit-3D im Browser ist EKADOs Spezialgebiet — Partikeltypografie, Shader, scroll-getriebene Kamerafahrten. Schau dir Projekt 09 in der Liste an: eine einzige Three.js-Szene.',
       },
       {
         keywords: ['diese seite', 'diese website', 'wie hast du', 'wie gebaut', 'bu site', 'bu sayfa', 'nasıl yapt', 'nasıl yapıld'],

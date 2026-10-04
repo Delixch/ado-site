@@ -126,9 +126,9 @@ export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
         <div className="ig-stage">
           <div ref={chat.phoneRef} className="ig-phone">
             <div className="ig-top">
-              <span className="ig-avatar">A</span>
+              <span className="ig-avatar">E</span>
               <span>
-                <b>adodesign</b>
+                <b>ekadodesign</b>
                 <span className="micro">Instagram · DM</span>
               </span>
               <button type="button" className="micro ig-reset" onClick={chat.reset}>
