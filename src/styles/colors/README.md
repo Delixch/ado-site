@@ -28,6 +28,8 @@ Varsayılan renk `src/config.ts` içindeki `DEFAULT_COLOR` ile seçilir.
 | `--on-accent` | Vurgu zemini üstündeki yazı |
 | `--ok`, `--warn`, `--bad`, `--info` | Durum renkleri |
 | `--night`, `--night-ink` | Koyu kutu ve yazısı |
+| `--foot-rest` | Masaüstü/tablet footer'da turuncu şeridin altı (açık temada `transparent` = sayfa zemini, koyu temalarda siyah) |
+| `--cp-bg`, `--cp-ink`, `--cp-line`, `--cp-selected` | Renk seçici listesi: zemin / yazı / kenar / seçili satır |
 | `--pressed-*` | Menüde seçili (basılı) düğme |
 | `--highlight` | Cam kenarındaki ince parlama |
 | `--shadow-sm/md/lg` | Gölgeler |

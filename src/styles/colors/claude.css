@@ -127,3 +127,14 @@
   --sb-blob-a: color-mix(in srgb, var(--brand) 26%, transparent);
   --sb-blob-b: rgba(232, 196, 170, 0.38);
 }
+
+/* Kopf-/Fusszeile und Farbwahl dieses Themas (topbar.css, layout.css lesen nur diese Namen) */
+[data-color="claude"] {
+  /* unter dem farbigen Fussstreifen (Tablet/Desktop): Seitengrund (hell) */
+  --foot-rest: transparent;
+  /* Farbwahl-Liste */
+  --cp-bg: #FBF8F2;
+  --cp-ink: #211F1C;
+  --cp-line: #E4DACB;
+  --cp-selected: #F1EBE0;
+}

@@ -128,3 +128,14 @@
   --sb-blob-a: color-mix(in srgb, var(--brand) 18%, transparent);
   --sb-blob-b: color-mix(in srgb, var(--brand) 8%, rgb(40 40 52 / 0.4));
 }
+
+/* Kopf-/Fusszeile und Farbwahl dieses Themas (topbar.css, layout.css lesen nur diese Namen) */
+[data-color="cyan"] {
+  /* unter dem farbigen Fussstreifen (Tablet/Desktop): schwarz */
+  --foot-rest: #000000;
+  /* Farbwahl-Liste */
+  --cp-bg: #000000;
+  --cp-ink: #FFFFFF;
+  --cp-line: rgba(255, 255, 255, 0.16);
+  --cp-selected: #141414;
+}

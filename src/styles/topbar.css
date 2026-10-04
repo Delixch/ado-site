@@ -437,22 +437,22 @@
   }
 }
 
-/* Farbwahl-Liste: immer schwarz und deckend, Schrift weiss (sonst erbt sie die dunkle Schrift der farbigen Kopfzeile) */
+/* Farbwahl-Liste: deckend, Farben je Thema (colors/*.css --cp-*) - nicht die Schrift der farbigen Kopfzeile erben */
 .tb .cp-panel {
-  --ink: var(--bar-ink);
-  --ink-2: var(--bar-ink);
-  --muted: var(--bar-ink);
-  --sunken: var(--tb-m-surface);
-  --line: var(--tb-m-line);
-  background: var(--bar-bg);
-  border-color: var(--tb-m-line);
-  color: var(--bar-ink);
+  --ink: var(--cp-ink);
+  --ink-2: var(--cp-ink);
+  --muted: var(--cp-ink);
+  --sunken: var(--cp-selected);
+  --line: var(--cp-line);
+  background: var(--cp-bg);
+  border-color: var(--cp-line);
+  color: var(--cp-ink);
 }
 
 .tb .cp-option[aria-selected="true"] {
-  background: var(--tb-m-surface);
+  background: var(--cp-selected);
 }
 
 .tb .cp-panel .cp-check {
-  color: var(--bar-ink);
+  color: var(--cp-ink);
 }
