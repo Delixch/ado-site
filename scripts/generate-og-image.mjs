@@ -311,7 +311,7 @@ const svg = `
     <rect x="0" y="0" width="${width}" height="38" fill="url(#terracotta-header)"/>
     <text x="76" y="24" font-family="'JetBrains Mono', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">© 2026 EKADO Design · EKADO Firma</text>
     <text x="600" y="24" font-family="'JetBrains Mono', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Zürih · İsviçre | Künye Gizlilik</text>
-    <text x="1176" y="24" font-family="'JetBrains Mono', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="end">xdd@hotmail.com</text>
+    <text x="1176" y="24" font-family="'JetBrains Mono', sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="end">info@ekado.ch</text>
   </g>
 </svg>
 `;

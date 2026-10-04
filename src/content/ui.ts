@@ -77,6 +77,8 @@ const shell = {
       seal: 'Siegeln & senden',
       sealed: 'Versiegelt',
       place: 'Zürich',
+      mailTitle: 'Mailprogramm geöffnet',
+      mailText: 'Der direkte Versand hat gerade nicht geklappt. Ihre Nachricht ist im Mailprogramm vorbereitet – bitte dort noch abschicken. Oder direkt an info@ekado.ch.',
     },
   },
   tr: {
@@ -147,6 +149,8 @@ const shell = {
       seal: 'Mühürle & gönder',
       sealed: 'Mühürlendi',
       place: 'Zürih',
+      mailTitle: 'Mail programı açıldı',
+      mailText: 'Doğrudan gönderim şu an olmadı. Mesajınız mail programında hazır – lütfen oradan gönderin. Ya da doğrudan info@ekado.ch adresine yazın.',
     },
   },
 };

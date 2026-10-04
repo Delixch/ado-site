@@ -3,7 +3,7 @@ import type { Lang } from './content/ui';
 /** Açılışta seçili renk: src/styles/colors/<ad>.css dosyasının adı. */
 export const DEFAULT_COLOR = 'claude';
 export const DEFAULT_LANG: Lang = 'de';
-export const CONTACT_MAIL = 'xdd@hotmail.com';
+export const CONTACT_MAIL = 'info@ekado.ch';
 
 /**
  * Mit welchem Layout jede Seite oeffnet (0 = erstes, 1 = zweites, 2 = drittes Mini-Plan im Seitenkopf).

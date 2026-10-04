@@ -29,6 +29,7 @@ export function LetterDesk({ labels, to = 'EKADO', topic: given }: { labels: Let
   const [v, setV] = useState(() => ({ name: '', email: '', message: topic ? `${topic}
 ${I.when}` : '' }));
   const [sealed, setSealed] = useState(false);
+  const [sent, setSent] = useState<'direct' | 'mail'>('direct');
   const area = useRef<HTMLTextAreaElement>(null);
 
   // Erstgespraech- oder Paket-Knopf auf derselben Seite: Brief oeffnen und vorfuellen
@@ -45,13 +46,32 @@ ${I.when}` }));
     [page, I.topic, I.when],
   );
 
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  // Brief direkt an info@ (api/contact.ts, Resend). Klappt das nicht, oeffnet sich wie frueher das Mailprogramm.
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = encodeURIComponent(topic ? `${topic} · ${v.name}`.trim() : `${labels.mailSubjectPrefix} ${v.name}`.trim());
-    const body = encodeURIComponent(`${L.greeting}\n\n${v.message}\n\n${L.bye}\n${v.name} · ${v.email}`);
+    const subject = topic ? `${topic} · ${v.name}`.trim() : `${labels.mailSubjectPrefix} ${v.name}`.trim();
+    const website = (e.currentTarget.elements.namedItem('website') as HTMLInputElement | null)?.value ?? '';
+    setSent('direct');
     setSealed(true);
+    try {
+      const r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...v, subject, page, lang, website }),
+      });
+      if (r.ok) return;
+    } catch {
+      // weiter unten: Mailprogramm
+    }
+    setSent('mail');
+    const body = encodeURIComponent(`${L.greeting}
+
+${v.message}
+
+${L.bye}
+${v.name} · ${v.email}`);
     window.setTimeout(() => {
-      window.location.href = `mailto:${CONTACT_MAIL}?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${CONTACT_MAIL}?subject=${encodeURIComponent(subject)}&body=${body}`;
     }, 1400);
   };
 
@@ -71,6 +91,8 @@ ${I.when}` }));
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <i className="trace" aria-hidden />
+            {/* Lockfeld fuer Bots, fuer Menschen unsichtbar */}
+            <input className="hp-field" name="website" tabIndex={-1} autoComplete="off" aria-hidden />
             <p className="paper-date micro">
               {L.place}, {date}
             </p>
@@ -119,7 +141,7 @@ ${I.when}` }));
               </p>
               <button type="submit" className="seal" aria-label={L.seal}>
                 <span className="seal-wax">
-                  <span className="seal-mark">A</span>
+                  <span className="seal-mark">E</span>
                 </span>
                 <span className="micro">{L.seal}</span>
               </button>
@@ -140,14 +162,14 @@ ${I.when}` }));
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.55, type: 'spring', stiffness: 260, damping: 18 }}
             >
-              <span className="seal-mark">A</span>
+              <span className="seal-mark">E</span>
             </motion.span>
             <div className="envelope-text">
               <span className="micro live">
                 <Check /> {L.sealed}
               </span>
-              <p className="whisper">{labels.successTitle}</p>
-              <p className="lede">{labels.successText}</p>
+              <p className="whisper">{sent === 'mail' ? L.mailTitle : labels.successTitle}</p>
+              <p className="lede">{sent === 'mail' ? L.mailText : labels.successText}</p>
               <button type="button" className="e-link" onClick={() => setSealed(false)}>
                 ← {L.greeting.replace(',', '')}
               </button>

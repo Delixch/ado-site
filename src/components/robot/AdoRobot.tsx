@@ -27,13 +27,13 @@ const CHAT_TEXT: Record<Lang, { placeholder: string; send: string; close: string
     placeholder: "EKADO'ya bir şey sor…",
     send: 'Gönder',
     close: 'Sohbeti kapat',
-    fallback: 'Şu an bağlantım koptu. Bize xdd@hotmail.com adresinden yazabilirsin.',
+    fallback: 'Şu an bağlantım koptu. Bize info@ekado.ch adresinden yazabilirsin.',
   },
   de: {
     placeholder: 'Frag EKADO etwas…',
     send: 'Senden',
     close: 'Chat schliessen',
-    fallback: 'Gerade kein Empfang. Schreib uns an xdd@hotmail.com.',
+    fallback: 'Gerade kein Empfang. Schreib uns an info@ekado.ch.',
   },
 };
 

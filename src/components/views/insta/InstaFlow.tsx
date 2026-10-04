@@ -150,7 +150,7 @@ export function InstaFlow({ tabs }: { tabs?: ReactNode }) {
                     {m.from === 'user' && m.id === 0 && <span className="micro ig-who">@{f.user} · {t.lang === 'tr' ? 'yorum' : 'Kommentar'}</span>}
                     <span className="ig-bubble">
                       {m.text}
-                      {m.link && <span className="ig-link">adodesign.ch ↗</span>}
+                      {m.link && <span className="ig-link">ekado.ch ↗</span>}
                     </span>
                     {!!m.buttons?.length && (
                       <span className="ig-buttons">

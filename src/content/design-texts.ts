@@ -630,9 +630,9 @@ export const de: TranslationSchema = {
     messageLabel: 'Nachricht',
     messagePlaceholder: 'Worum geht es?',
     sendBtn: 'Nachricht senden ↗',
-    successTitle: 'Mailprogramm geöffnet',
+    successTitle: 'Nachricht angekommen',
     successText:
-      'Ihre Nachricht ist vorbereitet — bitte im Mailprogramm noch abschicken. Alternativ direkt an xdd@hotmail.com.',
+      'Danke! Ihre Nachricht ist bei uns angekommen, eine Bestätigung ist unterwegs in Ihr Postfach. Wir melden uns so bald wie möglich.',
     emailLabelFooter: 'E-Mail:',
     locationLabelFooter: 'Ort:',
     location: 'Zürich · Schweiz',
@@ -642,14 +642,14 @@ export const de: TranslationSchema = {
     title: 'EKADO Bot',
     welcome: 'Hallo! Ich bin EKADO Bot. Frag mich nach Preis, Dauer, Technik oder Kontakt.',
     fallback:
-      'Darauf bin ich nicht vorbereitet — ich kenne nur ein paar Stichworte. Schreib EKADO direkt, der antwortet richtig: xdd@hotmail.com',
+      'Darauf bin ich nicht vorbereitet — ich kenne nur ein paar Stichworte. Schreib EKADO direkt, der antwortet richtig: info@ekado.ch',
     placeholder: 'Frag etwas…',
     send: 'Los',
     rules: [
       {
         keywords: ['preis', 'kosten', 'kostet', 'wieviel', 'wie viel', 'budget', 'angebot', 'offerte', 'fiyat', 'ücret', 'ne kadar'],
         reply:
-          'Kommt auf den Umfang an — eine schlanke Firmenseite ist etwas anderes als ein Echtzeit-3D-Auftritt. Schreib EKADO kurz, was dir vorschwebt, dann bekommst du ein konkretes Angebot: xdd@hotmail.com',
+          'Kommt auf den Umfang an — eine schlanke Firmenseite ist etwas anderes als ein Echtzeit-3D-Auftritt. Schreib EKADO kurz, was dir vorschwebt, dann bekommst du ein konkretes Angebot: info@ekado.ch',
       },
       {
         keywords: ['wie lange', 'dauer', 'dauert', 'termin', 'deadline', 'frist', 'ne kadar sürer', 'süre', 'teslim'],
@@ -689,7 +689,7 @@ export const de: TranslationSchema = {
       {
         keywords: ['lebenslauf', 'cv', 'anstellung', 'job', 'stelle', 'bewerbung', 'einstellen', 'özgeçmiş', 'ozgecmis', 'işe al'],
         reply:
-          'Für eine Anstellung oder längere Zusammenarbeit schreib bitte direkt: xdd@hotmail.com — mit ein paar Zeilen zur Rolle.',
+          'Für eine Anstellung oder längere Zusammenarbeit schreib bitte direkt: info@ekado.ch — mit ein paar Zeilen zur Rolle.',
       },
       {
         keywords: ['sprache', 'sprichst', 'sprechen', 'deutsch', 'türkisch', 'tuerkisch', 'englisch', 'dil', 'konuş'],
@@ -704,7 +704,7 @@ export const de: TranslationSchema = {
       {
         keywords: ['kontakt', 'email', 'e-mail', 'mail', 'telefon', 'erreichen', 'whatsapp', 'instagram', 'iletişim', 'iletisim', 'ulaş', 'numara'],
         reply:
-          'Am schnellsten per E-Mail: xdd@hotmail.com — oder über das Kontaktformular weiter unten. WhatsApp und Instagram stehen in der Fusszeile.',
+          'Am schnellsten per E-Mail: info@ekado.ch — oder über das Kontaktformular weiter unten. WhatsApp und Instagram stehen in der Fusszeile.',
       },
       {
         keywords: ['bist du echt', 'bist du ein mensch', 'bist du eine ki', 'künstliche', 'kuenstliche', 'chatgpt', 'roboter', 'gerçek mi', 'gercek mi', 'yapay zeka', 'robot musun', 'insan mısın'],
@@ -724,7 +724,7 @@ export const de: TranslationSchema = {
       {
         keywords: ['danke', 'merci', 'tschüss', 'tschuess', 'ciao', 'bye', 'wiedersehen', 'teşekkür', 'tesekkur', 'sağol', 'görüşürüz'],
         reply:
-          'Gern. Wenn doch noch was aufkommt — die Adresse steht unten: xdd@hotmail.com',
+          'Gern. Wenn doch noch was aufkommt — die Adresse steht unten: info@ekado.ch',
       },
       {
         keywords: ['hallo', 'hi', 'hey', 'servus', 'grüezi', 'gruezi', 'moin', 'guten tag', 'merhaba', 'selam'],
@@ -1169,9 +1169,9 @@ export const tr: TranslationSchema = {
     messageLabel: 'Mesaj',
     messagePlaceholder: 'Konu nedir?',
     sendBtn: 'Mesajı gönder ↗',
-    successTitle: 'Mail programı açıldı',
+    successTitle: 'Mesajınız ulaştı',
     successText:
-      'Mesajınız hazırlandı — lütfen mail programından gönderin. Alternatif olarak doğrudan xdd@hotmail.com adresine yazabilirsiniz.',
+      'Teşekkürler! Mesajınız bize ulaştı, onay e-postası gelen kutunuza gönderildi. En kısa sürede size dönüş yapacağız.',
     emailLabelFooter: 'E-Posta:',
     locationLabelFooter: 'Konum:',
     location: 'Zürih · İsviçre',
@@ -1181,14 +1181,14 @@ export const tr: TranslationSchema = {
     title: 'EKADO Bot',
     welcome: 'Merhaba! Ben EKADO Bot\'um. Bana fiyat, süre, teknoloji ya da iletişim sorabilirsin.',
     fallback:
-      'Buna hazırlıklı değilim — sadece birkaç anahtar kelime biliyorum. EKADO\'ya doğrudan yaz, o düzgün cevap verir: xdd@hotmail.com',
+      'Buna hazırlıklı değilim — sadece birkaç anahtar kelime biliyorum. EKADO\'ya doğrudan yaz, o düzgün cevap verir: info@ekado.ch',
     placeholder: 'Bir şey sor…',
     send: 'Gönder',
     rules: [
       {
         keywords: ['fiyat', 'ücret', 'ne kadar', 'maliyet', 'bütçe', 'teklif', 'preis', 'kosten', 'kostet'],
         reply:
-          'Kapsama göre değişiyor — sade bir firma sitesiyle gerçek zamanlı 3D bir çalışma aynı şey değil. Aklındakini kısaca yaz, EKADO sana net bir teklif versin: xdd@hotmail.com',
+          'Kapsama göre değişiyor — sade bir firma sitesiyle gerçek zamanlı 3D bir çalışma aynı şey değil. Aklındakini kısaca yaz, EKADO sana net bir teklif versin: info@ekado.ch',
       },
       {
         keywords: ['ne kadar sürer', 'süre', 'zaman', 'teslim', 'ne zaman biter', 'wie lange', 'dauer'],
@@ -1228,7 +1228,7 @@ export const tr: TranslationSchema = {
       {
         keywords: ['özgeçmiş', 'ozgecmis', 'cv', 'işe al', 'kadro', 'iş ilan', 'başvuru', 'lebenslauf', 'job'],
         reply:
-          'Kadrolu çalışma ya da uzun soluklu iş birliği için doğrudan yaz: xdd@hotmail.com — pozisyona dair birkaç satırla birlikte.',
+          'Kadrolu çalışma ya da uzun soluklu iş birliği için doğrudan yaz: info@ekado.ch — pozisyona dair birkaç satırla birlikte.',
       },
       {
         keywords: ['dil', 'konuş', 'hangi diller', 'almanca', 'türkçe', 'İngilizce', 'ingilizce', 'sprache'],
@@ -1243,7 +1243,7 @@ export const tr: TranslationSchema = {
       {
         keywords: ['iletişim', 'iletisim', 'ulaş', 'numara', 'telefon', 'mail', 'e-posta', 'eposta', 'whatsapp', 'instagram', 'kontakt'],
         reply:
-          'En hızlısı e-posta: xdd@hotmail.com — ya da aşağıdaki iletişim formu. WhatsApp ve Instagram sayfanın en altında.',
+          'En hızlısı e-posta: info@ekado.ch — ya da aşağıdaki iletişim formu. WhatsApp ve Instagram sayfanın en altında.',
       },
       {
         keywords: ['gerçek mi', 'gercek mi', 'yapay zeka', 'robot musun', 'insan mısın', 'chatgpt', 'yapay zekâ', 'bist du echt'],
@@ -1263,7 +1263,7 @@ export const tr: TranslationSchema = {
       {
         keywords: ['teşekkür', 'tesekkur', 'sağol', 'sagol', 'görüşürüz', 'gorusuruz', 'hoşça', 'hoşca kal', 'danke'],
         reply:
-          'Rica ederim. Sonradan bir şey takılırsa e-posta aşağıda: xdd@hotmail.com',
+          'Rica ederim. Sonradan bir şey takılırsa e-posta aşağıda: info@ekado.ch',
       },
       {
         keywords: ['merhaba', 'selam', 'hey', 'hi', 'hallo', 'günaydın', 'iyi günler'],

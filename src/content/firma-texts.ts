@@ -853,9 +853,9 @@ export const de: TranslationSchema = {
     messageLabel: 'Nachricht',
     messagePlaceholder: 'Welche Abläufe möchten Sie vereinfachen?',
     sendBtn: 'Anfrage senden',
-    successTitle: 'Mailprogramm geöffnet',
+    successTitle: 'Nachricht angekommen',
     successText:
-      'Ihre Anfrage ist vorbereitet – bitte im Mailprogramm noch abschicken. Alternativ direkt an xdd@hotmail.com.',
+      'Danke! Ihre Anfrage ist bei uns angekommen, eine Bestätigung ist unterwegs in Ihr Postfach. Wir melden uns so bald wie möglich.',
     location: 'Zürich · Schweiz',
     mailSubjectPrefix: 'Anfrage von',
     hub: { center: 'Eine Plattform', centerSub: 'sechs Bereiche' },
@@ -1552,9 +1552,9 @@ export const tr: TranslationSchema = {
     messageLabel: 'Mesaj',
     messagePlaceholder: 'Hangi süreçleri kolaylaştırmak istiyorsunuz?',
     sendBtn: 'Talep gönder',
-    successTitle: 'Mail programı açıldı',
+    successTitle: 'Talebiniz ulaştı',
     successText:
-      'Talebiniz hazırlandı – lütfen mail programından gönderin. Alternatif olarak doğrudan xdd@hotmail.com adresine yazabilirsiniz.',
+      'Teşekkürler! Talebiniz bize ulaştı, onay e-postası gelen kutunuza gönderildi. En kısa sürede size dönüş yapacağız.',
     location: 'Zürih · İsviçre',
     mailSubjectPrefix: 'Talep gönderen:',
     hub: { center: 'Tek platform', centerSub: 'altı alan' },
