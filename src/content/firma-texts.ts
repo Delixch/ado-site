@@ -355,6 +355,7 @@ export interface TranslationSchema {
     line2: string;
     lede: string;
     choose: string;
+    back: string;
     customNote: string;
     plans: {
       id: string;
@@ -1020,6 +1021,7 @@ export const de: TranslationSchema = {
     line2: 'Passend für Ihren Betrieb.',
     lede: 'Wählen Sie das Modell, das Ihren Alltag spürbar entlastet — vom schnellen Start bis zur schlüsselfertigen Gesamtlösung.',
     choose: 'Paket anfragen',
+    back: 'Zurück zu den Paketen',
     customNote: 'Alle Pakete monatlich kündbar · Keine Einrichtungsgebühr bei Jahreszahlung · Schweizer Support',
     plans: [
       {
@@ -1717,7 +1719,8 @@ export const tr: TranslationSchema = {
     line1: 'Net ve şeffaf.',
     line2: 'İşletmenize tam uyumlu.',
     lede: 'Günlük işlerinizi gözle görülür şekilde hafifleten modeli seçin — hızlı başlangıçtan anahtar teslim operasyon merkezine.',
-    choose: 'Paketi Seçin',
+    choose: 'Paket Talep Et',
+    back: 'Paketlere Dön',
     customNote: 'Tüm paketlerde aylık fesih imkanı · Gizli taahhüt yok · Zürih’ten birebir Türkçe destek',
     plans: [
       {

@@ -539,3 +539,53 @@
   text-align: center;
   color: var(--muted);
 }
+
+/* Brief-Ansicht bei Paketanfrage */
+.fp-ask {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  width: 100%;
+}
+
+.fp-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  align-self: flex-start;
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--brand-text);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+}
+
+.fp-back:hover {
+  background: var(--surface-hover);
+  border-color: var(--brand);
+}
+
+.fp-back svg {
+  width: 14px;
+  height: 14px;
+}
+
+.fp-ask-paper-wrap {
+  width: 100%;
+}
+
+.fp-ask-paper-wrap .desk {
+  padding: var(--sp-2) 0;
+  justify-items: center;
+}
+
+.fp-ask-paper-wrap .paper {
+  max-width: 680px;
+}
+
