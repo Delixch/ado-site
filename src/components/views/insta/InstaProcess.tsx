@@ -30,6 +30,32 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
     setActive(i);
     openSheet();
   };
+
+  const onPrev = () => {
+    touched.current = Date.now();
+    setActive((a) => (a - 1 + p.steps.length) % p.steps.length);
+  };
+
+  const onNext = () => {
+    touched.current = Date.now();
+    setActive((a) => (a + 1) % p.steps.length);
+  };
+
+  const onJump = (i: number) => {
+    touched.current = Date.now();
+    setActive(i);
+  };
+
+  const sheetNav = {
+    current: active,
+    total: p.steps.length,
+    title: p.steps[active].t,
+    subtitle: `${String(active + 1).padStart(2, '0')} / ${String(p.steps.length).padStart(2, '0')}`,
+    onPrev,
+    onNext,
+    onJump,
+  };
+
   const st = p.steps[active];
   const mobile = useMode() === 'mobile';
   const detail = (
@@ -73,5 +99,13 @@ export function InstaProcess({ tabs }: { tabs?: ReactNode }) {
     ...(mobile ? [{ id: 'more', tone: 'brand' as const, sheet: true, node: detail }] : []),
   ];
 
-  return <Spread view="i-process" head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return (
+    <Spread
+      view="i-process"
+      head={{ folio: '03', kicker: p.eyebrow, line1: p.line1, line2: p.line2 }}
+      blocks={blocks}
+      layouts={LAYOUTS}
+      sheetNav={sheetNav}
+    />
+  );
 }

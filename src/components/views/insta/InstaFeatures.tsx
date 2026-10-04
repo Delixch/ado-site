@@ -36,6 +36,31 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
     openSheet();
   };
 
+  const onPrev = () => {
+    touched.current = Date.now();
+    setSel((s) => (s - 1 + f.items.length) % f.items.length);
+  };
+
+  const onNext = () => {
+    touched.current = Date.now();
+    setSel((s) => (s + 1) % f.items.length);
+  };
+
+  const onJump = (i: number) => {
+    touched.current = Date.now();
+    setSel(i);
+  };
+
+  const sheetNav = {
+    current: sel,
+    total: f.items.length,
+    title: f.items[sel].t,
+    subtitle: `${String(sel + 1).padStart(2, '0')} / ${String(f.items.length).padStart(2, '0')}`,
+    onPrev,
+    onNext,
+    onJump,
+  };
+
   const blocks: Block[] = [
     {
       id: 'list',
@@ -90,5 +115,14 @@ export function InstaFeatures({ tabs }: { tabs?: ReactNode }) {
     },
   ];
 
-  return <Spread view="i-features" head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }} blocks={blocks} layouts={LAYOUTS} stack={STACK} />;
+  return (
+    <Spread
+      view="i-features"
+      head={{ folio: '02', kicker: f.eyebrow, line1: f.line1, line2: f.line2 }}
+      blocks={blocks}
+      layouts={LAYOUTS}
+      stack={STACK}
+      sheetNav={sheetNav}
+    />
+  );
 }

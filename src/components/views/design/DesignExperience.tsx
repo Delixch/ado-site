@@ -33,6 +33,31 @@ export function DesignExperience() {
     openSheet();
   };
 
+  const onPrev = () => {
+    touched.current = Date.now();
+    setActive((a) => (a - 1 + e.journey.length) % e.journey.length);
+  };
+
+  const onNext = () => {
+    touched.current = Date.now();
+    setActive((a) => (a + 1) % e.journey.length);
+  };
+
+  const onJump = (i: number) => {
+    touched.current = Date.now();
+    setActive(i);
+  };
+
+  const sheetNav = {
+    current: active,
+    total: e.journey.length,
+    title: e.journey[active].title,
+    subtitle: `${String(active + 1).padStart(2, '0')} / ${String(e.journey.length).padStart(2, '0')}`,
+    onPrev,
+    onNext,
+    onJump,
+  };
+
   const st = e.journey[active];
   const first = e.journey[e.journey.length - 1].year.match(/\d{4}/)?.[0];
 
@@ -96,5 +121,13 @@ export function DesignExperience() {
     },
   ];
 
-  return <Spread view="d-experience" head={{ folio: '06', kicker: e.eyebrow, line1: e.line1, line2: e.line2 }} blocks={blocks} layouts={LAYOUTS} />;
+  return (
+    <Spread
+      view="d-experience"
+      head={{ folio: '06', kicker: e.eyebrow, line1: e.line1, line2: e.line2 }}
+      blocks={blocks}
+      layouts={LAYOUTS}
+      sheetNav={sheetNav}
+    />
+  );
 }

@@ -585,39 +585,162 @@
 }
 
 .bsheet-head {
-  display: grid;
-  grid-template-columns: var(--sp-8) 1fr var(--sp-8);
+  position: relative;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
   flex: none;
-  padding: var(--sp-2) var(--sp-3);
+  min-height: 48px;
+  padding: 12px var(--sp-3) var(--sp-2);
   border-bottom: var(--hair) solid var(--rule);
   cursor: grab;
+  user-select: none;
 }
 
-/* Griff in der Mitte, X rechts in derselben Zeile (Inhalt beginnt erst darunter) */
+/* Griff in der Mitte oben */
 .bsheet-grip {
-  grid-column: 2;
-  justify-self: center;
-  width: 44px;
-  height: 5px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--ink) 40%, transparent);
+  background: color-mix(in srgb, var(--ink) 35%, transparent);
+  pointer-events: none;
+}
+
+/* Sol baslik alani: 01 / 06 ve Bolum Basligi (ornek: Abläufe / Editor) */
+.bsheet-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.bsheet-badge {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-wide);
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+  color: var(--brand-text);
+  border: var(--hair) solid color-mix(in srgb, var(--brand) 30%, transparent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+.bsheet-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.2;
+}
+
+/* Sag eylemler: < > ve X butonu */
+.bsheet-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.bsheet-nav-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: var(--hair) solid var(--rule);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background var(--fast), border-color var(--fast), transform 0.1s ease, color var(--fast);
+}
+
+.bsheet-nav-btn:hover {
+  background: var(--sunken);
+  color: var(--brand-text);
+  border-color: var(--line-strong);
+}
+
+.bsheet-nav-btn:active {
+  transform: scale(0.92);
+}
+
+.bsheet-nav-btn[disabled] {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.bsheet-nav-btn svg {
+  width: 15px;
+  height: 15px;
 }
 
 .bsheet-x {
-  grid-column: 3;
   display: grid;
   place-items: center;
-  width: var(--sp-8);
-  height: var(--sp-8);
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: var(--hair) solid var(--rule);
+  background: var(--surface);
   color: var(--ink);
+  cursor: pointer;
+  transition: background var(--fast), transform 0.1s ease;
+}
+
+.bsheet-x:hover {
+  background: var(--sunken);
+}
+
+.bsheet-x:active {
+  transform: scale(0.92);
 }
 
 .bsheet-x svg {
-  width: var(--icon-sm);
-  height: var(--icon-sm);
+  width: 14px;
+  height: 14px;
+}
+
+/* Noktalar / Carousel gostergesi */
+.bsheet-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border-top: var(--hair) solid color-mix(in srgb, var(--rule) 70%, transparent);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.bsheet-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 25%, transparent);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bsheet-dot.is-active {
+  width: 20px;
+  background: var(--brand);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--brand) 40%, transparent);
 }
 
 .bsheet-body {

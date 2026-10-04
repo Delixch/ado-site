@@ -5,8 +5,10 @@ import { useLayoutCycle } from '../../hooks/useLayoutCycle';
 import { useMode } from '../../hooks/useMode';
 import { useView } from '../ViewFrame';
 import { RevealLines } from '../fx/RevealLines';
-import { BottomSheet } from './BottomSheet';
+import { BottomSheet, type SheetNav } from './BottomSheet';
 import { MastRobot } from '../robot/MastRobot';
+
+export type { SheetNav };
 
 /** Ein Baustein der Doppelseite. `id` ist zugleich der Name im grid-template-areas. */
 export interface Block {
@@ -82,6 +84,7 @@ export function Spread({
   robot = true,
   tabs,
   stack,
+  sheetNav,
 }: {
   view: string;
   head: Masthead;
@@ -93,6 +96,8 @@ export function Spread({
   tabs?: ReactNode;
   /** Reihenfolge untereinander (Handy/Tablet), wenn sie von der Lesereihenfolge des Layouts abweicht - z. B. Reiter zuerst. */
   stack?: string[];
+  /** Handy BottomSheet: Navigation zwischen Schritten/Karten (Wischen & Pfeile). */
+  sheetNav?: SheetNav;
 }) {
   const { auto, nonce, t, stacked } = useView();
   const wrap = useRef<HTMLDivElement>(null);
@@ -188,7 +193,7 @@ export function Spread({
         ))}
       </div>
       {sheetBlocks.length > 0 && (
-        <BottomSheet view={view} label={t.ui.close} scope={wrap}>
+        <BottomSheet view={view} label={t.ui.close} scope={wrap} nav={sheetNav}>
           {sheetBlocks.map((b) => (
             <section key={b.id} className={`blk bsheet-blk ${b.className ?? ''}`} data-tone={b.tone ?? 'paper'} data-bleed={b.bleed || undefined}>
               <div className="blk-in">{b.node}</div>
