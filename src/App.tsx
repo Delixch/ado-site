@@ -11,8 +11,7 @@ import { COLORS, isColor } from './colors';
 import { BAND_FX, BAND_SHAPE, CONTACT_MAIL, DEFAULT_COLOR, DEFAULT_LANG } from './config';
 import { BandFx } from './components/fx/BandFx';
 import { BandPicker } from './components/BandPicker';
-import { LegalDialog, type LegalDoc } from './components/LegalDialog';
-import { legalTexts } from './content/legal-texts';
+import type { LegalDoc } from './components/LegalDialog';
 import { useMode } from './hooks/useMode';
 import { useStored } from './hooks/useStored';
 
@@ -33,6 +32,9 @@ const LOADERS: Record<string, Loader> = {
   'i-start': () => import('./components/views/insta/InstaStart').then((m) => ({ default: m.InstaStart })),
   'i-flow': () => import('./components/views/insta/InstaHow').then((m) => ({ default: m.InstaHow })),
 };
+/** Impressum/Datenschutz: eigener Chunk, erst beim ersten Oeffnen geladen. */
+const LegalDialog = lazy(() => import('./components/LegalDialog').then((m) => ({ default: m.LegalDialog })));
+
 const VIEWS: Record<string, ComponentType> = Object.fromEntries(Object.entries(LOADERS).map(([id, load]) => [id, lazy(load)]));
 const preload = (id: string) => void LOADERS[id]?.().catch(() => {});
 
@@ -100,6 +102,10 @@ export default function App() {
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [nonce, setNonce] = useState(0);
   const [legal, setLegal] = useState<LegalDoc | null>(null);
+  const [legalUsed, setLegalUsed] = useState(false);
+  useEffect(() => {
+    if (legal) setLegalUsed(true);
+  }, [legal]);
   // Lichtband: Adresse ?band= / ?fx= > gemerkte Wahl > config.ts
   const query = new URLSearchParams(window.location.search);
   const [band, setBand] = useStored<string>('ado_band', query.get('band') ?? BAND_SHAPE, (v) => !!v && /^[1-4]$/.test(v));
@@ -322,10 +328,10 @@ export default function App() {
               <span>{lang === 'tr' ? 'Zürih · İsviçre' : 'Zürich · Schweiz'}</span>
               <span className="foot-legal">
                 <button type="button" onClick={() => setLegal('impressum')}>
-                  {legalTexts[lang].impressum}
+                  {t.ui.impressum}
                 </button>
                 <button type="button" onClick={() => setLegal('privacy')}>
-                  {legalTexts[lang].privacy}
+                  {t.ui.privacy}
                 </button>
               </span>
               <a href={`mailto:${CONTACT_MAIL}`}>{CONTACT_MAIL}</a>
@@ -335,7 +341,11 @@ export default function App() {
           {mode === 'desktop' && (
             <BandPicker band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} dock={mode === 'desktop' && desktopExpanded} />
           )}
-          <LegalDialog doc={legal} lang={lang} onOpen={setLegal} onClose={() => setLegal(null)} />
+          {legalUsed && (
+            <Suspense fallback={null}>
+              <LegalDialog doc={legal} lang={lang} onOpen={setLegal} onClose={() => setLegal(null)} />
+            </Suspense>
+          )}
         </div>
       </ViewContext.Provider>
     </MotionConfig>

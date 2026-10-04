@@ -124,3 +124,18 @@ svg {
     scroll-behavior: auto;
   }
 }
+
+/* Ladezeichen aus index.html, bis React die Seite zeichnet */
+.boot {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+}
+
+.boot-mark {
+  font-family: var(--font-logo);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--ls-logo);
+  color: var(--brand-text);
+}

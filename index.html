@@ -80,6 +80,16 @@
       })();
     </script>
 
+    <!-- Thema schon vor dem ersten Bild setzen (sonst kurz falsche Farben, bis React laeuft) -->
+    <script>
+      try {
+        var c = localStorage.getItem('ado_color2');
+        document.documentElement.dataset.color = /^[a-z]+$/.test(c || '') ? c : 'claude';
+      } catch (e) {
+        document.documentElement.dataset.color = 'claude';
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Schriften blockieren den ersten Aufbau nicht (display=swap: erst Systemschrift, dann die echte) -->
@@ -88,7 +98,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Chakra+Petch:wght@500;600;700&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,500;1,600&display=swap" /></noscript>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Bis React laeuft: ruhiges Zeichen statt leerer Seite (React ersetzt den Inhalt von #root) -->
+    <div id="root"><div class="boot" aria-hidden="true"><span class="boot-mark">ADO</span></div></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

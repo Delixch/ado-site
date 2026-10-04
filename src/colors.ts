@@ -6,25 +6,16 @@ import type { Lang } from './content/ui';
  * Dosyalar burada kendiliğinden bulunur; yeni renk = yeni dosya.
  */
 import.meta.glob('./styles/colors/*.css', { eager: true });
-const sources = import.meta.glob('./styles/colors/*.css', {
-  eager: true,
-  query: '?raw',
-  import: 'default',
-}) as Record<string, string>;
+// Namen kommen aus vite.config.ts (colorNames), nicht als Text im Bundle
+import colorList from 'virtual:color-names';
 
 export interface ColorDef {
   id: string;
   name: Record<Lang, string>;
 }
 
-const pick = (src: string, tag: string, fallback: string) =>
-  src.match(new RegExp(String.raw`@${tag}\s+([^*\n]+)`))?.[1].trim() || fallback;
-
-export const COLORS: ColorDef[] = Object.entries(sources)
-  .map(([path, src]) => {
-    const id = path.split('/').pop()!.replace(/\.css$/, '');
-    return { id, name: { tr: pick(src, 'tr', id), de: pick(src, 'de', id) } };
-  })
+export const COLORS: ColorDef[] = (colorList as ColorDef[])
+  .slice()
   .sort((a, b) =>
     a.id === DEFAULT_COLOR ? -1 : b.id === DEFAULT_COLOR ? 1 : a.id.localeCompare(b.id),
   );
