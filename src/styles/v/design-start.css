@@ -92,9 +92,36 @@
   max-width: none;
 }
 
-/* Die beiden Knoepfe stehen immer ganz rechts */
+/* Knoepfe ganz rechts als Block: oben "Meine Arbeit" und "E-Mail" gleich breit,
+   zusammen so breit wie "Erstgespraech" darunter; alle drei gleich hoch und eckig */
 .ds-lede .e-links {
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+  align-self: flex-end;
+  width: max-content;
+  max-width: 100%;
+}
+
+.ds-lede .e-links > * {
+  justify-content: center;
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: 0;
+}
+
+.ds-lede .e-links > .intro-call {
+  grid-column: 1 / -1;
+}
+
+/* E-Mail als Rahmen-Knopf statt Unterstreichung */
+.ds-lede .e-links > a.e-link {
+  border: var(--hair) solid var(--ink);
+  background: none;
+}
+
+.ds-lede .e-links > a.e-link:hover {
+  border-color: var(--brand-text);
+  color: var(--brand-text);
 }
 
 

@@ -178,7 +178,8 @@
   /* klar ein Knopf: gefuellt in Themenfarbe, hebt sich beim Zeigen */
   padding: var(--sp-2) var(--sp-4);
   border: 0;
-  border-radius: var(--radius-sm);
+  /* eckig wie die anderen Knoepfe der Seite */
+  border-radius: 0;
   background: var(--brand);
   color: var(--on-brand);
   box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 0%, transparent);
