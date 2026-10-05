@@ -1,23 +1,27 @@
 import { useEffect, useRef } from 'react';
+import { heroCurves } from './heroCurves';
 
 /**
- * Kleine "EKADO"-Woerter fliessen auf sanften S-Kurven von unten nach oben,
- * ein paar leuchten kurz in der Themenfarbe auf. Oben/unten blendet eine Maske weich aus (CSS .word-flow).
- * Eigene Kurven (aus Sinus erzeugt), Farben aus dem Thema (--ink, --brand), Schrift --font-mono.
- * Steht still, wenn ausser Sicht oder "Bewegung reduzieren" aktiv ist.
+ * Stroemungsfeld wie im Vorbild (klonlamatest heroCanvas.ts, 1:1 uebernommen): kurze senkrechte Marken
+ * wandern auf 22 Kurven nach oben, ein paar leuchten kurz auf. Angepasst:
+ *  - Marke = senkrechtes "EKADO" (oder Strich, MARK = 'dash')
+ *  - Farben aus dem Thema (--ink gedimmt, Aufleuchten in --brand), Grund durchsichtig
+ *  - oben/unten blendet die CSS-Maske aus (.word-flow) statt Schwarz zu malen
+ *  - feste Groesse (SCALE): kleine Flaechen zeigen einen Ausschnitt statt alles winzig zu machen
  */
+const MARK: 'word' | 'dash' = 'word';
 const WORD = 'EKADO';
-const CFG = {
-  lanes: 7, // Kurven nebeneinander
-  gap: 64, // Abstand der Woerter auf einer Kurve (px)
-  speed: 16, // px pro Sekunde nach oben
-  size: 10, // Schriftgroesse (px)
-  dim: 0.22, // Deckkraft der normalen Woerter
-  flashes: 3, // gleichzeitig leuchtende Woerter
-  flashLife: 1.4, // Sekunden
-};
+const DESIGN_W = 1440;
+const DESIGN_H = 842;
+const SCALE = 0.62;
+const CFG = { omega: 0.7, bn: 6, bl: 1.2, shRatio: 30 / DESIGN_W, dim: 0.42 };
 
-type Flash = { lane: number; slot: number; birth: number; life: number };
+interface Blink {
+  ci: number;
+  slot: number;
+  birth: number;
+  life: number;
+}
 
 export function WordFlow({ className = '' }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -27,14 +31,17 @@ export function WordFlow({ className = '' }: { className?: string }) {
     const ctx = canvas?.getContext('2d');
     if (!canvas || !ctx) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const count = heroCurves.length;
 
-    let w = 0;
-    let h = 0;
+    let cw = 0;
+    let ch = 0;
+    let dashH = 0;
+    let lineW = 0;
+    let ox = 0;
+    let oy = 0;
     let ink = '#fff';
     let brand = '#fc0';
     let font = 'monospace';
-    // je Kurve: Grundlage x, Ausschlag, Wellenlaenge, Versatz
-    let lanes: { x: number; amp: number; k: number; phi: number; lag: number }[] = [];
 
     const readTheme = () => {
       const cs = getComputedStyle(canvas);
@@ -45,70 +52,118 @@ export function WordFlow({ className = '' }: { className?: string }) {
 
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
-      canvas.width = Math.max(1, Math.round(w * dpr));
-      canvas.height = Math.max(1, Math.round(h * dpr));
+      cw = canvas.clientWidth;
+      ch = canvas.clientHeight;
+      canvas.width = Math.max(1, Math.round(cw * dpr));
+      canvas.height = Math.max(1, Math.round(ch * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const n = Math.max(2, Math.min(CFG.lanes, Math.round(w / 70)));
-      lanes = Array.from({ length: n }, (_, i) => ({
-        x: ((i + 0.5) / n) * w,
-        // Ausschlag klein halten: Woerter benachbarter Kurven beruehren sich nie
-        amp: (w / n) * (0.1 + 0.08 * (((i * 37) % 5) / 5)),
-        lag: ((i * 0.37) % 1) * CFG.gap,
-        k: (Math.PI * 2) / (h * (0.9 + 0.25 * (i % 3))),
-        phi: i * 1.7,
-      }));
+      dashH = SCALE * DESIGN_W * CFG.shRatio;
+      lineW = 2.5;
+      // Ausschnitt mittig aus dem Feld
+      ox = (cw - DESIGN_W * SCALE) / 2;
+      oy = (ch - DESIGN_H * SCALE) / 2;
       readTheme();
     };
 
     let phase = 0;
-    let flashes: Flash[] = [];
-    const slots = () => Math.ceil((h + CFG.gap * 2) / CFG.gap);
+    let blinks: Blink[] = [];
+    let seeded = false;
+
     const spawn = (now: number) => {
-      const lane = (Math.random() * lanes.length) | 0;
-      const slot = (Math.random() * slots()) | 0;
-      if (!flashes.some((f) => f.lane === lane && f.slot === slot)) flashes.push({ lane, slot, birth: now, life: CFG.flashLife * (0.7 + 0.6 * Math.random()) });
+      for (let tries = 0; tries < 30; tries++) {
+        const ci = (Math.random() * count) | 0;
+        const slot = (Math.random() * heroCurves[ci].length) | 0;
+        if (!blinks.some((b) => b.ci === ci && b.slot === slot)) {
+          blinks.push({ ci, slot, birth: now, life: CFG.bl * (0.7 + 0.6 * Math.random()) });
+          return true;
+        }
+      }
+      return false;
+    };
+
+    const pointAt = (curve: ReadonlyArray<readonly [number, number]>, slot: number) => {
+      const len = curve.length;
+      let pos = (phase + slot) % len;
+      if (pos < 0) pos += len;
+      const i = pos | 0;
+      if (i === len - 1) return null;
+      const f = pos - i;
+      const a = curve[i];
+      const b = curve[i + 1];
+      return [(a[0] + (b[0] - a[0]) * f) * SCALE + ox, (a[1] + (b[1] - a[1]) * f) * SCALE + oy] as const;
+    };
+
+    const mark = (x: number, y: number) => {
+      if (MARK === 'dash') {
+        ctx.moveTo(x, y - dashH / 2);
+        ctx.lineTo(x, y + dashH / 2);
+        return;
+      }
+      // senkrechtes Wort, so hoch wie der Strich im Vorbild, von unten nach oben zu lesen
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText(WORD, 0, 0);
+      ctx.restore();
     };
 
     const draw = (now: number) => {
-      ctx.clearRect(0, 0, w, h);
-      ctx.font = `${CFG.size}px ${font}`;
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.lineWidth = lineW;
+      ctx.lineCap = 'butt';
+      // Schriftgroesse so, dass das Wort genau die Strichlaenge hat
+      ctx.font = `${font.includes('Mono') ? 600 : 500} 10px ${font}`;
+      const size = (10 * dashH) / Math.max(1, ctx.measureText(WORD).width);
+      ctx.font = `${font.includes('Mono') ? 600 : 500} ${size}px ${font}`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      flashes = flashes.filter((f) => now - f.birth < f.life);
-      while (flashes.length < CFG.flashes) spawn(now);
-      const n = slots();
-      const offset = phase % CFG.gap;
-      lanes.forEach((ln, li) => {
-        for (let s = 0; s < n; s++) {
-          // von unten nach oben: y sinkt mit der Zeit
-          const y = h + CFG.gap - s * CFG.gap - ((offset + ln.lag) % CFG.gap);
-          const x = ln.x + ln.amp * Math.sin(y * ln.k + ln.phi);
-          const f = flashes.find((q) => q.lane === li && q.slot === s);
-          if (f) {
-            const t = (now - f.birth) / f.life;
-            ctx.globalAlpha = Math.sin(Math.PI * t);
-            ctx.fillStyle = brand;
-          } else {
-            ctx.globalAlpha = CFG.dim;
-            ctx.fillStyle = ink;
-          }
-          ctx.fillText(WORD, x, y);
+      const half = dashH / 2;
+      const visible = (x: number, y: number) => x >= -half - 4 && x <= cw + half + 4 && y >= -half - 4 && y <= ch + half + 4;
+
+      if (!seeded) {
+        for (let i = 0; i < CFG.bn; i++) spawn(now);
+        seeded = true;
+      }
+      blinks = blinks.filter((b) => now - b.birth < b.life);
+      while (blinks.length < CFG.bn && spawn(now));
+      const blue = new Set(blinks.map((b) => 1000 * b.ci + b.slot));
+
+      ctx.globalAlpha = CFG.dim;
+      ctx.strokeStyle = ink;
+      ctx.fillStyle = ink;
+      ctx.beginPath();
+      for (let c = 0; c < count; c++) {
+        const curve = heroCurves[c];
+        if (curve.length < 2) continue;
+        for (let s = 0; s < curve.length; s++) {
+          const p = pointAt(curve, s);
+          if (!p || !visible(p[0], p[1]) || blue.has(1000 * c + s)) continue;
+          mark(p[0], p[1]);
         }
-      });
+      }
+      if (MARK === 'dash') ctx.stroke();
+
       ctx.globalAlpha = 1;
+      ctx.strokeStyle = brand;
+      ctx.fillStyle = brand;
+      ctx.beginPath();
+      for (const b of blinks) {
+        const p = pointAt(heroCurves[b.ci], b.slot);
+        if (!p || !visible(p[0], p[1])) continue;
+        mark(p[0], p[1]);
+      }
+      if (MARK === 'dash') ctx.stroke();
     };
 
     let raf = 0;
     let last = performance.now();
-    let visible = true;
+    let inView = true;
     const frame = (t: number) => {
       const dt = Math.min((t - last) / 1000, 0.05);
       last = t;
-      phase += CFG.speed * dt;
+      phase += CFG.omega * dt;
       draw(t / 1000);
-      raf = visible ? requestAnimationFrame(frame) : 0;
+      raf = inView ? requestAnimationFrame(frame) : 0;
     };
 
     const ro = new ResizeObserver(() => {
@@ -123,8 +178,8 @@ export function WordFlow({ className = '' }: { className?: string }) {
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-color'] });
 
     const io = new IntersectionObserver(([e]) => {
-      visible = e.isIntersecting;
-      if (visible && !raf && !reduced) {
+      inView = e.isIntersecting;
+      if (inView && !raf && !reduced) {
         last = performance.now();
         raf = requestAnimationFrame(frame);
       }
@@ -147,7 +202,7 @@ export function WordFlow({ className = '' }: { className?: string }) {
 
 /**
  * Fuellt im Kennzahlen-Raster (.metrics) die leeren Zellen hinter der letzten Kennzahl.
- * Steht die Flaeche allein in einer neuen Zeile (Raster genau voll), wird sie ausgeblendet.
+ * Ist das Raster genau voll, gibt es keine leere Zelle und die Flaeche bleibt aus.
  */
 export function MetricFlow() {
   const ref = useRef<HTMLDivElement>(null);
@@ -160,7 +215,6 @@ export function MetricFlow() {
       const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length;
       const items = grid.querySelectorAll(':scope > .metric').length;
       const start = (items % cols) + 1;
-      // Raster genau voll (start = 1): keine leere Zelle, Flaeche ausblenden
       el.hidden = cols < 2 || start === 1;
       el.style.gridColumn = `${start} / -1`;
     };
