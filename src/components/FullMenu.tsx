@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowRight, Plus, X } from 'lucide-react';
-import { MENU_SECTIONS } from '../content/menu';
+import { ArrowRight, Plus, Search, X } from 'lucide-react';
+import { ALL_ITEMS, MENU_SECTIONS } from '../content/menu';
+import { buildIndex, searchSite } from '../content/search';
 import type { Lang, Texts } from '../content/ui';
 import { CONTACT_MAIL, MENU_MEMORY_MS } from '../config';
 
@@ -13,6 +14,8 @@ const LANGS: Lang[] = ['de', 'tr'];
  * als grosse Zeilen, anfangs alle zu. Ein Klick klappt die Seiten des Bereichs darunter auf
  * (immer nur einer offen). Wer eine Seite gewaehlt hat und innerhalb von MENU_MEMORY_MS wieder
  * oeffnet, findet deren Bereich offen und die Seite im Blick; spaeter sind wieder alle zu. Farben nur ueber Themenvariablen, Masse aus tokens.css.
+ * Suche (wie im alten Seitenmenue): durchsucht alle Texte der Website (content/search.ts); ab 2 Zeichen
+ * ersetzen die Treffer (Seite + Ausschnitt) die Bereichsliste.
  */
 export function FullMenu({
   open,
@@ -32,6 +35,10 @@ export function FullMenu({
   setLang: (l: Lang) => void;
 }) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
+  const index = useMemo(() => buildIndex(t), [t]);
+  const hits = useMemo(() => searchSite(index, query), [index, query]);
+  const searching = query.trim().length >= 2;
   // Zeitpunkt der letzten Wahl im Menue: kurz danach beim Oeffnen dort weitermachen
   const chosenAt = useRef(0);
   const panel = useRef<HTMLElement>(null);
@@ -39,6 +46,7 @@ export function FullMenu({
 
   useEffect(() => {
     if (!open) return;
+    setQuery('');
     setOpenGroup(Date.now() - chosenAt.current < MENU_MEMORY_MS ? activeGroup : null);
     const scroll = window.setTimeout(() => {
       panel.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'center' });
@@ -95,7 +103,57 @@ export function FullMenu({
             </button>
           </div>
 
-          <ul className="fm-list">
+          {/* Suche: duenne Linie mit Lupe, Treffer darunter statt der Bereiche */}
+          <label className="fm-search">
+            <Search aria-hidden />
+            <input
+              type="search"
+              placeholder={t.ui.search}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              aria-label={t.ui.search}
+            />
+          </label>
+
+          {searching && (
+            <ul className="fm-list fm-hits" aria-label={t.ui.foundOnSite}>
+              {hits.length === 0 && <li className="fm-empty">{t.ui.noResults}</li>}
+              {hits.map((h, i) => {
+                const item = ALL_ITEMS.find((it) => it.id === h.id)!;
+                const [groupName] = t.ui.groups[item.group].title.split(' · ');
+                return (
+                  <li key={h.id}>
+                    <button
+                      type="button"
+                      className="fm-row fm-page-row fm-hit"
+                      aria-current={h.id === active ? 'page' : undefined}
+                      onClick={() => {
+                        chosenAt.current = Date.now();
+                        onSelect(h.id);
+                        onClose();
+                      }}
+                    >
+                      <span className="fm-num">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="fm-label">
+                        {t.menu[h.id]}
+                        <span className="fm-sub micro">
+                          {groupName} · {h.count}
+                        </span>
+                        <span className="fm-snippet">
+                          {h.snippet[0]}
+                          <mark>{h.snippet[1]}</mark>
+                          {h.snippet[2]}
+                        </span>
+                      </span>
+                      <ArrowRight className="fm-arrow" aria-hidden />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+
+          <ul className="fm-list" hidden={searching}>
             {MENU_SECTIONS.map((sec, si) => {
               const isOpen = openGroup === sec.group;
               const [name, sub] = t.ui.groups[sec.group].title.split(' · ');

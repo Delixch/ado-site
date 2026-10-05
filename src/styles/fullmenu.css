@@ -79,9 +79,88 @@
   list-style: none;
 }
 
+/* Suche (wie frueher im Seitenmenue): kein Kasten, nur Lupe + duenne Linie darunter */
+.fm-search {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+  padding: var(--sp-2) 0;
+  border-bottom: var(--hair) solid var(--line);
+  color: var(--brand-text);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.fm-search:focus-within {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.fm-search svg {
+  flex-shrink: 0;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  stroke-width: var(--stroke);
+}
+
+.fm-search input {
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: var(--fs-ui);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-menu);
+  color: var(--ink);
+}
+
+.fm-search input::placeholder {
+  color: var(--brand-text);
+}
+
+.fm-search input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
 .fm-list {
   margin-top: var(--sp-8);
   border-top: var(--hair) solid var(--line);
+}
+
+/* Treffer der Suche: Seite, Bereich + Anzahl, Ausschnitt mit markiertem Suchwort */
+.fm-hits {
+  margin-top: var(--sp-4);
+}
+
+.fm-list[hidden] {
+  display: none;
+}
+
+.fm-hit .fm-label {
+  display: block;
+}
+
+.fm-snippet {
+  display: block;
+  margin-top: var(--sp-2);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-snug);
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.fm-snippet mark {
+  background: color-mix(in srgb, var(--brand) 22%, transparent);
+  color: var(--ink);
+  border-radius: var(--hair);
+}
+
+.fm-empty {
+  padding: var(--fm-row-pad) 0;
+  font-size: var(--fs-ui);
+  color: var(--brand-text);
 }
 
 /* Seiten eines Bereichs: kleiner, eingerueckt unter der Bereichszeile */

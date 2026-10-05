@@ -35,7 +35,29 @@
 
 .sb-head.is-collapsed {
   justify-content: center;
-  padding: 0 4px;
+  padding: 0 2px;
+}
+
+/* Eingeklappt: schmaler Streifen (52px, --sb-rail-w), Avatar kleiner, Suche mittig */
+.sb[data-expanded="false"] .sb-profile {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 2px;
+  justify-content: center;
+}
+
+.sb[data-expanded="false"] .sb-avatar {
+  width: 34px;
+  height: 34px;
+}
+
+.sb[data-expanded="false"] .sb-search-wrap {
+  padding: 0;
+}
+
+.sb[data-expanded="false"] .sb-search {
+  justify-content: center;
+  padding: 6px 0;
 }
 
 .sb-brand {
@@ -408,7 +430,7 @@
 
 .sb[data-expanded="false"] .sb-item {
   justify-content: center;
-  padding: 10px;
+  padding: 7px 4px;
 }
 
 .sb-item:hover {

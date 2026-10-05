@@ -313,7 +313,7 @@
   --runner-size: 9px;
   --runner-dur: 9s;
   --runner-dur-top: 11s;
-  --sb-rail-w: 64px;
+  --sb-rail-w: 52px;
   /* Zeilenhoehe fuer Gruppentitel im Handy-Menue und Akkordeons auf Seiten */
   --row-h: 46px;
   --sb-pad-top: 6px;
@@ -321,7 +321,7 @@
   /* Breite des offenen Menues (App.tsx expandedWidth) */
   --sb-w: 275px;
   --sb-ring-w: 1.5px;
-  --sb-ring-pad: 5px;
+  --sb-ring-pad: 4px;
   --sb-ring-glow: 8px;
   --sb-ring-glow-on: 14px;
   --sb-tree-x: 6px;
