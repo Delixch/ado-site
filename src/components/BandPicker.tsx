@@ -13,7 +13,7 @@ const SHAPE_NAMES: Record<string, string> = {
   '5': 'Faden',
   '6': 'schraeger Faden',
   '7': 'duenne Schlange',
-  '8': 'Doppelschlange',
+  '8': 'Doppelschlange (4 Straenge)',
   '9': 'drei Linien',
   '10': 'Schraffur',
   '11': 'Zickzack',
