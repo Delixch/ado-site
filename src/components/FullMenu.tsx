@@ -66,7 +66,7 @@ export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean
         >
           <div className="fm-head">
             <span className="fm-brand">
-              EKADO
+              Ekado WorkSuite
               <span className="tb-caret" aria-hidden>
                 █
               </span>

@@ -42,6 +42,11 @@
   color: var(--ink);
 }
 
+/* Blinkender Block hinter "Ekado WorkSuite" (Animation: topbar.css .tb-caret) */
+.fm-brand .tb-caret {
+  margin-left: var(--sp-1);
+}
+
 .fm-close {
   display: inline-flex;
   align-items: center;
