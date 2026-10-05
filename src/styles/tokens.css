@@ -346,6 +346,9 @@
   --robot-size: 156px;
   --robot-size-s: 84px;
   --robot-chat-w: 280px;
+  /* Blase/Fragefeld seitlich: Hoehe der Oberkante am Roboter (Kopf / Koerper) */
+  --robot-side-top: 12%;
+  --robot-side-chat: 52%;
   --robot-bubble-w: 280px;
   /* Umlaufende Lichtlinie am Menuerand */
   --sb-orbit-w: 1.5px;

@@ -1,5 +1,5 @@
 /* KI-Roboter (aus EKADO Design) im Seitenkopf, vor den Layout-Plaenen.
-   Sprechblase und Fragefeld klappen nach unten ueber die Seite auf. */
+   Sprechblase und Fragefeld oeffnen seitlich links neben dem Roboter, eckig wie die Knoepfe der Seite. */
 
 .mast {
   grid-template-columns: auto minmax(0, 1fr) auto auto;
@@ -27,12 +27,12 @@
 
 .ado-robot-bubble {
   position: absolute;
-  top: calc(100% + var(--sp-2));
-  right: 0;
+  top: var(--robot-side-top);
+  right: calc(100% + var(--sp-3));
   width: max-content;
   max-width: min(var(--robot-bubble-w), calc(100vw - 2 * var(--sp-4)));
   padding: var(--sp-2) var(--sp-3);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   background: var(--surface-solid);
   border: 1px solid var(--brand);
   color: var(--ink);
@@ -43,7 +43,7 @@
   box-shadow: var(--shadow-md);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(calc(var(--sp-1) * -1)) scale(0.97);
+  transform: translateX(var(--sp-2)) scale(0.97);
   transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
   z-index: 2;
 }
@@ -55,23 +55,24 @@
 
 .ado-robot-chat {
   position: absolute;
-  top: calc(100% + var(--sp-2));
-  right: 0;
+  top: var(--robot-side-chat);
+  right: calc(100% + var(--sp-3));
   width: min(var(--robot-chat-w), calc(100vw - 2 * var(--sp-4)));
   display: flex;
   align-items: center;
   gap: var(--sp-1);
   padding: var(--sp-1) var(--sp-1) var(--sp-1) var(--sp-4);
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   background: var(--surface-solid);
   border: 1px solid var(--line-strong);
   box-shadow: var(--shadow-md);
   z-index: 3;
 }
 
-/* Blase steht ueber dem Fragefeld, wenn beide offen sind */
+/* Beide offen: Blase ueber dem Fragefeld, beide links neben dem Roboter */
 .ado-robot-bubble:has(~ .ado-robot-chat) {
-  top: calc(100% + var(--sp-12));
+  top: auto;
+  bottom: calc(100% - var(--robot-side-chat) + var(--sp-2));
 }
 
 .ado-robot-chat:focus-within {
@@ -100,7 +101,7 @@
   place-items: center;
   width: var(--sp-8);
   height: var(--sp-8);
-  border-radius: 50%;
+  border-radius: 0;
   border: 0;
   cursor: pointer;
   font-family: var(--font-sans);
@@ -167,12 +168,13 @@
     pointer-events: none;
   }
 
-  /* Blase und Fragefeld oeffnen nach oben, rechtsbuendig */
+  /* Blase und Fragefeld links neben dem kleinen Roboter, unten buendig */
   .ado-robot-bubble,
   .ado-robot-chat {
     top: auto;
-    bottom: calc(100% + var(--sp-2));
-    right: 0;
+    bottom: var(--sp-2);
+    right: calc(100% + var(--sp-1));
+    max-width: calc(100vw - var(--robot-size-s) - 2 * var(--sp-2));
     pointer-events: auto;
   }
 
@@ -182,6 +184,6 @@
 
   .ado-robot-bubble:has(~ .ado-robot-chat) {
     top: auto;
-    bottom: calc(100% + var(--sp-12));
+    bottom: calc(var(--sp-2) + var(--sp-12));
   }
 }
