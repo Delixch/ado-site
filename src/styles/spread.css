@@ -345,6 +345,17 @@
   backdrop-filter: var(--blk-backdrop, none);
 }
 
+/* Glas: dunkle Bloecke lassen das Lichtband weich durch, jede Kachel mit Lichtkante oben
+   und leichtem Schimmer von links oben (Werte je Thema in colors/<thema>.css) */
+.blk[data-tone="ink"] {
+  background-color: var(--ink-block-glass, var(--ink-block));
+}
+
+.blk:not([data-tone="media"]) {
+  background-image: linear-gradient(165deg, var(--blk-shine, transparent), transparent 45%);
+  box-shadow: inset 0 var(--hair) 0 var(--blk-edge, transparent);
+}
+
 /*
  * NOT / NOTIZ (2026-10-03): HEADER'I BURADA YOK ETTİK — das Lichtband deckt die Kopfzeile absichtlich ab.
  * Kundenwunsch: das Band liegt nur ueber der Kopfzeile, sonst ganz hinten.
