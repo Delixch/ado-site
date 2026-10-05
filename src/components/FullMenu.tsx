@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, Plus, X } from 'lucide-react';
 import { MENU_SECTIONS } from '../content/menu';
@@ -8,23 +8,34 @@ import type { Texts } from '../content/ui';
  * Menue-Tafel ueber die linke Bildschirmhaelfte (config.ts MENU_STYLE = 'full'), rechts abgedunkelt.
  * Die drei Bereiche (Design, Firma, InstaOto)
  * als grosse Zeilen, anfangs alle zu. Ein Klick klappt die Seiten des Bereichs darunter auf
- * (immer nur einer offen). Farben nur ueber Themenvariablen, Masse aus tokens.css.
+ * (immer nur einer offen). Wer schon eine Seite gewaehlt hat, findet beim naechsten Oeffnen
+ * deren Bereich offen und die Seite im Blick. Farben nur ueber Themenvariablen, Masse aus tokens.css.
  */
 export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean; onClose: () => void; active: string; onSelect: (id: string) => void; t: Texts }) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  // Einmal ueber das Menue gewaehlt? Dann beim Oeffnen dort weitermachen
+  const chosen = useRef(false);
+  const panel = useRef<HTMLElement>(null);
+  const activeGroup = MENU_SECTIONS.find((sec) => sec.items.some((it) => it.id === active))?.group ?? null;
 
   useEffect(() => {
     if (!open) return;
-    setOpenGroup(null);
+    setOpenGroup(chosen.current ? activeGroup : null);
+    const scroll = window.setTimeout(() => {
+      panel.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'center' });
+    }, 450);
     const key = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     const html = document.documentElement;
     const prev = html.style.overflow;
     html.style.overflow = 'hidden';
     window.addEventListener('keydown', key);
     return () => {
+      window.clearTimeout(scroll);
       html.style.overflow = prev;
       window.removeEventListener('keydown', key);
     };
+    // nur beim Oeffnen, nicht bei jedem Seitenwechsel
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, onClose]);
 
   return (
@@ -45,6 +56,7 @@ export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean
       {open && (
         <motion.nav
           key="menu"
+          ref={panel}
           className="fm"
           aria-label={t.ui.openMenu}
           initial={{ x: '-100%' }}
@@ -107,6 +119,7 @@ export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean
                               className="fm-row fm-page-row"
                               aria-current={it.id === active ? 'page' : undefined}
                               onClick={() => {
+                                chosen.current = true;
                                 onSelect(it.id);
                                 onClose();
                               }}
