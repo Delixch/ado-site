@@ -68,6 +68,12 @@ export const RAIL_STYLE = '1';
  */
 export const MENU_STYLE: 'full' | 'sidebar' = 'full';
 
+/**
+ * Menue merkt sich den zuletzt gewaehlten Bereich so lange (ms): wer innerhalb dieser Zeit wieder
+ * aufmacht, findet seinen Bereich offen; danach sind beim Oeffnen wieder alle Bereiche zu.
+ */
+export const MENU_MEMORY_MS = 10_000;
+
 /** Breite des eingeklappten Menues in px (gleich wie --sb-rail-w in tokens.css). */
 export const RAIL_WIDTH = 64;
 

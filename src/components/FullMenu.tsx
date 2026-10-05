@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, Plus, X } from 'lucide-react';
 import { MENU_SECTIONS } from '../content/menu';
 import type { Lang, Texts } from '../content/ui';
-import { CONTACT_MAIL } from '../config';
+import { CONTACT_MAIL, MENU_MEMORY_MS } from '../config';
 
 const LANGS: Lang[] = ['de', 'tr'];
 
@@ -11,8 +11,8 @@ const LANGS: Lang[] = ['de', 'tr'];
  * Menue-Tafel ueber die linke Bildschirmhaelfte (config.ts MENU_STYLE = 'full'), rechts abgedunkelt.
  * Die drei Bereiche (Design, Firma, InstaOto)
  * als grosse Zeilen, anfangs alle zu. Ein Klick klappt die Seiten des Bereichs darunter auf
- * (immer nur einer offen). Wer schon eine Seite gewaehlt hat, findet beim naechsten Oeffnen
- * deren Bereich offen und die Seite im Blick. Farben nur ueber Themenvariablen, Masse aus tokens.css.
+ * (immer nur einer offen). Wer eine Seite gewaehlt hat und innerhalb von MENU_MEMORY_MS wieder
+ * oeffnet, findet deren Bereich offen und die Seite im Blick; spaeter sind wieder alle zu. Farben nur ueber Themenvariablen, Masse aus tokens.css.
  */
 export function FullMenu({
   open,
@@ -32,14 +32,14 @@ export function FullMenu({
   setLang: (l: Lang) => void;
 }) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
-  // Einmal ueber das Menue gewaehlt? Dann beim Oeffnen dort weitermachen
-  const chosen = useRef(false);
+  // Zeitpunkt der letzten Wahl im Menue: kurz danach beim Oeffnen dort weitermachen
+  const chosenAt = useRef(0);
   const panel = useRef<HTMLElement>(null);
   const activeGroup = MENU_SECTIONS.find((sec) => sec.items.some((it) => it.id === active))?.group ?? null;
 
   useEffect(() => {
     if (!open) return;
-    setOpenGroup(chosen.current ? activeGroup : null);
+    setOpenGroup(Date.now() - chosenAt.current < MENU_MEMORY_MS ? activeGroup : null);
     const scroll = window.setTimeout(() => {
       panel.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'center' });
     }, 450);
@@ -138,7 +138,7 @@ export function FullMenu({
                               className="fm-row fm-page-row"
                               aria-current={it.id === active ? 'page' : undefined}
                               onClick={() => {
-                                chosen.current = true;
+                                chosenAt.current = Date.now();
                                 onSelect(it.id);
                                 onClose();
                               }}
