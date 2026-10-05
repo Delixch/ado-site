@@ -105,8 +105,6 @@
   overflow-y: auto;
   padding: var(--sp-8) var(--sp-6) var(--sp-10);
   overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) transparent;
 }
 
 .legal-body > * {

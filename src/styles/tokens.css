@@ -183,6 +183,9 @@
 
   /* Spread ızgarası */
   --hair: 1px;
+  /* Bildlaufleiste (alle Browser): Breite des Balkens, Rand um den Griff */
+  --scrollbar-w: 10px;
+  --scrollbar-pad: 2px;
   --spread-row: clamp(110px, 10vw, 160px);
   --spread-pad: clamp(16px, 1.5vw, 22px);
   --spread-gap: 0px;

@@ -22,6 +22,35 @@ html {
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* Bildlaufleisten in Themenfarbe: Firefox, Chrome/Edge ab 121 (vererbt sich auf alle Scrollflaechen) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand) transparent;
+}
+
+/* Safari und aeltere Chrome/Edge: Griff in Themenfarbe, Rinne durchsichtig */
+::-webkit-scrollbar {
+  width: var(--scrollbar-w);
+  height: var(--scrollbar-w);
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--brand);
+  border-radius: var(--radius-pill);
+  border: var(--scrollbar-pad) solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--brand-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 body {
