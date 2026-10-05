@@ -76,7 +76,8 @@ export function AdoRobot({
   const ctrlRef = useRef<RobotControl | null>(null);
   const openChatRef = useRef<() => void>(() => {});
   const historyRef = useRef<ChatTurn[]>([]);
-  const [chatOpen, setChatOpen] = useState(false);
+  // Masaüstünde soru kutusu baştan açık (odak almadan), telefon/tablette kapalı - robota dokununca açılır
+  const [chatOpen, setChatOpen] = useState(() => typeof window !== 'undefined' && window.matchMedia('(min-width: 1180px)').matches);
   const [draft, setDraft] = useState('');
   const [pending, setPending] = useState(false);
 
