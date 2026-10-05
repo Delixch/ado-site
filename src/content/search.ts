@@ -45,25 +45,54 @@ export function buildIndex(t: Texts) {
 
 const RADIUS = 38;
 
-/** Treffer je Ansicht mit kurzem Ausschnitt um die erste Fundstelle. */
+/**
+ * Ein Zeichen auf seine Grundform bringen, Laenge bleibt 1:1 (Positionen im Original bleiben gueltig):
+ * Gross -> klein, Akzente weg (ü->u, ş->s, İ/ı->i), Bindestrich -> Leerzeichen. So findet "zurich" auch "Zürich",
+ * "iletisim" auch "İletişim" und "web app" auch "Web-App".
+ */
+const foldChar = (c: string): string => {
+  if (c === 'İ' || c === 'ı') return 'i';
+  if (c === 'ß') return 's';
+  if (c === '-' || c === '–' || c === '/') return ' ';
+  const base = c.normalize('NFD').replace(/[̀-ͯ]/g, '');
+  return (base.length === 1 ? base : c).toLocaleLowerCase('en');
+};
+const fold = (s: string): string => Array.from(s, foldChar).join('');
+
+const isWordChar = (c: string | undefined) => !!c && /[\p{L}\p{N}]/u.test(c);
+
+/**
+ * Treffer je Ansicht mit kurzem Ausschnitt um die erste Fundstelle.
+ * Mehrere Suchwoerter: alle muessen im selben Text vorkommen. Treffer am Wortanfang zaehlen doppelt,
+ * damit "ai" zuerst die KI-Seiten bringt und nicht "mail"/"detail".
+ */
 export function searchSite(index: ReturnType<typeof buildIndex>, query: string): SearchHit[] {
-  const q = query.trim().toLocaleLowerCase();
-  if (q.length < 2) return [];
-  const hits: SearchHit[] = [];
+  const words = fold(query).trim().split(/\s+/).filter((w) => w.length >= 2);
+  if (words.length === 0) return [];
+  const [first, ...rest] = words;
+  const hits: (SearchHit & { score: number })[] = [];
   for (const { id, texts } of index) {
-    let first: SearchHit['snippet'] | null = null;
+    let snippet: SearchHit['snippet'] | null = null;
     let count = 0;
+    let score = 0;
     for (const text of texts) {
-      const at = text.toLocaleLowerCase().indexOf(q);
-      if (at < 0) continue;
+      if (text.length !== fold(text).length) continue;
+      const f = fold(text);
+      const at = f.indexOf(first);
+      if (at < 0 || !rest.every((w) => f.includes(w))) continue;
       count += 1;
-      if (!first) {
+      score += isWordChar(f[at - 1]) ? 1 : 2;
+      if (!snippet) {
         const start = Math.max(0, at - RADIUS);
-        const end = Math.min(text.length, at + q.length + RADIUS);
-        first = [(start > 0 ? '…' : '') + text.slice(start, at), text.slice(at, at + q.length), text.slice(at + q.length, end) + (end < text.length ? '…' : '')];
+        const end = Math.min(text.length, at + first.length + RADIUS);
+        snippet = [
+          (start > 0 ? '…' : '') + text.slice(start, at),
+          text.slice(at, at + first.length),
+          text.slice(at + first.length, end) + (end < text.length ? '…' : ''),
+        ];
       }
     }
-    if (first) hits.push({ id, snippet: first, count });
+    if (snippet) hits.push({ id, snippet, count, score });
   }
-  return hits.sort((a, b) => b.count - a.count);
+  return hits.sort((a, b) => b.score - a.score || b.count - a.count).map(({ id, snippet, count }) => ({ id, snippet, count }));
 }
