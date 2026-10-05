@@ -46,6 +46,7 @@ export const LAYOUT_INTERVAL = 9000;
  * 4 = Ringe und Punkte
  * duenne Formen (2026-10-06): 5 Faden · 6 schraeger Faden · 7 duenne Schlange · 8 Doppelschlange
  * · 9 drei Linien · 10 Schraffur · 11 Zickzack · 12 Punktlinie
+ * · 13 vier Linien · 14 drei schraege Linien · 15 vier schraege Linien · 16 drei Schlangen · 17 vier Schlangen
  */
 export const BAND_SHAPE = '3';
 

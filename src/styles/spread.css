@@ -297,7 +297,8 @@
  * Form ueber data-band an .main (config.ts BAND_SHAPE, Adresse ?band=N):
  * 1 gerade · 2 schraeg ("2 numara") · 3 Schlange · 4 Ringe ·
  * duenn (2026-10-06, "ince ince"): 5 Faden · 6 schraeger Faden · 7 duenne Schlange · 8 Doppelschlange (gespiegelt)
- * · 9 drei Linien · 10 Schraffur (schraege Striche) · 11 Zickzack · 12 Punktlinie.
+ * · 9 drei Linien · 10 Schraffur (schraege Striche) · 11 Zickzack · 12 Punktlinie
+ * · 13 vier Linien · 14 drei schraege Linien · 15 vier schraege Linien · 16 drei Schlangen · 17 vier Schlangen.
  * Aeusseres Element traegt das Leuchten (drop-shadow), inneres die Form (Maske) - sonst schneidet die Maske das Leuchten ab.
  */
 .band {
@@ -348,7 +349,9 @@
   --band-box: var(--thin-w);
 }
 
-[data-band="6"] .band i {
+[data-band="6"] .band i,
+[data-band="14"] .band i,
+[data-band="15"] .band i {
   transform: skewX(var(--band-tilt));
   transform-origin: top center;
 }
@@ -358,7 +361,12 @@
 [data-band="9"],
 [data-band="10"],
 [data-band="11"],
-[data-band="12"] {
+[data-band="12"],
+[data-band="13"],
+[data-band="14"],
+[data-band="15"],
+[data-band="16"],
+[data-band="17"] {
   --band-box: var(--snake-w);
 }
 
@@ -367,7 +375,12 @@
 [data-band="9"] .band i,
 [data-band="10"] .band i,
 [data-band="11"] .band i,
-[data-band="12"] .band i {
+[data-band="12"] .band i,
+[data-band="13"] .band i,
+[data-band="14"] .band i,
+[data-band="15"] .band i,
+[data-band="16"] .band i,
+[data-band="17"] .band i {
   -webkit-mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
   mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
 }
@@ -394,6 +407,23 @@
 
 [data-band="12"] {
   --band-mask: var(--dots);
+}
+
+[data-band="13"],
+[data-band="15"] {
+  --band-mask: var(--lines4);
+}
+
+[data-band="14"] {
+  --band-mask: var(--lines3);
+}
+
+[data-band="16"] {
+  --band-mask: var(--snakes3);
+}
+
+[data-band="17"] {
+  --band-mask: var(--snakes4);
 }
 
 .blk {
@@ -441,7 +471,9 @@
 }
 
 [data-band="2"] .tb::after,
-[data-band="6"] .tb::after {
+[data-band="6"] .tb::after,
+[data-band="14"] .tb::after,
+[data-band="15"] .tb::after {
   transform: translateX(-50%) skewX(var(--band-tilt));
   transform-origin: top center;
 }
@@ -453,7 +485,12 @@
 [data-band="9"] .tb::after,
 [data-band="10"] .tb::after,
 [data-band="11"] .tb::after,
-[data-band="12"] .tb::after {
+[data-band="12"] .tb::after,
+[data-band="13"] .tb::after,
+[data-band="14"] .tb::after,
+[data-band="15"] .tb::after,
+[data-band="16"] .tb::after,
+[data-band="17"] .tb::after {
   -webkit-mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
   mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
 }

@@ -2,8 +2,8 @@
  * Vergleichs-Leiste (voruebergehend): Lichtband-Form und Rand-Effekt durchschalten.
  * Wahl wird gemerkt (localStorage). Nichts davon wird geloescht - alle Varianten bleiben im Code.
  */
-const SHAPES = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-const SHAPE_NAMES = ['gerade', 'schraeg', 'Schlange', 'Ringe', 'Faden', 'schraeger Faden', 'duenne Schlange', 'Doppelschlange', 'drei Linien', 'Schraffur', 'Zickzack', 'Punktlinie'];
+const SHAPES = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
+const SHAPE_NAMES = ['gerade', 'schraeg', 'Schlange', 'Ringe', 'Faden', 'schraeger Faden', 'duenne Schlange', 'Doppelschlange', 'drei Linien', 'Schraffur', 'Zickzack', 'Punktlinie', 'vier Linien', 'drei schraege Linien', 'vier schraege Linien', 'drei Schlangen', 'vier Schlangen'];
 const FX = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 const FX_NAMES = ['aus', 'Licht', 'Partikel', 'Punkte', 'EKADO', 'Herzschlag', 'Streifen', 'Funken', 'Schimmer', 'Sonar', 'Datenregen', 'EKADO-Regen'];
 

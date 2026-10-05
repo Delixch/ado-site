@@ -77,9 +77,9 @@ interface Ell {
 /** Eine Form: waagrechte Spanne je Hoehe (Linienformen) oder Ellipsen (Ringe). */
 /* Duenne Formen -> Grundgeometrie fuer die Randeffekte: Faden wie gerade/schraeg (Breite kommt vom Band selbst),
    duenne und doppelte Schlange wie Schlange (nur schmaler Strich), Linien/Schraffur/Zickzack/Punkte wie gerade. */
-const KIND: Record<string, string> = { '5': '1', '6': '2', '7': '3', '8': '3', '9': '1', '10': '1', '11': '1', '12': '1' };
+const KIND: Record<string, string> = { '5': '1', '6': '2', '7': '3', '8': '3', '9': '1', '10': '1', '11': '1', '12': '1', '13': '1', '14': '2', '15': '2', '16': '3', '17': '3' };
 /* halbe Strichbreite im viewBox: Schlange 92/2, duenne Schlangen 8/2 */
-const HALF: Record<string, number> = { '7': 4, '8': 4 };
+const HALF: Record<string, number> = { '7': 4, '8': 4, '16': 4, '17': 4 };
 
 function makeShape(shapeIn: string, g: Geo, y0: number, H: number) {
   const shape = KIND[shapeIn] ?? shapeIn;
@@ -187,6 +187,11 @@ const MASK: Record<string, string> = {
   '10': 'var(--hatch)',
   '11': 'var(--zigzag)',
   '12': 'var(--dots)',
+  '13': 'var(--lines4)',
+  '14': 'var(--lines3)',
+  '15': 'var(--lines4)',
+  '16': 'var(--snakes3)',
+  '17': 'var(--snakes4)',
 };
 
 export function BandFx({ fx, shape }: { fx: string; shape: string }) {

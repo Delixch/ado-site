@@ -109,7 +109,7 @@ export default function App() {
   }, [legal]);
   // Lichtband: Adresse ?band= / ?fx= > gemerkte Wahl > config.ts
   const query = new URLSearchParams(window.location.search);
-  const [band, setBand] = useStored<string>('ado_band', query.get('band') ?? BAND_SHAPE, (v) => !!v && /^([1-9]|1[0-2])$/.test(v));
+  const [band, setBand] = useStored<string>('ado_band', query.get('band') ?? BAND_SHAPE, (v) => !!v && /^([1-9]|1[0-7])$/.test(v));
   const [bandFx, setBandFx] = useStored<string>('ado_fx', query.get('fx') ?? BAND_FX, (v) => !!v && /^(1[01]|[0-9])$/.test(v));
 
   const t = useMemo(() => texts(lang), [lang]);
