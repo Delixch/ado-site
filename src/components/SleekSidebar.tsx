@@ -4,7 +4,7 @@ import { Building2, Camera, ChevronDown, ChevronLeft, ChevronRight, MessageCircl
 import { ALL_ITEMS, MENU_SECTIONS, type MenuItemDef } from '../content/menu';
 import { buildIndex, searchSite } from '../content/search';
 import type { Texts } from '../content/ui';
-import { getStoredAvatar, setStoredAvatar } from '../avatar';
+import { getStoredAvatar, LOGO_AVATAR, setStoredAvatar } from '../avatar';
 import { RAIL_STYLE, RAIL_WIDTH } from '../config';
 
 const railParam = new URLSearchParams(window.location.search).get('rail');
@@ -126,9 +126,9 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
           aria-label={t.ui.changePhoto}
         >
           {!imgLoadFailed ? (
-            <img src={avatarUrl} alt="" onError={() => setImgLoadFailed(true)} />
+            <img src={avatarUrl} alt="" className={avatarUrl === LOGO_AVATAR ? 'is-logo' : undefined} onError={() => setImgLoadFailed(true)} />
           ) : (
-            <span className="sb-avatar-initials">EKADO</span>
+            <span className="sb-avatar-initials">EK</span>
           )}
           <span className="sb-avatar-hover">
             <Camera />

@@ -1,10 +1,13 @@
-const KEY = 'ado_avatar_img';
+// Neuer Schluessel: frueher gemerkte Fotos (alter Standard koltuk.webp) zeigen nicht mehr
+const KEY = 'ekado_avatar_img';
+/** Standard oben im Menue: EK-Logo statt Foto */
+export const LOGO_AVATAR = '/media/brand/ek-logo.png';
 
 export const getStoredAvatar = (): string => {
   try {
-    return localStorage.getItem(KEY) || '/media/design/koltuk.webp';
+    return localStorage.getItem(KEY) || LOGO_AVATAR;
   } catch {
-    return '/media/design/koltuk.webp';
+    return LOGO_AVATAR;
   }
 };
 

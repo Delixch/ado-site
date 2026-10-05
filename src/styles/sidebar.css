@@ -162,6 +162,12 @@
   object-position: top;
 }
 
+/* EK-Logo (Standard): ganz zeigen, nicht beschneiden */
+.sb-avatar img.is-logo {
+  object-fit: contain;
+  object-position: center;
+}
+
 .sb-avatar-initials {
   display: grid;
   place-items: center;
