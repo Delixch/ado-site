@@ -219,7 +219,7 @@
     --accent-strong: var(--bar-bg);
     border-top-color: transparent;
     /* nur ein Streifen so hoch wie die Kopfzeile in Themenfarbe, darunter --foot-rest (je Thema in colors/*.css) */
-    background: linear-gradient(var(--brand) 0 var(--foot-band), var(--foot-rest) var(--foot-band));
+    background: linear-gradient(var(--bar-fill, var(--brand)) 0 var(--foot-band), var(--foot-rest) var(--foot-band));
     color: var(--bar-bg);
   }
 

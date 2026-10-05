@@ -137,6 +137,8 @@
 [data-color="orange"] {
   /* unter dem farbigen Fussstreifen (Tablet/Desktop): schwarz */
   --foot-rest: #000000;
+  /* Flaeche von Kopfzeile und Fussstreifen (Tablet/Desktop) */
+  --bar-fill: #FE5D23;
   /* Farbwahl-Liste */
   --cp-bg: #000000;
   --cp-ink: #FFFFFF;
