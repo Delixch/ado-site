@@ -5,7 +5,7 @@ import { ALL_ITEMS, MENU_SECTIONS, type MenuItemDef } from '../content/menu';
 import { buildIndex, searchSite } from '../content/search';
 import type { Texts } from '../content/ui';
 import { getStoredAvatar, LOGO_AVATAR, setStoredAvatar } from '../avatar';
-import { RAIL_STYLE, RAIL_WIDTH } from '../config';
+import { MENU_MEMORY_MS, RAIL_STYLE, RAIL_WIDTH } from '../config';
 
 const railParam = new URLSearchParams(window.location.search).get('rail');
 const RAIL = railParam && /^[1-3]$/.test(railParam) ? railParam : RAIL_STYLE;
@@ -38,10 +38,20 @@ export const SleekSidebar: React.FC<SleekSidebarProps> = ({
 }) => {
   const [openGroups, setOpenGroups] = useState<string[]>(openByDefault);
   const activeGroup = MENU_SECTIONS.find((sec) => sec.items.some((it) => it.id === activeTab))?.group;
+  // Erster Aufbau: alle Gruppen zu. Erst ein Seitenwechsel in eine andere Gruppe oeffnet deren Gruppe.
+  const lastGroup = useRef(activeGroup);
   useEffect(() => {
-    // Seitenwechsel in eine andere Gruppe: nur deren Gruppe bleibt offen (auch Portfolio schliesst).
+    if (activeGroup === lastGroup.current) return;
+    lastGroup.current = activeGroup;
     if (activeGroup) setOpenGroups([activeGroup]);
   }, [activeGroup]);
+  // Eingeklappt: eine offene Gruppe schliesst nach MENU_MEMORY_MS wieder von selbst
+  // (jede Wahl oder jedes Auf-/Zuklappen startet die Zeit neu)
+  useEffect(() => {
+    if (isExpanded || !openGroups.length) return;
+    const id = window.setTimeout(() => setOpenGroups([]), MENU_MEMORY_MS);
+    return () => window.clearTimeout(id);
+  }, [openGroups, activeTab, isExpanded]);
   const accordion = collapsible && isExpanded;
   // Immer nur eine Gruppe offen - eingeklappt und ausgeklappt derselbe Zustand.
   const toggleGroup = (g: string) => setOpenGroups((o) => (o.includes(g) ? [] : [g]));
