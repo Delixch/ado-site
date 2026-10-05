@@ -76,8 +76,8 @@ export function AdoRobot({
   const ctrlRef = useRef<RobotControl | null>(null);
   const openChatRef = useRef<() => void>(() => {});
   const historyRef = useRef<ChatTurn[]>([]);
-  // Masaüstünde soru kutusu baştan açık (odak almadan), telefon/tablette kapalı - robota dokununca açılır
-  const [chatOpen, setChatOpen] = useState(() => typeof window !== 'undefined' && window.matchMedia('(min-width: 1180px)').matches);
+  // Soru kutusu überall zu, erst ein Klick auf den Roboter oeffnet sie (Kunde 2026-10-06, vorher am Desktop offen)
+  const [chatOpen, setChatOpen] = useState(false);
   const [draft, setDraft] = useState('');
   const [pending, setPending] = useState(false);
 
