@@ -1,4 +1,4 @@
-import { Menu, Pause, Play, Shuffle } from 'lucide-react';
+import { Home, Menu, Pause, Play, Shuffle } from 'lucide-react';
 import type { Group } from '../content/menu';
 import type { Lang, Texts } from '../content/ui';
 import { ColorPicker } from './ColorPicker';
@@ -14,12 +14,14 @@ interface Props {
   auto: boolean;
   setAuto: (v: boolean) => void;
   onShuffle: () => void;
+  /** Ev-Knopf: zur Portfolio-Startseite */
+  onHome: () => void;
   onMenu?: () => void;
 }
 
 const LANGS: Lang[] = ['de', 'tr'];
 
-export function Topbar({ t, lang, setLang, color, setColor, title, group, auto, setAuto, onShuffle, onMenu }: Props) {
+export function Topbar({ t, lang, setLang, color, setColor, title, group, auto, setAuto, onShuffle, onHome, onMenu }: Props) {
   return (
     <header className="tb">
       <div className="tb-left">
@@ -43,6 +45,9 @@ export function Topbar({ t, lang, setLang, color, setColor, title, group, auto, 
       </div>
 
       <div className="tb-right">
+        <button type="button" className="tb-icon tb-home" onClick={onHome} title={t.ui.home} aria-label={t.ui.home}>
+          <Home />
+        </button>
         <button type="button" className="tb-icon tb-auto" onClick={() => setAuto(!auto)} aria-pressed={auto} title={t.ui.shuffleAuto} aria-label={t.ui.shuffleAuto}>
           {auto ? <Pause /> : <Play />}
         </button>

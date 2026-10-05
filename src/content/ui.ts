@@ -21,6 +21,7 @@ const shell = {
     color: 'Farbe',
     shuffleAuto: 'Karten bewegen sich',
     shuffleNow: 'Karten mischen',
+    home: 'Zur Startseite',
     soundOn: 'Ton einschalten',
     soundOff: 'Ton ausschalten',
     groups: {
@@ -95,6 +96,7 @@ const shell = {
     color: 'Renk',
     shuffleAuto: 'Kartlar hareket ediyor',
     shuffleNow: 'Kartları karıştır',
+    home: 'Ana sayfaya dön',
     soundOn: 'Sesi aç',
     soundOff: 'Sesi kapat',
     groups: {

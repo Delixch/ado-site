@@ -284,6 +284,7 @@ export default function App() {
               auto={auto}
               setAuto={(v) => setAutoPref(v ? 'on' : 'off')}
               onShuffle={() => setNonce((n) => n + 1)}
+              onHome={() => go('d-start')}
               onMenu={mode === 'mobile' ? () => setOverlayOpen(true) : undefined}
             />
 

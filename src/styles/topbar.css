@@ -334,6 +334,11 @@
   .tb-right > .tb-icon {
     display: none;
   }
+
+  /* Ev-Knopf bleibt auch am Handy (fuehrt zur Portfolio-Startseite) */
+  .tb-right > .tb-home {
+    display: inline-flex;
+  }
 }
 
 /* Telefon: logo ve ayırıcı gizli, başlık yeterli */
