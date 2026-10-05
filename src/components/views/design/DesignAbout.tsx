@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import { MetricFlow } from '../../fx/WordFlow';
 import { CONTACT_MAIL } from '../../../config';
 import { ABOUT_STATS, LAB_TAGS } from '../../../content/design-data';
 import { CountUp } from '../../common/CountUp';
@@ -86,6 +87,7 @@ export function DesignAbout() {
               </span>
             </div>
           ))}
+          <MetricFlow />
         </div>
       ),
     },

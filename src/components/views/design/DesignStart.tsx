@@ -1,4 +1,5 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { MetricFlow } from '../../fx/WordFlow';
 import { IntroCall } from '../../common/IntroCall';
 import { CONTACT_MAIL, media } from '../../../config';
 import { ABOUT_STATS } from '../../../content/design-data';
@@ -105,6 +106,7 @@ export function DesignStart() {
               </span>
             </div>
           ))}
+          <MetricFlow />
         </div>
       ),
     },
