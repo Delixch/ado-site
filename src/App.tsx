@@ -258,6 +258,7 @@ export default function App() {
               openByDefault={[]}
               footer={mode === 'tablet' ? <BandPicker inline band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} /> : undefined}
             />
+            {mode === 'desktop' && !desktopExpanded && <BandPicker strip band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} />}
           </div>
 
           {mode !== 'desktop' && (
@@ -345,9 +346,7 @@ export default function App() {
             </footer>
           </main>
           {mode === 'mobile' && <ToTop label={t.ui.toTop} />}
-          {mode === 'desktop' && (
-            <BandPicker band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} dock={mode === 'desktop' && desktopExpanded} />
-          )}
+          {mode === 'desktop' && desktopExpanded && <BandPicker band={band} fx={bandFx} setBand={setBand} setFx={setBandFx} dock />}
           {legalUsed && (
             <Suspense fallback={null}>
               <LegalDialog doc={legal} lang={lang} onOpen={setLegal} onClose={() => setLegal(null)} />

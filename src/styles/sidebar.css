@@ -677,8 +677,14 @@
   .sb-slot {
     position: sticky;
     top: var(--gutter);
+    display: flex;
+    flex-direction: column;
     height: auto;
-    max-height: none;
+    max-height: calc(100dvh - var(--gutter) * 2);
+  }
+
+  .sb-slot > .sb {
+    flex-shrink: 0;
   }
 
   .sb {
@@ -895,7 +901,8 @@
   initial-value: 0deg;
 }
 
-.sb > .sb-orbit {
+.sb > .sb-orbit,
+.bp-pick > .sb-orbit {
   position: absolute;
   inset: 0;
   z-index: 2;

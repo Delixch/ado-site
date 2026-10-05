@@ -13,6 +13,7 @@ export function BandPicker({
   setFx,
   inline,
   dock,
+  strip,
 }: {
   band: string;
   fx: string;
@@ -21,10 +22,12 @@ export function BandPicker({
   inline?: boolean;
   /** Unten in der Menue-Spalte, so breit wie das Menue, mit umlaufender Lichtlinie. */
   dock?: boolean;
+  /** Senkrechter Streifen unter dem eingeklappten Symbol-Band, gleich schmal, gleiche Glasoptik + Lichtlinie (Desktop). */
+  strip?: boolean;
 }) {
   return (
-    <div className="bp-pick" data-inline={inline || undefined} data-dock={dock || undefined} role="group" aria-label="Lichtband">
-      {dock && <span className="sb-orbit" aria-hidden />}
+    <div className="bp-pick" data-inline={inline || undefined} data-dock={dock || undefined} data-strip={strip || undefined} role="group" aria-label="Lichtband">
+      {(dock || strip) && <span className="sb-orbit" aria-hidden />}
       <div>
         <span>Form</span>
         <div className="bp-btns">

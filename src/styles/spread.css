@@ -569,6 +569,74 @@
   align-items: flex-start;
 }
 
+/* Senkrechter Streifen UNTER dem Symbol-Band (Desktop, Menue eingeklappt): gleich schmal, gleiches Eis-Glas und
+   dieselbe umlaufende Lichtlinie wie das Menue. Von oben nach unten: FORM (gedreht) 1-4, EFFEKT (gedreht) 0-11,
+   unten der Effektname waagrecht. Wird der Platz knapp, rollt der Streifen innen (ohne sichtbaren Balken). */
+.bp-pick[data-strip] {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  flex-shrink: 1;
+  min-height: 0;
+  width: var(--sb-rail-w);
+  margin-top: var(--sp-2);
+  overflow-y: auto;
+  scrollbar-width: none;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) 0 var(--sp-2);
+  border-radius: var(--radius-lg);
+  border: var(--hair) solid var(--sb-glass-edge);
+  background: var(--sb-glass);
+  -webkit-backdrop-filter: blur(var(--sb-blur)) saturate(170%);
+  backdrop-filter: blur(var(--sb-blur)) saturate(170%);
+  box-shadow: var(--sb-glass-shadow);
+  color: var(--ink);
+}
+
+.bp-pick[data-strip]::-webkit-scrollbar {
+  display: none;
+}
+
+.bp-pick[data-strip] > div {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+/* Beschriftung senkrecht, von oben nach unten lesbar */
+.bp-pick[data-strip] > div > span {
+  width: auto;
+  writing-mode: vertical-rl;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.bp-pick[data-strip] .bp-btns {
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: var(--sp-1);
+}
+
+.bp-pick[data-strip] button {
+  width: var(--sp-5);
+  height: var(--sp-5);
+  min-width: 0;
+  padding: 0;
+  border-radius: var(--radius-pill);
+  line-height: 1;
+}
+
+/* Effektname unten, waagrecht, schmale Grundschrift; lange Namen brechen um (EKADO-Regen) */
+.bp-pick[data-strip] em {
+  max-width: 100%;
+  padding: 0 var(--sp-1);
+  font-family: var(--font-sans);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
 /* Knoepfe brechen unter dem ersten Knopf um, nicht unter der Beschriftung */
 .bp-pick .bp-btns {
   flex: 1;
