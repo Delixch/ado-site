@@ -468,39 +468,65 @@
     display: none;
   }
 
-  /* Play, Shuffle und Farbwahl: schwarzer Grund, Themenfarbe innen (wie der aktive Sprach-Knopf DE) */
+  /* Play, Shuffle und Farbwahl: schwarzer Grund, Themenfarbe innen (wie der aktive Sprach-Knopf DE).
+     Ein Thema kann das ueber --tb-btn-* umstellen (colors/claude.css: duenne Ringe wie im Seitenmenue, kein Grund). */
   .tb-icon,
   .tb-btn {
-    background: var(--accent);
-    color: var(--on-accent);
-    border: 1px solid color-mix(in srgb, var(--on-brand) 30%, transparent);
-    box-shadow: var(--shadow-sm);
+    background: var(--tb-btn-bg, var(--accent));
+    color: var(--tb-btn-ink, var(--on-accent));
+    border: var(--tb-btn-ring-w, 1px) solid var(--tb-btn-ring, color-mix(in srgb, var(--on-brand) 30%, transparent));
+    box-shadow: var(--tb-btn-shadow, var(--shadow-sm));
+  }
+
+  .tb-icon {
+    border-radius: var(--tb-icon-radius, 10px);
+  }
+
+  .tb-btn {
+    border-radius: var(--tb-btn-radius, 10px);
   }
 
   .tb-icon svg {
-    color: var(--on-accent);
+    color: var(--tb-btn-ink, var(--on-accent));
   }
 
   .tb-btn .cp-chevron {
-    color: var(--on-accent);
+    color: var(--tb-btn-ink, var(--on-accent));
   }
 
   .tb-btn .swatch {
-    box-shadow: inset 0 0 0 2.5px var(--accent), 0 0 0 1px color-mix(in srgb, var(--on-accent) 60%, transparent);
+    box-shadow: inset 0 0 0 2.5px var(--tb-btn-bg, var(--accent)), 0 0 0 1px color-mix(in srgb, var(--tb-btn-ink, var(--on-accent)) 60%, transparent);
   }
 
   .tb-icon:hover,
   .tb-btn:hover {
-    background: color-mix(in srgb, var(--accent) 85%, #ffffff);
-    color: var(--on-accent);
-    border-color: color-mix(in srgb, var(--on-brand) 50%, transparent);
+    background: var(--tb-btn-hover-bg, color-mix(in srgb, var(--accent) 85%, #ffffff));
+    color: var(--tb-btn-ink, var(--on-accent));
+    border-color: var(--tb-btn-ring-hover, color-mix(in srgb, var(--on-brand) 50%, transparent));
   }
 
   .tb-icon[aria-pressed="true"] {
-    background: var(--accent);
-    color: var(--on-accent);
-    border-color: color-mix(in srgb, var(--on-accent) 40%, transparent);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--on-accent) 45%, transparent);
+    background: var(--tb-btn-on-bg, var(--accent));
+    color: var(--tb-btn-ink, var(--on-accent));
+    border-color: var(--tb-btn-ring-on, color-mix(in srgb, var(--on-accent) 40%, transparent));
+    box-shadow: var(--tb-btn-shadow-on, 0 0 10px color-mix(in srgb, var(--on-accent) 45%, transparent));
+  }
+
+  /* Sprachwahl DE/TR im selben Stil wie die Knoepfe (Thema kann --tb-seg-* setzen) */
+  .tb .seg {
+    background: var(--tb-seg-bg, var(--pressed-bg));
+    border: var(--tb-btn-ring-w, 1px) solid var(--tb-seg-ring, var(--line));
+    border-radius: var(--tb-seg-radius, 10px);
+    box-shadow: var(--tb-btn-shadow, var(--pressed-shadow));
+  }
+
+  .tb .seg button {
+    border-radius: var(--tb-seg-btn-radius, 8px);
+  }
+
+  .tb .seg button[aria-pressed="true"] {
+    background: var(--tb-seg-on-bg, var(--accent));
+    color: var(--tb-seg-on-ink, var(--on-accent));
   }
 }
 
