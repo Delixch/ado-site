@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useReducedMotion } from 'motion/react';
 
 /*
- * Effekte am Rand des Lichtbands - fuer alle vier Formen (1 gerade, 2 schraeg, 3 Schlange, 4 Ringe).
+ * Effekte am Rand des Lichtbands - fuer alle Formen (1 gerade, 2 schraeg, 3 Schlange, 4 Ringe; die duennen
+ * Formen 5-12 laufen ueber dieselben Geometrien, siehe KIND).
  * Ein Canvas fest im Fenster ganz hinten in .main, ein zweites nur ueber der Kopfzeile (wie das Band selbst).
  * Die Formen werden aus denselben Werten berechnet wie das Band (tokens.css), daher liegen die Effekte genau am Rand.
  * Effekte: 1 Licht · 2 Partikel · 3 Punkte · 4 EKADO-Buchstaben · 5 Herzschlag · 6 Streifen innen
@@ -74,7 +75,15 @@ interface Ell {
 }
 
 /** Eine Form: waagrechte Spanne je Hoehe (Linienformen) oder Ellipsen (Ringe). */
-function makeShape(shape: string, g: Geo, y0: number, H: number) {
+/* Duenne Formen -> Grundgeometrie fuer die Randeffekte: Faden wie gerade/schraeg (Breite kommt vom Band selbst),
+   duenne und doppelte Schlange wie Schlange (nur schmaler Strich), Linien/Schraffur/Zickzack/Punkte wie gerade. */
+const KIND: Record<string, string> = { '5': '1', '6': '2', '7': '3', '8': '3', '9': '1', '10': '1', '11': '1', '12': '1' };
+/* halbe Strichbreite im viewBox: Schlange 92/2, duenne Schlangen 8/2 */
+const HALF: Record<string, number> = { '7': 4, '8': 4 };
+
+function makeShape(shapeIn: string, g: Geo, y0: number, H: number) {
+  const shape = KIND[shapeIn] ?? shapeIn;
+  const snakeHalf = HALF[shapeIn] ?? SNAKE_HALF;
   const sx = g.w / VB_W;
   const sy = g.period / VB_H;
   const origin = g.top - g.period * 0.25;
@@ -86,7 +95,7 @@ function makeShape(shape: string, g: Geo, y0: number, H: number) {
     const i = Math.min(VB_H - 1, Math.floor(u));
     const x = SNAKE_X[i] + (SNAKE_X[i + 1] - SNAKE_X[i]) * (u - i);
     const sv = (SNAKE_X[Math.min(VB_H, i + 2)] - SNAKE_X[Math.max(0, i - 2)]) / 4;
-    return { cx: g.cx + (x / VB_W - 0.5) * g.w, hw: SNAKE_HALF * sx * Math.sqrt(1 + sv * sv) };
+    return { cx: g.cx + (x / VB_W - 0.5) * g.w, hw: snakeHalf * sx * Math.sqrt(1 + sv * sv) };
   };
 
   const ellipses: Ell[] = [];
@@ -169,7 +178,16 @@ interface P {
 }
 
 const rnd = (a: number, b: number) => a + Math.random() * (b - a);
-const MASK: Record<string, string> = { '3': 'var(--snake)', '4': 'var(--rings)' };
+const MASK: Record<string, string> = {
+  '3': 'var(--snake)',
+  '4': 'var(--rings)',
+  '7': 'var(--snake-thin)',
+  '8': 'var(--snake-double)',
+  '9': 'var(--lines3)',
+  '10': 'var(--hatch)',
+  '11': 'var(--zigzag)',
+  '12': 'var(--dots)',
+};
 
 export function BandFx({ fx, shape }: { fx: string; shape: string }) {
   const ref = useRef<HTMLCanvasElement>(null);

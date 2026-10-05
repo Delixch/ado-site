@@ -295,7 +295,9 @@
 /*
  * Themen-Lichtband: ganz hinten, durch die Mitte (nur Themen mit --band-solid).
  * Form ueber data-band an .main (config.ts BAND_SHAPE, Adresse ?band=N):
- * 1 gerade · 2 schraeg ("2 numara") · 3 Schlange · 4 Ringe.
+ * 1 gerade · 2 schraeg ("2 numara") · 3 Schlange · 4 Ringe ·
+ * duenn (2026-10-06, "ince ince"): 5 Faden · 6 schraeger Faden · 7 duenne Schlange · 8 Doppelschlange (gespiegelt)
+ * · 9 drei Linien · 10 Schraffur (schraege Striche) · 11 Zickzack · 12 Punktlinie.
  * Aeusseres Element traegt das Leuchten (drop-shadow), inneres die Form (Maske) - sonst schneidet die Maske das Leuchten ab.
  */
 .band {
@@ -338,6 +340,60 @@
 
 [data-band="4"] {
   --band-mask: var(--rings);
+}
+
+/* Duenne Formen: 5/6 nur ein schmaler Faden (ohne Maske), 7-12 Masken in Schlangenbreite */
+[data-band="5"],
+[data-band="6"] {
+  --band-box: var(--thin-w);
+}
+
+[data-band="6"] .band i {
+  transform: skewX(var(--band-tilt));
+  transform-origin: top center;
+}
+
+[data-band="7"],
+[data-band="8"],
+[data-band="9"],
+[data-band="10"],
+[data-band="11"],
+[data-band="12"] {
+  --band-box: var(--snake-w);
+}
+
+[data-band="7"] .band i,
+[data-band="8"] .band i,
+[data-band="9"] .band i,
+[data-band="10"] .band i,
+[data-band="11"] .band i,
+[data-band="12"] .band i {
+  -webkit-mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
+  mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
+}
+
+[data-band="7"] {
+  --band-mask: var(--snake-thin);
+}
+
+[data-band="8"] {
+  --band-mask: var(--snake-double);
+}
+
+[data-band="9"] {
+  --band-mask: var(--lines3);
+}
+
+[data-band="10"] {
+  --band-mask: var(--hatch);
+}
+
+[data-band="11"] {
+  --band-mask: var(--zigzag);
+}
+
+[data-band="12"] {
+  --band-mask: var(--dots);
 }
 
 .blk {
@@ -384,13 +440,20 @@
   }
 }
 
-[data-band="2"] .tb::after {
+[data-band="2"] .tb::after,
+[data-band="6"] .tb::after {
   transform: translateX(-50%) skewX(var(--band-tilt));
   transform-origin: top center;
 }
 
 [data-band="3"] .tb::after,
-[data-band="4"] .tb::after {
+[data-band="4"] .tb::after,
+[data-band="7"] .tb::after,
+[data-band="8"] .tb::after,
+[data-band="9"] .tb::after,
+[data-band="10"] .tb::after,
+[data-band="11"] .tb::after,
+[data-band="12"] .tb::after {
   -webkit-mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
   mask: var(--band-mask) center var(--snake-start) / 100% var(--snake-period) repeat-y;
 }

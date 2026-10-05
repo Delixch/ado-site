@@ -44,6 +44,8 @@ export const LAYOUT_INTERVAL = 9000;
  * 2 = schraeg ("2 numara", Kundenfreigabe 2026-10-03)
  * 3 = Schlange (S-Kurven)
  * 4 = Ringe und Punkte
+ * duenne Formen (2026-10-06): 5 Faden · 6 schraeger Faden · 7 duenne Schlange · 8 Doppelschlange
+ * · 9 drei Linien · 10 Schraffur · 11 Zickzack · 12 Punktlinie
  */
 export const BAND_SHAPE = '3';
 
