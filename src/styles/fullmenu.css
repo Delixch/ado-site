@@ -61,11 +61,6 @@
   height: var(--icon-sm);
 }
 
-.fm-close:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
 .fm-list,
 .fm-pages {
   margin: 0;
@@ -142,16 +137,25 @@
   transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
-.fm-row:hover .fm-label,
-.fm-row:focus-visible .fm-label {
+/* Tastatur: immer sichtbar */
+.fm-row:focus-visible .fm-label,
+.fm-row:not(.fm-group-row):focus-visible .fm-arrow {
   transform: translateX(var(--fm-shift));
   color: var(--accent);
 }
 
-.fm-row:not(.fm-group-row):hover .fm-arrow,
-.fm-row:not(.fm-group-row):focus-visible .fm-arrow {
-  transform: translateX(var(--fm-shift));
-  color: var(--accent);
+/* Maus: nur auf Geraeten mit echtem Hover (am Handy bliebe sonst die zuletzt beruehrte Zeile haengen) */
+@media (hover: hover) and (pointer: fine) {
+  .fm-row:hover .fm-label,
+  .fm-row:not(.fm-group-row):hover .fm-arrow {
+    transform: translateX(var(--fm-shift));
+    color: var(--accent);
+  }
+
+  .fm-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 }
 
 /* Aktuelle Seite: in der Themenfarbe */
