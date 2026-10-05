@@ -141,21 +141,21 @@
   /* Flaeche von Kopfzeile und Fussstreifen (Tablet/Desktop) */
   --bar-fill: #C86645;
   /* Kopfzeile (Tablet/Desktop): Knoepfe als duenne Ringe wie die Symbole im Seitenmenue, kein dunkler Grund
-     (Kunde 2026-10-06). Ring in --on-brand, Grund weiss, Zeichen in Themenfarbe (orange, wie im Seitenmenue; Kunde), leichtes Leuchten wie am Seitenmenue. */
+     (Kunde 2026-10-06). Kein Ring (Kunde: schwarze Linie weg), Grund weiss, Zeichen in Themenfarbe (orange, wie im Seitenmenue), leichtes Leuchten wie am Seitenmenue. */
   --tb-btn-bg: #FFFFFF;
   --tb-btn-ink: var(--brand);
   --tb-btn-ring-w: var(--sb-ring-w);
-  --tb-btn-ring: var(--on-brand);
+  --tb-btn-ring: transparent;
   --tb-btn-shadow: 0 0 var(--sb-ring-glow) color-mix(in srgb, var(--on-brand) 22%, transparent), inset 0 0 var(--sb-ring-glow) color-mix(in srgb, var(--on-brand) 10%, transparent);
   --tb-icon-radius: 50%;
   --tb-btn-radius: var(--radius-pill);
   --tb-btn-hover-bg: color-mix(in srgb, var(--on-brand) 8%, #FFFFFF);
-  --tb-btn-ring-hover: var(--on-brand);
+  --tb-btn-ring-hover: transparent;
   --tb-btn-on-bg: color-mix(in srgb, var(--on-brand) 14%, #FFFFFF);
-  --tb-btn-ring-on: var(--on-brand);
+  --tb-btn-ring-on: transparent;
   --tb-btn-shadow-on: 0 0 var(--sb-ring-glow-on) color-mix(in srgb, var(--on-brand) 40%, transparent);
   --tb-seg-bg: #FFFFFF;
-  --tb-seg-ring: var(--on-brand);
+  --tb-seg-ring: transparent;
   --tb-seg-radius: var(--radius-pill);
   --tb-seg-btn-radius: var(--radius-pill);
   --tb-seg-on-bg: color-mix(in srgb, var(--on-brand) 14%, #FFFFFF);
