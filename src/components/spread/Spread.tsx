@@ -186,6 +186,7 @@ export function Spread({
         <i className="mark mark-bl" aria-hidden />
         <i className="mark mark-br" aria-hidden />
         <i className="spread-runner" aria-hidden />
+        <i className="spread-runner-top" aria-hidden />
         {shown.map((b, i) => (
           <motion.section
             key={b.id}

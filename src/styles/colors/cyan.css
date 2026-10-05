@@ -138,4 +138,8 @@
   --cp-ink: #FFFFFF;
   --cp-line: rgba(255, 255, 255, 0.16);
   --cp-selected: #141414;
+
+  /* Runner (Haarlinien-Quadrate: links auf/ab, oben hin/her) */
+  --runner-color: var(--brand);
+  --runner-glow: 0 0 10px color-mix(in srgb, var(--brand) 70%, transparent);
 }

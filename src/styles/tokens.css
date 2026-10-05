@@ -308,9 +308,10 @@
   --hover-tile-out: 8px;
   /* Innenkante: Licht klingt nach etwa 1 cm aus */
   --hover-tile-edge: 38px;
-  /* Quadrat, das auf der linken Kante der Doppelseite auf und ab faehrt */
+  /* Quadrat, das auf den Kanten der Doppelseite faehrt (links auf/ab, oben hin/her) */
   --runner-size: 9px;
   --runner-dur: 9s;
+  --runner-dur-top: 11s;
   --sb-rail-w: 64px;
   /* Zeilenhoehe fuer Gruppentitel im Handy-Menue und Akkordeons auf Seiten */
   --row-h: 46px;

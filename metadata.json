@@ -1,6 +1,6 @@
 {
-  "name": "CSS Grid Architect & Layout Studio",
-  "description": "Etkileşimli CSS Grid düzen mimarisi, canlı görselleştirici ve modern şablon stüdyosu.",
+  "name": "EKADO Design & EKADO Firma",
+  "description": "Zürih merkezli 3 ana platform: EKADO Design (Web & Portfolyo), EKADO Firma (Şirket Altyapısı & Paketler), EKADO InstaOto (Instagram Otomasyonu).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

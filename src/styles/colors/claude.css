@@ -145,5 +145,9 @@
   --tb-m-line: rgba(33, 31, 28, 0.12);
   --tb-m-line-strong: rgba(33, 31, 28, 0.22);
   --tb-m-surface: #E4DACB;
+
+  /* Runner (Haarlinien-Quadrate: links auf/ab, oben hin/her) */
+  --runner-color: var(--brand);
+  --runner-glow: 0 1px 3px rgba(33, 31, 28, 0.22);
 }
 

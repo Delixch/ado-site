@@ -474,6 +474,41 @@
   .band-fx-top {
     display: none;
   }
+
+  /* Play, Shuffle und Farbwahl: schwarzer Grund, Themenfarbe innen (wie der aktive Sprach-Knopf DE) */
+  .tb-icon,
+  .tb-btn {
+    background: var(--accent);
+    color: var(--on-accent);
+    border: 1px solid color-mix(in srgb, var(--on-brand) 30%, transparent);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .tb-icon svg {
+    color: var(--on-accent);
+  }
+
+  .tb-btn .cp-chevron {
+    color: var(--on-accent);
+  }
+
+  .tb-btn .swatch {
+    box-shadow: inset 0 0 0 2.5px var(--accent), 0 0 0 1px color-mix(in srgb, var(--on-accent) 60%, transparent);
+  }
+
+  .tb-icon:hover,
+  .tb-btn:hover {
+    background: color-mix(in srgb, var(--accent) 85%, #ffffff);
+    color: var(--on-accent);
+    border-color: color-mix(in srgb, var(--on-brand) 50%, transparent);
+  }
+
+  .tb-icon[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-color: color-mix(in srgb, var(--on-accent) 40%, transparent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--on-accent) 45%, transparent);
+  }
 }
 
 /* Farbwahl-Liste: deckend, Farben je Thema (colors/*.css --cp-*) - nicht die Schrift der farbigen Kopfzeile erben */

@@ -487,14 +487,35 @@
   top: 0;
   width: var(--runner-size);
   height: var(--runner-size);
-  background: var(--brand);
+  background: var(--runner-color, var(--brand));
+  box-shadow: var(--runner-glow, none);
   pointer-events: none;
   animation: spread-run var(--runner-dur) ease-in-out infinite alternate;
+}
+
+/* Kleines Quadrat in Themenfarbe, mittig auf der oberen Haarlinie, faehrt hin und her */
+.spread-runner-top {
+  position: absolute;
+  z-index: 7;
+  top: calc((var(--runner-size) - var(--hair)) / -2 - var(--hair));
+  left: 0;
+  width: var(--runner-size);
+  height: var(--runner-size);
+  background: var(--runner-color, var(--brand));
+  box-shadow: var(--runner-glow, none);
+  pointer-events: none;
+  animation: spread-run-top var(--runner-dur-top, 11s) ease-in-out infinite alternate;
 }
 
 @keyframes spread-run {
   to {
     top: calc(100% - var(--runner-size));
+  }
+}
+
+@keyframes spread-run-top {
+  to {
+    left: calc(100% - var(--runner-size));
   }
 }
 
@@ -515,6 +536,10 @@
   .spread-runner {
     animation: none;
     top: calc(50% - var(--runner-size) / 2);
+  }
+  .spread-runner-top {
+    animation: none;
+    left: calc(50% - var(--runner-size) / 2);
   }
 }
 
