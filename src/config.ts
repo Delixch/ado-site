@@ -1,7 +1,7 @@
 import type { Lang } from './content/ui';
 
 /** Açılışta seçili renk: src/styles/colors/<ad>.css dosyasının adı. */
-export const DEFAULT_COLOR = 'claude';
+export const DEFAULT_COLOR = 'amber';
 export const DEFAULT_LANG: Lang = 'de';
 export const CONTACT_MAIL = 'info@ekado.ch';
 
