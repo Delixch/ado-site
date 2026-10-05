@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, Plus, Search, X } from 'lucide-react';
 import { ALL_ITEMS, MENU_SECTIONS } from '../content/menu';
@@ -14,8 +14,9 @@ const LANGS: Lang[] = ['de', 'tr'];
  * als grosse Zeilen, anfangs alle zu. Ein Klick klappt die Seiten des Bereichs darunter auf
  * (immer nur einer offen). Wer eine Seite gewaehlt hat und innerhalb von MENU_MEMORY_MS wieder
  * oeffnet, findet deren Bereich offen und die Seite im Blick; spaeter sind wieder alle zu. Farben nur ueber Themenvariablen, Masse aus tokens.css.
- * Suche (wie im alten Seitenmenue): durchsucht alle Texte der Website (content/search.ts); ab 2 Zeichen
- * ersetzen die Treffer (Seite + Ausschnitt) die Bereichsliste.
+ * Suche (wie im alten Seitenmenue): durchsucht alle Texte der Website (content/search.ts). Enter oeffnet
+ * die Treffer als Tafel in der rechten Bildschirmhaelfte (Themenfarbe als Grund, Seite + Ausschnitt gross);
+ * Esc oder X schliesst erst die Treffer, dann das Menue. Am Handy liegt die Treffertafel ueber dem Menue.
  */
 export function FullMenu({
   open,
@@ -36,9 +37,21 @@ export function FullMenu({
 }) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [query, setQuery] = useState('');
+  // mit Enter abgeschickte Suche: solange gesetzt, steht die Treffertafel rechts
+  const [shown, setShown] = useState<string | null>(null);
+  const shownRef = useRef<string | null>(null);
+  shownRef.current = shown;
   const index = useMemo(() => buildIndex(t), [t]);
-  const hits = useMemo(() => searchSite(index, query), [index, query]);
-  const searching = query.trim().length >= 2;
+  const hits = useMemo(() => (shown ? searchSite(index, shown) : []), [index, shown]);
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    if (query.trim().length >= 2) setShown(query);
+  };
+  const pick = (id: string) => {
+    chosenAt.current = Date.now();
+    onSelect(id);
+    onClose();
+  };
   // Zeitpunkt der letzten Wahl im Menue: kurz danach beim Oeffnen dort weitermachen
   const chosenAt = useRef(0);
   const panel = useRef<HTMLElement>(null);
@@ -47,11 +60,16 @@ export function FullMenu({
   useEffect(() => {
     if (!open) return;
     setQuery('');
+    setShown(null);
     setOpenGroup(Date.now() - chosenAt.current < MENU_MEMORY_MS ? activeGroup : null);
     const scroll = window.setTimeout(() => {
       panel.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'center' });
     }, 450);
-    const key = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    const key = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (shownRef.current === null) onClose();
+      else setShown(null);
+    };
     const html = document.documentElement;
     const prev = html.style.overflow;
     html.style.overflow = 'hidden';
@@ -103,57 +121,23 @@ export function FullMenu({
             </button>
           </div>
 
-          {/* Suche: duenne Linie mit Lupe, Treffer darunter statt der Bereiche */}
-          <label className="fm-search">
+          {/* Suche: duenne Linie mit Lupe; Enter zeigt die Treffer rechts */}
+          <form className="fm-search" onSubmit={submit} role="search">
             <Search aria-hidden />
             <input
               type="search"
               placeholder={t.ui.search}
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                if (e.target.value.trim() === '') setShown(null);
+              }}
               aria-label={t.ui.search}
+              enterKeyHint="search"
             />
-          </label>
+          </form>
 
-          {searching && (
-            <ul className="fm-list fm-hits" aria-label={t.ui.foundOnSite}>
-              {hits.length === 0 && <li className="fm-empty">{t.ui.noResults}</li>}
-              {hits.map((h, i) => {
-                const item = ALL_ITEMS.find((it) => it.id === h.id)!;
-                const [groupName] = t.ui.groups[item.group].title.split(' · ');
-                return (
-                  <li key={h.id}>
-                    <button
-                      type="button"
-                      className="fm-row fm-page-row fm-hit"
-                      aria-current={h.id === active ? 'page' : undefined}
-                      onClick={() => {
-                        chosenAt.current = Date.now();
-                        onSelect(h.id);
-                        onClose();
-                      }}
-                    >
-                      <span className="fm-num">{String(i + 1).padStart(2, '0')}</span>
-                      <span className="fm-label">
-                        {t.menu[h.id]}
-                        <span className="fm-sub micro">
-                          {groupName} · {h.count}
-                        </span>
-                        <span className="fm-snippet">
-                          {h.snippet[0]}
-                          <mark>{h.snippet[1]}</mark>
-                          {h.snippet[2]}
-                        </span>
-                      </span>
-                      <ArrowRight className="fm-arrow" aria-hidden />
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-
-          <ul className="fm-list" hidden={searching}>
+          <ul className="fm-list">
             {MENU_SECTIONS.map((sec, si) => {
               const isOpen = openGroup === sec.group;
               const [name, sub] = t.ui.groups[sec.group].title.split(' · ');
@@ -230,6 +214,60 @@ export function FullMenu({
             <span className="fm-foot-where">{t.ui.where}</span>
           </div>
         </motion.nav>
+      )}
+      {open && shown && (
+        <motion.section
+          key="results"
+          className="fm-results"
+          aria-label={t.ui.foundOnSite}
+          initial={{ x: -48, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -48, opacity: 0 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="fm-results-head">
+            <div>
+              <span className="fm-results-kicker micro">{t.ui.foundOnSite}</span>
+              <h2 className="fm-results-q">„{shown.trim()}“</h2>
+              <span className="fm-results-n micro">
+                {hits.length === 0 ? t.ui.noResults : `${hits.length} · ${hits.reduce((n, h) => n + h.count, 0)}`}
+              </span>
+            </div>
+            <button type="button" className="fm-results-close" onClick={() => setShown(null)} aria-label={t.ui.close}>
+              <X aria-hidden />
+            </button>
+          </div>
+          <ul className="fm-results-list">
+            {hits.map((h, i) => {
+              const item = ALL_ITEMS.find((it) => it.id === h.id)!;
+              const [groupName] = t.ui.groups[item.group].title.split(' · ');
+              return (
+                <motion.li
+                  key={h.id}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.12 + i * 0.06, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <button type="button" className="fm-result" aria-current={h.id === active ? 'page' : undefined} onClick={() => pick(h.id)}>
+                    <span className="fm-num">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="fm-result-body">
+                      <span className="fm-result-title">{t.menu[h.id]}</span>
+                      <span className="fm-result-meta micro">
+                        {groupName} · {h.count}
+                      </span>
+                      <span className="fm-result-snippet">
+                        {h.snippet[0]}
+                        <mark>{h.snippet[1]}</mark>
+                        {h.snippet[2]}
+                      </span>
+                    </span>
+                    <ArrowRight className="fm-arrow" aria-hidden />
+                  </button>
+                </motion.li>
+              );
+            })}
+          </ul>
+        </motion.section>
       )}
     </AnimatePresence>
   );
