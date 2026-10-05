@@ -2,9 +2,10 @@
  * Vergleichs-Leiste (voruebergehend): Lichtband-Form und Rand-Effekt durchschalten.
  * Wahl wird gemerkt (localStorage). Nichts davon wird geloescht - alle Varianten bleiben im Code.
  */
-/* 5 Faden, 6 schraeger Faden, 7 duenne Schlange, 11 Zickzack, 12 Punktlinie: vom Kunden gestrichen (2026-10-06),
-   bleiben nur per Adresse ?band=N erreichbar; Nummern der uebrigen aendern sich nicht */
-const SHAPES = ['1', '2', '3', '4', '8', '9', '10', '13', '14', '15', '16', '17'];
+/* Vom Kunden gestrichen (2026-10-06): 4 Ringe, 5 Faden, 6 schraeger Faden, 7 duenne Schlange, 9 drei Linien,
+   11 Zickzack, 12 Punktlinie, 13 vier Linien, 14/15 schraege Linien, 16 drei Schlangen.
+   Bleiben nur per Adresse ?band=N erreichbar; Nummern der uebrigen aendern sich nicht. */
+const SHAPES = ['1', '2', '3', '8', '10', '17'];
 const SHAPE_NAMES: Record<string, string> = {
   '1': 'gerade',
   '2': 'schraeg',
@@ -24,8 +25,9 @@ const SHAPE_NAMES: Record<string, string> = {
   '16': 'drei Schlangen',
   '17': 'vier Schlangen',
 };
-/* Effekt 8 Schimmer: vom Kunden gestrichen (2026-10-06), bleibt nur per Adresse ?fx=8 erreichbar */
-const FX = ['0', '1', '2', '3', '4', '5', '6', '7', '9', '10', '11'];
+/* Vom Kunden gestrichen (2026-10-06): 0 aus, 4 EKADO-Buchstaben, 5 Herzschlag, 6 Streifen, 7 Funken, 8 Schimmer,
+   10 Datenregen. Bleiben nur per Adresse ?fx=N erreichbar. */
+const FX = ['1', '2', '3', '9', '11'];
 const FX_NAMES = ['aus', 'Licht', 'Partikel', 'Punkte', 'EKADO', 'Herzschlag', 'Streifen', 'Funken', 'Schimmer', 'Sonar', 'Datenregen', 'EKADO-Regen'];
 
 export function BandPicker({
