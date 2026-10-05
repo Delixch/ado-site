@@ -67,19 +67,6 @@
   transition: background var(--fast), box-shadow var(--fast);
 }
 
-.tb-group-tag {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: var(--ls-wide);
-  padding: 1px 5px;
-  border-radius: 3px;
-  line-height: 1.2;
-  color: var(--brand-text);
-  background: color-mix(in oklab, var(--brand) 14%, transparent);
-}
-
 .tb-logo {
   display: inline-flex;
   align-items: center;

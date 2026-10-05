@@ -38,7 +38,6 @@ export function Topbar({ t, lang, setLang, color, setColor, title, group, auto, 
               █
             </span>
           </span>
-          <span className="tb-group-tag">{t.ui.groups[group].short}</span>
         </div>
         <span className="tb-sep" />
         <span className="tb-title">{title}</span>
