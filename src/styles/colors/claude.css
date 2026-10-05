@@ -136,6 +136,8 @@
 [data-color="claude"] {
   /* unter dem farbigen Fussstreifen (Tablet/Desktop): Seitengrund (hell) */
   --foot-rest: transparent;
+  /* Flaeche von Kopfzeile und Fussstreifen (Tablet/Desktop) */
+  --bar-fill: #C86645;
   /* Farbwahl-Liste */
   --cp-bg: #FBF8F2;
   --cp-ink: #211F1C;
