@@ -649,11 +649,12 @@
   padding: var(--sp-2) var(--sp-3);
 }
 
-/* Masaustu: kein Scrollen im Menue - die Karte waechst mit ihrem Inhalt */
+/* Masaustu: kein Scrollen im Menue - die Karte waechst mit ihrem Inhalt.
+   Sie bleibt beim Scrollen oben stehen (sticky), auch auf langen Seiten (z. B. InstaOto Uebersicht). */
 @media (min-width: 1180px) {
   .sb-slot {
-    position: relative;
-    top: auto;
+    position: sticky;
+    top: var(--gutter);
     height: auto;
     max-height: none;
   }
