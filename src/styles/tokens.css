@@ -365,6 +365,8 @@
   --fs-menu: clamp(28px, 3.2vw, 52px);
   --fs-menu-sub: clamp(20px, 2vw, 30px);
   --fm-w-tablet: 64vw;
+  /* Deckkraft der Menue-Tafel (100% = gar nicht durchscheinend) */
+  --fm-solid: 90%;
   --fm-w-mobile: 100vw;
   --fw-light: 300;
   --ls-menu: -0.035em;

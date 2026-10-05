@@ -20,7 +20,10 @@
   box-shadow: var(--shadow-md);
   overflow-y: auto;
   padding: 0 var(--fm-pad);
-  background: var(--surface-solid);
+  /* ganz leicht durchscheinend, dahinter weichgezeichnet */
+  background: color-mix(in srgb, var(--surface-solid) var(--fm-solid), transparent);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
   color: var(--ink);
 }
 
@@ -33,7 +36,8 @@
   justify-content: space-between;
   min-height: var(--fm-head-h);
   border-bottom: var(--hair) solid var(--line);
-  background: var(--surface-solid);
+  /* gleiche Toenung wie die Tafel: beim Scrollen laufen die Zeilen sauber darunter */
+  background: color-mix(in srgb, var(--surface-solid) var(--fm-solid), transparent);
 }
 
 .fm-brand {
