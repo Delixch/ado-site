@@ -51,13 +51,13 @@ const svg = `
   <!-- Üst Bar İçi: Logo, Sekme, Araçlar -->
   <g transform="translate(76, 12)">
     <!-- Sol Logo & Başlık Kapsülü -->
-    <rect x="0" y="0" width="180" height="32" rx="16" fill="rgba(255, 255, 255, 0.16)"/>
+    <rect x="0" y="0" width="214" height="32" rx="16" fill="rgba(255, 255, 255, 0.16)"/>
     <text x="16" y="21" font-family="'JetBrains Mono', sans-serif" font-weight="900" font-size="12" fill="#FFFFFF" letter-spacing="1">EKADO DESIGN</text>
-    <rect x="110" y="6" width="58" height="20" rx="4" fill="rgba(0, 0, 0, 0.2)"/>
-    <text x="139" y="19.5" font-family="'JetBrains Mono', sans-serif" font-size="9" font-weight="bold" fill="#F4EFE6" text-anchor="middle">DESİGN</text>
+    <rect x="146" y="6" width="58" height="20" rx="4" fill="rgba(0, 0, 0, 0.2)"/>
+    <text x="175" y="19.5" font-family="'JetBrains Mono', sans-serif" font-size="9" font-weight="bold" fill="#F4EFE6" text-anchor="middle">DESİGN</text>
     
-    <text x="194" y="21" font-family="'JetBrains Mono', sans-serif" font-size="12" fill="rgba(255, 255, 255, 0.6)">|</text>
-    <text x="210" y="21" font-family="'Source Serif 4', Georgia, serif" font-size="14" font-weight="600" fill="#FFFFFF">Başlangıç · Portfolyo</text>
+    <text x="228" y="21" font-family="'JetBrains Mono', sans-serif" font-size="12" fill="rgba(255, 255, 255, 0.6)">|</text>
+    <text x="244" y="21" font-family="'Source Serif 4', Georgia, serif" font-size="14" font-weight="600" fill="#FFFFFF">Başlangıç · Portfolyo</text>
 
     <!-- Sağ Araçlar: Oynat, Karıştır, Claude Seçici, Dil -->
     <g transform="translate(860, 0)">
@@ -170,8 +170,8 @@ const svg = `
 
     <!-- Büyük Tipografik Manşet (Source Serif 4) -->
     <g transform="translate(0, 36)">
-      <text x="0" y="24" font-family="'Source Serif 4', Georgia, serif" font-size="32" font-weight="700" fill="#211F1C" letter-spacing="-0.5">İZ BIRAKAN <tspan fill="#C96442">DİJİTAL</tspan></text>
-      <text x="0" y="58" font-family="'Source Serif 4', Georgia, serif" font-size="32" font-weight="700" fill="#211F1C" letter-spacing="-0.5">DENEYİMLER İNŞA EDİYORUM</text>
+      <text x="0" y="24" font-family="'Source Serif 4', Georgia, serif" font-size="25" font-weight="700" fill="#211F1C" letter-spacing="-0.5">İZ BIRAKAN <tspan fill="#C96442">DİJİTAL</tspan></text>
+      <text x="0" y="54" font-family="'Source Serif 4', Georgia, serif" font-size="25" font-weight="700" fill="#211F1C" letter-spacing="-0.5">DENEYİMLER İNŞA EDİYORUM</text>
     </g>
 
     <!-- Durum Rozeti -->
@@ -213,9 +213,11 @@ const svg = `
 
     <!-- Dikey EKADO Tipografisi -->
     <g font-family="'Source Serif 4', Georgia, serif" font-size="34" fill="#F4EFE6" font-weight="400">
-      <text x="24" y="90">A</text>
-      <text x="24" y="130">D</text>
-      <text x="24" y="170">O</text>
+      <text x="24" y="58">E</text>
+      <text x="24" y="98">K</text>
+      <text x="24" y="138">A</text>
+      <text x="24" y="178">D</text>
+      <text x="24" y="218">O</text>
     </g>
 
     <!-- Oynat Butonu -->
