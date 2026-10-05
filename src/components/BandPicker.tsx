@@ -2,9 +2,9 @@
  * Vergleichs-Leiste (voruebergehend): Lichtband-Form und Rand-Effekt durchschalten.
  * Wahl wird gemerkt (localStorage). Nichts davon wird geloescht - alle Varianten bleiben im Code.
  */
-/* 5 Faden, 6 schraeger Faden, 11 Zickzack, 12 Punktlinie: vom Kunden gestrichen (2026-10-06),
+/* 5 Faden, 6 schraeger Faden, 7 duenne Schlange, 11 Zickzack, 12 Punktlinie: vom Kunden gestrichen (2026-10-06),
    bleiben nur per Adresse ?band=N erreichbar; Nummern der uebrigen aendern sich nicht */
-const SHAPES = ['1', '2', '3', '4', '7', '8', '9', '10', '13', '14', '15', '16', '17'];
+const SHAPES = ['1', '2', '3', '4', '8', '9', '10', '13', '14', '15', '16', '17'];
 const SHAPE_NAMES: Record<string, string> = {
   '1': 'gerade',
   '2': 'schraeg',
