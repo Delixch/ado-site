@@ -239,7 +239,8 @@ export function BandFx({ fx, shape }: { fx: string; shape: string }) {
       const tilt = parseFloat(css.getPropertyValue('--band-tilt')) || 0;
       return {
         on: !!css.getPropertyValue('--band-solid').trim(),
-        brand: css.getPropertyValue('--brand').trim() || '#00D9FF',
+        // Effektfarbe: --fx-ink (colors/<thema>.css, weiss), sonst Themenfarbe
+        brand: css.getPropertyValue('--fx-ink').trim() || css.getPropertyValue('--brand').trim() || '#00D9FF',
         geo: {
           cx: r.left + r.width / 2,
           w: r.width,
@@ -366,8 +367,9 @@ export function BandFx({ fx, shape }: { fx: string; shape: string }) {
           break;
         }
         case '6': {
-          // Streifen innen: duenne dunkle Linien laufen nach unten
-          ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+          // Streifen innen: duenne Linien in Effektfarbe (weiss) laufen nach unten
+          ctx.strokeStyle = brand;
+          ctx.globalAlpha = 0.6;
           ctx.lineWidth = 2;
           const gap = 16;
           const off = (t * 40) % gap;
@@ -504,8 +506,9 @@ export function BandFx({ fx, shape }: { fx: string; shape: string }) {
             p.y += p.vy;
             const s = S.inner(vy);
             ctx.font = `700 ${p.s}px 'JetBrains Mono', monospace`;
-            ctx.globalAlpha = 0.75;
-            ctx.fillStyle = 'rgba(4, 20, 28, 0.85)';
+            // Buchstaben in Effektfarbe (weiss, Kunde 2026-10-06), vorher dunkel
+            ctx.globalAlpha = 0.9;
+            ctx.fillStyle = brand;
             ctx.fillText(p.ch!, s.cx + p.x * s.hw, vy);
             if (Math.random() < 0.04) {
               const set = fx === '11' ? 'EKADO' : '01EKADO';
