@@ -24,7 +24,8 @@ const SHAPE_NAMES: Record<string, string> = {
   '16': 'drei Schlangen',
   '17': 'vier Schlangen',
 };
-const FX = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+/* Effekt 8 Schimmer: vom Kunden gestrichen (2026-10-06), bleibt nur per Adresse ?fx=8 erreichbar */
+const FX = ['0', '1', '2', '3', '4', '5', '6', '7', '9', '10', '11'];
 const FX_NAMES = ['aus', 'Licht', 'Partikel', 'Punkte', 'EKADO', 'Herzschlag', 'Streifen', 'Funken', 'Schimmer', 'Sonar', 'Datenregen', 'EKADO-Regen'];
 
 export function BandPicker({
