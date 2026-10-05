@@ -2,8 +2,27 @@
  * Vergleichs-Leiste (voruebergehend): Lichtband-Form und Rand-Effekt durchschalten.
  * Wahl wird gemerkt (localStorage). Nichts davon wird geloescht - alle Varianten bleiben im Code.
  */
-const SHAPES = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
-const SHAPE_NAMES = ['gerade', 'schraeg', 'Schlange', 'Ringe', 'Faden', 'schraeger Faden', 'duenne Schlange', 'Doppelschlange', 'drei Linien', 'Schraffur', 'Zickzack', 'Punktlinie', 'vier Linien', 'drei schraege Linien', 'vier schraege Linien', 'drei Schlangen', 'vier Schlangen'];
+/* 11 Zickzack und 12 Punktlinie: vom Kunden gestrichen (2026-10-06), bleiben nur per Adresse ?band=11/12 erreichbar */
+const SHAPES = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '13', '14', '15', '16', '17'];
+const SHAPE_NAMES: Record<string, string> = {
+  '1': 'gerade',
+  '2': 'schraeg',
+  '3': 'Schlange',
+  '4': 'Ringe',
+  '5': 'Faden',
+  '6': 'schraeger Faden',
+  '7': 'duenne Schlange',
+  '8': 'Doppelschlange',
+  '9': 'drei Linien',
+  '10': 'Schraffur',
+  '11': 'Zickzack',
+  '12': 'Punktlinie',
+  '13': 'vier Linien',
+  '14': 'drei schraege Linien',
+  '15': 'vier schraege Linien',
+  '16': 'drei Schlangen',
+  '17': 'vier Schlangen',
+};
 const FX = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 const FX_NAMES = ['aus', 'Licht', 'Partikel', 'Punkte', 'EKADO', 'Herzschlag', 'Streifen', 'Funken', 'Schimmer', 'Sonar', 'Datenregen', 'EKADO-Regen'];
 
@@ -32,8 +51,8 @@ export function BandPicker({
       <div>
         <span>Form</span>
         <div className="bp-btns">
-          {SHAPES.map((v, i) => (
-            <button type="button" key={v} aria-pressed={v === band} onClick={() => setBand(v)} title={SHAPE_NAMES[i]}>
+          {SHAPES.map((v) => (
+            <button type="button" key={v} aria-pressed={v === band} onClick={() => setBand(v)} title={SHAPE_NAMES[v]}>
               {v}
             </button>
           ))}
