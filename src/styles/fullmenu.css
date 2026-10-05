@@ -1,8 +1,21 @@
-/* Vollbild-Menue (FullMenu.tsx). Farben: Themenvariablen, Masse: tokens.css */
-.fm {
+/* Menue-Tafel links (FullMenu.tsx). Farben: Themenvariablen, Masse: tokens.css */
+
+/* Rechte Haelfte: Seite abgedunkelt, Klick schliesst */
+.fm-veil {
   position: fixed;
   inset: 0;
   z-index: var(--z-menu);
+  background: var(--overlay);
+  cursor: default;
+}
+
+.fm {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--fm-w);
+  z-index: var(--z-menu);
+  border-right: var(--hair) solid var(--line);
+  box-shadow: var(--shadow-md);
   overflow-y: auto;
   padding: 0 var(--fm-pad) var(--sp-16);
   background: var(--surface-solid);
@@ -53,22 +66,45 @@
   color: var(--accent);
 }
 
-.fm-group {
-  padding-top: var(--sp-10);
+.fm-list,
+.fm-pages {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.fm-kicker {
-  padding-bottom: var(--sp-3);
+.fm-list {
+  margin-top: var(--sp-8);
+  border-top: var(--hair) solid var(--line);
+}
+
+/* Seiten eines Bereichs: kleiner, eingerueckt unter der Bereichszeile */
+.fm-pages {
+  overflow: hidden;
+  padding-left: var(--fm-num-w);
+}
+
+.fm-page-row .fm-label {
+  font-size: var(--fs-menu-sub);
+}
+
+.fm-sub {
+  display: block;
+  margin-top: var(--sp-2);
   color: var(--brand-text);
   letter-spacing: var(--ls-micro);
   text-transform: uppercase;
 }
 
-.fm-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: var(--hair) solid var(--line);
+/* Plus dreht sich zum Kreuz, wenn der Bereich offen ist */
+.fm-group-row[aria-expanded="true"] .fm-plus {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+.fm-group-row[aria-expanded="true"] .fm-label,
+.fm-group-row[data-here] .fm-num {
+  color: var(--accent);
 }
 
 .fm-row {
@@ -112,8 +148,8 @@
   color: var(--accent);
 }
 
-.fm-row:hover .fm-arrow,
-.fm-row:focus-visible .fm-arrow {
+.fm-row:not(.fm-group-row):hover .fm-arrow,
+.fm-row:not(.fm-group-row):focus-visible .fm-arrow {
   transform: translateX(var(--fm-shift));
   color: var(--accent);
 }

@@ -1,17 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight, Plus, X } from 'lucide-react';
 import { MENU_SECTIONS } from '../content/menu';
 import type { Texts } from '../content/ui';
 
 /**
- * Vollbild-Menue (config.ts MENU_STYLE = 'full'): grosse Zeilen mit Nummer und Pfeil,
- * Haarlinien dazwischen, je Bereich (Design, Firma, InstaOto) eine kleine Ueberschrift.
- * Farben nur ueber Themenvariablen, Masse aus tokens.css.
+ * Menue-Tafel ueber die linke Bildschirmhaelfte (config.ts MENU_STYLE = 'full'), rechts abgedunkelt.
+ * Die drei Bereiche (Design, Firma, InstaOto)
+ * als grosse Zeilen, anfangs alle zu. Ein Klick klappt die Seiten des Bereichs darunter auf
+ * (immer nur einer offen). Farben nur ueber Themenvariablen, Masse aus tokens.css.
  */
 export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean; onClose: () => void; active: string; onSelect: (id: string) => void; t: Texts }) {
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+
   useEffect(() => {
     if (!open) return;
+    setOpenGroup(null);
     const key = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     const html = document.documentElement;
     const prev = html.style.overflow;
@@ -26,13 +30,27 @@ export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean
   return (
     <AnimatePresence>
       {open && (
+        <motion.button
+          key="veil"
+          type="button"
+          className="fm-veil"
+          aria-label={t.ui.closeMenu}
+          onClick={onClose}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        />
+      )}
+      {open && (
         <motion.nav
+          key="menu"
           className="fm"
           aria-label={t.ui.openMenu}
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -16 }}
-          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ x: '-100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: '-100%' }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="fm-head">
             <span className="fm-brand">
@@ -46,35 +64,66 @@ export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean
             </button>
           </div>
 
-          {MENU_SECTIONS.map((sec, si) => (
-            <section key={sec.group} className="fm-group" data-group={sec.group}>
-              <p className="fm-kicker micro">{t.ui.groups[sec.group].title}</p>
-              <ul className="fm-list">
-                {sec.items.map((it, i) => (
-                  <motion.li
-                    key={it.id}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.06 + (si * 4 + i) * 0.03, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          <ul className="fm-list">
+            {MENU_SECTIONS.map((sec, si) => {
+              const isOpen = openGroup === sec.group;
+              const [name, sub] = t.ui.groups[sec.group].title.split(' · ');
+              const here = sec.items.some((it) => it.id === active);
+              return (
+                <motion.li
+                  key={sec.group}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.06 + si * 0.06, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <button
+                    type="button"
+                    className="fm-row fm-group-row"
+                    aria-expanded={isOpen}
+                    data-here={here || undefined}
+                    onClick={() => setOpenGroup(isOpen ? null : sec.group)}
                   >
-                    <button
-                      type="button"
-                      className="fm-row"
-                      aria-current={it.id === active ? 'page' : undefined}
-                      onClick={() => {
-                        onSelect(it.id);
-                        onClose();
-                      }}
-                    >
-                      <span className="fm-num">{String(i + 1).padStart(2, '0')}</span>
-                      <span className="fm-label">{t.menu[it.id]}</span>
-                      <ArrowRight className="fm-arrow" aria-hidden />
-                    </button>
-                  </motion.li>
-                ))}
-              </ul>
-            </section>
-          ))}
+                    <span className="fm-num">{String(si + 1).padStart(2, '0')}</span>
+                    <span className="fm-label">
+                      {name}
+                      {sub && <span className="fm-sub micro">{sub} · {sec.items.length}</span>}
+                    </span>
+                    <Plus className="fm-arrow fm-plus" aria-hidden />
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.ul
+                        className="fm-pages"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        {sec.items.map((it, i) => (
+                          <li key={it.id}>
+                            <button
+                              type="button"
+                              className="fm-row fm-page-row"
+                              aria-current={it.id === active ? 'page' : undefined}
+                              onClick={() => {
+                                onSelect(it.id);
+                                onClose();
+                              }}
+                            >
+                              <span className="fm-num">{String(i + 1).padStart(2, '0')}</span>
+                              <span className="fm-label">{t.menu[it.id]}</span>
+                              <ArrowRight className="fm-arrow" aria-hidden />
+                            </button>
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </motion.li>
+              );
+            })}
+          </ul>
         </motion.nav>
       )}
     </AnimatePresence>
