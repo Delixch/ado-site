@@ -683,8 +683,8 @@
   overflow-y: auto;
   scrollbar-width: none;
   align-items: center;
-  gap: var(--sp-2);
-  padding: var(--sp-3) 0 var(--sp-2);
+  gap: var(--sp-5);
+  padding: var(--sp-4) 0 var(--sp-3);
   border-radius: var(--radius-lg);
   border: var(--hair) solid var(--sb-glass-edge);
   background: var(--sb-glass);
@@ -701,7 +701,8 @@
 .bp-pick[data-strip] > div {
   flex-direction: column;
   align-items: center;
-  gap: var(--sp-1);
+  /* Luft zwischen senkrechter Beschriftung und den Zahlen (Kunde: "zu anstrengend") */
+  gap: var(--sp-4);
 }
 
 /* Beschriftung senkrecht, von oben nach unten lesbar */
@@ -724,7 +725,8 @@
   height: var(--sp-5);
   min-width: 0;
   padding: 0;
-  border-radius: var(--radius-pill);
+  /* nummerierte Quadrate statt Kreise (Kunde 2026-10-06) */
+  border-radius: 0;
   line-height: 1;
 }
 
