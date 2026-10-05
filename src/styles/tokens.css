@@ -352,6 +352,18 @@
   --sb-orbit-dur: 16s;
   --sb-orbit-glow: 6px;
   /* Impressum / Datenschutz (Dialog) */
+  /* Vollbild-Menue (fullmenu.css) */
+  --z-menu: 95;
+  --fm-pad: clamp(16px, 3vw, 40px);
+  --fm-head-h: 88px;
+  --fm-num-w: clamp(40px, 4vw, 64px);
+  --fm-row-pad: clamp(10px, 1.3vw, 18px);
+  --fm-num-top: clamp(8px, 1vw, 14px);
+  --fm-arrow: clamp(20px, 2vw, 28px);
+  --fm-shift: 8px;
+  --fs-menu: clamp(30px, 4.6vw, 68px);
+  --fw-light: 300;
+  --ls-menu: -0.035em;
   --legal-w: 680px;
   --legal-h: 86vh;
   --legal-measure: 62ch;

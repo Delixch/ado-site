@@ -1,14 +1,15 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState, type ComponentType } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type ComponentType } from 'react';
 import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'motion/react';
 import { SleekSidebar } from './components/SleekSidebar';
 import { Topbar } from './components/Topbar';
+import { FullMenu } from './components/FullMenu';
 import { PageContext, ViewContext } from './components/ViewFrame';
 import { MastRobot } from './components/robot/MastRobot';
 import { ToTop } from './components/common/ToTop';
 import { ALL_ITEMS } from './content/menu';
 import { texts, type Lang } from './content/ui';
 import { COLORS, isColor } from './colors';
-import { BAND_FX, BAND_SHAPE, CONTACT_MAIL, DEFAULT_COLOR, DEFAULT_LANG } from './config';
+import { BAND_FX, BAND_SHAPE, CONTACT_MAIL, DEFAULT_COLOR, DEFAULT_LANG, MENU_STYLE } from './config';
 import { BandFx } from './components/fx/BandFx';
 import { BandPicker } from './components/BandPicker';
 import type { LegalDoc } from './components/LegalDialog';
@@ -158,7 +159,11 @@ export default function App() {
   }, [overlayOpen]);
 
   const isExpanded = mode === 'desktop' ? desktopExpanded : mode === 'tablet' ? overlayOpen : true;
-  const setIsExpanded = mode === 'desktop' ? setDesktopExpanded : setOverlayOpen;
+  const [fullMenu, setFullMenu] = useState(false);
+  const closeFullMenu = useCallback(() => setFullMenu(false), []);
+  const setPanel = mode === 'desktop' ? setDesktopExpanded : setOverlayOpen;
+  // Vollbild-Menue: Aufklappen oeffnet es statt des Seitenmenues (config.ts MENU_STYLE)
+  const setIsExpanded = (v: boolean) => (MENU_STYLE === 'full' && v ? setFullMenu(true) : setPanel(v));
 
   // Handy: die Seiten eines Bereichs (Design, Firma, InstaOto) stehen untereinander -
   // Menue springt zur Seite, Scrollen fuehrt weiter zur naechsten Seite desselben Bereichs
@@ -240,6 +245,7 @@ export default function App() {
       <ViewContext.Provider value={ctx}>
         <div className="app" data-mode={mode} data-group={item.group}>
           <span className="grain" aria-hidden />
+          {MENU_STYLE === 'full' && <FullMenu open={fullMenu} onClose={closeFullMenu} active={item.id} onSelect={go} t={t} />}
           <div className="sb-slot" data-open={mode === 'mobile' ? overlayOpen : undefined}>
             <SleekSidebar
               isExpanded={isExpanded}
@@ -285,7 +291,7 @@ export default function App() {
               setAuto={(v) => setAutoPref(v ? 'on' : 'off')}
               onShuffle={() => setNonce((n) => n + 1)}
               onHome={() => go('d-start')}
-              onMenu={mode === 'mobile' ? () => setOverlayOpen(true) : undefined}
+              onMenu={mode === 'mobile' ? () => (MENU_STYLE === 'full' ? setFullMenu(true) : setOverlayOpen(true)) : undefined}
             />
 
             {stacked ? (

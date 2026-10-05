@@ -62,6 +62,12 @@ export const BAND_FX = '11';
  */
 export const RAIL_STYLE = '1';
 
+/**
+ * Menue-Art: 'full' = Vollbild-Menue mit grossen Zeilen (Test 2026-10-05, Vorlage "Bizuba"),
+ * 'sidebar' = bisheriges ausklappbares Seitenmenue. Das schmale Symbol-Band links bleibt in beiden.
+ */
+export const MENU_STYLE: 'full' | 'sidebar' = 'full';
+
 /** Breite des eingeklappten Menues in px (gleich wie --sb-rail-w in tokens.css). */
 export const RAIL_WIDTH = 64;
 
