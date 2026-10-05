@@ -159,3 +159,17 @@
 .fm-row[aria-current="page"] .fm-arrow {
   color: var(--accent);
 }
+
+/* Breite der Tafel: Desktop halb, Tablet breiter, Handy ganz (nach der Grundregel, damit sie gewinnt) */
+@media (max-width: 1179.98px) {
+  .fm {
+    width: var(--fm-w-tablet);
+  }
+}
+
+@media (max-width: 719.98px) {
+  .fm {
+    width: var(--fm-w-mobile);
+    border-right: 0;
+  }
+}

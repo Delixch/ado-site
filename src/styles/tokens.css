@@ -146,7 +146,6 @@
 @media (max-width: 1179.98px) {
   :root {
     --gap-grid: 14px;
-    --fm-w: 64vw;
   }
 }
 
@@ -156,7 +155,6 @@
     --radius-lg: 22px;
     --card-min-h: 140px;
     --hub-size: 320px;
-    --fm-w: 100vw;
   }
 }
 
@@ -366,6 +364,8 @@
   --fm-shift: 8px;
   --fs-menu: clamp(28px, 3.2vw, 52px);
   --fs-menu-sub: clamp(20px, 2vw, 30px);
+  --fm-w-tablet: 64vw;
+  --fm-w-mobile: 100vw;
   --fw-light: 300;
   --ls-menu: -0.035em;
   --legal-w: 680px;
