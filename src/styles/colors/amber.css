@@ -107,8 +107,8 @@
 /* Lichtband in Themenfarbe (spread.css .band), Bloecke halbtransparent */
 [data-color="amber"] {
   --band: color-mix(in srgb, var(--brand) 90%, transparent);
-  --band-solid: var(--brand);
-  --band-glow: color-mix(in srgb, var(--brand) 70%, transparent);
+  --band-solid: color-mix(in srgb, var(--brand) 72%, transparent);
+  --band-glow: color-mix(in srgb, var(--brand) 45%, transparent);
   --paper: rgba(7, 7, 10, 0.62);
   --paper-2: rgba(14, 14, 18, 0.66);
   --blk-backdrop: blur(26px) saturate(140%);

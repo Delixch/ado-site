@@ -106,8 +106,8 @@
 /* Lichtband in Terracotta (spread.css .band), Papierbloecke halbtransparent */
 [data-color="claude"] {
   --band: color-mix(in srgb, var(--brand) 90%, transparent);
-  --band-solid: var(--brand);
-  --band-glow: color-mix(in srgb, var(--brand) 55%, transparent);
+  --band-solid: color-mix(in srgb, var(--brand) 72%, transparent);
+  --band-glow: color-mix(in srgb, var(--brand) 35%, transparent);
   --paper: rgba(244, 239, 230, 0.72);
   --paper-2: rgba(237, 229, 215, 0.76);
   --blk-backdrop: blur(26px) saturate(120%);
