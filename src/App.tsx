@@ -245,7 +245,7 @@ export default function App() {
       <ViewContext.Provider value={ctx}>
         <div className="app" data-mode={mode} data-group={item.group}>
           <span className="grain" aria-hidden />
-          {MENU_STYLE === 'full' && <FullMenu open={fullMenu} onClose={closeFullMenu} active={item.id} onSelect={go} t={t} />}
+          {MENU_STYLE === 'full' && <FullMenu open={fullMenu} onClose={closeFullMenu} active={item.id} onSelect={go} t={t} lang={lang} setLang={setLang} />}
           <div className="sb-slot" data-open={mode === 'mobile' ? overlayOpen : undefined}>
             <SleekSidebar
               isExpanded={isExpanded}

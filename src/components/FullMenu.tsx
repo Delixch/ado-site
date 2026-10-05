@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, Plus, X } from 'lucide-react';
 import { MENU_SECTIONS } from '../content/menu';
-import type { Texts } from '../content/ui';
+import type { Lang, Texts } from '../content/ui';
+import { CONTACT_MAIL } from '../config';
+
+const LANGS: Lang[] = ['de', 'tr'];
 
 /**
  * Menue-Tafel ueber die linke Bildschirmhaelfte (config.ts MENU_STYLE = 'full'), rechts abgedunkelt.
@@ -11,7 +14,23 @@ import type { Texts } from '../content/ui';
  * (immer nur einer offen). Wer schon eine Seite gewaehlt hat, findet beim naechsten Oeffnen
  * deren Bereich offen und die Seite im Blick. Farben nur ueber Themenvariablen, Masse aus tokens.css.
  */
-export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean; onClose: () => void; active: string; onSelect: (id: string) => void; t: Texts }) {
+export function FullMenu({
+  open,
+  onClose,
+  active,
+  onSelect,
+  t,
+  lang,
+  setLang,
+}: {
+  open: boolean;
+  onClose: () => void;
+  active: string;
+  onSelect: (id: string) => void;
+  t: Texts;
+  lang: Lang;
+  setLang: (l: Lang) => void;
+}) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   // Einmal ueber das Menue gewaehlt? Dann beim Oeffnen dort weitermachen
   const chosen = useRef(false);
@@ -137,6 +156,21 @@ export function FullMenu({ open, onClose, active, onSelect, t }: { open: boolean
               );
             })}
           </ul>
+
+          {/* Fusszeile der Tafel: Kontakt, Sprache, Ort - in der Themenfarbe */}
+          <div className="fm-foot">
+            <a className="fm-foot-link" href={`mailto:${CONTACT_MAIL}`}>
+              {CONTACT_MAIL}
+            </a>
+            <div className="fm-langs" role="group" aria-label="Sprache / Dil">
+              {LANGS.map((l) => (
+                <button type="button" key={l} lang={l} aria-pressed={lang === l} onClick={() => setLang(l)}>
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <span className="fm-foot-where">{t.ui.where}</span>
+          </div>
         </motion.nav>
       )}
     </AnimatePresence>
