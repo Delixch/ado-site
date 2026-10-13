@@ -1,7 +1,8 @@
+import { useCallback, useState } from 'react';
 import { IntroCall } from '../../common/IntroCall';
 import { ArrowDown, ArrowUpRight, CalendarDays, FolderOpen, Globe, Landmark, Package, Receipt } from 'lucide-react';
 import { CONTACT_MAIL, media } from '../../../config';
-import { Media } from '../../fx/Media';
+import { FilmControls, FilmMedia, type FilmLang } from '../../fx/FilmMedia';
 import { TrustBadges } from '../../common/TrustBadges';
 import { Spread, type Block, type LayoutDef } from '../../spread/Spread';
 import { useView } from '../../ViewFrame';
@@ -28,6 +29,9 @@ export function FirmaStart() {
   const { t, go } = useView();
   const f = t.f;
   const h = f.hero;
+  const [filmPlaying, setFilmPlaying] = useState(false);
+  const [filmLang, setFilmLang] = useState<FilmLang>(t.lang === 'tr' ? 'tr' : 'de');
+  const onFilmPlaying = useCallback((p: boolean) => setFilmPlaying(p), []);
 
   /** Was jeder Bereich in der Mini-App gerade meldet (alles aus den Texten der Firmenseite). */
   const states = [
@@ -43,12 +47,15 @@ export function FirmaStart() {
     {
       id: 'headline',
       node: (
-        <h2 className="fs-head">
-          <span className="poster">{h.lineBuild}</span>
-          <span className="whisper">
-            {h.lineDigital} <em>{h.lineExperiences}</em>
-          </span>
-        </h2>
+        <>
+          <h2 className="fs-head">
+            <span className="poster">{h.lineBuild}</span>
+            <span className="whisper">
+              {h.lineDigital} <em>{h.lineExperiences}</em>
+            </span>
+          </h2>
+          <FilmControls playing={filmPlaying} lang={filmLang} onToggle={() => setFilmPlaying((p) => !p)} onLang={setFilmLang} />
+        </>
       ),
     },
     {
@@ -121,7 +128,7 @@ export function FirmaStart() {
         </div>
       ),
     },
-    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <Media src={media('/media/firma/plattform-sw.mp4')} subs={{ de: '/media/firma/plattform-de.vtt', tr: '/media/firma/plattform-tr.vtt' }} sound /> },
+    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <FilmMedia src={media('/media/firma/plattform-sw.mp4')} audio="/media/firma/plattform-ton.mp3" subs={{ de: '/media/firma/plattform-de.vtt', tr: '/media/firma/plattform-tr.vtt' }} playing={filmPlaying} lang={filmLang} onPlaying={onFilmPlaying} /> },
     {
       id: 'quote',
       trace: true,

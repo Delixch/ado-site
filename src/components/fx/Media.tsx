@@ -7,9 +7,8 @@ import { useView } from '../ViewFrame';
  * Bild oder Video. Videos stehen still (erstes Bild) und laufen erst auf Knopfdruck;
  * ausser Sicht halten sie wieder an.
  */
-/** `subs`: stummes Video mit Untertiteln (VTT je Sprache); kleines Bedienfeld oben: Play + DE/TR. */
 /** `fallback`: Ersatzvideo, falls `src` (noch) nicht existiert - z. B. Themenvideo noch nicht gerendert. */
-export function Media({ src, className = '', alt = '', sound = false, fallback, poster, subs }: { src: string; className?: string; alt?: string; sound?: boolean; fallback?: string; poster?: string; subs?: { de: string; tr: string } }) {
+export function Media({ src, className = '', alt = '', sound = false, fallback, poster }: { src: string; className?: string; alt?: string; sound?: boolean; fallback?: string; poster?: string }) {
   const [failed, setFailed] = useState(false);
   useEffect(() => setFailed(false), [src]);
   const file = failed && fallback ? fallback : src;
@@ -18,14 +17,6 @@ export function Media({ src, className = '', alt = '', sound = false, fallback, 
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const { t } = useView();
-  const [subLang, setSubLang] = useState<'de' | 'tr'>(t.lang === 'tr' ? 'tr' : 'de');
-
-  // nur die gewaehlte Untertitelspur zeigen
-  useEffect(() => {
-    const tracks = video.current?.textTracks;
-    if (!tracks) return;
-    for (let i = 0; i < tracks.length; i++) tracks[i].mode = tracks[i].language === subLang ? 'showing' : 'disabled';
-  }, [subLang, inView, file]);
 
   useEffect(() => {
     if (!inView && playing) {
@@ -49,16 +40,15 @@ export function Media({ src, className = '', alt = '', sound = false, fallback, 
   const toggle = () => {
     const v = video.current;
     if (!v) return;
-    if (v.paused) {
-      v.play().then(() => setPlaying(true)).catch(() => {});
-    } else {
+    if (v.paused) v.play().then(() => setPlaying(true)).catch(() => {});
+    else {
       v.pause();
       setPlaying(false);
     }
   };
 
   return (
-    <div ref={ref} className={`media ${subs ? 'has-subs' : ''} ${className}`}>
+    <div ref={ref} className={`media ${className}`}>
       {isVideo ? (
         <>
           <video
@@ -68,38 +58,16 @@ export function Media({ src, className = '', alt = '', sound = false, fallback, 
             data-src={`${file}#t=0.6`}
             onError={() => setFailed(true)}
             poster={poster}
-            muted={!sound || !!subs}
+            muted={!sound}
             loop={!sound}
             playsInline
             preload={inView ? 'metadata' : 'none'}
             aria-hidden={!sound}
             onEnded={() => setPlaying(false)}
-          >
-            {subs && inView && (
-              <>
-                <track kind="subtitles" srcLang="de" label="Deutsch" src={subs.de} />
-                <track kind="subtitles" srcLang="tr" label="Türkçe" src={subs.tr} />
-              </>
-            )}
-          </video>
-          {subs ? (
-            <div className="media-box">
-              <button type="button" className="media-play" onClick={toggle} aria-pressed={playing} aria-label={playing ? t.ui.pause : t.ui.play}>
-                {playing ? <Pause /> : <Play />}
-              </button>
-              <div className="media-lang" role="group" aria-label="Untertitel">
-                {(['de', 'tr'] as const).map((l) => (
-                  <button key={l} type="button" aria-pressed={subLang === l} onClick={() => setSubLang(l)}>
-                    {l.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <button type="button" className="media-play" onClick={toggle} aria-pressed={playing} aria-label={playing ? t.ui.pause : t.ui.play}>
-              {playing ? <Pause /> : <Play />}
-            </button>
-          )}
+          />
+          <button type="button" className="media-play" onClick={toggle} aria-pressed={playing} aria-label={playing ? t.ui.pause : t.ui.play}>
+            {playing ? <Pause /> : <Play />}
+          </button>
         </>
       ) : (
         <img src={file} alt={alt} loading="lazy" decoding="async" />
