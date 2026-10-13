@@ -153,6 +153,49 @@
   mix-blend-mode: difference;
 }
 
+/* Video mit Untertiteln: kleines Bedienfeld oben links (Play + DE/TR) */
+.media-box {
+  position: absolute;
+  top: var(--spread-pad);
+  left: var(--spread-pad);
+  z-index: 8;
+  display: grid;
+  gap: 4px;
+  padding: 4px;
+  border: var(--hair) solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  pointer-events: auto;
+}
+
+.media-box .media-play {
+  position: static;
+  border-radius: 0;
+  border: 0;
+}
+
+.media-lang {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.media-lang button {
+  padding: 2px 0;
+  font: inherit;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.media-lang button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
 /* Video: erst auf Knopfdruck */
 .media-play {
   position: absolute;

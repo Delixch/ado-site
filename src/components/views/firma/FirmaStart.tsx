@@ -121,7 +121,7 @@ export function FirmaStart() {
         </div>
       ),
     },
-    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <Media src={media('/media/firma/plattform-sw.mp4')} audio={media('/media/firma/plattform-ton.mp3')} sound /> },
+    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <Media src={media('/media/firma/plattform-sw.mp4')} subs={{ de: '/media/firma/plattform-de.vtt', tr: '/media/firma/plattform-tr.vtt' }} sound /> },
     {
       id: 'quote',
       trace: true,

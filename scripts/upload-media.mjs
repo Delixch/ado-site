@@ -15,7 +15,6 @@ import fs from 'node:fs';
 const FILES = [
   'media/design/schreibtisch.mp4',
   'media/firma/plattform-sw.mp4',
-  'media/firma/plattform-ton.mp3',
   'media/insta/promo-de.mp4',
   'media/insta/promo-tr.mp4',
 ];
