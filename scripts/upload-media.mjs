@@ -14,11 +14,8 @@ import fs from 'node:fs';
 
 const FILES = [
   'media/design/schreibtisch.mp4',
-  'media/firma/plattform-de-claude.mp4',
-  'media/firma/plattform-de-orange.mp4',
-  'media/firma/plattform-de-amber.mp4',
-  'media/firma/plattform-de-green.mp4',
-  'media/firma/plattform-de-cyan.mp4',
+  'media/firma/plattform-sw.mp4',
+  'media/firma/plattform-ton.mp3',
   'media/insta/promo-de.mp4',
   'media/insta/promo-tr.mp4',
 ];

@@ -25,7 +25,7 @@ const LAYOUTS: LayoutDef[] = [
 ];
 
 export function FirmaStart() {
-  const { t, go, color } = useView();
+  const { t, go } = useView();
   const f = t.f;
   const h = f.hero;
 
@@ -121,7 +121,7 @@ export function FirmaStart() {
         </div>
       ),
     },
-    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <Media src={media(`/media/firma/plattform-de-${color}.mp4`)} fallback={media('/media/firma/plattform-de-cyan.mp4')} sound /> },
+    { id: 'film', trace: 'corners', tone: 'media', bleed: true, node: <Media src={media('/media/firma/plattform-sw.mp4')} audio={media('/media/firma/plattform-ton.mp3')} sound /> },
     {
       id: 'quote',
       trace: true,
