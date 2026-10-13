@@ -58,7 +58,7 @@ export function Media({ src, className = '', alt = '', sound = false, fallback, 
   };
 
   return (
-    <div ref={ref} className={`media ${className}`}>
+    <div ref={ref} className={`media ${subs ? 'has-subs' : ''} ${className}`}>
       {isVideo ? (
         <>
           <video
