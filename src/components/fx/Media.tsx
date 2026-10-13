@@ -39,7 +39,7 @@ export function Media({ src, className = '', alt = '', sound = false, fallback, 
     const onVisibility = () => {
       if (document.hidden && playing) {
         video.current?.pause();
-          setPlaying(false);
+        setPlaying(false);
       }
     };
     document.addEventListener('visibilitychange', onVisibility);
@@ -73,13 +73,33 @@ export function Media({ src, className = '', alt = '', sound = false, fallback, 
             playsInline
             preload={inView ? 'metadata' : 'none'}
             aria-hidden={!sound}
-            onEnded={() => {
-                      setPlaying(false);
-            }}
-          />
-          <button type="button" className="media-play" onClick={toggle} aria-pressed={playing} aria-label={playing ? t.ui.pause : t.ui.play}>
-            {playing ? <Pause /> : <Play />}
-          </button>
+            onEnded={() => setPlaying(false)}
+          >
+            {subs && inView && (
+              <>
+                <track kind="subtitles" srcLang="de" label="Deutsch" src={subs.de} />
+                <track kind="subtitles" srcLang="tr" label="Türkçe" src={subs.tr} />
+              </>
+            )}
+          </video>
+          {subs ? (
+            <div className="media-box">
+              <button type="button" className="media-play" onClick={toggle} aria-pressed={playing} aria-label={playing ? t.ui.pause : t.ui.play}>
+                {playing ? <Pause /> : <Play />}
+              </button>
+              <div className="media-lang" role="group" aria-label="Untertitel">
+                {(['de', 'tr'] as const).map((l) => (
+                  <button key={l} type="button" aria-pressed={subLang === l} onClick={() => setSubLang(l)}>
+                    {l.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <button type="button" className="media-play" onClick={toggle} aria-pressed={playing} aria-label={playing ? t.ui.pause : t.ui.play}>
+              {playing ? <Pause /> : <Play />}
+            </button>
+          )}
         </>
       ) : (
         <img src={file} alt={alt} loading="lazy" decoding="async" />
